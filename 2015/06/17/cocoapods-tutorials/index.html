@@ -267,6 +267,11 @@ post_install <span class="keyword">do</span> |installer|
 link_with <span class="string">'MyApp'</span>, <span class="string">'MyApp Tests'</span>
 pod <span class="string">'AFNetworking'</span>, <span class="string">'~&gt; 2.0'</span>
 pod <span class="string">'Objection'</span>, <span class="string">'0.9'</span></span></span>
+</code></pre><p>有时候一些库编译会有警告，如果不想看到这些警告，可以在<code>platform :xxx, &#39;x.x&#39;</code>后面添加这个：</p>
+<pre><code><span class="function_or_atom">inhibit_all_warnings</span><span class="exclamation_mark">!</span>
+</code></pre><p>这样就不会再看到警告了。</p>
+<p>但是有些库如果是在上面这种关闭警告的方式下，会编译失败，比如ReactiveCocoa，所以需要单独将这个库的编译警告开启：</p>
+<pre><code>pod <span class="string">'ReactiveCocoa'</span>, <span class="string">'~&gt; 2.1.8'</span>, :inhibit_warnings =&gt; <span class="keyword">true</span>
 </code></pre><h3 id="指定pod的版本">指定pod的版本</h3><p>当你想在一个项目里面使用一个pod的最新版本，你可以删掉这个pod的版本约束：</p>
 <pre><code><span class="title">pod</span> <span class="string">'SSZipArchive'</span>
 </code></pre><p>如果你还想使用一个pod的某个特定的版本，你可以指定这个pod的版本：</p>
@@ -380,6 +385,7 @@ pod <span class="string">'ObjectiveSugar'</span>, <span class="string">'~&gt; 0.
 <ul>
 <li><a href="http://code4app.com/article/cocoapods-install-usage" target="_blank" rel="external">CocoaPods安装和使用教程</a></li>
 <li><a href="http://objccn.io/issue-6-4/" target="_blank" rel="external">深入理解 CocoaPods</a></li>
+<li><a href="http://blog.jobbole.com/65721/" target="_blank" rel="external">手把手五分钟教你制作自己的podspec文件</a></li>
 </ul>
 
       
