@@ -217,32 +217,24 @@
 <h1 id="什么是_CocoaPods">什么是 CocoaPods</h1><p>CocoaPods 是一个用来帮助我们管理第三方依赖库的工具。<br>我们项目中所有的依赖都写在一个叫 <strong>Podfile</strong> 的文本文件里面，CocoaPods 会帮我们解决各个第三方库之间的依赖，获取库最新的源码，然后将它们link在一起创建一个 Xcode 的 workspace 来构建我们的项目。</p>
 <p>使用 CocoaPods 的目的是为了让我们能够更集中的管理第三方开源库。</p>
 <h1 id="Getting_Started">Getting Started</h1><h2 id="安装">安装</h2><p>CocoaPods 是使用 Ruby 实现的，OS X 系统已经默认安装了 Ruby。然后我们就可以通过以下命令来安装 CocoaPods 了：</p>
-<pre><code>$ sudo gem <span class="keyword">install</span> cocoapods
-</code></pre><p>如果你在天朝，而你又没有梯子，那么你会发现这个命令执行地非常非常慢，因为有一堵墙非常高，非常厚，以至于很多网站都不能正常访问，有没有办法解决这个问题而不用自己备梯子呢？当然有！我们可以用淘宝的 Ruby 镜像来安装 CocoaPods。按照下面的顺序在终端中敲入依次敲入命令：</p>
-<pre><code>$ gem sources --remove <span class="string">https:</span><span class="comment">//rubygems.org/</span>
-<span class="comment">// 等有反应之后再敲入以下命令</span>
-$ gem sources -a <span class="string">http:</span><span class="comment">//ruby.taobao.org/</span>
-</code></pre><p>为了验证你的 Ruby 镜像是并且仅是 taobao，可以用以下命令查看：</p>
-<pre><code>$ gem sources <span class="operator">-l</span>
-</code></pre><p>只有在终端中出现下面文字才表明你上面的命令是成功的：</p>
-<pre><code><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span> CURRENT SOURCES <span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>
-
-http://ruby.taobao.org/
-</code></pre><p>成功之后再安装 CocoaPods 就没有那么慢了。</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gem <span class="keyword">install</span> cocoapods</span><br></pre></td></tr></table></figure>
+<p>如果你在天朝，而你又没有梯子，那么你会发现这个命令执行地非常非常慢，因为有一堵墙非常高，非常厚，以至于很多网站都不能正常访问，有没有办法解决这个问题而不用自己备梯子呢？当然有！我们可以用淘宝的 Ruby 镜像来安装 CocoaPods。按照下面的顺序在终端中敲入依次敲入命令：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ gem sources --remove <span class="string">https:</span><span class="comment">//rubygems.org/</span></span><br><span class="line"><span class="comment">// 等有反应之后再敲入以下命令</span></span><br><span class="line">$ gem sources -a <span class="string">http:</span><span class="comment">//ruby.taobao.org/</span></span><br></pre></td></tr></table></figure>
+<p>为了验证你的 Ruby 镜像是并且仅是 taobao，可以用以下命令查看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem sources <span class="operator">-l</span></span><br></pre></td></tr></table></figure>
+<p>只有在终端中出现下面文字才表明你上面的命令是成功的：</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span> CURRENT SOURCES <span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line">http://ruby.taobao.org/</span><br></pre></td></tr></table></figure>
+<p>成功之后再安装 CocoaPods 就没有那么慢了。</p>
 <h2 id="非_root_用户安装">非 root 用户安装</h2><p>也就是不使用 sudo，如果你不想让 RubyGems 此次安装使用管理员权限，你可以将 RubyGems 安装到你的用户目录下面，有 2 个办法：</p>
 <ol>
 <li><strong>gem install</strong> 加一个 flag：<strong>—user-install</strong></li>
 <li>配置 RubyGems 的环境</li>
 </ol>
 <p>官方认为第二个办法相对更好一点，要配置 RubyGems 的环境，也很简单，打开 Home 目录下的 <strong>.profile</strong> 文件（需要系统显示隐藏文件，方法 Google 或者度娘以下就可以找到），如果没有该文件，则创建一个，添加或者修改下面几行代码：</p>
-<pre><code><span class="built_in">export</span> GEM_HOME=<span class="variable">$HOME</span>/.gem
-<span class="built_in">export</span> PATH=<span class="variable">$GEM_HOME</span>/bin:<span class="variable">$PATH</span>
-</code></pre><p>注意啦，如果你选择第一种方式，还是需要配置你的 <strong>.profile</strong> 文件，设置 <strong>PATH</strong>，或者在完整路径下使用命令行安装。你可以通过以下命令来找到 gem 的安装目录：</p>
-<pre><code>$ gem install cocoapods --user-install
-$ gem which cocoapods
-<span class="regexp">/Users/</span>eloy<span class="regexp">/.gem/</span>ruby<span class="regexp">/2.0.0/</span>gems<span class="regexp">/cocoapods-0.29.0/</span>lib/cocoapods.rb
-$ <span class="regexp">/Users/</span>eloy<span class="regexp">/.gem/</span>ruby<span class="regexp">/2.0.0/</span>bin/pod install
-</code></pre><h2 id="更新_CocoaPods">更新 CocoaPods</h2><p>再次用 gem 安装 CocoaPods 就可以更新 CocoaPods 了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> GEM_HOME=<span class="variable">$HOME</span>/.gem</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$GEM_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+<p>注意啦，如果你选择第一种方式，还是需要配置你的 <strong>.profile</strong> 文件，设置 <strong>PATH</strong>，或者在完整路径下使用命令行安装。你可以通过以下命令来找到 gem 的安装目录：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ gem install cocoapods --user-install</span><br><span class="line">$ gem which cocoapods</span><br><span class="line"><span class="regexp">/Users/</span>eloy<span class="regexp">/.gem/</span>ruby<span class="regexp">/2.0.0/</span>gems<span class="regexp">/cocoapods-0.29.0/</span>lib/cocoapods.rb</span><br><span class="line">$ <span class="regexp">/Users/</span>eloy<span class="regexp">/.gem/</span>ruby<span class="regexp">/2.0.0/</span>bin/pod install</span><br></pre></td></tr></table></figure>
+<h2 id="更新_CocoaPods">更新 CocoaPods</h2><p>再次用 gem 安装 CocoaPods 就可以更新 CocoaPods 了：</p>
 <pre><code>$ [sudo] gem <span class="keyword">install</span> cocoapods
 </code></pre><p>或者也可以安装 pre-release 版本：</p>
 <pre><code>$ [sudo] gem <span class="operator"><span class="keyword">install</span> cocoapods <span class="comment">--pre</span></span>
