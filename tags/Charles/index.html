@@ -1,11 +1,15 @@
 <!doctype html>
 <html class="theme-next use-motion theme-next-mist">
 <head>
-  
+    
 
 <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -15,7 +19,9 @@
   <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.4"/>
 
 
     <meta name="description" content="You are the code of my eyes. 爱代码，爱机车，爱野马。" />
@@ -28,19 +34,39 @@
 
 
 
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
+
+<meta name="description" content="You are the code of my eyes. 爱代码，爱机车，爱野马。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Happy Hacking">
+<meta property="og:url" content="http://yoursite.com/tags/Charles/index.html">
+<meta property="og:site_name" content="Happy Hacking">
+<meta property="og:description" content="You are the code of my eyes. 爱代码，爱机车，爱野马。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Happy Hacking">
+<meta name="twitter:description" content="You are the code of my eyes. 爱代码，爱机车，爱野马。">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: 'Mist',
-    analytics: {
-      google: ''
-    },
     sidebar: 'post'
   };
 </script>
+
+    <title> 标签: Charles // Happy Hacking </title>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
 
 
   <script type="text/javascript">
@@ -55,19 +81,12 @@
 
 
 
-  <title> 标签: Charles // Happy Hacking </title>
-</head>
-
-<body>
-<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
-  <div class="container one-column ">
+<div class="container one-column ">
     <div class="headband"></div>
-
-    <div id="header" class="header">
-      <div class="header-inner">
-        <h1 class="site-meta">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><h1 class="site-meta">
   <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand">
+  <a href="/" class="brand" rel="start">
       <span class="logo">
         <i class="icon-logo"></i>
       </span>
@@ -76,85 +95,91 @@
   <span class="logo-line-after"><i></i></span>
 </h1>
 
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
 
-  <ul id="menu" class="menu menu-left">
-    <!--按钮-->
-    
-      
-      <li class="menu-item menu-item-home">
-        <a href="/">
-          <i class="menu-item-icon icon-home"></i> <br />
-          首页
-        </a>
-      </li>
-    
-      
-      <li class="menu-item menu-item-archives">
-        <a href="/archives">
-          <i class="menu-item-icon icon-archives"></i> <br />
-          归档
-        </a>
-      </li>
-    
-      
-      <li class="menu-item menu-item-categories">
-        <a href="/categories">
-          <i class="menu-item-icon icon-categories"></i> <br />
-          分类
-        </a>
-      </li>
-    
-      
-      <li class="menu-item menu-item-tags">
-        <a href="/tags">
-          <i class="menu-item-icon icon-tags"></i> <br />
-          标签
-        </a>
-      </li>
-    
-      
-      <li class="menu-item menu-item-about">
-        <a href="/about">
-          <i class="menu-item-icon icon-about"></i> <br />
-          关于
-        </a>
-      </li>
-    
-      
-      <li class="menu-item menu-item-commonweal">
-        <a href="/404.html">
-          <i class="menu-item-icon icon-commonweal"></i> <br />
-          公益404
-        </a>
-      </li>
-    
-    <!--按钮end-->
-    
-    <!--增加swiftype搜索功能-->
-    <form class="menu-item menu-item-search">
-      <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
-    </form>
-    
-    <script type="text/javascript">
-      (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-      (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-      e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-      })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+<nav class="site-nav">
+  
 
-      _st('install','pqUHVF4KWmspE68xTa-7','2.0.0');
-    </script>
-    <!--增加swiftype搜索功能end-->
-    
-  </ul>
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  
 
+  
+    <div class="site-search">
+      
+  
+<form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
 
-      </div>
+  _st('install', 'pqUHVF4KWmspE68xTa-7','2.0.0');
+</script>
+
+<div class="site-search-toggle"></div>
     </div>
+  
+</nav>
 
-    <div id="main" class="main">
-      <div class="main-inner">
-        <div id="content" class="content">
-          
+        </div>
+    </header>
+
+    <main id="main" class="main">
+        <div class="main-inner">
+            <div id="content" class="content">
+                
 
   <div id="posts" class="posts-collapse">
     <div class="collection-title">
@@ -167,23 +192,23 @@
     
       
 
-  <div class="post post-type-normal">
-    <div class="post-header">
+  <article class="post post-type-normal"itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      <div class="post-title">
+      <h1 class="post-title">
         
-            <a class="post-title-link" href="/2015/07/23/use-charles-capture-package-in-mac/">
-              在 Mac 上使用 Charles 抓包
+            <a class="post-title-link" href="/2015/07/23/use-charles-capture-package-in-mac/" itemprop="url">
+              <span itemprop="name">在 Mac 上使用 Charles 抓包</span>
             </a>
         
-      </div>
+      </h1>
 
       <div class="post-meta">
-        <span class="post-time"> 07-23 </span>
+        <time class="post-time" datetime="2015-07-23T12:12:41.000Z" itemprop="dateCreated" content="2015-07-23"> 07-23 </time>
       </div>
 
-    </div>
-  </div>
+    </header>
+  </article>
 
 
     
@@ -191,13 +216,14 @@
 
   
 
+            </div>
+
+            
+
+            
         </div>
 
         
-      </div>
-
-
-      
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -207,18 +233,18 @@
     </div>
   </div>
 
-  <div id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
       
 
-      <div class="site-overview">
-        <div class="site-author motion-element">
-          <img class="site-author-image" src="/images/default_avatar.jpg" alt="我的眼里只有代码" />
-          <p class="site-author-name">我的眼里只有代码</p>
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="我的眼里只有代码" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">我的眼里只有代码</p>
         </div>
-        <p class="site-description motion-element">You are the code of my eyes. 爱代码，爱机车，爱野马。</p>
-        <div class="site-state motion-element">
+        <p class="site-description motion-element" itemprop="description">You are the code of my eyes. 爱代码，爱机车，爱野马。</p>
+        <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">10</span>
@@ -240,7 +266,7 @@
               </a>
           </div>
 
-        </div>
+        </nav>
 
         
 
@@ -248,70 +274,81 @@
           
             
               <span class="links-of-author-item">
-              <a href="https://github.com/ihappyhacking" target="_blank">GitHub</a>
-            </span>
+                <a href="https://github.com/ihappyhacking" target="_blank">GitHub</a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="https://twitter.com/iHappyHacking" target="_blank">Twitter</a>
-            </span>
+                <a href="https://twitter.com/iHappyHacking" target="_blank">Twitter</a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="http://weibo.com/fuckingcode" target="_blank">Weibo</a>
-            </span>
+                <a href="http://weibo.com/fuckingcode" target="_blank">Weibo</a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="http://www.douban.com/people/codemaker/" target="_blank">DouBan</a>
-            </span>
+                <a href="http://www.douban.com/people/codemaker/" target="_blank">DouBan</a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="http://www.zhihu.com/people/ihappyhacking/" target="_blank">ZhiHu</a>
-            </span>
+                <a href="http://www.zhihu.com/people/ihappyhacking/" target="_blank">ZhiHu</a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="https://instagram.com/ihappyhacking/" target="_blank">Instagram</a>
-            </span>
+                <a href="https://instagram.com/ihappyhacking/" target="_blank">Instagram</a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="https://www.facebook.com/ihappyhacking" target="_blank">Facebook</a>
-            </span>
+                <a href="https://www.facebook.com/ihappyhacking" target="_blank">Facebook</a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank">GooglePlus</a>
-            </span>
+                <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank">GooglePlus</a>
+              </span>
             
           
         </div>
 
         
         
-          <div class="cc-license motion-element">
+          <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
               <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
             </a>
           </div>
         
 
-      </div>
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.minxiaoming.com/" target="_blank">minxiaoming</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
 
       
 
     </div>
-  </div>
+  </aside>
 
 
-    </div>
+    </main>
 
-    <div id="footer" class="footer">
-      <div class="footer-inner">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <div class="copyright">
   
   &copy; &nbsp; 
-  2015
+  <span itemprop="copyrightYear">2015</span>
   <span class="with-love">
     <i class="icon-heart"></i>
   </span>
-  <span class="author">我的眼里只有代码</span>
+  <span class="author" itemprop="copyrightHolder">我的眼里只有代码</span>
 </div>
 
 <div class="powered-by">
@@ -335,13 +372,13 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-      </div>
-    </div>
+        </div>
+    </footer>
 
     <div class="back-to-top"></div>
-  </div>
+</div>
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+<script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
   
   
@@ -351,39 +388,75 @@
     </script>
   
 
+  
+    
 
   
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"happyhacking"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.4"></script>
 
 
-  <script type="text/javascript" src="/js/helpers.js"></script>
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.4"></script>
   
 
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
   <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.4" id="motion.global"></script>
 
 
 
+  <script type="text/javascript" src="/js/search-toggle.js"></script>
 
-  
 
-  <script type="text/javascript">
+
+<script type="text/javascript">
     $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
+        if (CONFIG.sidebar === 'always') {
+            displaySidebar();
+        }
     });
-  </script>
+</script>
 
-  
 
-  
 
-  
-  
 
+
+
+
+
+<!-- lazyload -->
+<script type="text/javascript" src="/js/lazyload.js"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#posts img").lazyload({
+            placeholder: "/images/loading.gif",
+            effect: "fadeIn"
+        });
+    });
+</script>
 </body>
 </html>

@@ -1,11 +1,15 @@
 <!doctype html>
 <html class="theme-next use-motion theme-next-mist">
 <head>
-  
+    
 
 <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -15,7 +19,9 @@
   <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.4"/>
 
 
     <meta name="description" content="You are the code of my eyes. 爱代码，爱机车，爱野马。" />
@@ -28,19 +34,56 @@
 
 
 
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
+
+<meta name="description" content="移动端 App 在 Mac 上使用 Charles 抓包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 Mac 上使用 Charles 抓包">
+<meta property="og:url" content="http://yoursite.com/2015/07/23/use-charles-capture-package-in-mac/index.html">
+<meta property="og:site_name" content="Happy Hacking">
+<meta property="og:description" content="移动端 App 在 Mac 上使用 Charles 抓包">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-00.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-01.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-02.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-03.PNG">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-04.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-05.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-06.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-07.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-08.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-09.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-10.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-11.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-12.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-13.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-14.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-15.png">
+<meta property="og:updated_time" content="2015-07-23T14:07:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在 Mac 上使用 Charles 抓包">
+<meta name="twitter:description" content="移动端 App 在 Mac 上使用 Charles 抓包">
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: 'Mist',
-    analytics: {
-      google: ''
-    },
     sidebar: 'post'
   };
 </script>
+
+    <title> 在 Mac 上使用 Charles 抓包 // Happy Hacking </title>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
 
 
   <script type="text/javascript">
@@ -55,19 +98,12 @@
 
 
 
-  <title> 在 Mac 上使用 Charles 抓包 // Happy Hacking </title>
-</head>
-
-<body>
-<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
-  <div class="container one-column page-post-detail">
+<div class="container one-column page-post-detail">
     <div class="headband"></div>
-
-    <div id="header" class="header">
-      <div class="header-inner">
-        <h1 class="site-meta">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><h1 class="site-meta">
   <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand">
+  <a href="/" class="brand" rel="start">
       <span class="logo">
         <i class="icon-logo"></i>
       </span>
@@ -76,95 +112,101 @@
   <span class="logo-line-after"><i></i></span>
 </h1>
 
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
 
-  <ul id="menu" class="menu menu-left">
-    <!--按钮-->
-    
-      
-      <li class="menu-item menu-item-home">
-        <a href="/">
-          <i class="menu-item-icon icon-home"></i> <br />
-          首页
-        </a>
-      </li>
-    
-      
-      <li class="menu-item menu-item-archives">
-        <a href="/archives">
-          <i class="menu-item-icon icon-archives"></i> <br />
-          归档
-        </a>
-      </li>
-    
-      
-      <li class="menu-item menu-item-categories">
-        <a href="/categories">
-          <i class="menu-item-icon icon-categories"></i> <br />
-          分类
-        </a>
-      </li>
-    
-      
-      <li class="menu-item menu-item-tags">
-        <a href="/tags">
-          <i class="menu-item-icon icon-tags"></i> <br />
-          标签
-        </a>
-      </li>
-    
-      
-      <li class="menu-item menu-item-about">
-        <a href="/about">
-          <i class="menu-item-icon icon-about"></i> <br />
-          关于
-        </a>
-      </li>
-    
-      
-      <li class="menu-item menu-item-commonweal">
-        <a href="/404.html">
-          <i class="menu-item-icon icon-commonweal"></i> <br />
-          公益404
-        </a>
-      </li>
-    
-    <!--按钮end-->
-    
-    <!--增加swiftype搜索功能-->
-    <form class="menu-item menu-item-search">
-      <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
-    </form>
-    
-    <script type="text/javascript">
-      (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-      (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-      e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-      })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+<nav class="site-nav">
+  
 
-      _st('install','pqUHVF4KWmspE68xTa-7','2.0.0');
-    </script>
-    <!--增加swiftype搜索功能end-->
-    
-  </ul>
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  
 
+  
+    <div class="site-search">
+      
+  
+<form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
 
-      </div>
+  _st('install', 'pqUHVF4KWmspE68xTa-7','2.0.0');
+</script>
+
+<div class="site-search-toggle"></div>
     </div>
+  
+</nav>
 
-    <div id="main" class="main">
-      <div class="main-inner">
-        <div id="content" class="content">
-          
+        </div>
+    </header>
+
+    <main id="main" class="main">
+        <div class="main-inner">
+            <div id="content" class="content">
+                
 
   <div id="posts" class="posts-expand">
     
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
       
       
-        <h1 class="post-title">
+        <h1 class="post-title" itemprop="name headline">
           
           
             
@@ -176,14 +218,17 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2015-07-23
+          发表于
+          <time itemprop="dateCreated" datetime="2015-07-23T20:12:41+08:00" content="2015-07-23">
+            2015-07-23
+          </time>
         </span>
 
         
-          <span class="post-category">
+          <span class="post-category" >
             &nbsp; | &nbsp; 分类于
             
-              <a href="/categories/工具/">工具</a>
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
 
               
               
@@ -195,15 +240,15 @@
         
           
             <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/07/23/use-charles-capture-package-in-mac/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/23/use-charles-capture-package-in-mac/"></span>
-            </a>
-          </span>
+              &nbsp; | &nbsp;
+              <a href="/2015/07/23/use-charles-capture-package-in-mac/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/23/use-charles-capture-package-in-mac/" itemprop="commentsCount"></span>
+              </a>
+            </span>
           
         
       </div>
-    </div>
+    </header>
 
     <div class="post-body">
 
@@ -211,7 +256,7 @@
       
 
       
-        <h1 id="0x00_前言">0x00 前言</h1><p>在 Windows 平台上，抓包工具有 <a href="http://www.telerik.com/fiddler" target="_blank" rel="external">Fiddler</a>，但是不能在 MacOSX 上使用，好在我们还有另外一个抓包神器：<a href="http://www.charlesproxy.com/" target="_blank" rel="external">Charles</a>，而且是用 Java 编写的，所以是跨平台的，可能对有些人来说有一个缺点，那就是 Charles 是收费的，不过不要着急，下面会提供破解方法。</p>
+        <span itemprop="articleBody"><h1 id="0x00_前言">0x00 前言</h1><p>在 Windows 平台上，抓包工具有 <a href="http://www.telerik.com/fiddler" target="_blank" rel="external">Fiddler</a>，但是不能在 MacOSX 上使用，好在我们还有另外一个抓包神器：<a href="http://www.charlesproxy.com/" target="_blank" rel="external">Charles</a>，而且是用 Java 编写的，所以是跨平台的，可能对有些人来说有一个缺点，那就是 Charles 是收费的，不过不要着急，下面会提供破解方法。</p>
 <h1 id="0x01_安装与破解">0x01 安装与破解</h1><p>Charles 既然是 Java 编写的，那么破解起来就挺容易的，不愿意购买的可以点击<a href="http://www.gfzj.us/tech/2015/06/24/charles-hacking.html" target="_blank" rel="external">这里</a>查看破解教程，不过，购买的话是最好的，毕竟做开发的都不容易，支持正版，用起来也是非常舒心的。<br>安装就不多说了，很简单，只要安装了 JDK 就能运行，打开之后会弹出提示框，选择 Allow，然后界面大概就是这样子的：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-00.png" alt=""></p>
 <p>一打开就开始抓包了，这些抓到的都是 Mac 端的包，可以看到，HTTP 和 HTTPS 都已经被抓到了。</p>
 <h1 id="0x02_移动端抓包">0x02 移动端抓包</h1><p>手机与 Mac 端必须在同一个路由器下才能实现抓包，先查看电脑的 IP：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-01.png" alt=""></p>
@@ -230,18 +275,18 @@
 <p>然后点击 OK，再点击 OK，然后百度搜索一下，查看一下 Charles，发现 Request 没有乱码了，但是好多红叉：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-14.png" alt=""></p>
 <p>返回浏览器查看，发现搜索失败了：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-15.png" alt=""></p>
 <p>应该是百度有做验证什么的，这个我不懂，有兴趣可以找别的网站试一试。<br>HTTPS 抓包就说到这了。</p>
-
+</span>
       
 
     </div>
 
-    <div class="post-footer">
+    <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Charles/"> #Charles </a>
+            <a href="/tags/Charles/" rel="tag">#Charles</a>
           
-            <a href="/tags/Mac/"> #Mac </a>
+            <a href="/tags/Mac/" rel="tag">#Mac</a>
           
         </div>
       
@@ -253,7 +298,7 @@
           </div>
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/20/my-xcode-plug-in-list/">Xcode 插件列表</a>
+              <a href="/2015/07/20/my-xcode-plug-in-list/" rel="next">Xcode 插件列表</a>
             
           </div>
         </div>
@@ -261,34 +306,37 @@
 
       
       
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
     </div>
   </div>
 
 
+            </div>
 
-    
-      <div class="comments" id="comments">
-        
-          <div class="ds-thread" data-thread-key="2015/07/23/use-charles-capture-package-in-mac/"
-               data-title="在 Mac 上使用 Charles 抓包" data-url="http://yoursite.com/2015/07/23/use-charles-capture-package-in-mac/">
-          </div>
-        
-      </div>
-    
-  </div>
+            
+                <!-- 多说热评文章-->
+                <p>热评文章</p>
+                <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+            
 
-
+            
+              <div class="comments" id="comments">
+                
+                  <div class="ds-thread" data-thread-key="2015/07/23/use-charles-capture-package-in-mac/"
+                       data-title="在 Mac 上使用 Charles 抓包" data-url="http://yoursite.com/2015/07/23/use-charles-capture-package-in-mac/">
+                  </div>
+                
+              </div>
+            
         </div>
 
         
-        <!-- 多说热评文章-->
-        <p>热评文章</p>
-        <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-        
-      </div>
-
-
-      
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -298,12 +346,12 @@
     </div>
   </div>
 
-  <div id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -312,13 +360,13 @@
         </ul>
       
 
-      <div class="site-overview">
-        <div class="site-author motion-element">
-          <img class="site-author-image" src="/images/default_avatar.jpg" alt="我的眼里只有代码" />
-          <p class="site-author-name">我的眼里只有代码</p>
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="我的眼里只有代码" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">我的眼里只有代码</p>
         </div>
-        <p class="site-description motion-element">You are the code of my eyes. 爱代码，爱机车，爱野马。</p>
-        <div class="site-state motion-element">
+        <p class="site-description motion-element" itemprop="description">You are the code of my eyes. 爱代码，爱机车，爱野马。</p>
+        <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">10</span>
@@ -340,7 +388,7 @@
               </a>
           </div>
 
-        </div>
+        </nav>
 
         
 
@@ -348,53 +396,64 @@
           
             
               <span class="links-of-author-item">
-              <a href="https://github.com/ihappyhacking" target="_blank">GitHub</a>
-            </span>
+                <a href="https://github.com/ihappyhacking" target="_blank">GitHub</a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="https://twitter.com/iHappyHacking" target="_blank">Twitter</a>
-            </span>
+                <a href="https://twitter.com/iHappyHacking" target="_blank">Twitter</a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="http://weibo.com/fuckingcode" target="_blank">Weibo</a>
-            </span>
+                <a href="http://weibo.com/fuckingcode" target="_blank">Weibo</a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="http://www.douban.com/people/codemaker/" target="_blank">DouBan</a>
-            </span>
+                <a href="http://www.douban.com/people/codemaker/" target="_blank">DouBan</a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="http://www.zhihu.com/people/ihappyhacking/" target="_blank">ZhiHu</a>
-            </span>
+                <a href="http://www.zhihu.com/people/ihappyhacking/" target="_blank">ZhiHu</a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="https://instagram.com/ihappyhacking/" target="_blank">Instagram</a>
-            </span>
+                <a href="https://instagram.com/ihappyhacking/" target="_blank">Instagram</a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="https://www.facebook.com/ihappyhacking" target="_blank">Facebook</a>
-            </span>
+                <a href="https://www.facebook.com/ihappyhacking" target="_blank">Facebook</a>
+              </span>
             
               <span class="links-of-author-item">
-              <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank">GooglePlus</a>
-            </span>
+                <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank">GooglePlus</a>
+              </span>
             
           
         </div>
 
         
         
-          <div class="cc-license motion-element">
+          <div class="cc-license motion-element" itemprop="license">
             <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
               <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
             </a>
           </div>
         
 
-      </div>
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.minxiaoming.com/" target="_blank">minxiaoming</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
 
       
-        <div class="post-toc-wrap sidebar-panel-active">
+        <section class="post-toc-wrap sidebar-panel-active">
           <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
             
@@ -403,26 +462,26 @@
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
-        </div>
+        </section>
       
 
     </div>
-  </div>
+  </aside>
 
 
-    </div>
+    </main>
 
-    <div id="footer" class="footer">
-      <div class="footer-inner">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <div class="copyright">
   
   &copy; &nbsp; 
-  2015
+  <span itemprop="copyrightYear">2015</span>
   <span class="with-love">
     <i class="icon-heart"></i>
   </span>
-  <span class="author">我的眼里只有代码</span>
+  <span class="author" itemprop="copyrightHolder">我的眼里只有代码</span>
 </div>
 
 <div class="powered-by">
@@ -446,36 +505,62 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-      </div>
-    </div>
+        </div>
+    </footer>
 
     <div class="back-to-top"></div>
-  </div>
+</div>
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+<script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
   
   
+  
+    
 
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"happyhacking"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.4"></script>
 
 
-  <script type="text/javascript" src="/js/helpers.js"></script>
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.4"></script>
   
 
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
   <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.4" id="motion.global"></script>
 
 
+
+  <script type="text/javascript" src="/js/search-toggle.js"></script>
 
 
   
-  
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js" id="bootstrap.scrollspy.custom"></script>
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.4" id="bootstrap.scrollspy.custom"></script>
 
 
 <script type="text/javascript" id="sidebar.toc.highlight">
@@ -508,7 +593,6 @@
     }
 
     function getTOCMaxHeight () {
-      var $sidebarInner = $('.sidebar-inner');
       var height = $('.sidebar').height() -
                    $tocSelector.position().top -
                    $('.post-toc-indicator-bottom').height();
@@ -530,7 +614,7 @@
       )
     }
 
-    $(document).on('sidebar.didShow', function () {
+    $(document).on('sidebar.motion.complete', function () {
       processTOC();
     });
 
@@ -614,44 +698,34 @@
 
 
 
-  <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
+        if (CONFIG.sidebar === 'always') {
+            displaySidebar();
+        }
     });
-  </script>
-
-  
-
-  
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"happyhacking"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
+</script>
 
 
-  
+
+
+
+
+
 
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
 
-  
 
+<!-- lazyload -->
+<script type="text/javascript" src="/js/lazyload.js"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#posts img").lazyload({
+            placeholder: "/images/loading.gif",
+            effect: "fadeIn"
+        });
+    });
+</script>
 </body>
 </html>
