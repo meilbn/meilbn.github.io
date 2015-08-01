@@ -28,7 +28,7 @@
 
 
 
-  <meta name="keywords" content="Xcode,iOS," />
+  <meta name="keywords" content="Mac,Reveal,软件," />
 
 
 
@@ -37,26 +37,28 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="自己安装的一些 Xcode 插件 (持续更新，最新更新：2015-07-20)">
+<meta name="description" content="Reveal 的使用 (静态库链接)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Xcode 插件列表">
-<meta property="og:url" content="http://yoursite.com/2015/07/20/my-xcode-plug-in-list/index.html">
+<meta property="og:title" content="Integrating Reveal：Static Linking">
+<meta property="og:url" content="http://yoursite.com/2015/08/01/integrating-reveal-static-linking/index.html">
 <meta property="og:site_name" content="Happy Hacking">
-<meta property="og:description" content="自己安装的一些 Xcode 插件 (持续更新，最新更新：2015-07-20)">
-<meta property="og:image" content="https://camo.githubusercontent.com/919efe4e1e53237df51d7010c862bd5c04fd6a70/687474703a2f2f616c63617472617a2e696f2f696d616765732f73637265656e73686f744032782e706e67">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Fuzzy_Autocomplete_for_Xcode_demo.gif">
-<meta property="og:image" content="https://github.com/kattrali/cocoadocs-xcode-plugin/raw/master/menu_rvm.png">
-<meta property="og:image" content="https://github.com/holtwick/HOStringSense-for-Xcode/raw/master/StringDemoAnimation.gif">
-<meta property="og:image" content="https://camo.githubusercontent.com/c354bf04524df86daeabe7a6d2b9926fac790f85/68747470733a2f2f7261772e6769746875622e636f6d2f6b7375746865722f4b53496d6167654e616d65642d58636f64652f6d61737465722f73637265656e73686f742e676966">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Xcode_plug-in_%20ColorSense.png">
-<meta property="og:image" content="https://camo.githubusercontent.com/ca5518c9872e15b8a95b9d8c5f44bc331977d710/68747470733a2f2f7261772e6769746875622e636f6d2f6f6e65766361742f5656446f63756d656e7465722d58636f64652f6d61737465722f53637265656e53686f742e676966">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Peckham_demo.gif">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/XToDo_1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/limejelly/Backlight-for-XCode/master/screenshot.png">
-<meta property="og:updated_time" content="2015-08-01T03:40:39.000Z">
+<meta property="og:description" content="Reveal 的使用 (静态库链接)">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_00.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_01.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_02.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_03.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_04.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_05.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_07.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_06.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_08.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_09.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_10.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_11.png">
+<meta property="og:updated_time" content="2015-08-01T05:43:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xcode 插件列表">
-<meta name="twitter:description" content="自己安装的一些 Xcode 插件 (持续更新，最新更新：2015-07-20)">
+<meta name="twitter:title" content="Integrating Reveal：Static Linking">
+<meta name="twitter:description" content="Reveal 的使用 (静态库链接)">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -66,7 +68,7 @@
   };
 </script>
 
-    <title> Xcode 插件列表 // Happy Hacking </title>
+    <title> Integrating Reveal：Static Linking // Happy Hacking </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -204,7 +206,7 @@
           
           
             
-              Xcode 插件列表
+              Integrating Reveal：Static Linking
             
           
         </h1>
@@ -213,8 +215,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-07-20T20:14:46+08:00" content="2015-07-20">
-            2015-07-20
+          <time itemprop="dateCreated" datetime="2015-08-01T11:35:07+08:00" content="2015-08-01">
+            2015-08-01
           </time>
         </span>
 
@@ -222,7 +224,7 @@
           <span class="post-category" >
             &nbsp; | &nbsp; 分类于
             
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/开发工具/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a></span>
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
 
               
               
@@ -235,8 +237,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/07/20/my-xcode-plug-in-list/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/20/my-xcode-plug-in-list/" itemprop="commentsCount"></span>
+              <a href="/2015/08/01/integrating-reveal-static-linking/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/01/integrating-reveal-static-linking/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -250,25 +252,33 @@
       
 
       
-        <span itemprop="articleBody"><h1 id="0x00">0x00</h1><hr>
-<p>当我第一次使用 Xcode 的时候，发现有一些功能在其他开发工具上 (比如 Android Studio) 有的，但是 Xcode 上没有，比如快捷提示模糊匹配 (就是 Fuzzy Completion)，加上 OC 方法名一看就明白是干嘛的，所以又臭又长，往往很难记住，所以模糊匹配的快捷提示就非常重要，好在有人写好这个插件了，感谢！最近在微博上看到，说 Xcode 7 自带这个功能了，又干死一个插件的节奏！开发工具搭配上插件，大大地提升了我们开发的效率。</p>
-<h1 id="0x01">0x01</h1><hr>
+        <span itemprop="articleBody"><h1 id="0x00_前言">0x00 前言</h1><p>首先，这里是讲用 Xcode 和 Reveal 来查看自己的 App 的视图，如果你是想看第三方的 App 的界面，那么就不需要看下去了。</p>
+<h1 id="0x01_Xcode_查看_App_的视图">0x01 Xcode 查看 App 的视图</h1><p>自从买了 Reveal，用着真的是非常爽呢，加上 iPhone 越狱了，那真是爽上加爽啊，高潮不断，哈哈。在日常的开发中，经常会有一些界面上的设计是平常用的 App 上看到过的，没办法，产品经理或者美工抄人家嘛，关键是抄的还不好，算了，这里不吐槽这个了。如果你有自己的想法，可以实现这个效果，那还是不错的，但是有时候，那个效果想不出来要怎么实现比较好，想看看别的 App 是怎么实现，怎么设计界面的，这个时候，Reveal 就派上了用场，不过这里先不说这个情况，先说自己开发的 App，有时候一个界面的问题总是非常难搞，特别是手写控件的时候，不用 xib 或者 storyboard，那个该死的按钮死哪去了？那个图片怎么显示起来这样子的？如果你 Reveal 的试用到期了，或者没有使用 Reveal，没关系，还可以用 Xcode 来查看视图结构，没错，Xcode 自带有这个功能，不过是暂停了 App 的运行，进入了 Debug 模式，步骤如下：</p>
 <ol>
-<li><a href="https://github.com/supermarin/Alcatraz" target="_blank" rel="external">Alcatraz</a>：说到插件，不得不先说Alcatraz，这个就像 CocoaPods 对于 iOS 开发来说一样，管理我们安装的所有插件，也可以安装其他感兴趣的插件，非常方便。<img src="https://camo.githubusercontent.com/919efe4e1e53237df51d7010c862bd5c04fd6a70/687474703a2f2f616c63617472617a2e696f2f696d616765732f73637265656e73686f744032782e706e67" alt=""></li>
-<li><a href="https://github.com/FuzzyAutocomplete/FuzzyAutocompletePlugin" target="_blank" rel="external">FuzzyAutocomplete</a>：这个就是上面说到的那个功能，用了都说好！个人感觉有点小问题的是，输入数字也会触发 Fuzzy Completion，挺蛋疼的。<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Fuzzy_Autocomplete_for_Xcode_demo.gif" alt=""></li>
-<li><a href="https://github.com/kattrali/cocoapods-xcode-plugin" target="_blank" rel="external">CocoaPods</a>：这个是 CocoaPods 在 Xcode 中的插件，省去了命令行操作，个人不常用，但是也还是安装了。<img src="https://github.com/kattrali/cocoadocs-xcode-plugin/raw/master/menu_rvm.png" alt=""></li>
-<li><a href="https://github.com/holtwick/HOStringSense-for-Xcode" target="_blank" rel="external">HOStringSense</a>：HOStringSense 可以说是大段文本利器，对于开发者而言，在输入大段文本时，如果文本中包含了各种换行和特殊字符，那是相当地头疼，但通过 HOStringSense，一切的问题都将迎刃而解。完美支持编辑正则表达式、多行文本、内联 HTML 等，还提供了极为快速的字符串长度统计反馈。<img src="https://github.com/holtwick/HOStringSense-for-Xcode/raw/master/StringDemoAnimation.gif" alt=""></li>
-<li><a href="https://github.com/ksuther/KSImageNamed-Xcode" target="_blank" rel="external">KSImageNamed</a>：填写图片文件名称的插件，当你写到[UIImage imaged:的时候，插件会把项目中的图片名称提示出来，并且还有预览功能，十分方便。<img src="https://camo.githubusercontent.com/c354bf04524df86daeabe7a6d2b9926fac790f85/68747470733a2f2f7261772e6769746875622e636f6d2f6b7375746865722f4b53496d6167654e616d65642d58636f64652f6d61737465722f73637265656e73686f742e676966" alt=""></li>
-<li><a href="https://github.com/omz/ColorSense-for-Xcode" target="_blank" rel="external">ColorSense</a>：当你用 UIColor 生成颜色时，它会把该颜色在代码右上角显示出来。<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Xcode_plug-in_%20ColorSense.png" alt=""></li>
-<li><a href="https://github.com/rickytan/RTImageAssets" target="_blank" rel="external">RTImageAssets</a>：自动将 @3x 的图片生成 @2x 和 @1x 的图片，或者从 @2x 生成 @3x 的图标。</li>
-<li><a href="https://github.com/onevcat/VVDocumenter-Xcode" target="_blank" rel="external">VVDocumenter</a>：喵神的作品，输入 <code>///</code> 快速生成类似 Javadoc 的注释，自动识别参数返回值，非常棒！支持 OC 和 Swift。<img src="https://camo.githubusercontent.com/ca5518c9872e15b8a95b9d8c5f44bc331977d710/68747470733a2f2f7261772e6769746875622e636f6d2f6f6e65766361742f5656446f63756d656e7465722d58636f64652f6d61737465722f53637265656e53686f742e676966" alt=""></li>
-<li><a href="https://github.com/neonichu/BBUDebuggerTuckAway" target="_blank" rel="external">BBUDebuggerTuckAway</a>：在你编辑时自动隐藏下方 Debugger 窗口的插件，不用每次手动或者按快捷键去隐藏了。</li>
-<li><a href="https://github.com/travisjeffery/ClangFormat-Xcode" target="_blank" rel="external">ClangFormat</a>：格式化代码工具，能够让开发者使用 Clang 将代码格式化为 LLVM、Google、Chromium、Mozilla 或 WebKit 等格式，通过 ClangFormat，开发者不仅可以实现对代码的自动或批量格式化，还可以进行自定义配置。</li>
-<li><a href="https://github.com/markohlebar/Peckham" target="_blank" rel="external">Peckham</a>：快速生成 <code>#import</code> 语句。<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Peckham_demo.gif" alt=""></li>
-<li><a href="https://github.com/qfish/XAlign" target="_blank" rel="external">XAlign</a>：将你的代码变得整齐，处女座必备！有多种对齐方式，详情请点击链接进入 GitHub 查看。</li>
-<li><a href="https://github.com/trawor/XToDo" target="_blank" rel="external">XToDo</a>：一个注释辅助插件，可以把项目中的 TODO、FIXME 等注释列出来。<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/XToDo_1.png" alt=""></li>
-<li><a href="https://github.com/limejelly/Backlight-for-XCode" target="_blank" rel="external">Backlight</a>：高亮正在编辑的那一行代码。<img src="https://raw.githubusercontent.com/limejelly/Backlight-for-XCode/master/screenshot.png" alt=""></li>
+<li>先运行你的 App 到手机或者模拟器上</li>
+<li>然后点击 Xcode 上的 <code>Debug View Hierarchy</code> 按钮：<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_00.png" alt=""></li>
+<li>然后 Xcode 就会显示一个你当前 App 的视图层次的窗口，我这边是这样的：<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_01.png" alt=""></li>
+<li>选中一个控件之后，可以查看该控件的一些信息：<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_02.png" alt=""></li>
+<li>可以转动视图来查看各个方向上的层次结构：<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_03.png" alt=""></li>
 </ol>
+<p>对于自己的 App，如果你要求不是那么高的话，Xcode 也是差不多够用了，当然，这是在没有和 Reveal 的对比下，相信我，看完了 Reveal，你绝逼会想买的。</p>
+<h1 id="0x02_Reveal_登场">0x02 Reveal 登场</h1><p>现在该是 Reveal 的 Show Time 了！你也可以查看相关的<a href="http://support.revealapp.com/kb/getting-started/integrating-reveal-static-linking" target="_blank" rel="external">官方教程</a>，要想用 Reveal 来查看自己的 App 的视图，先要配置一下项目，也很简单，只要如下几步：</p>
+<ol>
+<li>你要先安装了 Reveal</li>
+<li>打开 Reveal，点击菜单栏上的 <strong><em>Help -&gt; Show Reveal Library in Finder</em></strong> ：<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_04.png" alt=""></li>
+<li>点击了之后，Finder 会打开一个窗口，将 <code>Reveal.framework</code> 拖入你的 Xcode 项目中，记得勾选：<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_05.png" alt=""></li>
+<li>然后点击上方的 <em>Project -&gt; Targets -&gt; Build Phases -&gt; Link Binary With Libraries</em> ，将 Reveal.framework 移除 (如果有的话)：<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_07.png" alt=""></li>
+<li>点击 <em>Build Settings</em> ，搜索 <code>Other Linker Flags</code>，添加下面这行代码：</li>
+</ol>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-ObjC -lz -framework Reveal</span></span><br></pre></td></tr></table></figure>
+<p>如图所示：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_06.png" alt=""></p>
+<p>如果是这样，就算是配置完成了：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_08.png" alt=""></p>
+<h1 id="0x03_Reveal_查看_App_视图">0x03 Reveal 查看 App 视图</h1><p>配置完了当然就可以用 Reveal 查看自己的 App 的视图了，直接运行，然后打开 Reveal，点击左上角的 <code>No Connection</code> 来选择要查看的 App：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_09.png" alt=""></p>
+<p>然后就可以开始玩了，比如这个 Demo 在 Reveal 中展示起来就是这样的：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_10.png" alt=""></p>
+<p>左侧是视图层次结构，右侧是各种参数信息，非常多，而且界面也是支持旋转的，2D、3D 模式。</p>
+<p>这个 Demo 非常简单，看不出来有什么很屌的样子，那我就上一张自己正在开发的一个 App 的截图：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_11.png" alt=""></p>
+<p>这样足够明显了吧？知道 Reveal 的好处了吧。</p>
+<p>关键是 Reveal 不止可以查看自己的 App，还可以查看第三方的 App，这个对我的吸引才是最大的。</p>
 </span>
       
 
@@ -278,9 +288,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Xcode/" rel="tag">#Xcode</a>
+            <a href="/tags/Mac/" rel="tag">#Mac</a>
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
+            <a href="/tags/Reveal/" rel="tag">#Reveal</a>
+          
+            <a href="/tags/软件/" rel="tag">#软件</a>
           
         </div>
       
@@ -289,12 +301,10 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/07/23/use-charles-capture-package-in-mac/" rel="prev">在 Mac 上使用 Charles 抓包</a>
-            
           </div>
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/06/iOS-Xcode-Debug-Skills-0x00/" rel="next">Xcode Debug 技巧之一</a>
+              <a href="/2015/07/23/use-charles-capture-package-in-mac/" rel="next">在 Mac 上使用 Charles 抓包</a>
             
           </div>
         </div>
@@ -324,8 +334,8 @@
             
               <div class="comments" id="comments">
                 
-                  <div class="ds-thread" data-thread-key="2015/07/20/my-xcode-plug-in-list/"
-                       data-title="Xcode 插件列表" data-url="http://yoursite.com/2015/07/20/my-xcode-plug-in-list/">
+                  <div class="ds-thread" data-thread-key="2015/08/01/integrating-reveal-static-linking/"
+                       data-title="Integrating Reveal：Static Linking" data-url="http://yoursite.com/2015/08/01/integrating-reveal-static-linking/">
                   </div>
                 
               </div>
@@ -454,7 +464,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00"><span class="nav-number">1.</span> <span class="nav-text">0x00</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01"><span class="nav-number">2.</span> <span class="nav-text">0x01</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_Xcode_查看_App_的视图"><span class="nav-number">2.</span> <span class="nav-text">0x01 Xcode 查看 App 的视图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_Reveal_登场"><span class="nav-number">3.</span> <span class="nav-text">0x02 Reveal 登场</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_Reveal_查看_App_视图"><span class="nav-number">4.</span> <span class="nav-text">0x03 Reveal 查看 App 视图</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
