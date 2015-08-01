@@ -49,13 +49,13 @@
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_03.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_04.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_05.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_07.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_06.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_07.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_08.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_09.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_10.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_11.png">
-<meta property="og:updated_time" content="2015-08-01T05:43:18.000Z">
+<meta property="og:updated_time" content="2015-08-01T05:47:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Integrating Reveal：Static Linking">
 <meta name="twitter:description" content="Reveal 的使用 (静态库链接)">
@@ -267,11 +267,11 @@
 <li>你要先安装了 Reveal</li>
 <li>打开 Reveal，点击菜单栏上的 <strong><em>Help -&gt; Show Reveal Library in Finder</em></strong> ：<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_04.png" alt=""></li>
 <li>点击了之后，Finder 会打开一个窗口，将 <code>Reveal.framework</code> 拖入你的 Xcode 项目中，记得勾选：<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_05.png" alt=""></li>
-<li>然后点击上方的 <em>Project -&gt; Targets -&gt; Build Phases -&gt; Link Binary With Libraries</em> ，将 Reveal.framework 移除 (如果有的话)：<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_07.png" alt=""></li>
+<li>然后点击上方的 <em>Project -&gt; Targets -&gt; Build Phases -&gt; Link Binary With Libraries</em> ，将 Reveal.framework 移除 (如果有的话)：<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_06.png" alt=""></li>
 <li>点击 <em>Build Settings</em> ，搜索 <code>Other Linker Flags</code>，添加下面这行代码：</li>
 </ol>
 <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-ObjC -lz -framework Reveal</span></span><br></pre></td></tr></table></figure>
-<p>如图所示：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_06.png" alt=""></p>
+<p>如图所示：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_07.png" alt=""></p>
 <p>如果是这样，就算是配置完成了：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_08.png" alt=""></p>
 <h1 id="0x03_Reveal_查看_App_视图">0x03 Reveal 查看 App 视图</h1><p>配置完了当然就可以用 Reveal 查看自己的 App 的视图了，直接运行，然后打开 Reveal，点击左上角的 <code>No Connection</code> 来选择要查看的 App：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_09.png" alt=""></p>
 <p>然后就可以开始玩了，比如这个 Demo 在 Reveal 中展示起来就是这样的：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_10.png" alt=""></p>
@@ -382,14 +382,14 @@
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
