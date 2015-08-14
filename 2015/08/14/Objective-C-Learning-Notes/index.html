@@ -1,0 +1,1214 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+    
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.4"/>
+
+
+    <meta name="description" content="You are the code of my eyes. 爱代码，爱机车，爱野马。" />
+
+
+
+  <meta name="keywords" content="Objective-C," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
+
+
+<meta name="description" content="以前开始 iOS 开发之前学习 Objective-C 的时候做的笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Objective-C 学习笔记">
+<meta property="og:url" content="http://yoursite.com/2015/08/14/Objective-C-Learning-Notes/index.html">
+<meta property="og:site_name" content="Happy Hacking">
+<meta property="og:description" content="以前开始 iOS 开发之前学习 Objective-C 的时候做的笔记">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-00.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-01.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-02.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-03.png">
+<meta property="og:updated_time" content="2015-08-14T14:22:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Objective-C 学习笔记">
+<meta name="twitter:description" content="以前开始 iOS 开发之前学习 Objective-C 的时候做的笔记">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+    <title> Objective-C 学习笔记 // Happy Hacking </title>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?07e65bdc481bc97fa042c0f10748a4e0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<div class="container one-column page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">Happy Hacking</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+<form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'pqUHVF4KWmspE68xTa-7','2.0.0');
+</script>
+
+<div class="site-search-toggle"></div>
+    </div>
+  
+</nav>
+
+        </div>
+    </header>
+
+    <main id="main" class="main">
+        <div class="main-inner">
+            <div id="content" class="content">
+                
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Objective-C 学习笔记
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-08-14T20:31:22+08:00" content="2015-08-14">
+            2015-08-14
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/08/14/Objective-C-Learning-Notes/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/14/Objective-C-Learning-Notes/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>可能比较杂乱，可以按照关键字来搜索快速查找定位。</p>
+<p>可能会遇到的问题：</p>
+<ol>
+<li>如果是复制进去的文件，Linker、编译的时候报错，说文件没有找到，可能是文件没有添加到 Compile Sources 列表里面，选择 <strong>项目根 -&gt; Build Phases -&gt; Compile Sources</strong></li>
+</ol>
+<p>.h 文件只是用来声明一个类有哪些成员变量和方法</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Student</span> ： <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 成员变量要定义在大括号中</span></span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 在这里声明的所有方法都是公共的</span></span><br><span class="line"><span class="comment">// _age 的 get 方法</span></span><br><span class="line"><span class="comment">// - 代表动态方法  + 代表静态方法</span></span><br><span class="line">- (<span class="keyword">int</span>)getAge;</span><br><span class="line"><span class="comment">// _age 的 set 方法</span></span><br><span class="line">- (<span class="keyword">void</span>)setAge:(<span class="keyword">int</span>)age;<span class="comment">// 一个 : 代表一个参数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p><code>@interface</code> 代表声明一个类，最后接 <code>@end</code><br>“：” 代表继承</p>
+<p>.m 文件是用来实现类的一些方法的</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">import</span> <span class="string">"Student.h"</span></span><br><span class="line"></span><br><span class="line"><span class="annotation">@implementation</span> Student</span><br><span class="line"></span><br><span class="line">- (<span class="typename">int</span>)getAge &#123;</span><br><span class="line">    <span class="keyword">return</span> _age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="typename">void</span>)<span class="string">setAge:</span>(<span class="typename">int</span>)age &#123;</span><br><span class="line">    _age = age;</span><br><span class="line">    <span class="comment">// 错误写法，会导致死循环，无限调用 set 方法</span></span><br><span class="line">    <span class="comment">// self.age = newAge; // [self setAge:newAge];</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="annotation">@end</span></span><br></pre></td></tr></table></figure>
+<p>创建一个 Student 对象：<br>1、调用一个静态方法 alloc 来分配内存</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Student *stu = [Student alloc]<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>2、调用一个动态方法 init 进行初始化</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stu = [stu init]<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>相当于：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Student *stu = <span class="comment">[<span class="comment">[Student alloc]</span> init]</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">Person</span> *<span class="keyword">person</span> = <span class="comment">[<span class="comment">[Person alloc]</span> init]</span>;</span><br><span class="line"><span class="keyword">person</span>.age = 10;// 等效于 <span class="comment">[peson setAgeL:10]</span>; 调用的 set 方法</span><br><span class="line">int age = <span class="keyword">person</span>.age;// 等效于 <span class="comment">[person getAge]</span>; 调用的 get 方法</span><br></pre></td></tr></table></figure>
+<p>在 OC 当中，使用 <code>%@</code> 来打印一个对象(内存地址)，重写 <code>description</code> 方法</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">NSLog</span>(<span class="at_rule">@<span class="string">"%@"</span>,<span class="preprocessor"> stu</span>);</span></span><br></pre></td></tr></table></figure>
+<p>在 OC 当中格式化字符串：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSString *string = [NSString stringWithFormat:<span class="variable">@"</span>age is <span class="variable">%i</span> <span class="keyword">and</span> <span class="keyword">no</span> is <span class="variable">%i</span><span class="string">", _age, _no];</span></span><br></pre></td></tr></table></figure>
+<p>如果直接把方法写在 .m 文件中，没有在 .h 文件中进行声明，那么这个方法就是私有的</p>
+<p>.h 文件中，当编译器遇到 <code>@property</code> 时，会自动展开成 getter 和 setter 的声明，用在 <code>@interface</code> 里面</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@property</span> <span class="typename">int</span> age;</span><br><span class="line">- (<span class="typename">int</span>)age;</span><br><span class="line">- (<span class="typename">void</span>)<span class="string">setAge:</span>(<span class="typename">int</span>)newAge;</span><br></pre></td></tr></table></figure>
+<p>.m 文件中，@synthesize age; 相当于：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="typename">void</span>)<span class="string">setAge:</span>(<span class="typename">int</span>)newAge &#123;</span><br><span class="line">    age = newAge;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="typename">int</span>)age &#123;</span><br><span class="line">    <span class="keyword">return</span> age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还可以写成：<code>@synthesize age, no, height;</code> 用在 <code>@implementation</code> 里面<br><code>@synthesize</code> 会自动生成 getter 和 setter 的实现方法。<br><code>@synthesize</code> 默认会去访问跟 age 同名的变量，如果找不到，会在类的内部自动生成一个同名的变量，所以在 .h 文件中可以不用再声明该变量。<br><code>age = _age</code> 代表 getter 和 setter 会去访问 _age 这个成员变量，自动生成的 age 就不会再存在了</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">synthesize</span> age = _age</span>;</span><br></pre></td></tr></table></figure>
+<p>在 Xcode 4.5 之后，如果在 .h 文件中使用 <code>@property</code> 声明了变量 age 或者 _age，在 .m 文件中没有使用 <code>@synthesize</code> 实现这个变量，编译器会自动帮我们创建一个变量 _age。</p>
+<p>如果在 getter 或者 setter 方法里面需要做一些操作的话，就不能依赖于 <code>@synthesize</code> 了。<br>如果你实现了 <code>@synthesize</code> 和 getter/setter 方法，<code>@synthesize</code> 就作废，不会再帮你创建 getter/setter 方法了。</p>
+<p>内存管理</p>
+<ol>
+<li>范围：任何继承了 <code>NSObject</code> 的对象，对基本数据类型无效</li>
+<li>原理：<ul>
+<li>每个对象内部都保存了一个与之相关联的整数，称为引用计数器</li>
+<li>当使用 alloc、new 或者 copy 创建一个对象时，对象的引用计数器被设置为 1</li>
+<li>给对象发送一条 retain 消息，可以使引用计数器 +1</li>
+<li>给对象发送一条 release 消息，可以使引用计数器 -1</li>
+<li>当一个对象的引用计数器值为 0 时，那么它将被销毁，其占用的内存被系统回收，OC 也会自动向对象发送一条 dealloc 消息。一般会重写 dealloc 方法，在这里释放相关资源。一定不要直接调用 dealloc 方法</li>
+<li>可以给对象发送 retainCount 消息获得当前的引用计数器值</li>
+</ul>
+</li>
+</ol>
+<p>每个OC对象都有自己的引用计数器，是一个整数，表示“对象被引用的此数”，即有多少人正在使用这个OC对象<br>每个OC对象内部都专门有4个字节的存储空间来存储引用计数器</p>
+<p>重写dealloc方法：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">-</span> (void)<span class="tag">dealloc</span> &#123;</span><br><span class="line">    <span class="comment">// 自己要做的一些事情</span></span><br><span class="line">    <span class="comment">// 一定要调用super的dealloc方法，而且最好放在最后面调用</span></span><br><span class="line">    <span class="attr_selector">[super dealloc]</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>内存管理法则</p>
+<ol>
+<li>谁创建，谁释放(“谁污染，谁治理”)。如果你通过 alloc、new 或 (mutable)copy 来创建一个对象，那么你必须调用 release 或 autorelease。换句话说，不是你创建的，就不用你去释放</li>
+<li>一般来说，除了 alloc、new 或 copy 之外的方法创建的对象都被声明了 autorelease</li>
+<li>谁 retain，谁 release。只要你调用了 retain，无论这个对象时如何生成的，你都要调用 release</li>
+</ol>
+<p>方法注释：</p>
+<ul>
+<li>给方法分组：</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#pragma</span> <span class="tag">mark</span> - 生命周期方法</span><br></pre></td></tr></table></figure>
+<ul>
+<li>给方法注释：</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#pragma</span> <span class="tag">mark</span> 方法单独注释</span><br></pre></td></tr></table></figure>
+<p>@class 关键字：</p>
+<p><code>@class</code> 用来声明一个类，在 .h 文件中，可以不需要 import 进来某个类的 .h 文件，用<code>@class</code> 类名 代替，在 .m 文件中，因为要实现方法，需要用到类的一些东西，所以需要 <code>import</code> 进来这个类的 .h 文件</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">property</span> (retain) Book *book</span>;</span><br></pre></td></tr></table></figure>
+<p>这里的 retain 代表：在 setter 方法中，release 旧值，retain 新值<br>在 <code>@property</code> 后面加上 <code>(retain)</code> ，在实现文件 .m 中，会自动生成管理内存的方法：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)setBook:(<span class="keyword">Book </span>*)<span class="keyword">book </span>&#123;</span><br><span class="line">    <span class="preprocessor">if</span>(_book != <span class="keyword">book) </span>&#123;</span><br><span class="line">        [_book release]<span class="comment">;</span></span><br><span class="line">        _book = [<span class="keyword">book </span>retain]<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> <span class="keyword">int</span> age; <span class="comment">// 默认是 @property (readwrite) int age;</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>) <span class="keyword">int</span> age; <span class="comment">// 代表只生成 getter 方法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">assign</span>) <span class="keyword">int</span> age; <span class="comment">// 代表直接赋值</span></span><br></pre></td></tr></table></figure>
+<p><code>@property</code> 属性默认为 atomic，提供多线程安全<br>在多线程环境下，原子操作时必要的，否则有可能引起错误的结果<br>加了 atomic，setter/getter 是一个原子操作，如果有多个线程同时调用 setter 的话，不会出现某一个线程执行 setter 全部语句之前，另一个线程开始执行 setter 的情况，相当于函数头尾加了锁一样</p>
+<p>如果是 nonatomic，代表方法不需要考虑线程安全问题<br>禁止多线程，变量保护，提高性能<br>atomic 是 OC 使用的一种线程保护技术，防止在写入未完成的时候被另外一个线程读取，造成数据错误。而这种机制是耗费系统资源的，所以在 iPhone 这种小型设备上，如果没有使用多线程间的通讯，那么 nonatomic 是一个非常好的选择<br>如果不需要多线程支持的话，用 nonatomic 就够了，另外由于不涉及锁操作，所以它执行相对快点</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">property</span> (nonatomic, getter = isRich) Bool rich</span>;</span><br></pre></td></tr></table></figure>
+<p>getter 是用来指定 get 方法的方法名</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// @autoreleasepool 代表创建一个自动释放池</span><br><span class="line">@autoreleasepool &#123;</span><br><span class="line">    Student *stu = <span class="comment">[<span class="comment">[<span class="comment">[Student alloc]</span> init]</span> autorelease]</span>;// 最好写成这样，下面的方式可能会忘记写 <span class="comment">[stu autorelease]</span>;</span><br><span class="line">    // Student *stu = <span class="comment">[<span class="comment">[Student alloc]</span> init]</span>;</span><br><span class="line">    // <span class="comment">[stu autorelease]</span>; // 代表将 stu 放入上面创建的自动释放池当中</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当自动释放池被销毁了，池子里面的所有对象都会调用释放方法</p>
+<p>使用静态方法快速创建一个 autorelease 的对象：</p>
+<ul>
+<li>在 Student.m 文件中创建一个创建对象的静态方法：</li>
+</ul>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+ (id)student &#123;</span><br><span class="line">    Student *stu = <span class="comment">[<span class="comment">[<span class="comment">[Student alloc]</span> init]</span> autorelease]</span>;</span><br><span class="line">    return stu;</span><br><span class="line">    // 也可以这样写：return <span class="comment">[<span class="comment">[<span class="comment">[Student alloc]</span> init]</span> autorelease]</span>; 省略了中间变量 stu</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用：</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Student *stu = [Student student]<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>在静态方法中，不能访问成员变量</p>
+<p>autoreleasepool 注意事项：</p>
+<ol>
+<li>在 ARC 下，不能使用 <code>[[NSAutoreleasePool alloc] init]</code>，而应当使用 @autoreleasepool</li>
+<li>不要把大量循环操作放到同一个 NSAutoreleasePool 之间，这样会造成内存峰值的上升</li>
+<li>尽量避免对大内存使用该方法，对于这种延迟释放机制，还是尽量少用</li>
+<li>SDK 中一般利用静态方法创建并返回的对象都是已经 autorelease 的，不需要再进行 release 操作。如 <code>[NSNumber numberWithInt:10];</code> 返回的对象是不需要再 release 的。但是通过 <code>[[NSNumber alloc] initWithInt:10]</code> 创建的对象需要 release</li>
+</ol>
+<p>Category:</p>
+<ol>
+<li>OC 提供了一种与众不同的方式—— Category，可以动态地为已经存在的类添加新的行为(方法)</li>
+<li>这样可以保证类的原始设计规模较小，功能增加时再逐步扩展</li>
+<li>使用 Category 对类进行扩展时，不需要创建子类</li>
+<li>Category 使用简单的方式，实现了类的相关方法的模块化，把不同的类方法分配到不同的分类文件中</li>
+</ol>
+<p>创建一个 Category 也很简单， <strong>File -&gt; New -&gt; File…</strong> ，选择 Source 下的 Objective-C File，点击 Next，File 取名为你要分类的名称，比如写 Test，File Type 选择为 Category，Class 输入你要扩展的类，然后就一直点击 Next，创建好了 Category，文件名为 Student+Test.h 和 Student+Test.m，Student+Test.h 内容大致如下：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@interface</span> Student (Test)</span><br><span class="line"></span><br><span class="line"><span class="variable">@end</span></span><br></pre></td></tr></table></figure>
+<p>Student+Test.m 内容大致如下：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@implementation</span> Student (Test)</span><br><span class="line"></span><br><span class="line"><span class="variable">@end</span></span><br></pre></td></tr></table></figure>
+<p><code>()</code> 代表这是一个分类，括号中的 Test 代表分类的名称，在 Student+Test.h 中添加一个方法：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- <span class="list">(<span class="keyword">void</span>)</span>test2<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>这样就将 Student 类扩展了一个 test2 的方法了，test2 的实现写在 Student+Test.m 中</p>
+<p>Category 的作用：在不改变原来类内容的基础上，可以为类增加一些方法<br>Category 只能扩展方法，不能增加成员变量<br>Category 方法实现中可以访问原来类中声明的成员变量<br>Category 也能给系统的类扩展方法<br>Category 可以重新实现原来类中的方法，但是会覆盖掉原来的方法，导致原来的方法不能再使用<br>方法调用的优先级： <strong>分类（最后编译的优先） -&gt; 原来类 -&gt; 父类</strong><br>如果多个 Category 重复定义了同名的方法，会执行最后编译的 Category 的方法</p>
+<p>Protocol：</p>
+<ol>
+<li>简单来说就是一系列方法的列表，其中声明的方法可以被任何类实现。这种模式一般称为代理 (delegation) 模式</li>
+<li>在 iOS 和 OS X 开发中，Apple 采用了大量的代理模式来实现 MVC 中的 View(UI 控件) 和 Conroller(控制器) 的解耦</li>
+</ol>
+<ul>
+<li>协议的定义</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@protocol</span> 协议名称 &lt;NSObject&gt;</span><br><span class="line">    <span class="comment">// 方法声明列表</span></span><br><span class="line"><span class="variable">@end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如何遵守协议<ol>
+<li>类遵守协议<br> @interface 类名 :  父类名 &lt;协议名称1, 协议名称2&gt;<br> @end</li>
+<li>协议遵守协议<br> @protocol 协议名称 &lt;其他协议名称1, 其他协议名称2&gt;<br> @end</li>
+<li>协议中方法声明的关键字<ol>
+<li>@required（默认），要求时限，如果没有实现，会发出警告</li>
+<li>@optional，不要求实现，不会有警告</li>
+</ol>
+</li>
+<li>定义一个变量的时候，限制这个变量保存的对象遵守某个协议<br> 类名&lt;协议名称&gt; <em>变量名;<br> id&lt;协议名称&gt; 变量名;<br> NSObject<myprotocol> </myprotocol></em>obj;<br> id<myprotocol> obj2;<br> 如果没有遵守对应的协议，编译器会警告</myprotocol></li>
+<li>@property 中声明的属性也可用做一个遵守协议的限制<br> @property (nonatomic, strong) 类名&lt;协议名称&gt; <em>属性名;<br> @property (nonatomic, strong) id&lt;协议名称&gt; 属性名;<br> @property (nonatomic, strong) Dog<myprotocol> </myprotocol></em>dog;<br> @property (nonatomic, strong) id<myprotocol> dog2;</myprotocol></li>
+<li>协议可以定义在单独的 .h 文件中，也可以定义在某个类中<ol>
+<li>如果这个协议只用在某个类中，应该把这个协议定义在该类中</li>
+<li>如果这个协议用在很多类中，应该把这个协议定义在单独的文件中</li>
+</ol>
+</li>
+<li>分类可以定义在单独 .h 文件和 .m 文件中，也可以定义在原来的类中<ol>
+<li>一般情况下，都是定义在单独 .h 文件中</li>
+<li>定义在原来的类中的分类，只要求能看懂语法</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<p>Button.h 主要代码如下：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &lt;&gt;代表实现某个协议</span></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">ButtonDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line">- (<span class="keyword">void</span>)onClick;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Button</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// delegate 就是按钮的监听器</span></span><br><span class="line">@portocol (<span class="keyword">nonatomic</span>, retain) <span class="keyword">id</span>&lt;ButtonDelegate&gt; delagate;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)click;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>Button.m：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@implementation</span> Button</span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">    <span class="attr_selector">[_delegate release]</span>;</span><br><span class="line">    <span class="attr_selector">[super dealloc]</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)click &#123;</span><br><span class="line">    <span class="comment">// 按钮被点击了，就应该通知监听器</span></span><br><span class="line">    <span class="attr_selector">[_delegate onclick]</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">@end</span></span><br></pre></td></tr></table></figure>
+<p>ButtonListener.h：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">import</span> <span class="string">"Button.h"</span></span><br><span class="line"></span><br><span class="line"><span class="annotation">@interface</span> <span class="string">ButtonListener :</span> NSObject &lt;ButtonDelegate&gt;</span><br><span class="line"></span><br><span class="line"><span class="annotation">@end</span></span><br></pre></td></tr></table></figure>
+<p>ButtonListener.m：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ButtonListener</span></span></span><br><span class="line">- (<span class="keyword">void</span>)onClick&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"按钮被点击了"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>main.m：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">import</span> <span class="string">"Button.h"</span></span><br><span class="line">#<span class="keyword">import</span> <span class="string">"ButtonListener.h"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="annotation">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// 初始化一个按钮</span></span><br><span class="line">        Button *button = [[[Button alloc] init] autorelease];</span><br><span class="line">        <span class="comment">// 初始化一个按钮的监听器</span></span><br><span class="line">        ButtonListener *listener = [[[ButtonListener alloc] init] autorelease];</span><br><span class="line">        <span class="comment">// 设置按钮的监听器</span></span><br><span class="line">        button.delegate = listener;</span><br><span class="line">        <span class="comment">// 点击按钮</span></span><br><span class="line">        [button click];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@protocol</span> Study &lt;NSObject&gt;</span><br><span class="line"><span class="comment">// @required 表示此方法是必须实现的</span></span><br><span class="line"><span class="comment">// 虽然字面上说是必须实现，但是编译器并不强求某个类实现</span></span><br><span class="line"><span class="comment">// 默认就是 @required</span></span><br><span class="line"><span class="variable">@required</span></span><br><span class="line">- (void)test;</span><br><span class="line"><span class="comment">// @optional 表示此方法是可选实现的</span></span><br><span class="line"><span class="variable">@optional</span></span><br><span class="line">- (void)test2;</span><br><span class="line"><span class="variable">@end</span></span><br></pre></td></tr></table></figure>
+<p>判断某个对象是否有遵守某个 protocol：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">if</span> ([stu <span class="attribute">confirmsToProtocl</span>:<span class="variable">@protocol</span>(protocol name)]) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>判断是否实现了某个方法：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">if</span> ([_delegate <span class="attribute">respondsToSelector</span>:<span class="variable">@selector</span>(<span class="attribute">onClick</span>:)]) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Block：</p>
+<ol>
+<li>Block 封装了一段代码，可以在任何时候执行</li>
+<li>Block 可以作为函数参数或者函数的返回值，而其本身又可以带输入参数或返回值。它和传统的函数指针很类似，但是有区别：block 是 inline(内联函数) 的，并且默认情况下它对局部变量时只读的</li>
+<li>苹果官方建议尽量多用 block。在多线程、异步任务、集合遍历、集合排序、动画转场用的很多</li>
+</ol>
+<p>例如定义一个 a + b 的 Block：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> (^<span class="built_in">Sum</span>) (<span class="built_in">int</span>, <span class="built_in">int</span>) = ^(<span class="built_in">int</span> a, <span class="built_in">int</span> b) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> s = <span class="built_in">Sum</span>(<span class="number">10</span>, <span class="number">11</span>);</span><br></pre></td></tr></table></figure>
+<p>或者这样定义也行：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(^MySum)</span> <span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    MySum sum = ^(<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用也和之前一样：</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> s = <span class="keyword">sum</span>(<span class="number">10</span>, <span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<p>Block 可以访问外部定义的局部变量，但是不能修改：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c = <span class="number">15</span>;</span><br><span class="line">    MySum sum = ^(<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">        NSLog(@<span class="string">"c = %i"</span>, c);</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要修改  c的值的话，将 c 声明为： <code>__block int c = 15;</code> 前面有两个下划线 <code>_</code></p>
+<p>直接访问成员变量，该变量的声明必须是 @public：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Student *stu = <span class="comment">[<span class="comment">[<span class="comment">[Student alloc]</span> init]</span> autorelease]</span>;</span><br><span class="line">stu-&gt;age = 10;</span><br></pre></td></tr></table></figure>
+<p>指向函数的指针</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="keyword">sum</span>(<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> (*p)(<span class="keyword">int</span>, <span class="keyword">int</span>) = <span class="keyword">sum</span>;</span><br><span class="line"><span class="keyword">int</span> d = p(<span class="number">10</span>, <span class="number">20</span>);</span><br></pre></td></tr></table></figure>
+<p>方法和函数的区别：<br>方法：</p>
+<ol>
+<li>对象方法都是以减号 - 开头，类方法都是以 + 开头</li>
+<li>对象方法的声明必须写在 @interface 和 @end 之间，对象方法的实现必须写在 @implementation 和 @end 之间</li>
+<li>对象方法只能由对象来调用，类方法只能由类来调用</li>
+<li>对象方法归类/对象所有</li>
+<li>对象方法中能访问当前对象的成员变量（实例变量）；类方法中不能访问成员变量（实例变量）</li>
+</ol>
+<p>函数：</p>
+<ol>
+<li>函数能写在文件中的任意位置（@interface 和 @end 之间），函数归文件所有</li>
+<li>函数调用不依赖于对象</li>
+<li>函数内部不能直接通过成员变量名访问某个对象的成员变量</li>
+</ol>
+<p>继承的使用场合：</p>
+<ol>
+<li>当两个类拥有相同的属性和方法，就可以将相同的东西抽取到一个父类中</li>
+<li>当 A 类完全拥有和 B 类中的部分属性和方法时，可以考虑让 B 类继承 A 类</li>
+</ol>
+<p>多态：</p>
+<ol>
+<li>没有继承就没有多态</li>
+<li>代码的体现：父类类型的指针指向子类对象</li>
+<li>好处：如果函数/方法参数中使用的是父类类型，可以传入父类、子类对象</li>
+<li>局限性：<ol>
+<li>父类类型的变量不能调用子类特有的方法，必须强制类型转换为子类类型的变量之后才能调用<br>强制类型转换</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Animal</span> *a = <span class="comment">[Dog new]</span>;</span><br><span class="line">Dog *d = (Dog *)a;</span><br></pre></td></tr></table></figure>
+<p>成员变量的作用域：</p>
+<ul>
+<li>@public：在任何地方都能直接访问对象的成员变量</li>
+<li>@private：只能在当前类的对象中直接访问（@implementation 中默认就是 @private）</li>
+<li>@protected：可以再当前类及子类的对象方法中直接访问（@interface 中默认就是 @protected）</li>
+<li>@package：只要处在同一个框架中，就能直接访问对象的成员变量</li>
+</ul>
+<p>@implementation 中不能定义和 @interface 中同名的成员变量</p>
+<p>NSString 是不可变的</p>
+<ul>
+<li>NSString 的创建：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这种方式创建出来的字符串是不需要释放的</span></span><br><span class="line"><span class="built_in">NSString</span> *str1 = <span class="string">@"A String!"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> *str2 = [[<span class="built_in">NSString</span> alloc] init];</span><br><span class="line">str2 = <span class="string">@"A String!"</span>;</span><br><span class="line">[str2 release];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> *str3 = [[<span class="built_in">NSString</span> alloc] initWithString:<span class="string">@"A String!"</span>];</span><br><span class="line">[str3 release];</span><br><span class="line"><span class="comment">// 不需要管理内存</span></span><br><span class="line">str3 = [<span class="built_in">NSString</span> stringWithString:<span class="string">@"A String!"</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> *str4 = [[<span class="built_in">NSString</span> alloc] initWithUTF8String:<span class="string">@"A String!"</span>];</span><br><span class="line">[str4 release];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> *str5 = [[<span class="built_in">NSString</span> alloc] initWithFormat:<span class="string">@"My nameis %s and age is %i"</span>, <span class="string">"mlb"</span>, <span class="number">21</span>];</span><br><span class="line"><span class="comment">// 这行代码放在中间会造成2个错误</span></span><br><span class="line"><span class="comment">// 1、前面创建的字符串没有被释放</span></span><br><span class="line"><span class="comment">// 2、后面创建的字符串会释放2次，造成野指针错误</span></span><br><span class="line"><span class="comment">// *str5 = [[NSString alloc] stringWithFormat:@"My nameis %s and age is %i", "mlb", 21];</span></span><br><span class="line">[str5 release];</span><br><span class="line">*str5 = [[<span class="built_in">NSString</span> alloc] stringWithFormat:<span class="string">@"My nameis %s and age is %i"</span>, <span class="string">"mlb"</span>, <span class="number">21</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从文件中读取文本</span></span><br><span class="line"><span class="built_in">NSString</span> *path = <span class="string">@"/Users/HelloWorld/Desktop/test.txt"</span>;</span><br><span class="line"><span class="comment">// 这个方法已经过期，不能解析中文</span></span><br><span class="line"><span class="comment">// NSString *str1 = [NSString stringWithContentsOfFile:path];</span></span><br><span class="line"><span class="comment">// 定义一个 NSError 变量</span></span><br><span class="line"><span class="built_in">NSError</span> *error;</span><br><span class="line"><span class="comment">// 指定字符串编码为 UTF-8：NSUTF8StringEncoding</span></span><br><span class="line"><span class="built_in">NSString</span> *str1 = [<span class="built_in">NSString</span> stringWithContentsOfFile:path encoding:<span class="built_in">NSUTF8StringEncoding</span> error:&amp;error];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, str1);</span><br><span class="line"><span class="keyword">if</span> (error == <span class="literal">nil</span>) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"读取文件成功：%@"</span>, str1);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"读取文件失败：@error"</span>, error);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>字符串的导出：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@"123456"</span>;</span><br><span class="line"><span class="built_in">NSString</span> *path = <span class="string">@"/Users/HelloWorld/Desktop/test.txt"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSError</span> *error;</span><br><span class="line"><span class="comment">// 编码指定错误也会报错</span></span><br><span class="line"><span class="comment">// YES 代表要进行原子性操作，也就是会创建一个中间的临时文件</span></span><br><span class="line">[str writeToFile:path atomically:<span class="literal">YES</span> encoding:<span class="built_in">NSUTF8StringEncoding</span> error:&amp;error];</span><br><span class="line"><span class="keyword">if</span> (error) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"写入失败：%@"</span>, error); <span class="comment">// error 写成 [error localizedDescription] 可以返回主要的报错信息</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"写入成功"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>NSString 的常用方法：</p>
+<ul>
+<li>字符串的大小写处理：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@"HelloWorld"</span>;</span><br><span class="line"><span class="comment">// 转成大写</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"大写：%@"</span>, [str uppercaseString]);</span><br><span class="line"><span class="comment">// 转成小写</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"小写：%@"</span>, [str lowercaseString]);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"helloWorld 首字母变大写：%@"</span>, [<span class="string">@"helloWorld"</span> capitalizedString]);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>字符串的比较：</li>
+</ul>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 检测字符串的内容是否相同</span><br><span class="line"><span class="type">BOOL</span> <span class="literal">result</span> = [@<span class="string">"abc"</span> isEqualToString:@<span class="string">"abc"</span>];</span><br><span class="line"><span class="type">NSLog</span>(@<span class="string">"%i"</span>, <span class="literal">result</span>);</span><br><span class="line"></span><br><span class="line">// <span class="type">NSOrderedAscending</span> 右边的字符串比左边的大</span><br><span class="line">// <span class="type">NSOrderedSame</span> 两个字符串的内容相同</span><br><span class="line">// <span class="type">NSOrderDescending</span> 左边的字符串比右边的大</span><br><span class="line">// 忽略大小写比较：[@<span class="string">"abc"</span> caseInsensitiveCompare:@<span class="string">"Abc"</span>];</span><br><span class="line"><span class="type">NSComparisonResult</span> result2 = [@<span class="string">"abc"</span> compare:@<span class="string">"Abc"</span>];</span><br><span class="line"><span class="keyword">if</span> (result2 == <span class="type">NSOrderedSame</span>) &#123;</span><br><span class="line">    <span class="type">NSLog</span>(@<span class="string">"两个字符串的内容"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (result2 == <span class="type">NSOrderedAscending</span>) &#123;</span><br><span class="line">    <span class="type">NSLog</span>(@<span class="string">"右边 &gt; 左边"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (result2 == <span class="type">NSOrderDescending</span>) &#123;</span><br><span class="line">    <span class="type">NSLog</span>(@<span class="string">"右边 &lt; 左边"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>字符串的搜索：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@"123456456.txt"</span>;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"是否以12开头：%i"</span>, [str hasPrefix:<span class="string">@"12"</span>]);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"是否以txt结尾：%i"</span>, [str hasSuffix:<span class="string">@"txt"</span>]);</span><br><span class="line"><span class="comment">// 从头开始搜索</span></span><br><span class="line"><span class="built_in">NSRange</span> range = [str rangeOfString:<span class="string">@"345"</span>];</span><br><span class="line"><span class="comment">// range.length == 0</span></span><br><span class="line"><span class="keyword">if</span> (range<span class="variable">.location</span> == <span class="built_in">NSNotFound</span>) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"没有找到"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"找到，范围是：%@"</span>, <span class="built_in">NSStringFromRange</span>(range));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 从尾部开始搜索</span></span><br><span class="line">range = [str rangeOfString:<span class="string">@"456"</span> options:<span class="built_in">NSBackwardsSearch</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"从尾部开始搜索，找到，范围是：%@"</span>, <span class="built_in">NSStringFromRange</span>(range));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从指定范围开始搜索字符串方法</span></span><br><span class="line">[str rangeOfString:<span class="string">@"456"</span> options:<span class="built_in">NSBackwardsSearch</span> range:(<span class="built_in">NSRange</span>)];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>字符串的截取：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@"123456"</span>;</span><br><span class="line"><span class="comment">// 从索引3开始截取到尾部（包括3）</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [str substringFromIndex:<span class="number">3</span>]);</span><br><span class="line"><span class="comment">// 从头部开始截取到索引3之前（不包括3）</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [str substringToIndex:<span class="number">3</span>]);</span><br><span class="line"><span class="comment">// 指定范围进行截取</span></span><br><span class="line"><span class="built_in">NSRange</span> range = <span class="built_in">NSMakeRange</span>(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [str substringWithRange:range]);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>字符串的拆分：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *str2 = <span class="string">@"1,2,3,4,5,6"</span>;</span><br><span class="line"><span class="built_in">NSArray</span> *array = [str2 componentsSeparatedByString:<span class="string">@","</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, array);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>字符串与路径：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 快速创建一个自动释放的数组</span></span><br><span class="line"><span class="built_in">NSMutableArray</span> *components = [<span class="built_in">NSMutableArray</span> array];</span><br><span class="line">[components addObject:<span class="string">@"Users"</span>];</span><br><span class="line">[components addObject:<span class="string">@"HelloWorld"</span>];</span><br><span class="line">[components addObject:<span class="string">@"Desktop"</span>];</span><br><span class="line"><span class="comment">// 将数组中的所有字符串拼接成一个路径</span></span><br><span class="line"><span class="built_in">NSString</span> *path = [<span class="built_in">NSString</span> pathWithComponents:components];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, path);</span><br><span class="line"><span class="comment">// 将路径分解成数组</span></span><br><span class="line"><span class="built_in">NSArray</span> *cmps = [path pathConponents];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, cmps);</span><br><span class="line"><span class="comment">// 判断是否为绝对路径</span></span><br><span class="line">path = <span class="string">@"/Users/HelloWorld/test/test.txt"</span>;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%i"</span>, [path isAbsolutePath]);</span><br><span class="line"><span class="comment">// 返回路径的最后一个文件夹</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"最后一个目录：%@"</span>, [path lastPathComponent]);</span><br><span class="line"><span class="comment">// 删除最后一个文件夹目录并返回一个新的路径</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [path stringByDeletingLastPathComponent]);</span><br><span class="line"><span class="comment">// 在最后面拼接一个目录</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [path stringByAppandingPathComponent:<span class="string">@"abc"</span>]);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>扩展名处理：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *path = <span class="string">@"/Users/HelloWorld/test/test.txt"</span>;</span><br><span class="line"><span class="comment">// 获取扩展名</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"扩展名：%@"</span>, [path pathExtension]);</span><br><span class="line"><span class="comment">// 删除扩展名</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [path stringByDeletingPathExtension]);</span><br><span class="line"><span class="comment">// 拼接扩展名，只是在尾部添加了扩展名字符串，并不会检测原先是否有扩展名</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [<span class="string">@"abc"</span> stringByAppendingPathExtension:<span class="string">@"mp3"</span>]);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其他用法：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将字符串转成int类型</span></span><br><span class="line"><span class="built_in">NSString</span> *str = <span class="string">@"12"</span>;</span><br><span class="line"><span class="keyword">int</span> a = [str intValue];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%i"</span>, a);</span><br><span class="line"><span class="comment">// 求字符串的长度，是字数而不是字符数</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"length = %zi"</span>, [<span class="string">@"我是字符串"</span>, length]);</span><br><span class="line"><span class="comment">// 取出指定下标的字符</span></span><br><span class="line"><span class="keyword">unichar</span> c = [<span class="string">@"abcd"</span> characterAtIndex:<span class="number">0</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%c"</span>, c);</span><br><span class="line"><span class="comment">// 将 OC 字符串转成 C 语言中的字符串（char *）</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *s = [<span class="string">@"abc"</span>, UTF8String];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, s);</span><br></pre></td></tr></table></figure>
+<p>NSMutableString</p>
+<ol>
+<li>NSString 是不可变的，不能删除字符或者添加字符。NSString 有一个子类 NSMutableString，称为“可变字符串”</li>
+<li>创建可变字符串的常用方法：<ol>
+<li><code>- (id)initWithCapacity:(NSUInteger)capacity</code></li>
+<li><code>+ (id)stringWithCapacity:(NSUInteger)capacity</code></li>
+</ol>
+</li>
+<li>capacity 只是一个最优值，字符串的大小并不仅限于所提供的容量，设置了 capacity，可以预分配一块内存来存储它，操作速度会快很多</li>
+<li>当然，也可以使用创建 NSString 的方法来创建 NSMutableString，因为 NSMutableString 是 NSString 的子类，NSString 能用的方法，NSMutableString 都能使用</li>
+</ol>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可变字符串的创建</span></span><br><span class="line"><span class="comment">// 预先分配10个字数的空间</span></span><br><span class="line">NSMutableString *<span class="keyword">str</span> = [[NSMutableString alloc] initWithCapacity:<span class="number">10</span>];</span><br><span class="line"><span class="comment">// 设置字符串内容</span></span><br><span class="line">[<span class="keyword">str</span> setString:@<span class="string">"1234"</span>];</span><br><span class="line"><span class="comment">// 拼接字符串</span></span><br><span class="line">[<span class="keyword">str</span> appendString:@<span class="string">"567"</span>];</span><br><span class="line">[<span class="keyword">str</span> appendFormat:@<span class="string">"age is %i and name is %s"</span>, <span class="number">21</span>, <span class="string">"mlb"</span>];</span><br><span class="line"><span class="comment">// 替换字符串</span></span><br><span class="line"><span class="comment">// 先找到要替换的字符串的范围</span></span><br><span class="line">NSRange range = [<span class="keyword">str</span> rangeOfString:@<span class="string">"age"</span>];</span><br><span class="line">[<span class="keyword">str</span> replaceCharactersinRange:range withString:@<span class="string">"years"</span>];</span><br><span class="line"><span class="comment">// 插入字符串</span></span><br><span class="line">[<span class="keyword">str</span> insertString:@<span class="string">"abc"</span> atIndex:<span class="number">2</span>];</span><br><span class="line"><span class="comment">// 删除字符串</span></span><br><span class="line">range = [<span class="keyword">str</span> rangeOfString:@<span class="string">"567"</span>];</span><br><span class="line">[<span class="keyword">str</span> deleteCharactersInRange:range];</span><br><span class="line">NSLog(@<span class="string">"%@"</span>, <span class="keyword">str</span>);</span><br><span class="line">[<span class="keyword">str</span> release];</span><br></pre></td></tr></table></figure>
+<p>NSArray</p>
+<ol>
+<li>用来存储对象的有序列表，它是不可变的</li>
+<li>不能存储C语言中的基本数据类型，如 int、float、enum、struct，也不能存储 nil</li>
+</ol>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 创建一个空的数组</span><br><span class="line">NSArray *array = <span class="keyword">[</span>NSArray array];</span><br><span class="line">// 创建一个有一个元素的数组<span class="instruction"></span><br><span class="line">array </span>= <span class="keyword">[</span>NSArray arrayWithObject:@<span class="string">"123"</span>];</span><br><span class="line">// 创建有多个元素的数组，nil代表创建结束<span class="instruction"></span><br><span class="line">array </span>= <span class="keyword">[</span>NSArray arrayWithObjects:@<span class="string">"a"</span>, @<span class="string">"b"</span>, @<span class="string">"c"</span>, nil];</span><br><span class="line">// 获取数组长度</span><br><span class="line">unsigned<span class="instruction"> int </span>count = <span class="keyword">[</span>array count];</span><br><span class="line">// count = array.count;</span><br><span class="line">NSLog(@<span class="string">"%zi"</span>, count<span class="function">)</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>数组的简单使用：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *array = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"a"</span>, <span class="string">@"b"</span>, <span class="string">@"c"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="comment">// 判断是否包含了某个元素</span></span><br><span class="line"><span class="keyword">if</span> ([array containsObject:<span class="string">@"bc"</span>]) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"包含了字符串bc"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 返回数组最后一个元素</span></span><br><span class="line"><span class="built_in">NSString</span> *last = [array lastObject];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"last = %@"</span>, last);</span><br><span class="line"><span class="comment">// 返回指定下标的元素</span></span><br><span class="line"><span class="built_in">NSString</span> *str = [array objectAtIndex:<span class="number">1</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"str = %@"</span>, str);</span><br><span class="line"><span class="comment">// 查询某个元素的下标</span></span><br><span class="line"><span class="keyword">int</span> index = [array indexOfObject:<span class="string">@"c"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"index  = %i"</span>, index);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>数组的内存管理：</li>
+</ul>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="name">Student</span> *<span class="atom">stu1</span> = [[<span class="name">Student</span> <span class="atom">alloc</span>] <span class="atom">init</span>];</span><br><span class="line"><span class="name">Student</span> *<span class="atom">stu2</span> = [[<span class="name">Student</span> <span class="atom">alloc</span>] <span class="atom">init</span>];</span><br><span class="line"><span class="name">Student</span> *<span class="atom">stu3</span> = [[<span class="name">Student</span> <span class="atom">alloc</span>] <span class="atom">init</span>];</span><br><span class="line"></span><br><span class="line"><span class="name">NSLog</span>(@<span class="string">"stu1:%zi"</span>, [<span class="atom">stu1</span> <span class="atom">retainCount</span>]);</span><br><span class="line">// 当把一个对象添加进数组中时，这个对象的引用计数器会加<span class="number">1</span>，也就是说数组会对它做一个 <span class="atom">retain</span> 操作</span><br><span class="line"><span class="name">NSArray</span> *<span class="atom">array</span> = [[<span class="name">NSArray</span> <span class="atom">alloc</span>] <span class="atom">initWithObjects</span>:<span class="atom">stu1</span>, <span class="atom">stu2</span>, <span class="atom">stu3</span>, <span class="atom">nil</span>];</span><br><span class="line"><span class="name">NSLog</span>(@<span class="string">"stu1:%zi"</span>, [<span class="atom">stu1</span> <span class="atom">retainCount</span>]);</span><br><span class="line"><span class="name">NSLog</span>(@<span class="string">"count = %zi"</span>, <span class="atom">array</span>.<span class="atom">count</span>);</span><br><span class="line">// 数组被销毁的时候，会对内部的所有元素做一次 <span class="atom">release</span> 操作</span><br><span class="line">[<span class="atom">array</span> <span class="atom">release</span>];</span><br><span class="line">[<span class="atom">stu1</span> <span class="atom">release</span>];</span><br><span class="line">[<span class="atom">stu2</span> <span class="atom">release</span>];</span><br><span class="line">[<span class="atom">stu3</span> <span class="atom">release</span>];</span><br></pre></td></tr></table></figure>
+<p>NSArray 的比较：</p>
+<ol>
+<li>比较两个集合内容是否相同<br><code>- (BOOL)isEqualToArray:(NSArray *)otherArray</code></li>
+<li>返回两个集合中第一个相同的对象元素<br><code>- (id)firstObjectCommonWithArray:(NSArray *)otherArray</code></li>
+</ol>
+<ul>
+<li>给数组里面的元素发送消息：</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 让数组里面的所有对象都调用某个方法</span></span><br><span class="line">[array <span class="string">makeObjectsPerformSelector:</span><span class="annotation">@selector</span>(function name)];</span><br><span class="line"><span class="comment">// 也可以传入参数</span></span><br><span class="line">[array <span class="string">makeObjectsPerformSelector:</span><span class="annotation">@selector</span>(function <span class="string">name:</span>) <span class="string">withObject:</span>@<span class="string">"123"</span>];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>遍历数组</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *array = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"a"</span>, <span class="string">@"b"</span>, <span class="string">@"c"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> count = array<span class="variable">.count</span>;</span><br><span class="line"><span class="comment">// 第一种方法：</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">    <span class="comment">// id == void *</span></span><br><span class="line">    <span class="keyword">id</span> obj = [array objectAtIndex:i];</span><br><span class="line">    <span class="built_in">NSlog</span>(<span class="string">@"%i - %@"</span>, i, obj);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 第二种方法：</span></span><br><span class="line"><span class="comment">// 快速遍历</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">id</span> obj <span class="keyword">in</span> array) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%i - %@"</span>, i, obj);</span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 第三种方法：</span></span><br><span class="line">[array enumerateObjectsUsingBlock:</span><br><span class="line">    ^(<span class="keyword">id</span> obj, <span class="built_in">NSUInteger</span> idx, <span class="built_in">BOOL</span> *stop) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%zi - %@"</span>, idx, obj);</span><br><span class="line">        <span class="keyword">if</span> (idx == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 利用指针修改外部 BOOL 变量的值</span></span><br><span class="line">            *stop = <span class="literal">YES</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;];</span><br><span class="line"><span class="comment">// 第四种方法：</span></span><br><span class="line"><span class="comment">// 获取数组的迭代器</span></span><br><span class="line"><span class="built_in">NSEnumerator</span> *enumerator = [array objectEnumerator];</span><br><span class="line"><span class="comment">// 获取下一个需要遍历的元素</span></span><br><span class="line"><span class="keyword">id</span> obj = <span class="literal">nil</span>;</span><br><span class="line"><span class="keyword">while</span> (obj = [enumerator nextObject]) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"obj = %@"</span>, obj);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 反序迭代器</span></span><br><span class="line"><span class="built_in">NSEnumerator</span> *reverseEnumerator = [array reverseObjectEnumerator];</span><br><span class="line"></span><br><span class="line"><span class="comment">// allObjects 是取出没有被遍历过的对象</span></span><br><span class="line"><span class="built_in">NSArray</span> *arr = [enumerator allObjects];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"arr: %@"</span>, arr);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>派生出新的数组</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *array = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"a"</span>, <span class="string">@"b"</span>, <span class="string">@"c"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSArray</span> *array2 = [array arrayByAddingObject:<span class="string">@"d"</span>];</span><br><span class="line"><span class="built_in">NSArray</span> *array3 = [array arrayByAddingObjectsFromArray:[<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"e"</span>, <span class="string">@"f"</span>, <span class="literal">nil</span>]];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array = %@"</span>, array);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array2 = %@"</span>, array2);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array3 = %@"</span>, array3);</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSArray</span> *array4 = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"1"</span>, <span class="string">@"2"</span>, <span class="string">@"3"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="comment">// 截取某个数组中的元素并返回一个新的数组</span></span><br><span class="line"><span class="built_in">NSRange</span> range = <span class="built_in">NSMakeRange</span>(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="built_in">NSArray</span> *array5 = [array4 subarrayWithRange:range];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array5 = %@"</span>, array5);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>NSArray其他用法：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *array = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"a"</span>, <span class="string">@"b"</span>, <span class="string">@"c"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="comment">// 利用 separator 作为拼接符将数组元素拼接成一个字符串</span></span><br><span class="line"><span class="built_in">NSString</span> *str = [array componentsJoinedByString:<span class="string">@"-"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"str = %@"</span>, str);</span><br><span class="line"><span class="comment">// 把数组写入文件中，生成的是 XML 格式的文件</span></span><br><span class="line"><span class="built_in">NSString</span> *path = <span class="string">@"/Users/HelloWorld/test/array.xml"</span>;</span><br><span class="line">[array writeToFile:path atomically:<span class="literal">YES</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从文件中读取数组内容（文件内容有严格的格式要求）</span></span><br><span class="line"><span class="built_in">NSArray</span> *array = [<span class="built_in">NSArray</span> arrayWithContentsOfFile:path];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array = %@"</span>, array);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>NSArray排序</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *array = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"2"</span>, <span class="string">@"3"</span>, <span class="string">@"1"</span>, <span class="string">@"4"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="comment">// 没有排序输出</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"array = %@"</span>, array);</span><br><span class="line"><span class="comment">// 返回一个排好序的数组，原来的数组的元素顺序不会改变</span></span><br><span class="line"><span class="comment">// 指定元素的比较方法，默认从小到大排序</span></span><br><span class="line"><span class="built_in">NSArray</span> *sortArray = [array sortedArrayUsingSelector:<span class="keyword">@selector</span>(compare:)];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"sortArray = %@"</span>, sortArray);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对象的比较排序：</li>
+</ul>
+<p>Book.h：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Book</span> : <span class="title">NSObject</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, retain) <span class="built_in">NSString</span> *name;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">id</span>)bookWithName:(<span class="built_in">NSString</span> *)name;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>Book.m：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Book</span></span></span><br><span class="line">+ (<span class="keyword">id</span>)bookWithName:(<span class="built_in">NSString</span> *)name &#123;</span><br><span class="line">    Book *book = [[[Book alloc] init] autorelease];</span><br><span class="line">    book<span class="variable">.name</span> = name;</span><br><span class="line">    <span class="keyword">return</span> book;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)dealloc &#123;</span><br><span class="line">    [_name release];</span><br><span class="line">    [<span class="keyword">super</span> release];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>Student.h：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">Book</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Student</span> : <span class="title">NSObject</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, retain) <span class="built_in">NSString</span> *firstName;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, retain) <span class="built_in">NSString</span> *lastName;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, retain) Book *book;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">id</span>)studentWithFirstName:(<span class="built_in">NSString</span> *)firstname lastname:(<span class="built_in">NSString</span> *)lastname;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">id</span>)studentWithFirstName:(<span class="built_in">NSString</span> *)firstname lastname:(<span class="built_in">NSString</span> *)lastname bookName:(<span class="built_in">NSString</span> *)bookName;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回值类型为 NSComparisonResult</span></span><br><span class="line">- (<span class="built_in">NSComparisonResult</span>)compareStudent:(Student *)stu;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>Student.m：</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">@implementation</span><br><span class="line"></span><br><span class="line">+ (id)studentWithFirstName:(<span class="type">NSString</span> *)firstname lastname:(<span class="type">NSString</span> *)lastname &#123;</span><br><span class="line">    <span class="type">Student</span> *stu = [[[<span class="type">Student</span> alloc] init] autorelease];</span><br><span class="line">    stu.firstName = firstname;</span><br><span class="line">    stu.lastName = lastname;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> stu;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (id)studentWithFirstName:(<span class="type">NSString</span> *)firstname lastname:(<span class="type">NSString</span> *)lastname bookName:(<span class="type">NSString</span> *)bookName &#123;</span><br><span class="line">    <span class="type">Student</span> stu = [<span class="type">Student</span> studentWithFirstName:firstname lastName:lastname];</span><br><span class="line">    stu.book = [<span class="type">Book</span> bookWithName:bookName];</span><br><span class="line">    <span class="keyword">return</span> stu;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="type">NSComparisonResult</span>)compareStudent:(<span class="type">Student</span> *)stu &#123;</span><br><span class="line">    // 先按照姓排序</span><br><span class="line">    <span class="type">NSComparisonResult</span> <span class="literal">result</span> = [self.lastName compare:stu.lastName]</span><br><span class="line">    // 如果有相同的姓，就比较名字</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">result</span> == <span class="type">NSOrderedSame</span>) &#123;</span><br><span class="line">        <span class="literal">result</span> = [self.firstName compare:stu.firstName];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="type">void</span>)dealloc &#123;</span><br><span class="line">    [_firstName release];</span><br><span class="line">    [_lastName release];</span><br><span class="line">    [_book release];</span><br><span class="line">    [super release];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="type">NSString</span> *) description &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="type">NSString</span> stringWithFormat:@<span class="string">"[%@ %@ - %@]"</span>, self.lastName, self.firstName, self.book.name];</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>main.m：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">Student *s1 = [Student <span class="string">studentWithFirstName:</span>@<span class="string">"LeBin"</span> <span class="string">lastName:</span>@<span class="string">"Mei"</span>];</span><br><span class="line">Student *s2 = [Student <span class="string">studentWithFirstName:</span>@<span class="string">"JiBin"</span> <span class="string">lastName:</span>@<span class="string">"Chen"</span>];</span><br><span class="line">Student *s3 = [Student <span class="string">studentWithFirstName:</span>@<span class="string">"BinBin"</span> <span class="string">lastName:</span>@<span class="string">"Chi"</span>];</span><br><span class="line">Student *s4 = [Student <span class="string">studentWithFirstName:</span>@<span class="string">"Bi"</span> <span class="string">lastName:</span>@<span class="string">"Xue"</span>];</span><br><span class="line">Student *s5 = [Student <span class="string">studentWithFirstName:</span>@<span class="string">"Bin"</span> <span class="string">lastName:</span>@<span class="string">"Xu"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一种方法</span></span><br><span class="line">NSArray *array = [NSArray <span class="string">arrayWithObjects:</span>s1, s2, s3, s4, s5, nil];</span><br><span class="line"><span class="comment">// 指定排序的比较方法</span></span><br><span class="line">NSArray *array2 = [array <span class="string">sortedArrayUsingSelector:</span><span class="annotation">@selector</span>(<span class="string">compareStudent:</span>)];</span><br><span class="line">NSLog(@<span class="string">"array2 = %@"</span>, array2);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种方法</span></span><br><span class="line"><span class="comment">// 利用Block进行排序</span></span><br><span class="line">NSArray *array3 = [array <span class="string">sortedArrayUsingComparator:</span></span><br><span class="line">    ^NSComparisonResult(Student *obj1, Student *obj2) &#123;</span><br><span class="line">        <span class="comment">// 先按照姓排序</span></span><br><span class="line">        NSComparisonResult result = [self.lastName <span class="string">compare:</span>stu.lastName]</span><br><span class="line">        <span class="comment">// 如果有相同的姓，就比较名字</span></span><br><span class="line">        <span class="keyword">if</span> (result == NSOrderedSame) &#123;</span><br><span class="line">            result = [self.firstName <span class="string">compare:</span>stu.firstName];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">&#125;];</span><br><span class="line">NSLog(@<span class="string">"array3 = %@"</span>, array3);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 另外一种排序，多属性</span></span><br><span class="line">Student *s1 = [Student <span class="string">studentWithFirstName:</span>@<span class="string">"LeBin"</span> <span class="string">lastName:</span>@<span class="string">"Mei"</span> <span class="string">bookName:</span>@<span class="string">"book1"</span>];</span><br><span class="line">Student *s2 = [Student <span class="string">studentWithFirstName:</span>@<span class="string">"JiBin"</span> <span class="string">lastName:</span>@<span class="string">"Chen"</span> <span class="string">bookName:</span>@<span class="string">"book2"</span>];</span><br><span class="line">Student *s3 = [Student <span class="string">studentWithFirstName:</span>@<span class="string">"BinBin"</span> <span class="string">lastName:</span>@<span class="string">"Chi"</span> <span class="string">bookName:</span>@<span class="string">"book1"</span>];</span><br><span class="line">Student *s4 = [Student <span class="string">studentWithFirstName:</span>@<span class="string">"Bi"</span> <span class="string">lastName:</span>@<span class="string">"Xue"</span> <span class="string">bookName:</span>@<span class="string">"book2"</span>];</span><br><span class="line">Student *s5 = [Student <span class="string">studentWithFirstName:</span>@<span class="string">"Bin"</span> <span class="string">lastName:</span>@<span class="string">"Xu"</span> <span class="string">bookName:</span>@<span class="string">"book3"</span>];</span><br><span class="line"></span><br><span class="line">NSArray *array = [NSArray <span class="string">arrayWithObjects:</span>s1, s2, s3, s4, s5, nil];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1.先按照书名进行排序</span></span><br><span class="line">NSSortDescriptor *bookNameDesc = [NSSortDescriptor <span class="string">sortDescriptorWithKey:</span>@<span class="string">"book.name"</span> <span class="string">ascending:</span>YES];</span><br><span class="line"><span class="comment">// 2.再按照姓进行排序</span></span><br><span class="line">NSSortDescriptor *lastNameDesc = [NSSortDescriptor <span class="string">sortDescriptorWithKey:</span>@<span class="string">"lastName"</span> <span class="string">ascending:</span>YES];</span><br><span class="line"><span class="comment">// 3.最后按照名进行排序</span></span><br><span class="line">NSSortDescriptor *firstNameDesc = [NSSortDescriptor <span class="string">sortDescriptorWithKey:</span>@<span class="string">"firstName"</span> <span class="string">ascending:</span>YES];</span><br><span class="line"><span class="comment">// 按顺序添加排序描述器</span></span><br><span class="line">NSArray *descs = [NSArray <span class="string">arrayWithObjects:</span>bookNameDesc, lastNameDesc , firstNameDesc , nil];</span><br><span class="line">NSArray *array2 = [array <span class="string">sortedArrayUsingDescriptors:</span>descs];</span><br><span class="line">NSLog(@<span class="string">"array2 = %@"</span>, array2);</span><br></pre></td></tr></table></figure>
+<p>NSMutableArray</p>
+<ol>
+<li>可变的 NSArray，NSArray 的子类，可以随意的添加或者删除元素</li>
+<li>创建 NSMutableArray 的方法：<ol>
+<li><code>+ (id)arrayWithCapacity:(NSUInteger)numItems</code></li>
+<li><code>- (id)initWithCapacity:(NSUInteger)numItems</code></li>
+</ol>
+</li>
+<li>也可以使用创建 NSArray 的方法来创建 NSMutableArray</li>
+<li>当一个元素被加到集合中时，会执行一次 retain 操作；当一个元素从集合中移除时，会执行一次 release 操作；当集合被销毁时（调用了 dealloc），集合里的所有元素都会执行一次 release 操作（这个原则还适用于其他集合：NSDictionary/NSSet 等）</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建 NSMutableArray</span></span><br><span class="line">NSMutableArray *<span class="built_in">array</span> = [NSMutableArray arrayWithObject:@<span class="string">"1"</span>];</span><br><span class="line"><span class="comment">// 添加元素，对被添加的元素会做一次 retain 操作，引用计数器加 1</span></span><br><span class="line">[<span class="built_in">array</span> addObject:@<span class="string">"2"</span>];</span><br><span class="line">[<span class="built_in">array</span> addObject:@<span class="string">"3"</span>];</span><br><span class="line">NSLog(@<span class="string">"%@"</span>, <span class="built_in">array</span>);</span><br><span class="line"><span class="comment">// 删除元素，对被删除的元素做一次 release 操作，引用计数器减 1</span></span><br><span class="line"><span class="comment">// 删除指定元素</span></span><br><span class="line">[<span class="built_in">array</span> removeObject:@<span class="string">"2"</span>];</span><br><span class="line"><span class="comment">// 删除最后一个元素</span></span><br><span class="line">[<span class="built_in">array</span> removeLastObject];</span><br><span class="line"><span class="comment">// 删除所有元素</span></span><br><span class="line">[<span class="built_in">array</span> removeAllObject];</span><br><span class="line"><span class="comment">// 当数组被释放的时候，会对所有的元素都做一次 release 操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 替换指定下标的元素</span></span><br><span class="line">NSMutableArray *<span class="built_in">array</span> = [NSMutableArray arrayWithObject:@<span class="string">"1"</span>, @<span class="string">"2"</span>, @<span class="string">"3"</span>];</span><br><span class="line">[<span class="built_in">array</span> relaceObjectAtIndex:<span class="number">1</span> withObject:@<span class="string">"4"</span>];</span><br><span class="line">NSLog(@<span class="string">"array = %@"</span>, <span class="built_in">array</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 排序</span></span><br><span class="line">NSMutableArray *<span class="built_in">array</span> = [NSMutableArray arrayWithObject:@<span class="string">"1"</span>, @<span class="string">"3"</span>, @<span class="string">"2"</span>];</span><br><span class="line"><span class="comment">// 因为是可变数组，所以不需要返回新的数组</span></span><br><span class="line">[<span class="built_in">array</span> sortUsingSelector:@selector(compare:)];</span><br><span class="line">NSLog(@<span class="string">"array = %@"</span>, <span class="built_in">array</span>);</span><br></pre></td></tr></table></figure>
+<p>NSDictionary<br>通过唯一的 key 找到对应的 value，类似于 Java 的 Map</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字典的初始化</span></span><br><span class="line"><span class="comment">// NSDiationary 是不可变的</span></span><br><span class="line"><span class="built_in">NSDiationary</span> *dict = [<span class="built_in">NSDiationary</span> dictionaryWithObject:<span class="string">@"v"</span> forKey:<span class="string">@"k"</span>];</span><br><span class="line">dict = [<span class="built_in">NSDiationary</span> dictionaryWithObjectsAndKeys:</span><br><span class="line">        <span class="string">@"v1"</span>, <span class="string">@"k1"</span>,</span><br><span class="line">        <span class="string">@"v2"</span>, <span class="string">@"k2"</span>,</span><br><span class="line">        <span class="string">@"v3"</span>, <span class="string">@"k3"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSArray</span> *objects = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"v1"</span>, <span class="string">@"v2"</span>, <span class="string">@"v3"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSArray</span> *keys = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"k1"</span>, <span class="string">@"k2"</span>, <span class="string">@"k3"</span>, <span class="literal">nil</span>];</span><br><span class="line">dict = [<span class="built_in">NSDiationary</span> dictionaryWithObjects:objects forKeys:keys];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, dict);</span><br><span class="line"></span><br><span class="line"><span class="comment">// NSDiationary 常用方法</span></span><br><span class="line"><span class="comment">// count 是计算有几个键值对 (key-value)</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"count = %zi"</span>, dict<span class="variable">.count</span>);</span><br><span class="line"><span class="comment">// 由于 NSDiationary 是不可变的，所以只能取值，而不能修改值</span></span><br><span class="line"><span class="keyword">id</span> obj = [dict objectForKey];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"obj = %@"</span>, obj);</span><br><span class="line"><span class="comment">// 将字典写入文件中，写入的格式是 XML 的</span></span><br><span class="line"><span class="built_in">NSString</span> *path = <span class="string">@"/Users/HelloWorld/Desktop/dict.xml"</span>;</span><br><span class="line">[dict writeToFile:path atomically:<span class="literal">YES</span>];</span><br><span class="line"><span class="comment">// 也可以从文件中读取，文件内容必须是 XML 格式</span></span><br><span class="line">dict = [<span class="built_in">NSDiationary</span> dictionalryWithContentsOfFile:path];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"dict = %@"</span>, dict);</span><br><span class="line"><span class="comment">// 返回所有的 key</span></span><br><span class="line"><span class="built_in">NSArray</span> *keys = [dict allKeys];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"keys = %@"</span>, keys);</span><br><span class="line"><span class="comment">// 返回所有的 value</span></span><br><span class="line"><span class="built_in">NSArray</span> *object = [dict allValues];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"objects = %@"</span>, objects);</span><br><span class="line"><span class="comment">// 根据多个 key 取出对应的多个 value</span></span><br><span class="line"><span class="comment">// notFoundMarker 不能为 nil</span></span><br><span class="line">objects = [dict objectsForKeys:[<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"k1"</span>, <span class="string">@"k2"</span>, <span class="literal">nil</span>] notFoundMarker:<span class="string">@"not_found"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"objects = %@"</span>, objects);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历字典</span></span><br><span class="line"><span class="built_in">NSDiationary</span> *dict = [<span class="built_in">NSDiationary</span> dictionaryWithObjectsAndKeys:</span><br><span class="line">        <span class="string">@"v1"</span>, <span class="string">@"k1"</span>,</span><br><span class="line">        <span class="string">@"v2"</span>, <span class="string">@"k2"</span>,</span><br><span class="line">        <span class="string">@"v3"</span>, <span class="string">@"k3"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="comment">// 第一种方法</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">id</span> key <span class="keyword">in</span> dict) &#123;</span><br><span class="line">    <span class="keyword">id</span> value = [dict objectForKey:key];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@ = %@"</span>, key, value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 第二种方法</span></span><br><span class="line"><span class="built_in">NSEnumerator</span> *enumer = [dict keyEnumerator];</span><br><span class="line"><span class="keyword">id</span> key = <span class="literal">nil</span>;</span><br><span class="line"><span class="keyword">while</span> (key = [enumer nextObject]) &#123;</span><br><span class="line">    <span class="keyword">id</span> value = [dict objectForKey:key];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@ = %@"</span>, key, value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 对象迭代器：[dict objectEnumerator]</span></span><br><span class="line"><span class="comment">// 第三种方法</span></span><br><span class="line">[dict enumerateKeysAndObjectsUsingBlock:</span><br><span class="line">        ^(<span class="keyword">id</span> key, <span class="keyword">id</span> obj, <span class="built_in">BOOL</span> *stop) &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%@ = %@"</span>, key, obj);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p>NSDiationary 的内存管理</p>
+<p>Student.h：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Student</span> : <span class="title">NSObject</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, retain) <span class="built_in">NSString</span> *name;</span><br><span class="line">+ (<span class="keyword">id</span>)studentWithName:(<span class="built_in">NSString</span> *)name;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>Student.m：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Student</span></span></span><br><span class="line">+ (<span class="keyword">id</span>)studentWithName:(<span class="built_in">NSString</span> *)name &#123;</span><br><span class="line">    Student *stu = [[[Student alloc] init] autorelease];</span><br><span class="line">    stu<span class="variable">.name</span> = name;</span><br><span class="line">    <span class="keyword">return</span> stu;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)dealloc &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@被销毁了"</span>, _name);</span><br><span class="line">    [_name release];</span><br><span class="line">    [<span class="keyword">super</span> dealloc];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>main.m：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Student *s1 = [Student <span class="string">studentWithName:</span>@<span class="string">"student1"</span>];</span><br><span class="line">Student *s2 = [Student <span class="string">studentWithName:</span>@<span class="string">"student2"</span>];</span><br><span class="line">Student *s3 = [Student <span class="string">studentWithName:</span>@<span class="string">"student3"</span>];</span><br><span class="line"><span class="comment">// 一个对象称为字典的 key 或者 value 时，会做一次 retain 操作，也就是引用计数器 +1</span></span><br><span class="line">NSDiationary *dict = [NSDiationary <span class="string">dictionaryWithObjectsAndKeys:</span></span><br><span class="line">        s1, @<span class="string">"k1"</span>,</span><br><span class="line">        s2, @<span class="string">"k2"</span>,</span><br><span class="line">        s3, @<span class="string">"k3"</span>, nil];</span><br><span class="line"><span class="comment">// 当字典被销毁时，里面的所有 key 和 value 都会做一次 release 操作，也就是引用计数器 -1</span></span><br></pre></td></tr></table></figure>
+<p>NSMutableDiationary</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可变的字典的使用</span></span><br><span class="line"><span class="comment">// 创建一个空的字典</span></span><br><span class="line">NSMutableDictionary *dict = [NSMutableDictionary dictionary];</span><br><span class="line">Student *s1 = [Student <span class="string">studentWithName:</span>@<span class="string">"student1"</span>];</span><br><span class="line">Student *s2 = [Student <span class="string">studentWithName:</span>@<span class="string">"student2"</span>];</span><br><span class="line"><span class="comment">// 添加元素</span></span><br><span class="line"><span class="comment">// s1 的引用计数器会 +1</span></span><br><span class="line">[dict <span class="string">setObject:</span>s1 <span class="string">forKey:</span>@<span class="string">"k1"</span>];</span><br><span class="line">NSLog(@<span class="string">"s1: %zi"</span>, [s1 retainCount]);</span><br><span class="line"><span class="comment">// 添加其他字典的键值对到一个字典中</span></span><br><span class="line">NSDiationary *others = [NSDiationary <span class="string">dictionaryWithObjectsAndKeys:</span></span><br><span class="line">        @<span class="string">"v1"</span>, @<span class="string">"k1"</span>,</span><br><span class="line">        @<span class="string">"v2"</span>, @<span class="string">"k2"</span>,</span><br><span class="line">        @<span class="string">"v3"</span>, @<span class="string">"k3"</span>, nil];</span><br><span class="line">[dict <span class="string">addEntriesFromDictionary:</span>other];</span><br><span class="line"><span class="comment">// 删除所有的键值对</span></span><br><span class="line">[dict removeAllObjects];</span><br><span class="line"><span class="comment">// 删除key对应的键值对</span></span><br><span class="line">[dict <span class="string">removeObjectForKey:</span>@<span class="string">"k1"</span>];</span><br><span class="line"><span class="comment">// 删除多个 key 对应的键值对</span></span><br><span class="line">[dict <span class="string">removeObjectsForKeys:</span>[NSArray <span class="string">arrayWithObject:</span>@<span class="string">"k1"</span>]];</span><br><span class="line"><span class="comment">// 字典被销毁时，内部的所有 key 和 value 的引用计数器都会 -1，也就是说，s1 会被 release 一次</span></span><br></pre></td></tr></table></figure>
+<p>NSNumber<br>NSNumber 可以将基本数据类型包装成对象，这样就可以间接将基本数据类型存进 NSArray、NSDictionary 等集合中</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将 int 类型的数据包装成一个 NSNumber 对象</span></span><br><span class="line"><span class="built_in">NSNumber</span> *num = [<span class="built_in">NSNumber</span> numberWithInt:<span class="number">10</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"num = %@"</span>, num);</span><br><span class="line"><span class="built_in">NSMutableArray</span> *array = [<span class="built_in">NSMutableArray</span> array];</span><br><span class="line"><span class="comment">// 添加数值到数组中</span></span><br><span class="line">[array addObject:number];</span><br><span class="line"><span class="comment">// 取出来还是一个 NSNumber 对象，不支持自动解包（也就是不会自动转化为 int 类型）</span></span><br><span class="line"><span class="built_in">NSNumber</span> *num1 = [array lastObject];</span><br><span class="line"><span class="comment">// 将 NSNumber 对象转化为 int 类型</span></span><br><span class="line"><span class="keyword">int</span> n = [num1 intValue];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"n = %i"</span>, n);</span><br></pre></td></tr></table></figure>
+<p>NSNumber 的常用方法</p>
+<ol>
+<li><code>- (char)charValue</code></li>
+<li><code>- (int)intValue</code></li>
+<li><code>- (double)doubleValue</code></li>
+<li><code>- (BOOL)boolValue</code></li>
+<li><code>- (NSString *)stringValue</code></li>
+<li><code>- (NSComparisonResult)compare:(NSNumber *)otherNumber</code></li>
+<li><code>- (BOOL)isEqualToNumber:(NSNumber *)number</code></li>
+</ol>
+<p>NSValue<br>NSNumber 是 NSValue 的子类，但 NSNumber 只能包装数字类型，NSValue 可以包装任意值。也就可以用 NSValue 包装结构体后加入 NSArray、NSDictionary 等集合中。</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">CGPoint</span> point = <span class="type">CGPointMake</span>(<span class="number">10</span>, <span class="number">10</span>);</span><br><span class="line">// 将结构体变量包装成一个对象</span><br><span class="line"><span class="type">NSValue</span> *value = [<span class="type">NSValue</span> valueWithPoint:point];</span><br><span class="line"><span class="type">NSMutableArray</span> *<span class="type">array</span> = [<span class="type">NSMutableArray</span> <span class="type">array</span>];</span><br><span class="line">// 添加 value</span><br><span class="line">[<span class="type">array</span> addObject:value];</span><br><span class="line">//取出当时放进去的 value</span><br><span class="line"><span class="type">NSValue</span> *value1 = [<span class="type">array</span> lastObject];</span><br><span class="line"><span class="type">CGPoint</span> point1 = [value1 pointValue];</span><br><span class="line"><span class="type">BOOL</span> <span class="literal">result</span> = <span class="type">CGPointEqualToPoint</span>(point1, point);</span><br><span class="line"><span class="type">NSLog</span>(@<span class="string">"result = %i"</span>, <span class="literal">result</span>);</span><br><span class="line">// 包装结构体变量</span><br><span class="line">typedef struct &#123;</span><br><span class="line">    <span class="type">int</span> year;</span><br><span class="line">    <span class="type">int</span> month;</span><br><span class="line">    <span class="type">int</span> day;</span><br><span class="line">&#125; <span class="type">Date</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">Date</span> date = &#123;<span class="number">2014</span>, <span class="number">11</span>, <span class="number">27</span>&#125;;</span><br><span class="line">// 这里要传结构体的地址 &amp;date</span><br><span class="line">// 根据结构体类型生成对应的结构描述字符串</span><br><span class="line"><span class="type">char</span> *<span class="keyword">type</span> = @encode(<span class="type">Date</span>);</span><br><span class="line">[<span class="type">NSValue</span> value:&amp;date, withObjCType:<span class="keyword">type</span>];</span><br><span class="line"></span><br><span class="line">// 定义一个结构体变量</span><br><span class="line"><span class="type">Date</span> date1;</span><br><span class="line">// 取出包装好的结构体</span><br><span class="line">[value getValue:&amp;date1];</span><br><span class="line"><span class="type">NSLog</span>(@<span class="string">"year = %i, month = %i, day = %i"</span>, date1.year, date1.month, date1.day);</span><br></pre></td></tr></table></figure>
+<p>NSNull</p>
+<ol>
+<li>集合中是不能存放 nil 值的，因为 nil 在集合中有特殊含义，但有时确实需要存储一个表示“什么都没有”的值，那么就可以使用 NSNull，它也是 NSObject 的一个子类</li>
+<li>创建和获取 NSNull 的方法：<br> <code>+ (NSNull *)null</code></li>
+</ol>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 这个<span class="constant">null</span>只有一个，也就是说多个NSNull对象，他们的地址是相同的</span><br><span class="line">NSNUll *<span class="variable">n =</span> [NSNull <span class="constant">null</span>];</span><br></pre></td></tr></table></figure>
+<p>NSDate<br>NSDate 的静态初始化<br>TimeInterval 是秒</p>
+<ol>
+<li>返回当前时间：<br><code>+ (id)date</code></li>
+<li>返回以当前时间为基准，然后过了 secs 秒的时间<br><code>+ (id)dateWithTimeIntervalSinceNow:(NSTimeInterval)secs</code></li>
+<li>返回以 2001/01/01 GMT 为基准，然后过了 secs 秒的时间<br><code>+ (id)dateWithTimeIntervalSinceReferenceDate:(NSTimeInterval)secs</code></li>
+<li>返回以 1970/01/01 GMT 为基准，然后过了 secs 秒的时间<br><code>+ (id)dateWithTimeIntervalSince1970:(NSTimeInterval)secs</code></li>
+<li>返回很多年以后的未来的某一天<br><code>+ (id)distantFuture</code></li>
+<li>返回很多年以前的某一天<br><code>+ (id)distantPast</code></li>
+</ol>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 日期创建</span></span><br><span class="line"><span class="comment">// date 方法返回的就是当前时间</span></span><br><span class="line"><span class="built_in">NSDate</span> *date = [<span class="built_in">NSDate</span> date];</span><br><span class="line"><span class="comment">// 日期使用</span></span><br><span class="line"><span class="comment">// now: 11:12:40</span></span><br><span class="line"><span class="comment">// date: 11:12:50</span></span><br><span class="line">date = [<span class="built_in">NSDate</span> dateWithTimeIntervalSinceNow:<span class="number">10</span>];</span><br><span class="line"><span class="comment">// 从 1970-01-01 00:00:00 开始</span></span><br><span class="line">date = [<span class="built_in">NSDate</span> dateWithTimeIntervalSince1970:<span class="number">10</span>];</span><br><span class="line"><span class="comment">// 随机返回一个比较遥远的未来时间</span></span><br><span class="line">date = [<span class="built_in">NSDate</span> distantFuture];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"future date = %@"</span>, date);</span><br><span class="line"><span class="comment">// 随机返回一个比较遥远的过去时间</span></span><br><span class="line">date = [<span class="built_in">NSDate</span> distantPast];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"future date = %@"</span>, date);</span><br><span class="line"><span class="comment">// 返回 1970-01-01 00:00:00 开始到现在的毫秒数</span></span><br><span class="line"><span class="built_in">NSTimeInterval</span> interval = [date timeIntervalSince1970];</span><br><span class="line"><span class="comment">// 日期比较</span></span><br><span class="line"><span class="comment">// 返回两个时间中比较早的时间</span></span><br><span class="line"><span class="built_in">NSDate</span> *date2 = [<span class="built_in">NSDate</span> date];</span><br><span class="line">[date earlierDate:date2];</span><br><span class="line"><span class="comment">// 返回两个时间中比较晚的时间</span></span><br><span class="line">[date laterDate:date2];</span><br><span class="line"><span class="comment">// 日期格式化</span></span><br><span class="line"><span class="built_in">NSDateFormatter</span> *formatter = [[<span class="built_in">NSDateFormatter</span> alloc] init];</span><br><span class="line"><span class="comment">// 设置格式，hh 是12小时进制，HH 是24小时进制</span></span><br><span class="line">formatter<span class="variable">.dateFormat</span> = <span class="string">@"yyyy-MM-dd HH:mm:ss"</span>;</span><br><span class="line"><span class="comment">// 设置时区</span></span><br><span class="line"><span class="comment">// formatter.locale = [[[NSLocale alloc] initWithLocaleIdentifier:@""] autorelease];</span></span><br><span class="line"><span class="comment">// 把 NSDate 转换为 NSString</span></span><br><span class="line"><span class="built_in">NSString</span> *str = [formatter stringFromDate:date];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"str = %@"</span>, str);</span><br><span class="line"><span class="comment">// 把 NSString 转换为 NSDate，如果没有设置时区，默认是格林尼治时区</span></span><br><span class="line"><span class="built_in">NSDate</span> *date2 = [formatter dateFromString:<span class="string">@"2014-11-27 16:02:50"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"date2 = %@"</span>, date2);</span><br><span class="line">[formatter release];</span><br></pre></td></tr></table></figure>
+<p>NSObject 常用方法</p>
+<ol>
+<li>判断是否为 @class 或者 @class 的子类的实例<br><code>- (BOOL)isKindOfClass:(Class)@class</code></li>
+<li>判断是否为 @class 的实例（不包括 @class 的子类）<br><code>- (BOOL)isMemberOfClass:(Class)@class</code></li>
+<li>判断对象是否实现了 @protocol 协议<br><code>- (BOOL)conformsToProtocol:(Protocol)@protocol</code></li>
+<li>判断这个类的对象是否拥有参数提供的方法<br><code>+ (BOOL)instancesRespondToSelector:(SEL)@selector</code></li>
+<li>判断对象是否拥有参数提供的方法<br><code>- (BOOL)respondsToSelector:(SEL)@selector</code></li>
+<li>延迟调用参数提供的方法，方法所需参数用 withObject 传入<br><code>- (void)performSelector:(SEL)@selector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay</code></li>
+</ol>
+<p>Person.h：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@interface <span class="keyword">Person</span> : NSObject</span><br><span class="line">- (void)test;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>Person.m</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@implementation <span class="keyword">Person</span></span><br><span class="line">- (void)test &#123;</span><br><span class="line">    NSLog(@<span class="string">"Person 调用了 test 方法"</span>);</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>Student.h：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@interface Student : <span class="keyword">Person</span></span><br><span class="line"></span><br><span class="line">- (void)test;</span><br><span class="line">- (void)test2:(NSString *)str;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>Student.m：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Student</span></span></span><br><span class="line">- (<span class="keyword">void</span>)test &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Student 调用了 test 方法"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)test2:(<span class="built_in">NSString</span> *)str &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Student 调用了 test2 方法，str = %@"</span>， str);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>main.m：</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Student</span> *stu = [[[<span class="type">Student</span> alloc] init] autorelease];</span><br><span class="line">// isKindOfClass 判断对象是否属于某个类或者其子类</span><br><span class="line"><span class="keyword">if</span> ([stu isKindOfClass:[<span class="type">Person</span> class]]) &#123;</span><br><span class="line">    <span class="type">NSLog</span>(@<span class="string">"stu 属于 Person 或者属于继承自 Person 的类"</span>);</span><br><span class="line">&#125;</span><br><span class="line">// isMemberOfClass 判断对象是否属于某个类（不包括子类）</span><br><span class="line"><span class="type">BOOL</span> <span class="literal">result</span> = [stu isMemberOfClass:[<span class="type">Person</span> class]];</span><br><span class="line"><span class="type">NSLog</span>(@<span class="string">"result = %i"</span>, <span class="literal">result</span>);</span><br><span class="line">// 直接调用方法</span><br><span class="line">// <span class="number">1</span>. 把 test 方法包装成 <span class="type">SEL</span> 类型的数据</span><br><span class="line">// <span class="number">2</span>. 根据 <span class="type">SEL</span> 数据找到对应的方法地址</span><br><span class="line">// <span class="number">3</span>. 根据方法地址调用对应的方法</span><br><span class="line">[stu test];</span><br><span class="line">// 间接调用方法</span><br><span class="line">[stu performSelector:@selector(test)];</span><br><span class="line">// 传入参数</span><br><span class="line">[stu performSelector:@selector(test2:) withObject:@<span class="string">"123"</span>];</span><br><span class="line">// 延迟调用</span><br><span class="line">[stu performSelector:@selector(test2:) withObject:@<span class="string">"123"</span> afterDelay:<span class="number">2</span>];</span><br></pre></td></tr></table></figure>
+<p>反射</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 类的反射</span><br><span class="line">NSString *str = @<span class="string">"Person"</span>;</span><br><span class="line">Class class = NSClassFromString(str);</span><br><span class="line"><span class="keyword">Person</span> *<span class="keyword">person</span> = <span class="comment">[<span class="comment">[class alloc]</span> init]</span>;</span><br><span class="line">NSLog(@<span class="string">"%@"</span>, <span class="keyword">person</span>);</span><br><span class="line"><span class="comment">[person release]</span>;</span><br><span class="line">// Class 变成字符串</span><br><span class="line">NSString *name = NSStringFromClass(<span class="comment">[Person class]</span>);</span><br><span class="line">// 方法的反射</span><br><span class="line">NSString *method = @<span class="string">"test"</span>;</span><br><span class="line">SEL selector = NSSelectorFromString(method);</span><br><span class="line"><span class="comment">[person performSelector:selector]</span>;</span><br><span class="line">// 将 SEL 转换为字符串</span><br><span class="line">NSString *selectorName = NSStringFromSelector(selector);</span><br><span class="line"><span class="comment">[person release]</span>;</span><br></pre></td></tr></table></figure>
+<p>SEL<br>SEL 其实是对方法的一种包装，将方法包装成一个 SEL 类型的数据，去找对应的方法地址，找到方法地址就可以调用方法。其实消息（常说的发送消息）就是 SEL。</p>
+<ul>
+<li>方法的存储位置<ol>
+<li>每个类的方法列表都存储在类对象中</li>
+<li>每个方法都有一个与之对应的 SEL 类型的对象</li>
+<li>根据一个 SEL 对象就可以找到方法的地址，进而调用方法</li>
+<li>SEL 类型的定义<br> <code>typedef struct objc_selector *SEL;</code></li>
+</ol>
+</li>
+<li>SEL 对象的创建</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">SEL</span> s = <span class="variable">@selector</span>(test);</span><br><span class="line"><span class="title">SEL</span> s2 = NSSelectorFromString(@<span class="string">"test"</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>SEL 对象的其他用法</li>
+</ul>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 将 SEL 对象转为 NSString 对象</span><br><span class="line">NSString *str = NSStringFromSelector(@selector(test));</span><br><span class="line"></span><br><span class="line"><span class="keyword">Person</span> *p = <span class="comment">[Person new]</span>;</span><br><span class="line">// 调用对象 p 的  test方法</span><br><span class="line"><span class="comment">[p performSelector:@selector(test)]</span>;</span><br></pre></td></tr></table></figure>
+<p>每个方法的内部都有一个隐藏的 SEL 对象：<code>_cmd</code>，代表当前方法</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)test &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *str = <span class="built_in">NSStringFromSelector</span>(_cmd);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"_cmd = %@"</span>, str);</span><br><span class="line">    <span class="comment">// 会引发死循环</span></span><br><span class="line">    <span class="comment">// [self performSelector:_cmd];</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>copy 和 mutableCopy</p>
+<ol>
+<li>一个对象使用 copy 或 mutableCopy 方法可以创建对象的副本</li>
+<li>copy - 需要先实现 NSCopying 协议，创建的是不可变得副本（如 NSString、NSArray、NSDictionary）</li>
+<li>mutableCopy - 需要先实现 NSMutableCopying 协议，，创建的是可变副本（如 NSMutableString、NSMutableArray、NSMutableDictionary）</li>
+<li>深复制：内容拷贝，源对象和副本指向不同的两个对象。源对象引用计时器不变，副本计数器设置为 1</li>
+<li>浅复制：指针拷贝，源对象和副本指向的是同一个对象。对象的引用计数器+1，其实相当于做了一次 retain 操作</li>
+<li>只有不可变对象创建不可变副本（copy）才是浅复制，其他都是深复制</li>
+</ol>
+<p>copy 语法的目的：改变副本的时候，不会影响到源对象</p>
+<p>为自定义类添加复制功能</p>
+<ol>
+<li>如果想自定义 copy，那么就必须遵守 NSCopying，并且实现 copyWithZone 方法</li>
+<li>如果想自定义 mutableCopy，那么就必须遵守 NSMutableCopying，并且实现 mutableCopyWithZone：方法</li>
+<li>以 copy 为例，建议用 <code>[self class]</code> 代替直接类名</li>
+</ol>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>)copyWithZone:(<span class="built_in">NSZone</span> *)zone &#123;</span><br><span class="line">    <span class="keyword">id</span> <span class="keyword">copy</span> = [[[<span class="keyword">self</span> class] allocWithZone:zone] init];</span><br><span class="line">    <span class="comment">// 做一些属性的初始化</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">copy</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 演示字符串的拷贝</span></span><br><span class="line"><span class="built_in">NSString</span> *string = [[<span class="built_in">NSString</span> alloc] initWithFormat:<span class="string">@"age is %i"</span>, <span class="number">21</span>];<span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 产生了一个新的对象，引用计数器为 1.源对象的引用计数器不变</span></span><br><span class="line"><span class="built_in">NSMutableString</span> *str = [string mutableCopy];<span class="comment">// 1</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"str: &amp;zi"</span>, [str retainCount]); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"string: %zi"</span>, [string retainCount]);<span class="comment">// 1</span></span><br><span class="line"><span class="comment">// str 和 string 不是相同对象</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%i"</span>, str == string);</span><br><span class="line"><span class="comment">// 修改 str 看 string 是否有被修改</span></span><br><span class="line">[str appendString<span class="string">@"123456"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"str = %@"</span>, str);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"string = %@"</span>, string);</span><br><span class="line">[str release];<span class="comment">// 0</span></span><br><span class="line">[string release];<span class="comment">// 0</span></span><br><span class="line"><span class="comment">// 如果一个对象是不可变的，copy 的对象也是不可变的，系统会直接返回被 copy 的对象本身</span></span><br><span class="line"><span class="comment">// copy 产生的是不可变副本，由于源对象本身就不可变，所以为了性能着想，copy 会直接返回源对象本身，相当于源对象的 retain 操作，引用计数器 +1</span></span><br><span class="line"><span class="built_in">NSString</span> *s1  = [[<span class="built_in">NSString</span> alloc] initWithFormat:<span class="string">@"age is %i"</span>, <span class="number">21</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"s1: %zi"</span>, [s1 retainCount]);<span class="comment">// 1</span></span><br><span class="line"><span class="built_in">NSString</span> *s2 = [s1 <span class="keyword">copy</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"s1: %zi"</span>, [s1 retainCount]);<span class="comment">// 2</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%i"</span>, s2 == s1);</span><br></pre></td></tr></table></figure>
+<p>Student.h：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Student</span> : <span class="title">NSObject</span> &lt;<span class="title">NSCopying</span>&gt;</span></span><br><span class="line"><span class="comment">// copy 代表 setter 方法会 release 旧对象，copy 新对象</span></span><br><span class="line"><span class="comment">// 修改外面的变量，并不会影响到内部的成员变量</span></span><br><span class="line"><span class="comment">// 建议：NSString 一般用 copy 策略，其他对象一般用 retain</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, cop)<span class="built_in">NSString</span> *name;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">id</span>)studentWithName:(<span class="built_in">NSString</span> *)name;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>Student.m：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Student</span></span></span><br><span class="line">+ (<span class="keyword">id</span>)studentWithName:(<span class="built_in">NSString</span> *)name &#123;</span><br><span class="line">    Student *stu = [[[Student alloc] init] autorelease];</span><br><span class="line">    stu<span class="variable">.name</span> = name;</span><br><span class="line">    <span class="keyword">return</span> stu;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这里创建的副本对象不要求释放</span></span><br><span class="line">- (<span class="keyword">id</span>)copyWithZone:(<span class="built_in">NSZone</span> *)zone &#123;</span><br><span class="line">    Student *<span class="keyword">copy</span> = [[Student allocWithZone:zone] init];</span><br><span class="line">    <span class="keyword">copy</span><span class="variable">.name</span> = <span class="keyword">self</span><span class="variable">.name</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">copy</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)description &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"[name = %@]"</span>, _name];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)dealloc &#123;</span><br><span class="line">    [_name release];</span><br><span class="line">    [<span class="keyword">super</span> release];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>main.m：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里写 self class 是为了防止子类在创建的过程中导致类型错误</span></span><br><span class="line">Student *stu = [[[[<span class="keyword">self</span> class] alloc] init] autorelease];</span><br><span class="line"><span class="built_in">NSMutableString</span> *string = [<span class="built_in">NSMutableString</span> stringWithFormat<span class="string">@"age is %i"</span>, <span class="number">21</span>];</span><br><span class="line">stu<span class="variable">.name</span> = string;</span><br><span class="line">[string addendString:<span class="string">@"abcd"</span>];</span><br><span class="line"><span class="comment">// 如果 Student.h 中的 *name 是 retain，那么修改了 string，stu.name 也被修改了</span></span><br><span class="line"><span class="comment">// 如果 Student.h 中的 *name 是 copy，那么修改了 string，stu.name 就不会被修改</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"name = %@"</span>, stu<span class="variable">.name</span>);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"string = %@"</span>, string);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Student 的 copy</span></span><br><span class="line">Student *stu1 = [Student studentWithName:<span class="string">@"student1"</span>];</span><br><span class="line"><span class="comment">// 如果 Student 没有实现 NSCopying 协议，那么会报错：unrecognized selector sent to instance....</span></span><br><span class="line">Student *stu2 = [stu1 <span class="keyword">copy</span>];</span><br><span class="line">stu2<span class="variable">.name</span> = <span class="string">@"stu2"</span>;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"stu1 = %@"</span>, stu1);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"stu2 = %@"</span>, stu2);</span><br><span class="line">[stu2 release];</span><br></pre></td></tr></table></figure>
+<p>类的本质<br>类本身也是一个对象，是一个 Class 类型的对象，简称类对象<br>Class 类型的定义：<br><code>typedef struct objc_class *Class;</code><br>类名就代表着类对象，每个类只有一个类对象<br>例如：<br>利用 Class 创建 Person 类对象<br>利用 Person 类对象创建 Person 类型的对象</p>
+<p>获取内存中的类对象：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Person</span> *p1 = <span class="comment">[<span class="comment">[Person alloc]</span> init]</span>;</span><br><span class="line"><span class="keyword">Person</span> *p2 = <span class="comment">[<span class="comment">[Person alloc]</span> init]</span>;</span><br><span class="line">// 第一种方法</span><br><span class="line">Class c1 = <span class="comment">[p1 class]</span>;</span><br><span class="line">Class c2 = <span class="comment">[p2 class]</span>;</span><br><span class="line">// 第二种方法</span><br><span class="line">Class c3 = <span class="comment">[Person class]</span>;</span><br><span class="line">NSLog(@<span class="string">"c1 = %p, c2 = %p, c3 = %p"</span>, c1, c2, c3);</span><br></pre></td></tr></table></figure>
+<p>获取的类对象（Class）可以调用类方法，比如 Person.h 中有一个名为 test 的类方法：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ <span class="list">(<span class="keyword">void</span>)</span>texst<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>Person.m 中有实现该方法：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)test &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"调用了类方法 test"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Class</span> c = [p1 <span class="keyword">class</span>];</span><br><span class="line">[c <span class="keyword">test</span>];</span><br></pre></td></tr></table></figure>
+<p>类的加载和初始化：<br>+load</p>
+<ol>
+<li>在程序启动的时候会加载所有的类和分类，并调用所有类和分类的 <code>+load</code> 方法</li>
+<li>先加载父类，再加载子类：也就是先调用父类的 <code>+load</code> 方法，再调用子类的 <code>+load</code> 方法</li>
+<li>先加载原始类，再加载分类</li>
+<li>不管程序运行过程有没有用到这个类，都会调用 <code>+load</code> 加载</li>
+</ol>
+<p>+initialize</p>
+<ol>
+<li>在第一次使用某个类时（比如创建对象等），就会调用一次 <code>+initialize</code> 方法</li>
+<li>一个类只会调用一次 <code>+initialize</code> 方法，先调用父类的，再调用子类的</li>
+</ol>
+<p><code>+ (void)load</code> 方法在程序启动的时候，就会加载一次项目中所有的类和分类。类加载完毕后就会调用每个类和分类的 load 方法。只会调用一次</p>
+<p>load 方法会从父类开始调用，再是子类，包括 Category 也会调用 load 方法<br><code>+ (void)initialize</code> 方法在第一次使用某个类的时候调用</p>
+<p>initialize 方法也是先初始化父类，再是子类</p>
+<p>description 方法</p>
+<ol>
+<li><code>-description</code> 方法：使用 NSLog 和 %@ 输出某个对象时，会调用对象的 <code>-description</code> 方法，并拿到返回值进行输出</li>
+<li><code>+description</code> 方法：使用 NSLog 和 %@ 输出某个对象时，会调用类对象的 <code>+description</code> 方法，并拿到返回值进行输</li>
+</ol>
+<p>死循环陷阱：如果在 <code>-description</code> 方法中使用 NSLog 打印 self</p>
+<p>构造方法<br>作用：用来初始化对象的方法，是一个对象方法，<code>-</code> 开头<br>重写构造方法的目的：为了让对象创建出来，成员变量就已经有一些固定的值<br>重写构造方法的注意点：</p>
+<ol>
+<li>先调用父类的构造方法（[super init]）</li>
+<li>再进行子类的内部成员变量的初始化</li>
+</ol>
+<p>例如：<br>重写 <code>-init</code> 方法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (id)<span class="keyword">init</span> &#123;</span><br><span class="line">    <span class="comment">// 1. 一定要调用回 super 的 init 方法：初始化父类中声明的一些成员变量和其他属性</span></span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> <span class="keyword">init</span>];<span class="comment">// 当前对象 self</span></span><br><span class="line">    <span class="comment">// 2. 如果对象初始化成功，才有必要进行接下来的初始化操作</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> != <span class="literal">nil</span>) &#123;</span><br><span class="line">        <span class="comment">// 初始化成功</span></span><br><span class="line">        _age = <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 3. 返回一个已经初始化完毕的对象</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>父类的属性交给父类方法去处理，子类方法处理子类自己的属性<br>自定义构造方法的规范：</p>
+<ol>
+<li>一定是对象方法，一定以 <code>-</code> 开头</li>
+<li>返回值一般是 id 类型</li>
+<li>方法名一般以 init 开头</li>
+</ol>
+<p>NSLog 输出的一些补充(都是两个下划线 <code>_</code> )：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出当前函数名</span></span><br><span class="line"><span class="function">NSLog</span>(<span class="at_rule">@<span class="string">"%s\n"</span>,<span class="preprocessor"> __func__</span>);</span></span><br><span class="line"><span class="comment">// 输出行号</span></span><br><span class="line"><span class="function">NSLog</span>(<span class="at_rule">@<span class="string">"%d"</span>,<span class="preprocessor"> __LINE__</span>);</span></span><br><span class="line"><span class="comment">// NSLog 输出 C 语言字符串的时候，不能有中文，可以使用 printf 函数输出</span></span><br><span class="line"><span class="comment">// NSLog(@"%s", __FILE__);</span></span><br><span class="line"><span class="function">printf</span>("%s\n", __FILE__);</span><br></pre></td></tr></table></figure>
+<p>ARC<br>ARC 的判断准则：只要没有强指针指向对象，就会释放对象<br>ARC 的特点：</p>
+<ol>
+<li>不允许调用 release、retain、retainCount</li>
+<li>允许重写 dealloc，但是不允许调用 <code>[super deallo]</code></li>
+<li>@property 的参数：<ul>
+<li>strong：成员变量时强指针，相当于原来的 retain（适用于OC对象类型）</li>
+<li>weak：成员变量时弱指针，相当于原来的 assign（适用于OC对象类型）</li>
+<li>assign：适用于非 OC 对象类型</li>
+</ul>
+</li>
+</ol>
+<p>指针分两种：</p>
+<ol>
+<li>强指针：默认情况下，所有的指针都是强指针 <code>__strong</code></li>
+<li>弱指针：<code>__weak</code></li>
+</ol>
+<p>Xcode 是默认使用 ARC 的，如果某个 .m 文件真的不想使用 ARC，可以通过以下步骤来不适用 ARC：<br>选择 Xcode 右侧项目树的根，然后是 <strong>TARGETS -&gt; Build Phases -&gt; Compile Sources</strong> ，下拉，选择目标 .m 文件，回车或者双击，弹出输入框，输入 <code>-fno-objc-arc</code> 回车，就可以了，如下图所示：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-00.png" alt=""></p>
+<p>如果开发环境是非 ARC 的，想要使用 ARC 的，将上面的 <code>-fno-objc-arc</code> 改成 <code>-f-objc-arc</code> 就可以了。</p>
+<p>ARC 循环引用<br>当两端循环引用的时候，解决方案如下：</p>
+<ol>
+<li>ARC<br> 1端用 strong，另一端用 weak</li>
+<li>非ARC<br> 1端用 retain，另一端用 assign</li>
+</ol>
+<p>例如：<br>在使用 ARC 下，有两个类：Person、Dog，如下：<br>Person.h：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@class</span> Dog;</span><br><span class="line"></span><br><span class="line"><span class="variable">@interface</span> <span class="attribute">Person </span>: NSObject</span><br><span class="line"><span class="comment">// 人有一只狗，strong，强指针</span></span><br><span class="line"><span class="variable">@property</span> (nonatomic, strong) Dog *dog;</span><br><span class="line"><span class="variable">@end</span></span><br></pre></td></tr></table></figure>
+<p>Person.m：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@implementation <span class="keyword">Person</span></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">    NSLog(@<span class="string">"Person ---- dealloc"</span>);</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>Dog.h：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@class Dog;</span><br><span class="line"></span><br><span class="line">@interface Dog: NSObject</span><br><span class="line">// 狗有一个主人，strong，强指针</span><br><span class="line">@property (nonatomic, strong) <span class="keyword">Person</span> *<span class="keyword">person</span>;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>Dog.m：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Dog</span></span></span><br><span class="line">- (<span class="keyword">void</span>)dealloc &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Dog ---- dealloc"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>main.m：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Person</span> *p = <span class="comment">[<span class="comment">[Person alloc]</span> init]</span>;</span><br><span class="line">Dog *d = <span class="comment">[<span class="comment">[Dog alloc]</span> init]</span>;</span><br><span class="line">// 第一种情况：</span><br><span class="line">// 当两个互指之后，会出现内存泄露，两个对象的 dealloc 没有被调用，也就是两个对象的内存没有被释放</span><br><span class="line">p.dog = d;</span><br><span class="line">d.<span class="keyword">person</span> = p;</span><br></pre></td></tr></table></figure>
+<p>如图所示：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-01.png" alt=""></p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 第二种情况：</span><br><span class="line">// 如果注释上面两行代码中的任意一行，两个对象都可以被释放</span><br><span class="line">// 因为当 main 函数执行完毕之后，对象 p 和 d 都被回收，但是两个内存中的对象有强指针，不会被回收，所以会造成内存泄露</span><br><span class="line">p.dog = d;</span><br><span class="line">// d.<span class="keyword">person</span> = p;</span><br></pre></td></tr></table></figure>
+<p>如图所示：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-02.png" alt=""></p>
+<p>如果将 Dog 中的 person 属性改成 weak：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@property (nonatomic, weak) <span class="keyword">Person</span> *<span class="keyword">person</span>;</span><br></pre></td></tr></table></figure>
+<p>那么，上面第二种情况就变成了如下图所示：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-03.png" alt=""></p>
+<p>这样的话，当程序运行结束，被回收的就是 Person 对象，既然 Person 对象被回收了，那么 Dog 对象就没有了强指针，也会被回收了。</p>
+</span>
+      
+
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/08/08/uicollectionviews-now-have-easy-reordering/" rel="next">UICollectionViews Now Have Easy Reordering</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+            </div>
+
+            
+                <!-- 多说热评文章-->
+                <p>热评文章</p>
+                <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+            
+
+            
+              <div class="comments" id="comments">
+                
+                  <div class="ds-thread" data-thread-key="2015/08/14/Objective-C-Learning-Notes/"
+                       data-title="Objective-C 学习笔记" data-url="http://yoursite.com/2015/08/14/Objective-C-Learning-Notes/">
+                  </div>
+                
+              </div>
+            
+        </div>
+
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="我的眼里只有代码" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">我的眼里只有代码</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">You are the code of my eyes. 爱代码，爱机车，爱野马。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ihappyhacking" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/iHappyHacking" target="_blank">Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/fuckingcode" target="_blank">Weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/codemaker/" target="_blank">DouBan</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/ihappyhacking/" target="_blank">ZhiHu</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/ihappyhacking/" target="_blank">Instagram</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/ihappyhacking" target="_blank">Facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank">GooglePlus</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.minxiaoming.com/" target="_blank">minxiaoming</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="copyright">
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我的眼里只有代码</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+<div class="powered-by">
+</div>
+<div class="theme-info">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span>次,</span>
+  <span id="busuanzi_container_site_uv">
+    访客数<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>人次</span>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+        </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+</div>
+
+<script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"happyhacking"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.4"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.4"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.4" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/js/search-toggle.js"></script>
+
+
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.4" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if (isDesktop() && CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    });
+  </script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (CONFIG.sidebar === 'always') {
+            displaySidebar();
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+<!-- lazyload -->
+<script type="text/javascript" src="/js/lazyload.js"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#posts img").lazyload({
+            placeholder: "/images/loading.gif",
+            effect: "fadeIn"
+        });
+    });
+</script>
+</body>
+</html>
