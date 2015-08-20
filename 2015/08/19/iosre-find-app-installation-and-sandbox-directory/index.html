@@ -49,7 +49,7 @@
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-03.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-04.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-05.png">
-<meta property="og:updated_time" content="2015-08-20T01:16:07.000Z">
+<meta property="og:updated_time" content="2015-08-20T01:23:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="查找目标 App 在 iPhone 里的目录">
 <meta name="twitter:description" content="记录一下在 iOS 逆向工程学习过程中查找目标 App 在 iPhone 里的目录 (安装目录和沙盒目录) 的步骤">
@@ -249,7 +249,7 @@
         <span itemprop="articleBody"><h1 id="0x00_前言">0x00 前言</h1><p>本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 <a href="http://www.amazon.cn/iOS%E5%BA%94%E7%94%A8%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B-%E6%B2%99%E6%A2%93%E7%A4%BE/dp/B00VFDVY7E/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1439878290&amp;sr=1-1&amp;keywords=ios+%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B" target="_blank" rel="external">iOS应用逆向工程(第2版)</a>，有兴趣的同学可以购买学习。</p>
 <h1 id="0x01_准备工作">0x01 准备工作</h1><p>准备工作就不扯那么多了，要学习 iOS 逆向工程，最基本的是需要有一台已经越狱的 iPhone，而且已经安装了 OpenSSH 和 Cycript，最好是还有一台 Mac。</p>
 <h1 id="0x02_定位目标_App_的安装目录">0x02 定位目标 App 的安装目录</h1><p>首先，我们先找到目标 App 的安装目标，AppStore 上下载的 App 一般都是安装在 <code>/var/mobile/Containers/Bundle/Application/</code> 下的，书中提到的这个小技巧，非常方便，简单粗暴，先关掉所有从 AppStore 上安装的 App，就只运行目标 App，然后用 Mac 通过 SSH 连接 iPhone，使用命令打印出所有的进程：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-00.png" alt=""></p>
-<p>可以看到有非常多的进程，找起来好麻烦，这里有一个更方便查看的命令，那就是使用 <code>grep</code>，因为我们知道了 App 所在目录的路径前缀，所以直接用 <code>grep</code> 来”筛选”出来，命令如下：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-01.png" alt=""></p>
+<p>可以看到有非常多的进程，找起来好麻烦，这里有一个更方便查看的命令，那就是使用 <code>grep</code>，因为我们知道了 App 所在目录的路径前缀，所以直接用 <code>grep</code> 来 “筛选” 出来，命令如下：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-01.png" alt=""></p>
 <p>可以看到，只有一个结果，这个就是我们目标 App (这里是以 QQ 为例) 在我们的 iPhone 中所在的安装目录的绝对路径了。</p>
 <h1 id="0x03_拷贝目标_App">0x03 拷贝目标 App</h1><p>既然找到了，那我们就可以将它拷贝到我们的 Mac 上了，方法有多种，你可以选择是用类似 iFunBox 这样的工具，或者直接使用命令行 (scp) 的方式，这里以命令行的方式来进行拷贝，我在 Mac 上重新打开了一个终端，然后输入以下的命令来进行拷贝：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-02.png" alt=""></p>
 <p>Ps. 其实我这里已经完成了拷贝，只是命令被刷屏不见了，所以这里再把命令弄出来可以看到。</p>
