@@ -1,0 +1,823 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+    
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.4"/>
+
+
+    <meta name="description" content="You are the code of my eyes. 爱代码，爱机车，爱野马。" />
+
+
+
+  <meta name="keywords" content="Objective-C,iOS," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
+
+
+<meta name="description" content="重新学习 Objective-C 基础时学到的 NSPredicate 的使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSPredicate 的简单使用">
+<meta property="og:url" content="http://yoursite.com/2015/09/06/ios-simple-use-of-nspredicate/index.html">
+<meta property="og:site_name" content="Happy Hacking">
+<meta property="og:description" content="重新学习 Objective-C 基础时学到的 NSPredicate 的使用">
+<meta property="og:updated_time" content="2015-09-06T07:02:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NSPredicate 的简单使用">
+<meta name="twitter:description" content="重新学习 Objective-C 基础时学到的 NSPredicate 的使用">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+    <title> NSPredicate 的简单使用 // Happy Hacking </title>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?07e65bdc481bc97fa042c0f10748a4e0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<div class="container one-column page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">Happy Hacking</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+<form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'pqUHVF4KWmspE68xTa-7','2.0.0');
+</script>
+
+<div class="site-search-toggle"></div>
+    </div>
+  
+</nav>
+
+        </div>
+    </header>
+
+    <main id="main" class="main">
+        <div class="main-inner">
+            <div id="content" class="content">
+                
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              NSPredicate 的简单使用
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-06T09:04:49+08:00" content="2015-09-06">
+            2015-09-06
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/09/06/ios-simple-use-of-nspredicate/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/06/ios-simple-use-of-nspredicate/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="0x00_前言">0x00 前言</h1><p>最近在重新学习 Objective-C，因为觉得基础非常重要，而且对 Objective-C 的使用都基本上是工作中用到的，了解得还不够多，就算当初学习 Objective-C 的时候知道了，但是到现在也忘了不少东西。内容主要来自<a href="http://www.amazon.cn/%E5%9B%BE%E7%81%B5%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%9B%E4%B9%A6%E2%80%A2%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97-Objective-C%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B-%E5%85%8B%E7%BA%B3%E6%96%AF%E7%89%B9/dp/B00COG40Y0/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1441502082&amp;sr=1-1&amp;keywords=Objective-C+%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B" target="_blank" rel="external">《Objective-C 基础教程（第2版）》</a>，这本书的代码可以到<a href="http://www.apress.com/9781430241881" target="_blank" rel="external">这里</a>下载。</p>
+<h1 id="0x01_NSPredicate">0x01 NSPredicate</h1><p>其实当初第一次接触 NSPredicate 的时候，觉得不是很懂，也觉得有点难，也没去多了解一下，直到最近重新学基础时才发觉，其实 NSPredicate 挺好用的，也很好理解，以前用的最多的应该是正则吧，各种语言里面都是可以用的，就是需要记住的符号什么的好多，如果长时间不用的话，就会忘记，虽然这很正常。</p>
+<p>基本上每个 App 都会涉及到数据的筛选过滤，也就是搜索，很少见到哪个 App 没有搜索功能。Cocoa 用 NSPredicate 描述查询的方式，原理类似于数据库查询，其实感觉语法上也有点相似呢。</p>
+<h1 id="0x02_创建谓词">0x02 创建谓词</h1><p>我们这里还是使用书上的例子，不过不用担心，就算没有看过书上的例子代码也是 OK 的，不难理解。<br>下面是一个快速创建一辆汽车的 C 函数：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Car *makeCar(NSString *name, NSString *make, NSString *model, <span class="typename">int</span> modelYear, <span class="typename">int</span> numberOfDoors, <span class="typename">float</span> mileage, <span class="typename">int</span> horsepower) &#123;</span><br><span class="line">	Car *car = [[[Car alloc] init] autorelease];</span><br><span class="line">	car.name = name;</span><br><span class="line">	car.make = make;</span><br><span class="line">	car.model = model;</span><br><span class="line">	car.modelYear = modelYear;</span><br><span class="line">	car.numberOfDoors = numberOfDoors;</span><br><span class="line">	car.mileage = mileage;</span><br><span class="line">	</span><br><span class="line">	Slant6 *engine = [[[Slant6 alloc] init] autorelease];</span><br><span class="line">	[engine <span class="string">setValue:</span>[NSNumber <span class="string">numberWithInt:</span>horsepower] <span class="string">forKey:</span>@<span class="string">"horsepower"</span>];</span><br><span class="line">	car.engine = engine;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Make some tires.</span></span><br><span class="line">	<span class="comment">// int i;</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="typename">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">		Tire * tire= [[[Tire alloc] init] autorelease];</span><br><span class="line">		[car <span class="string">setTire:</span>tire  <span class="string">atIndex:</span>i];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> (car);</span><br><span class="line">&#125; <span class="comment">// makeCar</span></span><br></pre></td></tr></table></figure>
+<p>可以使用这个 C 函数来创建一辆汽车：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Car *car = makeCar(@<span class="string">"Herbie"</span>, @<span class="string">"Honda"</span>, @<span class="string">"CRX"</span>, <span class="number">1984</span>, <span class="number">2</span>, <span class="number">34000</span>, <span class="number">58</span>);</span><br><span class="line">[garage <span class="string">addCar:</span>car];</span><br></pre></td></tr></table></figure>
+<p>上面代码创建一辆汽车，具体的汽车信息为：Herbie 品牌，型号为双门1984 Honda CRX，马力引擎为58，已行驶34000英里。</p>
+<p>现在来创建谓词：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSPredicate</span> *predicate = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"name == 'Herbie'"</span>];</span><br></pre></td></tr></table></figure>
+<p>我们使用 NSPredicate 的类方法 <code>+predicateWithFormat:</code> 创建了一个 NSPredicate 的对象，并传入了一个字符串参数，这个类方法使用该字符串在后台构建对象，来计算谓词的值，简单来说，就是以这个字符串来当筛选过滤的条件。</p>
+<h1 id="0x03_计算谓词">0x03 计算谓词</h1><p>通过以上步骤，就创建好了一个谓词，现在我们可以使用它了：</p>
+<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BOOL <span class="keyword">match</span> = [predicate evaluateWithObject:car];</span><br><span class="line">NSLog(<span class="string">@"%s"</span>, (<span class="keyword">match</span>) ? <span class="string">"YES"</span> : <span class="string">"NO"</span>);</span><br></pre></td></tr></table></figure>
+<p>方法 <code>-evaluateWithObject:</code> 通知接收对象（即谓词）根据指定的对象计算自身的值。这里是以 name 作为键路径，使用 <code>-valueForKeyPath:</code> 方法来获取名称，然后将自身的这个名称（即 name）与 Herbie 进行比较，相同返回 YES，否则返回 NO。</p>
+<p>以下是另外一个谓词：</p>
+<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">predicate = [NSPredicate predicateWithFormat:<span class="string">@"engine.horsepower &gt; 150"</span>];</span><br><span class="line"><span class="keyword">match</span> = [predicate evaluateWithObject:car];</span><br><span class="line">NSLog(<span class="string">@"%s"</span>, (<span class="keyword">match</span>) ? <span class="string">"YES"</span> : <span class="string">"NO"</span>);</span><br></pre></td></tr></table></figure>
+<p>这个谓词字符串的左侧是一个键路径，该键路径链接到 car 内部，查找 engine，然后再查找 engine 的 horsepower，然后将其与150进行比较，看它是否大于150。</p>
+<p>以上都是通过特定的谓词条件检查单个对象，都很简单，但是在实际工作当中，我们通常都是从一堆的数据里面进行筛选的，比如，有一个车库，我们需要筛选出哪些汽车的马力大于150，普通的做法可能如下：</p>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="params">(Car *car in [garage cars])</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="params">([predicate evaluateWithObject:car])</span> &#123;</span><br><span class="line">		NSLog<span class="params">(@<span class="string">"%@"</span>, car.name)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 for 循环遍历每一辆汽车，然后检查其马力是否大于150，大于150的话，就输出汽车的名字。</p>
+<h1 id="0x04_数据过滤器">0x04 数据过滤器</h1><p>懒惰一直是编程人员的缺点，但是在某种意义上也是优点。如果不用编写这样的 for 循环和 if 语句，没什么不好的。而且 Cocoa 也提供了这样的方法：<code>-filteredArrayUsingPredicate:</code>，这个方法是 NSArray 数组中的一种类别方法，它会循环遍历数组中的对象，根据谓词来计算每个对象的值，如果是 YES，那么就将这个对象添加到将被返回的新数组中，感觉这个和上面的那个 for 循环类似吧？</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *results = [cars filteredArrayUsingPredicate:predicate];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, results);</span><br></pre></td></tr></table></figure>
+<p>这样的话，只需要一行代码就可以获取筛选之后的结果了，不过这里输出的是汽车的全部信息，而不是上面那样输出汽车的名字，不过我们可以使用 KVC（键值编码）来提取其中的名称：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *names = [results valueForKey:<span class="string">@"name"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, names);</span><br></pre></td></tr></table></figure>
+<p>上面的 cars 是不可变数组，如果我们的数据是存放在可变数组里面，而且我们需要剔除不满足条件的对象的话，可以使用 NSMutableArray 的 <code>-filterUsingPredicate:</code> 方法：</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSMutableArray *carsCopy = [cars mutableCopy]<span class="comment">;</span></span><br><span class="line">[carsCopy filterUsingPredicate:predicate]<span class="comment">;</span></span><br><span class="line">NSLog(@"%@", carsCopy)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>因为 NSMutableArray 是 NSArray 的子类，所以也是可以用 <code>-filteredArrayUsingPredicate:</code> 方法来构建新的不可变数组的。使用谓词的确很便捷，但是它的运行速度并不会比自己编写全部代码要快，因为它无法避免要使用循环来遍历。</p>
+<h1 id="0x05_格式说明符">0x05 格式说明符</h1><p>从方法 <code>-predicateWithFormat:</code> 可以看出来，传入的字符串是可以使用格式说明符的，比如：<code>%d</code>、<code>%f</code> 等。而且一般筛选条件都不是硬编码到项目里面的，都是根据用户的输入来进行筛选的。</p>
+<p>除了可以使用 printf 说明符，还可以使用 <code>%@</code> 来插入字符串，而 <code>%@</code> 会被当做带引号的字符串：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">predicate = [NSPredicate <span class="string">predicateWithFormat:</span>@<span class="string">"name == %@"</span>, @<span class="string">"Herbie"</span>];</span><br></pre></td></tr></table></figure>
+<p>要注意，这里的格式字符串 <code>%@</code> 并没有打单引号，如果打上了单引号，例如：<code>&quot;name == &#39;%@&#39;&quot;</code>，字符 <code>%</code> 和 <code>@</code> 会被当做普通字符而失去了格式说明符的作用。</p>
+<p>NSPredicate 字符串中也可以使用 <code>%K</code> 来指定键路径：</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">predicate = [NSPredicate predicateWithFormat:<span class="variable">@"</span><span class="variable">%K</span> == <span class="variable">%@</span><span class="string">", @"</span>name<span class="string">", @"</span>Herbie<span class="string">"];</span></span><br></pre></td></tr></table></figure>
+<p>为了构造灵活的谓词，一种方式是使用格式说明符，另一种方式是将变量名放入字符串中，类似于环境变量：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">NSPredicate</span> *predicateTemplate = [NSPredicate predicateWithFormat:@<span class="string">"name == <span class="variable">$NAME</span>"</span>];</span><br></pre></td></tr></table></figure>
+<p>现在，我们有一个含有变量的谓词，可以使用 <code>-predicateWithSubstitutionVariables:</code> 来构造新的专用谓词，创建一个键/值对字典，其中键是变量名（不包含美元符号$），值是想要插入谓词的内容：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSDictionary</span> *varDict = [<span class="built_in">NSDictionary</span> dictionaryWithObjectsAndKeys:<span class="string">@"Herbie"</span>, <span class="string">@"NAME"</span>, <span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
+<p>这里使用字符串 “Herbie” 作为键 “NAME” 的值，构造以下新谓词：</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">predicate = [predicateTemplate predicateWithSubstitutionVariables:varDict]<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>这个谓词跟之前的那些没什么不一样。</p>
+<p>也可以用其他对象作为变量的值，例如 NSNumber，以下谓词用于过滤引擎的马力：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">predicateTemplate = [NSPredicate <span class="string">predicateWithFormat:</span>@:<span class="string">"engine.horsepower &gt; $POWER"</span>];</span><br><span class="line">varDict = [NSDictionary <span class="string">dictionaryWithObjectsAndKeys:</span>[NSNumber <span class="string">numberWithInt:</span><span class="number">150</span>], @<span class="string">"POWER"</span>, nil];</span><br><span class="line">predicate = [predicateTemplate <span class="string">predicateWithSubstitutionVariables:</span>varDict];</span><br></pre></td></tr></table></figure>
+<p>除了使用 NSNumber 和 NSString 之外，也可以使用 <code>[NSNull null]</code> 来设置 nil 值，甚至可以使用数组。要注意的是，不能使用 <code>&quot;$变量名&quot;</code> 作为键路径，它只能表示值。使用谓词格式字符串时，如果想在程序中通过代码改变键路径，需要使用 <code>%K</code> 格式说明符。谓词机制不进行静态类型检查。</p>
+<h1 id="0x06_运算符">0x06 运算符</h1><p>NSPredicate 的格式字符串包含大量不同的运算符。</p>
+<h2 id="比较和逻辑运算符">比较和逻辑运算符</h2><p>谓词字符串语法支持 C 语言中的一些常用运算符，不等号运算符如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>比较作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>  &gt;</td>
+<td>大于某数</td>
+</tr>
+<tr>
+<td> &gt;= 和 =&gt;</td>
+<td>大于或等于某数</td>
+</tr>
+<tr>
+<td>  &lt;</td>
+<td>小于某数</td>
+</tr>
+<tr>
+<td> &lt;= 和 =&lt;</td>
+<td>小于或等于某数</td>
+</tr>
+<tr>
+<td> != 和 &lt;&gt;</td>
+<td>不等于某数</td>
+</tr>
+</tbody>
+</table>
+<p>此外，谓词字符串语法还支持括号表达式、AND、OR 和 NOT 逻辑运算符，以及用 C 语言样式表示具有相同功能的 “&amp;&amp;”、”||” 和 “!” 符号。</p>
+<p>我们可以筛选出马力在某个范围内的汽车：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">predicate = [NSPredicate <span class="string">predicateWithFormat:</span>@<span class="string">"(engine.horsepower &gt; 50) AND (engine.horsepower &lt; 200)"</span>];</span><br><span class="line">results = [cars <span class="string">filteredArrayUsingPredicate:</span>predicate];</span><br><span class="line">NSLog(@<span class="string">"oop %@"</span>, results);</span><br></pre></td></tr></table></figure>
+<p>上面是筛选出马力在50和200之间的汽车。</p>
+<p>谓词字符串中的运算符不区分大小写，比如上面的 AND，可以随便写，比如：And、aNd等。</p>
+<p>不等号既适用于数字值也适用于字符串值，比如按照字母表顺序查看所有名字排在 “Newton” 之前的汽车：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">predicate = [NSPredicate <span class="string">predicateWithFormat:</span>@<span class="string">"name &lt; 'Newton'"</span>];</span><br><span class="line">results = [cars <span class="string">filteredArrayUsingPredicate:</span>predicate];</span><br><span class="line">NSLog(@<span class="string">"%@"</span>, [results <span class="string">valueForKey:</span>@<span class="string">"name"</span>]);</span><br></pre></td></tr></table></figure>
+<h2 id="数组运算符">数组运算符</h2><p>上面筛选马力在50到200之间的汽车使用的谓词字符串为 <code>&quot;(engine.horsepower &gt; 50) AND (engine.horsepower &lt; 200)&quot;</code>，我们还可以写得更加简洁：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">predicate = [NSPredicate <span class="string">predicateWithFormat:</span>@<span class="string">"engine.horsepower BETWEEN &#123; 50, 200 &#125;"</span>];</span><br></pre></td></tr></table></figure>
+<p>花括号表示数组，BETWEEN 将数组中的第一个元素看成数组的下限，第二个元素看成数组的上限。</p>
+<p>可以使用 <code>%@</code> 格式说明符向 NSArray 数组中插入对象：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *betweens = [<span class="built_in">NSArray</span> arrayWithObjects:[<span class="built_in">NSNumber</span> numberWithInt:<span class="number">50</span>], [<span class="built_in">NSNumber</span> numberWithInt:<span class="number">200</span>], <span class="literal">nil</span>];</span><br><span class="line">predicate = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"engine.horsepower BETWEEN %@"</span>, betweens];</span><br></pre></td></tr></table></figure>
+<p>也可以使用变量：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">predicateTemplate</span> = [NSPredicate predicateWithFormat:@<span class="string">"engine.horsepower BETWEEN <span class="variable">$POWERS</span>"</span>];</span><br><span class="line"><span class="title">varDict</span> = [NSDictionary dictionaryWithObjectsAndKeys:betweens, @<span class="string">"POWERS"</span>, nil];</span><br><span class="line"><span class="title">predicate</span> = [predicateTemplate predicateWithSubstitutionVariables:varDict];</span><br></pre></td></tr></table></figure>
+<p>数组不仅可以用来指定某个区间的端点值，还可以配合 IN 运算符来查找数组中是否含有某个特定值，跟 SQL 很像哈：</p>
+<figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">predicate = <span class="matrix">[NSPredicate predicateWithFormat:@<span class="string">"name IN &#123; '</span>Herbie<span class="string">', '</span>Snugs<span class="string">', '</span>Badger<span class="string">', '</span>Flap<span class="string">' &#125;"</span>]</span>;</span><br><span class="line">results = <span class="matrix">[cars filteredArrayUsingPredicate:predicate]</span>;</span><br><span class="line">NSLog(@<span class="string">"%@"</span>, <span class="matrix">[results valueForKey:@<span class="string">"name"</span>]</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="0x07_有_SELF_就足够了">0x07 有 SELF 就足够了</h1><p>有时候，我们可能需要将谓词应用于简单的值（例如纯文本的字符串），而不是那些通过键路径进行操作的复杂对象，比如我们需要从一汽车名称的数组中查询 name 时，就不能像之前那样子用了，这时候就轮到 <code>SELF</code> 出场了！</p>
+<p><code>SELF</code> 表示的是响应谓词计算的对象，事实上我们可以将谓词中所有的键路径表示成对应的 SELF 形式：</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">predicate = [NSPredicate predicateWithFormat:<span class="variable">@"</span>SELF.name IN &#123; <span class="string">'Herbie'</span>, <span class="string">'Snugs'</span>, <span class="string">'Badger'</span>, <span class="string">'Flap'</span> &#125;<span class="string">"];</span></span><br></pre></td></tr></table></figure>
+<p>我们先获取所有的汽车名称，然后构造一个谓词，并计算该谓词的值：</p>
+<figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">names = <span class="matrix">[cars valueForKey:@<span class="string">"name"</span>]</span>;</span><br><span class="line">predicate = <span class="matrix">[NSPredicate predicateWithFormat:@<span class="string">"SELF IN &#123; '</span>Herbie<span class="string">', '</span>Snugs<span class="string">', '</span>Badger<span class="string">', '</span>Flap<span class="string">' &#125;"</span>]</span>;</span><br><span class="line">results = <span class="matrix">[names filteredArrayUsingPredicate:predicate]</span>;</span><br><span class="line">NSLog(@<span class="string">"%@"</span>, results);</span><br></pre></td></tr></table></figure>
+<p>结果和前面的示例是一样的：Herbie 和 Badger。</p>
+<p>这里提一个问题，以下代码会输出什么呢？</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *names1 = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"Herbie"</span>, <span class="string">@"Badger"</span>, <span class="string">@"Judge"</span>, <span class="string">@"Elvis"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSArray</span> *names2 = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"Judge"</span>, <span class="string">@"Paper Car"</span>, <span class="string">@"Badger"</span>, <span class="string">@"Phoenix"</span>, <span class="literal">nil</span>];</span><br><span class="line">predicate = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"SELF IN %@"</span>, names1];</span><br><span class="line">results = [names2 filteredArrayUsingPredicate:predicate];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, results);</span><br></pre></td></tr></table></figure>
+<p>答案如下：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="list">(</span><br><span class="line">    <span class="keyword">Judge</span>,</span><br><span class="line">    Badger</span><br><span class="line">)</span></span><br></pre></td></tr></table></figure>
+<p>对于取两个数组交集的运算来说，这种方式很巧妙。谓词包含了第一个数组的内容，因此和下面的形式类似：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">SELF</span> <span class="keyword">IN</span> &#123;<span class="string">"Herbie"</span>, <span class="string">"Badger"</span>, <span class="string">"Judge"</span>, <span class="string">"Elvis"</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>现在，使用该谓词筛选第二个名称数组，在 name2 中如果有同时存在两个数组中的字符串，那么 <code>SELF IN</code> 会确定它是符合条件的，因此它就会保留在结果数组中，如果对象只存在于第二个数组中，那么它不会与谓词中的任何字符串匹配，所以该对象将被过滤掉，而只存在于第一个数组中的字符串因为要用来进行比较，所以将一直保留在原来的位置，不会出现在结果数组中。</p>
+<h1 id="0x08_字符串运算符">0x08 字符串运算符</h1><p>之前使用字符串时说到过关系运算符，此外，还有一些针对字符串的关系运算符：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BEGINSWITH</td>
+<td>检查某个字符串是否以另一个字符串开头</td>
+</tr>
+<tr>
+<td>ENDSWITH</td>
+<td>检查某个字符串是否以另一个字符串结尾</td>
+</tr>
+<tr>
+<td>CONTAINS</td>
+<td>检查某个字符串是否在另一个字符串内部</td>
+</tr>
+</tbody>
+</table>
+<p>使用关系运算符可以执行一些有用的操作，例如使用 <code>&quot;name BEGINSWITH &#39;Bad&#39;&quot;</code> 匹配 Badger，使用 <code>&quot;name ENDSWITH &#39;vis&#39;&quot;</code> 匹配 Elvis，以及使用 <code>&quot;name CONTAINS udg&quot;</code>  匹配 Judge。</p>
+<p>如果是 <code>&quot;name BEGINSWITH &#39;HERB&#39;&quot;</code> 这样的呢？它不会与 Herbie 匹配，因为这些匹配是区分大小写的，同样，<code>&quot;name BEGINSWITH &#39;Hérb&#39;&quot;</code> 也不会与之匹配，因为其中的 e 是含有重音符的。为了避免这些情况，可以为运算符添加 [c]、[d] 或 [cd] 修饰符，其中 c 表示 “不区分大小写”，d 表示 “不区分发音符号（diacritic insensitive，即忽略重音符）”，cd 表示 “即不区分大小写，也不区分发音符号”。通常情况下，都会使用这两个修饰符，除非有特殊需求需要区分大小写或者重音符号。</p>
+<p>所以 Herbie 和 “name BEGINSWITH[cd] ‘HERB’” 相匹配。</p>
+<h1 id="0x09_LIKE_运算符">0x09 LIKE 运算符</h1><p>了解 SQL 的同学看到 LIKE 应该能猜到了，没错，有时候匹配开头或者结尾，又或者是否包含还不够，所以谓词格式字符串还提供了 LIKE 运算符，问号表示与一个字符匹配，型号表示与任意个字符匹配，也可以称为 “通配符”。</p>
+<p>谓词字符串 “name LIKE ‘*er*‘“ 将会与任何含有 er 的名称相匹配，等效于 CONTAINS。</p>
+<p>谓词字符串 “name LIKE ‘???er*’” 将会与 Pager Car 相匹配，因为其中的 er 前面有3个字符，后面也有一些字符。但是它与 Badger 不匹配，因为 Badger 的 er 前面有4个字符。</p>
+<p>另外，LIKE 也接收 [cd] 修饰符，用户忽略大小写和发音符号。</p>
+<p>如果你喜欢用正则表达式，可以使用 MATCHES 运算符，赋给它一个正则表达式，谓词将会计算出它的值。</p>
+</span>
+      
+
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/08/23/collecting-some-of-the-methods-in-the-development/" rel="next">收集的一些开发中用到的方法</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+            </div>
+
+            
+                <!-- 多说热评文章-->
+                <p>热评文章</p>
+                <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+            
+
+            
+              <div class="comments" id="comments">
+                
+                  <div class="ds-thread" data-thread-key="2015/09/06/ios-simple-use-of-nspredicate/"
+                       data-title="NSPredicate 的简单使用" data-url="http://yoursite.com/2015/09/06/ios-simple-use-of-nspredicate/">
+                  </div>
+                
+              </div>
+            
+        </div>
+
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="我的眼里只有代码" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">我的眼里只有代码</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">You are the code of my eyes. 爱代码，爱机车，爱野马。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ihappyhacking" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/iHappyHacking" target="_blank">Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/fuckingcode" target="_blank">Weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/codemaker/" target="_blank">DouBan</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/ihappyhacking/" target="_blank">ZhiHu</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/ihappyhacking/" target="_blank">Instagram</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/ihappyhacking" target="_blank">Facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank">GooglePlus</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.minxiaoming.com/" target="_blank">minxiaoming</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_NSPredicate"><span class="nav-number">2.</span> <span class="nav-text">0x01 NSPredicate</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_创建谓词"><span class="nav-number">3.</span> <span class="nav-text">0x02 创建谓词</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_计算谓词"><span class="nav-number">4.</span> <span class="nav-text">0x03 计算谓词</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_数据过滤器"><span class="nav-number">5.</span> <span class="nav-text">0x04 数据过滤器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05_格式说明符"><span class="nav-number">6.</span> <span class="nav-text">0x05 格式说明符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x06_运算符"><span class="nav-number">7.</span> <span class="nav-text">0x06 运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#比较和逻辑运算符"><span class="nav-number">7.1.</span> <span class="nav-text">比较和逻辑运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组运算符"><span class="nav-number">7.2.</span> <span class="nav-text">数组运算符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x07_有_SELF_就足够了"><span class="nav-number">8.</span> <span class="nav-text">0x07 有 SELF 就足够了</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x08_字符串运算符"><span class="nav-number">9.</span> <span class="nav-text">0x08 字符串运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x09_LIKE_运算符"><span class="nav-number">10.</span> <span class="nav-text">0x09 LIKE 运算符</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="copyright">
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我的眼里只有代码</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+<div class="powered-by">
+</div>
+<div class="theme-info">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span>次,</span>
+  <span id="busuanzi_container_site_uv">
+    访客数<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>人次</span>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+        </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+</div>
+
+<script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"happyhacking"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.4"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.4"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.4" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/js/search-toggle.js"></script>
+
+
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.4" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if (isDesktop() && CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    });
+  </script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (CONFIG.sidebar === 'always') {
+            displaySidebar();
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+<!-- lazyload -->
+<script type="text/javascript" src="/js/lazyload.js"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#posts img").lazyload({
+            placeholder: "/images/loading.gif",
+            effect: "fadeIn"
+        });
+    });
+</script>
+</body>
+</html>
