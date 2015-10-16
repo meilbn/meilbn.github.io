@@ -198,16 +198,12 @@
             </div>
 
             
-                <!-- 多说热评文章-->
-                <p>热评文章</p>
-                <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-            
 
             
               <div class="comments" id="comments">
                 
-                  <div class="ds-thread" data-thread-key="tags/index.html"
-                       data-title="All tags" data-url="http://yoursite.com/tags/index.html">
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                   </div>
                 
               </div>
@@ -310,13 +306,6 @@
 
         <div class="links-of-author motion-element">
           
-            <p class="site-author-name">友情链接</p>
-            
-              <span class="links-of-author-item">
-              <a href="http://www.minxiaoming.com/" target="_blank">minxiaoming</a>
-              </span>
-            
-          
         </div>
 
       </section>
@@ -375,29 +364,32 @@
   
   
     
+    
 
   
-    
+
+    <script type="text/javascript">
+      var disqus_shortname = 'ihappyhacking';
+      var disqus_identifier = 'tags/index.html';
+      var disqus_title = 'All tags';
+      var disqus_url = 'http://yoursite.com/tags/index.html';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
   
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"happyhacking"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-    
-     
-  	<script src="/js/ua-parser.min.js"></script>
-  	<script src="/js/hook-duoshuo.js"></script>
-  
 
-    
   
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
