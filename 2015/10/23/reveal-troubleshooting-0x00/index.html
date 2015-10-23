@@ -28,7 +28,7 @@
 
 
 
-  <meta name="keywords" content="Android,iOS,Developer,GitHub,开发,编程" />
+  <meta name="keywords" content="Mac,Reveal,Software," />
 
 
 
@@ -37,15 +37,17 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="You are the code of my eye. 爱代码，爱机车，爱野马。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Happy Hacking">
-<meta property="og:url" content="http://yoursite.com/tags/Mac/index.html">
+<meta name="description" content="Reveal 更新之后查看越狱手机上的第三方 App 报错的解决办法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reveal 升级之后不能在手机上查看 App 的解决办法">
+<meta property="og:url" content="http://yoursite.com/2015/10/23/reveal-troubleshooting-0x00/index.html">
 <meta property="og:site_name" content="Happy Hacking">
-<meta property="og:description" content="You are the code of my eye. 爱代码，爱机车，爱野马。">
+<meta property="og:description" content="Reveal 更新之后查看越狱手机上的第三方 App 报错的解决办法">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x00.png">
+<meta property="og:updated_time" content="2015-10-23T12:11:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Happy Hacking">
-<meta name="twitter:description" content="You are the code of my eye. 爱代码，爱机车，爱野马。">
+<meta name="twitter:title" content="Reveal 升级之后不能在手机上查看 App 的解决办法">
+<meta name="twitter:description" content="Reveal 更新之后查看越狱手机上的第三方 App 报错的解决办法">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -55,7 +57,7 @@
   };
 </script>
 
-    <title> 标签: Mac // Happy Hacking </title>
+    <title> Reveal 升级之后不能在手机上查看 App 的解决办法 // Happy Hacking </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -90,7 +92,7 @@
 
 
 
-<div class="container one-column ">
+<div class="container one-column page-post-detail">
     <div class="headband"></div>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
         <div class="header-inner"><h1 class="site-meta">
@@ -182,89 +184,126 @@
             <div id="content" class="content">
                 
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Mac
-        <small>标签</small>
-      </h2>
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Reveal 升级之后不能在手机上查看 App 的解决办法
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-23T19:31:38+08:00" content="2015-10-23">
+            2015-10-23
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/23/reveal-troubleshooting-0x00/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/23/reveal-troubleshooting-0x00/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="0x00_前言">0x00 前言</h1><p>最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 <a href="https://github.com/heardrwt/RevealLoader" target="_blank" rel="external">RHRevealLoader</a>，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：<code>The operation couldn&#39;t be completed. The iOS app is linked against a older version of the Reveal library. You may need to update the Reveal library i your iOS app.</code>：</p>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x00.png" alt=""></p>
+<p>然后我打开 Cydia 去查看插件是否有更新，可惜没有，所以我就自己找解决办法，最后我找到了这个插件的 GitHub 地址，看了一下 issues，然后就找到了 <a href="https://github.com/heardrwt/RevealLoader/issues/5" target="_blank" rel="external">issue #5</a>，看到了解决办法：<code>replace at /Library/RHRevealLoader/libReveal.dylib</code>，亲测可行！</p>
+<h1 id="0x01_替换">0x01 替换</h1><p>看了报错信息，就可以知道，Reveal library 的版本太老了。然后我们就要将新的 library 替换手机里旧的 library，新的 library 在：<code>/Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/</code> 下，名字叫：<code>libReveal.dylib</code>。</p>
+<p>替换很简单，我们可以通过 <code>scp</code> 命令来实现，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp /Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/libReveal.dylib root@your-iPhone<span class="string">'s-IP-address:/Library/RHRevealLoader/libReveal.dylib</span></span><br></pre></td></tr></table></figure></p>
+<p>需要输入一下 root 的密码，这样就 OK 啦。</p>
+</span>
+      
+
     </div>
 
-    
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mac/" rel="tag">#Mac</a>
+          
+            <a href="/tags/Reveal/" rel="tag">#Reveal</a>
+          
+            <a href="/tags/Software/" rel="tag">#Software</a>
+          
+        </div>
       
 
-  <article class="post post-type-normal"itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/06/ios-simple-use-of-nspredicate/" rel="next">NSPredicate 的简单使用</a>
+            
+          </div>
+        </div>
+      
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/10/23/reveal-troubleshooting-0x00/" itemprop="url">
-              <span itemprop="name">Reveal 升级之后不能在手机上查看 App 的解决办法</span>
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" datetime="2015-10-23T11:31:38.000Z" itemprop="dateCreated" content="2015-10-23"> 10-23 </time>
-      </div>
-
-    </header>
+      
+      
+    </footer>
   </article>
 
 
-    
+
+    <div class="post-spread">
       
-
-  <article class="post post-type-normal"itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/08/01/integrating-reveal-static-linking/" itemprop="url">
-              <span itemprop="name">Integrating Reveal：Static Linking</span>
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" datetime="2015-08-01T03:35:07.000Z" itemprop="dateCreated" content="2015-08-01"> 08-01 </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal"itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/07/23/use-charles-capture-package-in-mac/" itemprop="url">
-              <span itemprop="name">在 Mac 上使用 Charles 抓包</span>
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" datetime="2015-07-23T12:12:41.000Z" itemprop="dateCreated" content="2015-07-23"> 07-23 </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
+    </div>
   </div>
 
-  
 
             </div>
 
             
 
+            
+              <div class="comments" id="comments">
+                
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                  </div>
+                
+              </div>
             
         </div>
 
@@ -281,6 +320,15 @@
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
       
 
       <section class="site-overview">
@@ -369,6 +417,17 @@
       </section>
 
       
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_替换"><span class="nav-number">2.</span> <span class="nav-text">0x01 替换</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
 
     </div>
   </aside>
@@ -421,12 +480,6 @@
   
   
   
-    <script type="text/javascript">
-      postMotionOptions = {stagger: 100, drag: true};
-    </script>
-  
-
-  
     
     
 
@@ -434,9 +487,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'ihappyhacking';
-      var disqus_identifier = 'tags/Mac/index.html';
-      var disqus_title = '';
-      var disqus_url = '';
+      var disqus_identifier = '2015/10/23/reveal-troubleshooting-0x00/';
+      var disqus_title = 'Reveal 升级之后不能在手机上查看 App 的解决办法';
+      var disqus_url = 'http://yoursite.com/2015/10/23/reveal-troubleshooting-0x00/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -447,6 +500,8 @@
       }
 
       run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
       
     </script>
   
@@ -471,6 +526,144 @@
   <script type="text/javascript" src="/js/search-toggle.js"></script>
 
 
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.4" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if (isDesktop() && CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    });
+  </script>
+
+
+
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -484,6 +677,10 @@
 
 
 
+
+
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"left","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
 
 
