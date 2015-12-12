@@ -52,14 +52,7 @@
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-06.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-07.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-08.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-09.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-10.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-11.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-12.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-13.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-14.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-15.png">
-<meta property="og:updated_time" content="2015-12-03T07:26:39.000Z">
+<meta property="og:updated_time" content="2015-12-12T14:55:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Mac 上使用 Charles 抓包">
 <meta name="twitter:description" content="移动端 App 在 Mac 上使用 Charles 抓包">
@@ -269,13 +262,6 @@
 <p>想要知道请求的链接，我们可以选择右边的 <em>Overview</em> ：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-07.png" alt=""></p>
 <p>我们可以将地址复制到浏览器中查看是否可以使用：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-08.png" alt=""></p>
 <p>非常好！HTTP 抓包就是这样了。<br><strong><em>还有非常重要的一点，手机的 Wi-Fi 设置需要改回来，改成原来的 Off(关闭)，不然 Mac 端关闭 Charles 之后，手机端会无法访问网络。</em></strong></p>
-<h1 id="0x03_HTTPS_抓包">0x03 HTTPS 抓包</h1><p>除了 HTTP，当然还有 HTTPS 抓包，如果没有启用 SSL Proxying，查看 Request 和 Response 的时候，都是乱码，就像这样：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-09.png" alt=""><br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-10.png" alt=""></p>
-<p>点击菜单栏上的 <strong><em>Proxy -&gt; SSL Proxying Settings…</em></strong> ：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-11.png" alt=""></p>
-<p>确认 <em>Enable SSL Proxying</em> 是勾选状态的：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-12.png" alt=""></p>
-<p>然后点击 <em>Add</em> 按钮，我们这里 <em>Host</em> 填 <code>*.baidu.com</code> ， <em>Port</em> 填 <code>443</code> ：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-13.png" alt=""></p>
-<p>然后点击 OK，再点击 OK，然后百度搜索一下，查看一下 Charles，发现 Request 没有乱码了，但是好多红叉：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-14.png" alt=""></p>
-<p>返回浏览器查看，发现搜索失败了：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-15.png" alt=""></p>
-<p>应该是百度有做验证什么的，这个我不懂，有兴趣可以找别的网站试一试。<br>HTTPS 抓包就说到这了。</p>
 </span>
       
 
@@ -450,7 +436,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_安装与破解"><span class="nav-number">2.</span> <span class="nav-text">0x01 安装与破解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_移动端抓包"><span class="nav-number">3.</span> <span class="nav-text">0x02 移动端抓包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_HTTPS_抓包"><span class="nav-number">4.</span> <span class="nav-text">0x03 HTTPS 抓包</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_安装与破解"><span class="nav-number">2.</span> <span class="nav-text">0x01 安装与破解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_移动端抓包"><span class="nav-number">3.</span> <span class="nav-text">0x02 移动端抓包</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
