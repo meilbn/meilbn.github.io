@@ -43,7 +43,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/08/18/The-problems-encountered-in-the-development-of-iOS-00/index.html">
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="记录一些在 iOS 开发当中遇到的问题以及自己找到或者想到的解决办法">
-<meta property="og:updated_time" content="2016-10-10T01:56:15.000Z">
+<meta property="og:updated_time" content="2016-10-27T11:35:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 iOS 开发中遇到的问题（零）">
 <meta name="twitter:description" content="记录一些在 iOS 开发当中遇到的问题以及自己找到或者想到的解决办法">
@@ -242,11 +242,11 @@
         <span itemprop="articleBody"><ul>
 <li>界面返回之后刷新 UITableView 数据，或者刷新指定行的数据，列表出现滚动，原因是重写了 UITableView 的下面这个方法，去掉就OK了。<a href="http://stackoverflow.com/questions/24767665/uitableview-bouncing-back-to-the-top-of-a-section-when-calling-reloadrowsatindex" target="_blank" rel="external">Stack Overflow</a>：</li>
 </ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">-</span> (<span class="tag">CGFloat</span>)<span class="rule"><span class="attribute">tableView</span>:<span class="value">(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">CGFloat</span>)tableView:(<span class="built_in">UITableView</span> *)tableView estimatedHeightForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>UISearchBar 的结果列表，想要高度和 UITableView 的 Cell 高度一致的话，这样设置就行了：</li>
 </ul>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">self</span>.searchDisplayController.searchResultsTableView.rowHeight = <span class="literal">self</span>.<span class="built_in">table</span>View.rowHeight;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span><span class="variable">.searchDisplayController</span><span class="variable">.searchResultsTableView</span><span class="variable">.rowHeight</span> = <span class="keyword">self</span><span class="variable">.tableView</span><span class="variable">.rowHeight</span>;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>出现 Terminating app due to uncaught exception ‘NSInvalidArgumentException’, reason: ‘Could not find a storyboard named ‘Main’ in bundle NSBundle &lt;*.app&gt; (loaded)’，原因是删掉了 Main.storyboard，但是还需要从 Info.plst 里面点掉对应的字段：</li>
 </ul>
@@ -254,7 +254,7 @@
 <ul>
 <li>去掉 UITableviewCell 的点击效果。<a href="http://stackoverflow.com/questions/190908/how-can-i-disable-the-uitableview-selection-highlighting" target="_blank" rel="external">Stack Overflow</a></li>
 </ul>
-<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cell.selectionStyle = UITableViewCellSelectionStyleNone<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cell<span class="variable">.selectionStyle</span> = <span class="built_in">UITableViewCellSelectionStyleNone</span>;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>UIlabel layer.cornerRadius not working in iOS 7.1，解决办法：Set the property clipsToBounds to YES。<a href="http://stackoverflow.com/questions/22316836/uilabel-layer-cornerradius-not-working-in-ios-7-1" target="_blank" rel="external">Stack Overflow</a></p>
 </li>
@@ -271,19 +271,19 @@
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)someMethodWhereYouSetUpYourObserver &#123;</span><br><span class="line">	<span class="comment">// This could be in an init method.</span></span><br><span class="line">	[[<span class="built_in">NSNotificationCenter</span> defaultCenter] addObserver:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(myNotificationMethod:) name:<span class="built_in">UIKeyboardDidShowNotification</span> object:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)myNotificationMethod:(<span class="built_in">NSNotification</span>*)notification &#123;</span><br><span class="line">	<span class="built_in">NSDictionary</span>* keyboardInfo = [notification userInfo];</span><br><span class="line">	<span class="built_in">NSValue</span>* keyboardFrameBegin = [keyboardInfo valueForKey:<span class="built_in">UIKeyboardFrameBeginUserInfoKey</span>];</span><br><span class="line">	<span class="built_in">CGRect</span> keyboardFrameBeginRect = [keyboardFrameBegin <span class="built_in">CGRectValue</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>不要忘记在 viewWillDisappear 方法里面移除观察：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr_selector">[[NSNotificationCenter defaultCenter]</span> <span class="rule"><span class="attribute">removeObserver</span>:<span class="value">self]</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSNotificationCenter</span> defaultCenter] removeObserver:<span class="keyword">self</span>];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>设置 SearchBar TextField 颜色：</li>
 </ul>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">UITextField *searchField = [<span class="literal">self</span>.searchBar valueForKey:@<span class="string">"_searchField"</span>];</span><br><span class="line">searchField.textColor = [UIColor whiteColor];</span><br><span class="line">[searchField <span class="built_in">set</span>Value:[UIColor whiteColor] <span class="keyword">for</span>KeyPath:@<span class="string">"_placeholderLabel.textColor"</span>];</span><br><span class="line">[<span class="literal">self</span>.searchBar <span class="built_in">set</span>Image:[UIImage imageNamed:@<span class="string">"nav_search_btn_bg"</span>] <span class="keyword">for</span>SearchBarIcon:UISearchBarIconSearch <span class="keyword">state</span>:UIControlStateNormal];</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UITextField</span> *searchField = [<span class="keyword">self</span><span class="variable">.searchBar</span> valueForKey:<span class="string">@"_searchField"</span>];</span><br><span class="line">searchField<span class="variable">.textColor</span> = [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">[searchField setValue:[<span class="built_in">UIColor</span> whiteColor] forKeyPath:<span class="string">@"_placeholderLabel.textColor"</span>];</span><br><span class="line">[<span class="keyword">self</span><span class="variable">.searchBar</span> setImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"nav_search_btn_bg"</span>] forSearchBarIcon:<span class="built_in">UISearchBarIconSearch</span> state:<span class="built_in">UIControlStateNormal</span>];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>高亮 UITableView 选中的那一行的颜色。<a href="http://stackoverflow.com/questions/5841056/uitableviewcell-selected-rows-text-color-change" target="_blank" rel="external">Stack Overflow</a></li>
 </ul>
-<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cell.textLabel.highlightedTextColor = [UIColor redColor]<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cell<span class="variable">.textLabel</span><span class="variable">.highlightedTextColor</span> = [<span class="built_in">UIColor</span> redColor];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>设置 UItableView 的某一行高亮。<a href="http://stackoverflow.com/questions/4518723/how-to-highlight-a-row-in-a-uitableview" target="_blank" rel="external">Stack Overflow</a></li>
 </ul>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">[cell.textLabel setHighlighted:YES]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[cell<span class="variable">.textLabel</span> setHighlighted:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>在头文件中使用 @property 定义了一个可变对象，如下，通过上一个界面传过来，在使用的时候，当改变其值的时候，会出现崩溃，原因是 copy 这个属性，将这个属性去掉行OK了。</li>
 </ul>
@@ -305,7 +305,7 @@
 <li><p>设置 UITabBar shadow backgroundimage。<a href="http://stackoverflow.com/questions/14371343/ios-uitabbar-remove-top-shadow-gradient-line" target="_blank" rel="external">Stack Overflow</a></p>
 </li>
 </ul>
-<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">[<span class="collection">[UITabBar appearance]</span> setBackgroundImage:<span class="collection">[<span class="collection">[UIImage alloc]</span> init]</span>]</span><span class="comment">;</span></span><br><span class="line"><span class="collection">[<span class="collection">[UITabBar appearance]</span> setShadowImage:<span class="collection">[<span class="collection">[UIImage alloc]</span> init]</span>]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">UITabBar</span> appearance] setBackgroundImage:[[<span class="built_in">UIImage</span> alloc] init]];</span><br><span class="line">[[<span class="built_in">UITabBar</span> appearance] setShadowImage:[[<span class="built_in">UIImage</span> alloc] init]];</span><br></pre></td></tr></table></figure>
 </span>
       
 
