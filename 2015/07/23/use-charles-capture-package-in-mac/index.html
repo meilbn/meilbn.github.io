@@ -46,13 +46,13 @@
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-00.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-01.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-02.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-03.PNG">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-03.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-04.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-05.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-06.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-07.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-08.png">
-<meta property="og:updated_time" content="2016-10-10T01:57:50.000Z">
+<meta property="og:updated_time" content="2016-10-27T10:53:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Mac 上使用 Charles 抓包">
 <meta name="twitter:description" content="移动端 App 在 Mac 上使用 Charles 抓包">
@@ -253,7 +253,7 @@
 <p>一打开就开始抓包了，这些抓到的都是 Mac 端的包，可以看到，HTTP 和 HTTPS 都已经被抓到了。</p>
 <h1 id="0x02_移动端抓包">0x02 移动端抓包</h1><p>手机与 Mac 端必须在同一个路由器下才能实现抓包，先查看电脑的 IP：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-01.png" alt=""></p>
 <p>这里以 iPhone 为例，手机连接好 Wifi 之后，打开 <strong><em>Settings(设置) -&gt; Wi-Fi</em></strong> ，点击你连接的 Wi-Fi 的最右边的查看信息按钮进入详情界面，选择最下面的 <strong><em>Manual(手动)</em></strong> ， <strong><em>Server(服务器)</em></strong> 填 Mac 端的 IP， <strong><em>Port(端口)</em></strong> 填 <code>8888</code> 就行了：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-02.png" alt=""></p>
-<p>如果手机上有网络请求发生，Charles 会弹出提示，我们选择 Allow就可以了，然后在手机上打开要抓包的 App，进行网络操作，比如，这里我就打开《一个》：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-03.PNG" alt=""></p>
+<p>如果手机上有网络请求发生，Charles 会弹出提示，我们选择 Allow就可以了，然后在手机上打开要抓包的 App，进行网络操作，比如，这里我就打开《一个》：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-03.png" alt=""></p>
 <p>Charles 就会帮我们抓到包，通过查看网络地址，可以找到对我们真正有用的信息，因为我在 Instagram 上有关注韩寒，微博上也是，所以我对 <code>wufazhuce</code> 很眼熟，所以我就能判断这个应该是获取信息的地址：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-04.png" alt=""></p>
 <p>展开之后，可以看到 Request 如下：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-05.png" alt=""></p>
 <p>Response 如下：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-06.png" alt=""></p>
@@ -354,7 +354,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -368,7 +368,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

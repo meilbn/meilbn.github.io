@@ -1,0 +1,735 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+    
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.4"/>
+
+
+    <meta name="description" content="You are the code of my eye. 'Cause you are the apple of my eye. 爱代码，爱机车，爱野马。" />
+
+
+
+  <meta name="keywords" content="Objective-C,Runtime," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
+
+
+<meta name="description" content="《CFHipsterRef Low-Level Programming on iOS &amp; OS X》 Chapter 2 Objective-C Runtime 学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Objective-C Runtime">
+<meta property="og:url" content="http://yoursite.com/2016/10/27/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter2-Objective-C-Runtime/index.html">
+<meta property="og:site_name" content="Happy Hacking">
+<meta property="og:description" content="《CFHipsterRef Low-Level Programming on iOS &amp; OS X》 Chapter 2 Objective-C Runtime 学习笔记">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_2_Objective-C_Runtime.png">
+<meta property="og:updated_time" content="2016-10-27T11:11:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Objective-C Runtime">
+<meta name="twitter:description" content="《CFHipsterRef Low-Level Programming on iOS &amp; OS X》 Chapter 2 Objective-C Runtime 学习笔记">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+    <title> Objective-C Runtime // Happy Hacking </title>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-69209675-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+<div class="container one-column page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">Happy Hacking</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+<form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'pqUHVF4KWmspE68xTa-7','2.0.0');
+</script>
+
+<div class="site-search-toggle"></div>
+    </div>
+  
+</nav>
+
+        </div>
+    </header>
+
+    <main id="main" class="main">
+        <div class="main-inner">
+            <div id="content" class="content">
+                
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Objective-C Runtime
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-10-27T17:09:06+08:00" content="2016-10-27">
+            2016-10-27
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2016/10/27/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter2-Objective-C-Runtime/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/27/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter2-Objective-C-Runtime/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_2_Objective-C_Runtime.png" alt=""></p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="external">CFHipsterRef</a> Chapter 2 时做的笔记。</p>
+<h1 id="0x01_libobjc">0x01 libobjc</h1><p><code>libobjc</code> 是 Objective-C 2.0 运行时的共享库。</p>
+<p>要想使用 runtime，可以导入 <code>&lt;objc/runtime.h&gt;</code> 头文件。</p>
+<h1 id="0x02_发送消息（Message_Sending）">0x02 发送消息（Message Sending）</h1><p>在 Objective-C 中，调用一个对象的某个方法，一般的写法是这样的：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">object</span> <span class="keyword">message</span>];</span><br></pre></td></tr></table></figure>
+<p>然后编译器最后会将该语句翻译成：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objc_msgSend<span class="list">(<span class="keyword">object</span>, @selector<span class="list">(<span class="keyword">message</span>)</span>)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p><code>objc_msgSend</code> 有几种形式：</p>
+<ul>
+<li><code>objc_msgSend</code>：向一个类发送简单返回值类型的消息</li>
+<li><code>objc_msgSend_stret</code>：向一个类发送返回值类型为结构体的消息</li>
+<li><code>objc_msgSendSuper</code>：向父类发送简单返回值类型的消息</li>
+<li><code>objc_msgSendSuper_stert</code>：向父类发送返回值类型为结构体的消息</li>
+</ul>
+<h1 id="0x03_属性元编程（Metaprogramming_with_Properties）">0x03 属性元编程（Metaprogramming with Properties）</h1><p>属性定义了对象状态的公共接口。</p>
+<p>例如，访问一个对象的属性列表，我们可以通过属性元编程来避免手动实现 <code>NSCoding</code>：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - NSCoding&#10;&#10;- (id)initWithCoder:(NSCoder *)decoder &#123;&#10;    if (self = [super init]) &#123;&#10;        unsigned in count;&#10;        objc_property_t *properties = class_copyPropertyList([self class], &#38;count);&#10;        for (NSUInteger i = 0; i &#60; count; i++) &#123;&#10;            objc_property_t property = properties[i];&#10;            NSString *key = [NSString stringWithUTF8String:property_getName(property)];&#10;            [self setValue:[decoder decodeObjectForKey:key] forKey:key];&#10;        &#125;&#10;        &#10;        free(properties);&#10;    &#125;&#10;    &#10;    return self;&#10;&#125;&#10;&#10;- (void)encodeWithCoder:(NSCoder *)coder &#123;&#10;    unsigned int count;&#10;    objc_property_t *properties = class_getPropertyList([self class], &#38;count);&#10;    for (NSUInteger i = 0; i &#60; count; i++) &#123;&#10;        objc_property_t property = properties[i];&#10;        NSString *key = [NSString stringWithUTF8String:property_getName(property)];&#10;        [coder encodeObject:[self valueForKey:key] forKey:key];&#10;    &#125;&#10;    &#10;    free(properties);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="0x04_关联对象（Associated_Objects）">0x04 关联对象（Associated Objects）</h1><p>关联对象是 Objective-C 运行时的一个特性，允许开发者对已经存在的类在扩展中添加自定义的属性，这非常有用。</p>
+<p>关联对象使用非常简单，用 <code>objc_setAssociatedObject</code> 存储一个关联值，用 <code>objc_getAssociatedObject</code> 获取这个关联值。</p>
+<p>任何关联对象都是通过一个 key 来关联的，这个 key 可以是任何常量值。最简单的方法就是传入 getter 方法选择器（方法选择器在运行时保证是唯一且不变的）。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NSObject</span> (<span class="title">AssociatedObject</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="keyword">id</span> associatedObject;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NSObject</span> (<span class="title">AssociatedObject</span>)</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)setAssociatedObject:(<span class="keyword">id</span>)object &#123;</span><br><span class="line">    objc_setAssociatedObject(<span class="keyword">self</span>, <span class="keyword">@selector</span>(associatedObject), object, OBJC_ASSO<span class="built_in">CIATION_RETAIN_NONATOMIC</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>)associatedObject &#123;</span><br><span class="line">    <span class="keyword">return</span> objc_getAssociatedObject(<span class="keyword">self</span>, <span class="keyword">@selector</span>(associatedObject));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="0x05_动态添加方法（Dynamically_Adding_a_Method）">0x05 动态添加方法（Dynamically Adding a Method）</h1><p>正如属性描述了一个对象的状态，方法则构成了对象的行为。</p>
+<p>在 Objective-C 中，方法以 <code>+</code> 或 <code>-</code> 前置声明，表示该方法是类方法还是实例方法（也就是说是通过类调用的还是类的对象来调用的）。</p>
+<p>一个类可以通过创建一个 category 来添加新的方法，然后可以在包含了这个 category 的地方使用这些新的方法。</p>
+<p>不过，方法也可以在运行时创建：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Class c = [<span class="built_in">NSObject</span> class];</span><br><span class="line">IMP addingMethodIMP = imp_implementationWithBlock((<span class="built_in">NSString</span> *)^(<span class="keyword">id</span> <span class="keyword">self</span>, <span class="keyword">id</span> arg1) &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"arg1 = %@"</span>, arg1];</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *addingMethodTypes = [[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%s%s%s"</span>, @encode(<span class="keyword">id</span>), @encode(<span class="keyword">id</span>), @encode(SEL)] UTF8String];</span><br><span class="line">class_addMethod(c, <span class="keyword">@selector</span>(addingMethodWithArg:), addingMethodIMP, addingMethodTypes);</span><br></pre></td></tr></table></figure>
+<h1 id="0x06_Method_Swizzling">0x06 Method Swizzling</h1><p>Method Swizzling 是改变一个已存在的方法的实现的过程。这个技术是改变一个映射到一个类的调度表中的底层函数的方法，在运行时修改为调用自己定义的方法。</p>
+<p>比如在某些时候想要跟踪一个应用里面的每个 ViewController 在一次生命周期内打开的次数。想要实现这个功能有几种方法：</p>
+<ol>
+<li>每个 ViewController 都添加跟踪代码到重载的 <code>viewDidAppear</code> 方法里面，但是这样会有很多重复的代码。</li>
+<li>子类化 UIViewController，但是这样的话，还要子类化 <code>UITableViewController</code>、<code>UINavigationController</code> 等其他用到的 ViewController，还是要添加很多重复的代码。</li>
+</ol>
+<p>有了 Method Swizzling，解决办法就非常优雅了：</p>
+<figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import &lt;objc/runtime.h&gt;</span></span><br><span class="line"></span><br><span class="line">@implementation UIViewController (Tracking)</span><br><span class="line"></span><br><span class="line">+ (void)load &#123;</span><br><span class="line">    static dispatch_once_t onceToken;</span><br><span class="line">    dispatch_once(&amp;onceToken, ^&#123;</span><br><span class="line">        <span class="class"><span class="keyword">Class</span> <span class="title">class</span> = [<span class="title">self</span> <span class="title">class</span>];</span></span><br><span class="line">        </span><br><span class="line">        SEL originalSelector = @selector(viewDidAppear:);</span><br><span class="line">        SEL swizzledSelector = @selector(xxx_viewDidAppear:);</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">Method</span> <span class="title">originalMethod</span> =</span> class_getInstanceMethod(<span class="class"><span class="keyword">class</span>, <span class="title">originalSelector</span>);</span></span><br><span class="line">        <span class="function"><span class="keyword">Method</span> <span class="title">swizzledMethod</span> =</span> class_getInstanceMethod(<span class="class"><span class="keyword">class</span>, <span class="title">swizzledSelector</span>);</span></span><br><span class="line">        </span><br><span class="line">        BOOL didAddMethod = class_addMethod(<span class="class"><span class="keyword">class</span>, <span class="title">originalSelector</span>, <span class="title">method_getImplementation</span>(<span class="title">swizzledMthod</span>), <span class="title">method_getTypeEncoding</span>(<span class="title">swizzledMethod</span>));</span></span><br><span class="line">        <span class="keyword">if</span> (didAddMethod) &#123;</span><br><span class="line">            class_replaceMethod(<span class="class"><span class="keyword">class</span>, <span class="title">swizzledSelector</span>, <span class="title">method_getImplementation</span>(<span class="title">originalMethod</span>), <span class="title">method_getTypeEncoding</span>(<span class="title">originalMethod</span>));</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            method_exchangeImplementations(originalMethod, swizzledMethod);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;<span class="preprocessor"></span><br><span class="line"></span><br><span class="line">#pragma mark - Method Swizzling</span></span><br><span class="line"></span><br><span class="line">- (void)xxx_viewDidAppear:(BOOL)animated &#123;</span><br><span class="line">    [<span class="variable">self</span> xxx_viewDidAppear:animated];</span><br><span class="line">    NSLog(@<span class="string">"viewDidAppear: %@"</span>, <span class="variable">self</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>现在，当任何 UIViewController 对象或者 它的子类对象调用 <code>viewDidAppear</code> 方法时，都会打印出一个 log。</p>
+<p>因为 Method Swizzling 是影响全局状态的，所以尽可能减少竞态条件的可能性非常重要。</p>
+<p><code>+ load</code> 方法保证在类初始化的时候执行，相比之下，<code>+ initialize</code> 不保证什么时候它会被执行（事实上，除非 app 直接对一个类发送消息，否则这个类的 <code>+ initialize</code> 方法不会被调用）。</p>
+<h1 id="0x07_动态创建一个类（Dynamically_Creating_a_Class）">0x07 动态创建一个类（Dynamically Creating a Class）</h1><p>结合之前提到的动态属性和方法定义，<code>libobjc</code> 的终极大招是运行时创建一个类。</p>
+<p>创建一个 <code>Product</code> 类，有两个属性：<code>name</code> 和 <code>price</code>：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Product</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>) <span class="built_in">NSString</span> *name;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>) <span class="keyword">double</span> price;</span><br><span class="line"></span><br><span class="line">- (instancetype)initWithName:(<span class="built_in">NSString</span> *)name price:(<span class="keyword">double</span>)price;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Product</span></span></span><br><span class="line"></span><br><span class="line">- (instancetype)initWithName:(<span class="built_in">NSString</span> *)name price:(<span class="keyword">double</span>)price &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</span><br><span class="line">        <span class="keyword">self</span><span class="variable">.name</span> = name;</span><br><span class="line">        <span class="keyword">self</span><span class="variable">.price</span> = price;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行时创建：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">Class c = objc_allocateClassPair<span class="list">([NSObject class], <span class="string">"Product"</span>, <span class="number">0</span>)</span><span class="comment">;</span></span><br><span class="line">class_addIvar<span class="list">(<span class="keyword">c</span>, <span class="string">"name"</span>, sizeof<span class="list">(<span class="keyword">id</span>)</span>, log2<span class="list">(<span class="keyword">sizeof</span><span class="list">(<span class="keyword">id</span>)</span>)</span>, @encode<span class="list">(<span class="keyword">id</span>)</span>)</span><span class="comment">;</span></span><br><span class="line">class_addIvar<span class="list">(<span class="keyword">c</span>, <span class="string">"price"</span>, sizeof<span class="list">(<span class="keyword">double</span>)</span>, log2<span class="list">(<span class="keyword">sizeof</span><span class="list">(<span class="keyword">double</span>)</span>)</span>, @encode<span class="list">(<span class="keyword">double</span>)</span>)</span><span class="comment">;</span></span><br><span class="line"></span><br><span class="line">Ivar nameIvar = class_getInstanceVariable<span class="list">(<span class="keyword">c</span>, <span class="string">"name"</span>)</span><span class="comment">;</span></span><br><span class="line">ptrdiff_t priceIvarOffset = ivar_getOffset<span class="list">(<span class="keyword">class_getInstanceVariable</span><span class="list">(<span class="keyword">c</span>, <span class="string">"price"</span>)</span>)</span><span class="comment">;</span></span><br><span class="line"></span><br><span class="line">IMP initIMP = imp_implementationWithBlock<span class="list">(^<span class="list">(<span class="keyword">id</span> self, NSString <span class="variable">*name, double price) &#123;</span><br><span class="line">    object_setIvar(self, nameIvar, name);</span><br><span class="line">    </span><br><span class="line">    char *</span>ptr = <span class="list">(<span class="list">(<span class="keyword">char</span> <span class="variable">*)(__bridge void *</span>)</span>self)</span> + priceIvarOffset<span class="comment">;</span></span><br><span class="line">    memcpy<span class="list">(<span class="keyword">ptr</span>, <span class="keyword">&amp;price</span>, sizeof<span class="list">(<span class="keyword">price</span>)</span>)</span><span class="comment">;</span></span><br><span class="line">    </span><br><span class="line">    return self<span class="comment">;</span></span><br><span class="line">&#125;)</span><span class="comment">;</span></span><br><span class="line"></span><br><span class="line">const char <span class="variable">*initTypes = [[NSString stringWithFormat:@"%s%s%s%s%s%s", @encode(id), @encode(id), @encode(SEL), @encode(id), @encode(id), @encode(NSUInteger)] UTF8String];</span><br><span class="line">class_addMethod(c, @selector(initWithFirstName:lastName:age), initIMP, initTypes);</span><br><span class="line"></span><br><span class="line">IMP nameIMP = imp_implementationWithBlock(^(id self) &#123;</span><br><span class="line">    return object_getIvar(self, nameIvar);</span><br><span class="line">&#125;);</span><br><span class="line">const char *</span>nameTypes = [[NSString stringWithFormat:@<span class="string">"%s%s%s"</span>, @encode<span class="list">(<span class="keyword">id</span>)</span>, @encode<span class="list">(<span class="keyword">id</span>)</span>, @encode<span class="list">(<span class="keyword">SEL</span>)</span>] UTF8String]<span class="comment">;</span></span><br><span class="line">class_addMethod<span class="list">(<span class="keyword">c</span>, @selector<span class="list">(<span class="keyword">name</span>)</span>, nameIMP, nameTypes)</span><span class="comment">;</span></span><br><span class="line"></span><br><span class="line">IMP priceIMP = imp_implementationWithBlock<span class="list">(^<span class="list">(<span class="keyword">id</span> self)</span> &#123;</span><br><span class="line">    char <span class="variable">*ptr = ((char *</span>)</span><span class="list">(<span class="keyword">__bridge</span> void <span class="variable">*)self) + priceIvarOffset;</span><br><span class="line">    double price;</span><br><span class="line">    memcpy(&amp;price, ptr, sizeof(price));</span><br><span class="line">    </span><br><span class="line">    return price;</span><br><span class="line">&#125;);</span><br><span class="line">const char *</span>priceTypes = [[NSString stringWithFormat:@<span class="string">"%s%s%s"</span>, @encode<span class="list">(<span class="keyword">double</span>)</span>, @encode<span class="list">(<span class="keyword">id</span>)</span>, @encode<span class="list">(<span class="keyword">SEL</span>)</span>] UTF8String]<span class="comment">;</span></span><br><span class="line">class_addMethod<span class="list">(<span class="keyword">c</span>, @selector<span class="list">(<span class="keyword">age</span>)</span>, priceIMP, priceTypes)</span><span class="comment">;</span></span><br><span class="line"></span><br><span class="line">objc_registerClassPair<span class="list">(<span class="keyword">c</span>)</span><span class="comment">;</span></span></span></span><br></pre></td></tr></table></figure>
+<p>这里代码很多，我们来一点一点说。</p>
+<p>首先，一个类用 <code>objc_allocateClassPair</code> 被分配了内存空间，指定了这个类的父类和类名。</p>
+<p>然后，使用 <code>class_addIvar</code> 给这个类添加了实例变量。第四个参数用于确定变量的最小对齐方式（variable’s minimum alignment），这取决于 ivar 的类型和目标平台架构。</p>
+<p>接下来是用 <code>imp_implementationWithBlock:</code> 定义初始化函数（initializer）的实现。调用 <code>object_setIvar</code> 设置 <code>name</code>。<code>price</code> 是通过之前计算的 offset 执行 <code>memcpy</code> 来设置的。</p>
+<p>为了添加初始化函数，需要计算每个参数的类型编码。<code>@encode</code> 和 字符串插值有点尴尬混乱，但是就是这样的。</p>
+<p>添加 ivar 的 getter 方法类似。</p>
+<p>最后，一旦所有的方法都被添加，类就被注册到运行时。从那时起，<code>Product</code> 就可以像其他任何 Objective-C 类一样交互了：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Product *widget = [[Product alloc] <span class="string">initWithName:</span>@<span class="string">"Widget"</span> <span class="string">price:</span><span class="number">50.00</span>];</span><br><span class="line">NSLog(@<span class="string">"%@: %g"</span>, widget.name, widget,price);</span><br></pre></td></tr></table></figure>
+</span>
+      
+
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
+          
+            <a href="/tags/Runtime/" rel="tag">#Runtime</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/05/used-third-party-services/" rel="next">使用过的第三方服务</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+            </div>
+
+            
+
+            
+              <div class="comments" id="comments">
+                
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                  </div>
+                
+              </div>
+            
+        </div>
+
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="我的眼里只有代码" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">我的眼里只有代码</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">You are the code of my eye. 'Cause you are the apple of my eye. 爱代码，爱机车，爱野马。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/meilbn" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/meilbn" target="_blank">Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/fuckingcode" target="_blank">Weibo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/codemaker/" target="_blank">DouBan</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/meilbn/" target="_blank">ZhiHu</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/meilbn/" target="_blank">Instagram</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/meilbn" target="_blank">Facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank">GooglePlus</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_libobjc"><span class="nav-number">2.</span> <span class="nav-text">0x01 libobjc</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_发送消息（Message_Sending）"><span class="nav-number">3.</span> <span class="nav-text">0x02 发送消息（Message Sending）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_属性元编程（Metaprogramming_with_Properties）"><span class="nav-number">4.</span> <span class="nav-text">0x03 属性元编程（Metaprogramming with Properties）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_关联对象（Associated_Objects）"><span class="nav-number">5.</span> <span class="nav-text">0x04 关联对象（Associated Objects）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05_动态添加方法（Dynamically_Adding_a_Method）"><span class="nav-number">6.</span> <span class="nav-text">0x05 动态添加方法（Dynamically Adding a Method）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x06_Method_Swizzling"><span class="nav-number">7.</span> <span class="nav-text">0x06 Method Swizzling</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x07_动态创建一个类（Dynamically_Creating_a_Class）"><span class="nav-number">8.</span> <span class="nav-text">0x07 动态创建一个类（Dynamically Creating a Class）</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="copyright">
+  
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我的眼里只有代码</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+<div class="powered-by">
+</div>
+<div class="theme-info">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span>次,</span>
+  <span id="busuanzi_container_site_uv">
+    访客数<span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span>人次</span>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+        </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+</div>
+
+<script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'ihappyhacking';
+      var disqus_identifier = '2016/10/27/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter2-Objective-C-Runtime/';
+      var disqus_title = 'Objective-C Runtime';
+      var disqus_url = 'http://yoursite.com/2016/10/27/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter2-Objective-C-Runtime/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.4"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.4"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.4" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/js/search-toggle.js"></script>
+
+
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.4" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if (isDesktop() && CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    });
+  </script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (CONFIG.sidebar === 'always') {
+            displaySidebar();
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+<!-- lazyload -->
+<script type="text/javascript" src="/js/lazyload.js"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#posts img").lazyload({
+            placeholder: "/images/loading.gif",
+            effect: "fadeIn"
+        });
+    });
+</script>
+</body>
+</html>
