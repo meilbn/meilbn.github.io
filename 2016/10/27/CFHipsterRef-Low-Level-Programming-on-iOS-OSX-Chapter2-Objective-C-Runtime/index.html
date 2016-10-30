@@ -51,11 +51,17 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -91,7 +97,7 @@
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 2 Objective-C Runtime 时做的笔记。">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_2_Objective-C_Runtime.png">
-<meta property="og:updated_time" content="2016-10-29T16:04:04.000Z">
+<meta property="og:updated_time" content="2016-10-30T06:41:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C Runtime">
 <meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 2 Objective-C Runtime 时做的笔记。">
@@ -387,9 +393,9 @@
 <h1 id="0x01_libobjc">0x01 libobjc</h1><p><code>libobjc</code> 是 Objective-C 2.0 运行时的共享库。</p>
 <p>要想使用 runtime，可以导入 <code>&lt;objc/runtime.h&gt;</code> 头文件。</p>
 <h1 id="0x02_发送消息（Message_Sending）">0x02 发送消息（Message Sending）</h1><p>在 Objective-C 中，调用一个对象的某个方法，一般的写法是这样的：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[object message];</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[object message];</span><br></pre></td></tr></table></figure>
 <p>然后编译器最后会将该语句翻译成：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objc_msgSend(object, @selector(message));</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objc_msgSend(object, <span class="keyword">@selector</span>(message));</span><br></pre></td></tr></table></figure>
 <p><code>objc_msgSend</code> 有几种形式：</p>
 <ul>
 <li><code>objc_msgSend</code>：向一个类发送简单返回值类型的消息</li>
