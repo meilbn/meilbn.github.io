@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x00.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/reveal-troubleshooting-0x01.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/reveal-troubleshooting-0x02.png">
-<meta property="og:updated_time" content="2016-10-30T06:41:49.000Z">
+<meta property="og:updated_time" content="2016-10-30T06:47:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reveal 升级之后不能在手机上查看 App 的解决办法">
 <meta name="twitter:description" content="0x00 前言最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 RHRevealLoader，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：The operation couldn&amp;#39;t be completed. The iOS app is">
@@ -397,7 +397,7 @@
 <p>替换很简单，我们可以通过 <code>scp</code> 命令来实现，命令如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp /Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/libReveal.dylib root@your-iPhone<span class="string">'s-IP-address:/Library/RHRevealLoader/libReveal.dylib</span></span><br></pre></td></tr></table></figure>
 <p>需要输入一下 root 的密码，这样就 OK 啦。</p>
-<h2 id="0x0100_第二版更新_(v2)">0x0100 第二版更新 (v2)</h2><p>前一段时间，Reveal 发布了第二版，不再是 <code>libReveal.dylib</code>，而是 <code>RevealServer.framework</code>，所以真机连接再一次失效，不过按照老办法，试了一下，然而并没有效果，又试了一下将 <code>RevealServer.framework</code> 中的 <code>RevealServer</code> 单独拷贝到手机，还是没有用，结果无奈去官网寻找解决办法，结果当然是找到了！办法就是把 <code>RevealServer</code> 拷贝到手机的时候，将文件名改成 <code>libReveal.dylib</code> 就行了。命令如下：</p>
+<h1 id="0x02_第二版更新_(v2)">0x02 第二版更新 (v2)</h1><p>前一段时间，Reveal 发布了第二版，不再是 <code>libReveal.dylib</code>，而是 <code>RevealServer.framework</code>，所以真机连接再一次失效，不过按照老办法，试了一下，然而并没有效果，又试了一下将 <code>RevealServer.framework</code> 中的 <code>RevealServer</code> 单独拷贝到手机，还是没有用，结果无奈去官网寻找解决办法，结果当然是找到了！办法就是把 <code>RevealServer</code> 拷贝到手机的时候，将文件名改成 <code>libReveal.dylib</code> 就行了。命令如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp /Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/RevealServer.framework/RevealServer root@your-iPhone<span class="string">'s-IP-address:/Library/RHRevealLoader/libReveal.dylib</span></span><br></pre></td></tr></table></figure>
 <p>大功告成：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/reveal-troubleshooting-0x01.png" alt=""></p>
 <p>USB 连接查看也可以了，原本的局域网 WiFi 查看还在。</p>
@@ -642,7 +642,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_替换"><span class="nav-number">2.</span> <span class="nav-text">0x01 替换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0100_第二版更新_(v2)"><span class="nav-number">2.1.</span> <span class="nav-text">0x0100 第二版更新 (v2)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_替换"><span class="nav-number">2.</span> <span class="nav-text">0x01 替换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_第二版更新_(v2)"><span class="nav-number">3.</span> <span class="nav-text">0x02 第二版更新 (v2)</span></a></li></ol></div>
             
           </div>
         </section>
