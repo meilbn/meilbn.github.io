@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next muse use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -99,7 +99,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -183,6 +183,8 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
             首页
           </a>
         </li>
@@ -190,6 +192,8 @@
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -199,6 +203,8 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
             分类
           </a>
         </li>
@@ -206,6 +212,8 @@
         
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -215,6 +223,8 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
             关于
           </a>
         </li>
@@ -222,6 +232,8 @@
         
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
             公益404
           </a>
@@ -233,6 +245,8 @@
           
             <a href="javascript:;" class="st-search-show-outputs">
           
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -371,9 +385,10 @@
 
       
         
-          《CFHipsterRef Low-Level Programming on iOS & OS X》 Chapter 5 Grand Central Dispatch 学习笔记
+          <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_5_GCD.png" alt=""></p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref">CFHipsterRef</a> Chapter 5 Grand Celtral Dispatch 时做的笔记。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/29/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter5-Grand-Central-Dispatch/">
+            <a class="btn" href="/2016/10/29/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter5-Grand-Central-Dispatch/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -503,9 +518,10 @@
 
       
         
-          《CFHipsterRef Low-Level Programming on iOS & OS X》 Chapter 2 Objective-C Runtime 学习笔记
+          <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_2_Objective-C_Runtime.png" alt=""></p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref">CFHipsterRef</a> Chapter 2 Objective-C Runtime 时做的笔记。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/27/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter2-Objective-C-Runtime/">
+            <a class="btn" href="/2016/10/27/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter2-Objective-C-Runtime/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -767,9 +783,11 @@
 
       
         
-          Reveal 更新之后查看越狱手机上的第三方 App 报错的解决办法
+          <h1 id="0x00_前言">0x00 前言</h1><p>最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 <a href="https://github.com/heardrwt/RevealLoader">RHRevealLoader</a>，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：<code>The operation couldn&#39;t be completed. The iOS app is linked against a older version of the Reveal library. You may need to update the Reveal library i your iOS app.</code>：</p>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x00.png" alt=""></p>
+<p>然后我打开 Cydia 去查看插件是否有更新，可惜没有，所以我就自己找解决办法，最后我找到了这个插件的 GitHub 地址，看了一下 issues，然后就找到了 <a href="https://github.com/heardrwt/RevealLoader/issues/5">issue #5</a>，看到了解决办法：<code>replace at /Library/RHRevealLoader/libReveal.dylib</code>，亲测可行！</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/23/reveal-troubleshooting-0x00/">
+            <a class="btn" href="/2015/10/23/reveal-troubleshooting-0x00/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -899,9 +917,9 @@
 
       
         
-          重新学习 Objective-C 基础时学到的 NSPredicate 的使用
+          <h1 id="0x00_前言">0x00 前言</h1><p>最近在重新学习 Objective-C，因为觉得基础非常重要，而且对 Objective-C 的使用都基本上是工作中用到的，了解得还不够多，就算当初学习 Objective-C 的时候知道了，但是到现在也忘了不少东西。内容主要来自<a href="http://www.amazon.cn/%E5%9B%BE%E7%81%B5%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%9B%E4%B9%A6%E2%80%A2%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97-Objective-C%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B-%E5%85%8B%E7%BA%B3%E6%96%AF%E7%89%B9/dp/B00COG40Y0/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1441502082&amp;sr=1-1&amp;keywords=Objective-C+%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B">《Objective-C 基础教程（第2版）》</a>，这本书的代码可以到<a href="http://www.apress.com/9781430241881">这里</a>下载。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/06/ios-simple-use-of-nspredicate/">
+            <a class="btn" href="/2015/09/06/ios-simple-use-of-nspredicate/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1031,9 +1049,9 @@
 
       
         
-          一些在开发过程中使用到的方法等，将它们收集起来以备不时之需。(持续更新，最新更新：2015-08-23)
+          <h1 id="0x00_前言">0x00 前言</h1><p>本文收集了一些我在开发过程中用到的比较有用、能用且好用的方法等一些干货。<br>打算将这些收集成一篇文章，以后用到也能比较快的找到。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/08/23/collecting-some-of-the-methods-in-the-development/">
+            <a class="btn" href="/2015/08/23/collecting-some-of-the-methods-in-the-development/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1163,9 +1181,9 @@
 
       
         
-          记录一下在 iOS 逆向工程学习过程中查找目标 App 在 iPhone 里的目录 (安装目录和沙盒目录) 的步骤
+          <h1 id="0x00_前言">0x00 前言</h1><p>本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 <a href="http://www.amazon.cn/iOS%E5%BA%94%E7%94%A8%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B-%E6%B2%99%E6%A2%93%E7%A4%BE/dp/B00VFDVY7E/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1439878290&amp;sr=1-1&amp;keywords=ios+%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B">iOS应用逆向工程(第2版)</a>，有兴趣的同学可以购买学习。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/08/19/iosre-find-app-installation-and-sandbox-directory/">
+            <a class="btn" href="/2015/08/19/iosre-find-app-installation-and-sandbox-directory/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1691,9 +1709,10 @@
 
       
         
-          Reveal 的使用 (静态库链接)
+          <h1 id="0x00_前言">0x00 前言</h1><p>Reveal 的使用 (静态库链接)。</p>
+<p>首先，这里是讲用 Xcode 和 Reveal 来查看自己的 App 的视图，如果你是想看第三方的 App 的界面，那么就不需要看下去了。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/08/01/integrating-reveal-static-linking/">
+            <a class="btn" href="/2015/08/01/integrating-reveal-static-linking/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1823,9 +1842,9 @@
 
       
         
-          移动端 App 在 Mac 上使用 Charles 抓包
+          <h1 id="0x00_前言">0x00 前言</h1><p>在 Windows 平台上，抓包工具有 <a href="http://www.telerik.com/fiddler">Fiddler</a>，但是不能在 MacOSX 上使用，好在我们还有另外一个抓包神器：<a href="http://www.charlesproxy.com/">Charles</a>，而且是用 Java 编写的，所以是跨平台的，可能对有些人来说有一个缺点，那就是 Charles 是收费的，不过不要着急，下面会提供破解方法。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/23/use-charles-capture-package-in-mac/">
+            <a class="btn" href="/2015/07/23/use-charles-capture-package-in-mac/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2842,15 +2861,6 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>
-                  
-                  Twitter
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
                 <a href="http://weibo.com/fuckingcode" target="_blank" title="Weibo">
                   
                     <i class="fa fa-fw fa-weibo"></i>
@@ -2860,29 +2870,11 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-twitter"></i>
                   
-                  DouBan
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  ZhiHu
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>
-                  
-                  Instagram
+                  Twitter
                 </a>
               </span>
             
@@ -2896,11 +2888,38 @@
               </span>
             
               <span class="links-of-author-item">
+                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
                 <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank" title="GooglePlus">
                   
                     <i class="fa fa-fw fa-google-plus"></i>
                   
                   GooglePlus
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  DouBan
                 </a>
               </span>
             
@@ -2951,7 +2970,7 @@
 <!-- <div class="theme-info"> -->
 <!--   主题 - -->
 <!--   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next"> -->
-<!--     NexT.Mist -->
+<!--     NexT.Muse -->
 <!--   </a> -->
 <!-- </div> -->
 <!--  -->
@@ -2960,7 +2979,7 @@
 
 <div class="theme-info">
   <span id="busuanzi_container_site_pv">
-    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次, </span>
+    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次，</span>
   <span id="busuanzi_container_site_uv">
     访客数 <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span> 人次</span>
 </div>

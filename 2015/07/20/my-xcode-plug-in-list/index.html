@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next muse use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Peckham_demo.gif">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/XToDo_1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/limejelly/Backlight-for-XCode/master/screenshot.png">
-<meta property="og:updated_time" content="2016-10-10T01:58:11.000Z">
+<meta property="og:updated_time" content="2016-10-30T02:07:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xcode 插件列表">
 <meta name="twitter:description" content="自己安装的一些 Xcode 插件 (持续更新，最新更新：2015-07-20)">
@@ -110,7 +110,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -192,6 +192,8 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
             首页
           </a>
         </li>
@@ -199,6 +201,8 @@
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -208,6 +212,8 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
             分类
           </a>
         </li>
@@ -215,6 +221,8 @@
         
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -224,6 +232,8 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
             关于
           </a>
         </li>
@@ -231,6 +241,8 @@
         
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
             公益404
           </a>
@@ -242,6 +254,8 @@
           
             <a href="javascript:;" class="st-search-show-outputs">
           
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -376,10 +390,8 @@
       
 
       
-        <h1 id="0x00">0x00</h1><hr>
-<p>当我第一次使用 Xcode 的时候，发现有一些功能在其他开发工具上 (比如 Android Studio) 有的，但是 Xcode 上没有，比如快捷提示模糊匹配 (就是 Fuzzy Completion)，加上 OC 方法名一看就明白是干嘛的，所以又臭又长，往往很难记住，所以模糊匹配的快捷提示就非常重要，好在有人写好这个插件了，感谢！最近在微博上看到，说 Xcode 7 自带这个功能了，又干死一个插件的节奏！开发工具搭配上插件，大大地提升了我们开发的效率。</p>
-<h1 id="0x01">0x01</h1><hr>
-<ol>
+        <h1 id="0x00_前言">0x00 前言</h1><p>当我第一次使用 Xcode 的时候，发现有一些功能在其他开发工具上 (比如 Android Studio) 有的，但是 Xcode 上没有，比如快捷提示模糊匹配 (就是 Fuzzy Completion)，加上 OC 方法名一看就明白是干嘛的，所以又臭又长，往往很难记住，所以模糊匹配的快捷提示就非常重要，好在有人写好这个插件了，感谢！最近在微博上看到，说 Xcode 7 自带这个功能了，又干死一个插件的节奏！开发工具搭配上插件，大大地提升了我们开发的效率。</p>
+<h1 id="0x01_插件列表">0x01 插件列表</h1><ol>
 <li><a href="https://github.com/supermarin/Alcatraz" target="_blank" rel="external">Alcatraz</a>：说到插件，不得不先说Alcatraz，这个就像 CocoaPods 对于 iOS 开发来说一样，管理我们安装的所有插件，也可以安装其他感兴趣的插件，非常方便。<img src="https://camo.githubusercontent.com/919efe4e1e53237df51d7010c862bd5c04fd6a70/687474703a2f2f616c63617472617a2e696f2f696d616765732f73637265656e73686f744032782e706e67" alt=""></li>
 <li><a href="https://github.com/FuzzyAutocomplete/FuzzyAutocompletePlugin" target="_blank" rel="external">FuzzyAutocomplete</a>：这个就是上面说到的那个功能，用了都说好！个人感觉有点小问题的是，输入数字也会触发 Fuzzy Completion，挺蛋疼的。<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Fuzzy_Autocomplete_for_Xcode_demo.gif" alt=""></li>
 <li><a href="https://github.com/kattrali/cocoapods-xcode-plugin" target="_blank" rel="external">CocoaPods</a>：这个是 CocoaPods 在 Xcode 中的插件，省去了命令行操作，个人不常用，但是也还是安装了。<img src="https://github.com/kattrali/cocoadocs-xcode-plugin/raw/master/menu_rvm.png" alt=""></li>
@@ -552,15 +564,6 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>
-                  
-                  Twitter
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
                 <a href="http://weibo.com/fuckingcode" target="_blank" title="Weibo">
                   
                     <i class="fa fa-fw fa-weibo"></i>
@@ -570,29 +573,11 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-twitter"></i>
                   
-                  DouBan
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  ZhiHu
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>
-                  
-                  Instagram
+                  Twitter
                 </a>
               </span>
             
@@ -606,11 +591,38 @@
               </span>
             
               <span class="links-of-author-item">
+                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
                 <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank" title="GooglePlus">
                   
                     <i class="fa fa-fw fa-google-plus"></i>
                   
                   GooglePlus
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  DouBan
                 </a>
               </span>
             
@@ -638,7 +650,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00"><span class="nav-number">1.</span> <span class="nav-text">0x00</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01"><span class="nav-number">2.</span> <span class="nav-text">0x01</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_插件列表"><span class="nav-number">2.</span> <span class="nav-text">0x01 插件列表</span></a></li></ol></div>
             
           </div>
         </section>
@@ -672,7 +684,7 @@
 <!-- <div class="theme-info"> -->
 <!--   主题 - -->
 <!--   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next"> -->
-<!--     NexT.Mist -->
+<!--     NexT.Muse -->
 <!--   </a> -->
 <!-- </div> -->
 <!--  -->
@@ -681,7 +693,7 @@
 
 <div class="theme-info">
   <span id="busuanzi_container_site_pv">
-    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次, </span>
+    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次，</span>
   <span id="busuanzi_container_site_uv">
     访客数 <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span> 人次</span>
 </div>

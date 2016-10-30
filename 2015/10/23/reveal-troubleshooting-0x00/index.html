@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next muse use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -84,26 +84,26 @@
 
 
 
-<meta name="description" content="Reveal 更新之后查看越狱手机上的第三方 App 报错的解决办法">
+<meta name="description" content="0x00 前言最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 RHRevealLoader，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：The operation couldn&amp;#39;t be completed. The iOS app is">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Reveal 升级之后不能在手机上查看 App 的解决办法">
 <meta property="og:url" content="http://yoursite.com/2015/10/23/reveal-troubleshooting-0x00/index.html">
 <meta property="og:site_name" content="Happy Hacking">
-<meta property="og:description" content="Reveal 更新之后查看越狱手机上的第三方 App 报错的解决办法">
+<meta property="og:description" content="0x00 前言最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 RHRevealLoader，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：The operation couldn&amp;#39;t be completed. The iOS app is">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x00.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/reveal-troubleshooting-0x01.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/reveal-troubleshooting-0x02.png">
-<meta property="og:updated_time" content="2016-10-10T01:54:04.000Z">
+<meta property="og:updated_time" content="2016-10-30T02:03:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reveal 升级之后不能在手机上查看 App 的解决办法">
-<meta name="twitter:description" content="Reveal 更新之后查看越狱手机上的第三方 App 报错的解决办法">
+<meta name="twitter:description" content="0x00 前言最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 RHRevealLoader，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：The operation couldn&amp;#39;t be completed. The iOS app is">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -185,6 +185,8 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
             首页
           </a>
         </li>
@@ -192,6 +194,8 @@
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -201,6 +205,8 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
             分类
           </a>
         </li>
@@ -208,6 +214,8 @@
         
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -217,6 +225,8 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
             关于
           </a>
         </li>
@@ -224,6 +234,8 @@
         
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
             公益404
           </a>
@@ -235,6 +247,8 @@
           
             <a href="javascript:;" class="st-search-show-outputs">
           
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -372,6 +386,7 @@
         <h1 id="0x00_前言">0x00 前言</h1><p>最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 <a href="https://github.com/heardrwt/RevealLoader" target="_blank" rel="external">RHRevealLoader</a>，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：<code>The operation couldn&#39;t be completed. The iOS app is linked against a older version of the Reveal library. You may need to update the Reveal library i your iOS app.</code>：</p>
 <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x00.png" alt=""></p>
 <p>然后我打开 Cydia 去查看插件是否有更新，可惜没有，所以我就自己找解决办法，最后我找到了这个插件的 GitHub 地址，看了一下 issues，然后就找到了 <a href="https://github.com/heardrwt/RevealLoader/issues/5" target="_blank" rel="external">issue #5</a>，看到了解决办法：<code>replace at /Library/RHRevealLoader/libReveal.dylib</code>，亲测可行！</p>
+<a id="more"></a>
 <h1 id="0x01_替换">0x01 替换</h1><p>看了报错信息，就可以知道，Reveal library 的版本太老了。然后我们就要将新的 library 替换手机里旧的 library，新的 library 在：<code>/Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/</code> 下，名字叫：<code>libReveal.dylib</code>。</p>
 <p>替换很简单，我们可以通过 <code>scp</code> 命令来实现，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp /Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/libReveal.dylib root@your-iPhone<span class="string">'s-IP-address:/Library/RHRevealLoader/libReveal.dylib</span></span><br></pre></td></tr></table></figure></p>
 <p>需要输入一下 root 的密码，这样就 OK 啦。</p>
@@ -534,15 +549,6 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>
-                  
-                  Twitter
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
                 <a href="http://weibo.com/fuckingcode" target="_blank" title="Weibo">
                   
                     <i class="fa fa-fw fa-weibo"></i>
@@ -552,29 +558,11 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-twitter"></i>
                   
-                  DouBan
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  ZhiHu
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>
-                  
-                  Instagram
+                  Twitter
                 </a>
               </span>
             
@@ -588,11 +576,38 @@
               </span>
             
               <span class="links-of-author-item">
+                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
                 <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank" title="GooglePlus">
                   
                     <i class="fa fa-fw fa-google-plus"></i>
                   
                   GooglePlus
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  DouBan
                 </a>
               </span>
             
@@ -654,7 +669,7 @@
 <!-- <div class="theme-info"> -->
 <!--   主题 - -->
 <!--   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next"> -->
-<!--     NexT.Mist -->
+<!--     NexT.Muse -->
 <!--   </a> -->
 <!-- </div> -->
 <!--  -->
@@ -663,7 +678,7 @@
 
 <div class="theme-info">
   <span id="busuanzi_container_site_pv">
-    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次, </span>
+    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次，</span>
   <span id="busuanzi_container_site_uv">
     访客数 <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span> 人次</span>
 </div>

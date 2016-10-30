@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next muse use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -84,23 +84,23 @@
 
 
 
-<meta name="description" content="重新学习 Objective-C 基础时学到的 NSPredicate 的使用">
+<meta name="description" content="0x00 前言最近在重新学习 Objective-C，因为觉得基础非常重要，而且对 Objective-C 的使用都基本上是工作中用到的，了解得还不够多，就算当初学习 Objective-C 的时候知道了，但是到现在也忘了不少东西。内容主要来自《Objective-C 基础教程（第2版）》，这本书的代码可以到这里下载。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NSPredicate 的简单使用">
 <meta property="og:url" content="http://yoursite.com/2015/09/06/ios-simple-use-of-nspredicate/index.html">
 <meta property="og:site_name" content="Happy Hacking">
-<meta property="og:description" content="重新学习 Objective-C 基础时学到的 NSPredicate 的使用">
-<meta property="og:updated_time" content="2016-10-27T11:33:47.000Z">
+<meta property="og:description" content="0x00 前言最近在重新学习 Objective-C，因为觉得基础非常重要，而且对 Objective-C 的使用都基本上是工作中用到的，了解得还不够多，就算当初学习 Objective-C 的时候知道了，但是到现在也忘了不少东西。内容主要来自《Objective-C 基础教程（第2版）》，这本书的代码可以到这里下载。">
+<meta property="og:updated_time" content="2016-10-30T02:03:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NSPredicate 的简单使用">
-<meta name="twitter:description" content="重新学习 Objective-C 基础时学到的 NSPredicate 的使用">
+<meta name="twitter:description" content="0x00 前言最近在重新学习 Objective-C，因为觉得基础非常重要，而且对 Objective-C 的使用都基本上是工作中用到的，了解得还不够多，就算当初学习 Objective-C 的时候知道了，但是到现在也忘了不少东西。内容主要来自《Objective-C 基础教程（第2版）》，这本书的代码可以到这里下载。">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -182,6 +182,8 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
             首页
           </a>
         </li>
@@ -189,6 +191,8 @@
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -198,6 +202,8 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
             分类
           </a>
         </li>
@@ -205,6 +211,8 @@
         
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -214,6 +222,8 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
             关于
           </a>
         </li>
@@ -221,6 +231,8 @@
         
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
             公益404
           </a>
@@ -232,6 +244,8 @@
           
             <a href="javascript:;" class="st-search-show-outputs">
           
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -367,6 +381,7 @@
 
       
         <h1 id="0x00_前言">0x00 前言</h1><p>最近在重新学习 Objective-C，因为觉得基础非常重要，而且对 Objective-C 的使用都基本上是工作中用到的，了解得还不够多，就算当初学习 Objective-C 的时候知道了，但是到现在也忘了不少东西。内容主要来自<a href="http://www.amazon.cn/%E5%9B%BE%E7%81%B5%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%9B%E4%B9%A6%E2%80%A2%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97-Objective-C%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B-%E5%85%8B%E7%BA%B3%E6%96%AF%E7%89%B9/dp/B00COG40Y0/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1441502082&amp;sr=1-1&amp;keywords=Objective-C+%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B" target="_blank" rel="external">《Objective-C 基础教程（第2版）》</a>，这本书的代码可以到<a href="http://www.apress.com/9781430241881" target="_blank" rel="external">这里</a>下载。</p>
+<a id="more"></a>
 <h1 id="0x01_NSPredicate">0x01 NSPredicate</h1><p>其实当初第一次接触 NSPredicate 的时候，觉得不是很懂，也觉得有点难，也没去多了解一下，直到最近重新学基础时才发觉，其实 NSPredicate 挺好用的，也很好理解，以前用的最多的应该是正则吧，各种语言里面都是可以用的，就是需要记住的符号什么的好多，如果长时间不用的话，就会忘记，虽然这很正常。</p>
 <p>基本上每个 App 都会涉及到数据的筛选过滤，也就是搜索，很少见到哪个 App 没有搜索功能。Cocoa 用 NSPredicate 描述查询的方式，原理类似于数据库查询，其实感觉语法上也有点相似呢。</p>
 <h1 id="0x02_创建谓词">0x02 创建谓词</h1><p>我们这里还是使用书上的例子，不过不用担心，就算没有看过书上的例子代码也是 OK 的，不难理解。<br>下面是一个快速创建一辆汽车的 C 函数：</p>
@@ -656,15 +671,6 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>
-                  
-                  Twitter
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
                 <a href="http://weibo.com/fuckingcode" target="_blank" title="Weibo">
                   
                     <i class="fa fa-fw fa-weibo"></i>
@@ -674,29 +680,11 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-twitter"></i>
                   
-                  DouBan
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  ZhiHu
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>
-                  
-                  Instagram
+                  Twitter
                 </a>
               </span>
             
@@ -710,11 +698,38 @@
               </span>
             
               <span class="links-of-author-item">
+                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
                 <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank" title="GooglePlus">
                   
                     <i class="fa fa-fw fa-google-plus"></i>
                   
                   GooglePlus
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  DouBan
                 </a>
               </span>
             
@@ -776,7 +791,7 @@
 <!-- <div class="theme-info"> -->
 <!--   主题 - -->
 <!--   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next"> -->
-<!--     NexT.Mist -->
+<!--     NexT.Muse -->
 <!--   </a> -->
 <!-- </div> -->
 <!--  -->
@@ -785,7 +800,7 @@
 
 <div class="theme-info">
   <span id="busuanzi_container_site_pv">
-    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次, </span>
+    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次，</span>
   <span id="busuanzi_container_site_uv">
     访客数 <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span> 人次</span>
 </div>

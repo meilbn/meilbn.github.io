@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next muse use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_10.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_11.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iOS-Xcode-Debug-Skills-0x00_12.png">
-<meta property="og:updated_time" content="2016-03-04T14:31:27.000Z">
+<meta property="og:updated_time" content="2016-10-30T02:51:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xcode Debug 技巧之一">
 <meta name="twitter:description" content="定位到 App 崩溃的那一行代码">
@@ -113,7 +113,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -195,6 +195,8 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
             首页
           </a>
         </li>
@@ -202,6 +204,8 @@
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -211,6 +215,8 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
             分类
           </a>
         </li>
@@ -218,6 +224,8 @@
         
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -227,6 +235,8 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
             关于
           </a>
         </li>
@@ -234,6 +244,8 @@
         
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
             公益404
           </a>
@@ -245,6 +257,8 @@
           
             <a href="javascript:;" class="st-search-show-outputs">
           
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -379,13 +393,11 @@
       
 
       
-        <h1 id="0x00_前言">0x00 前言</h1><hr>
-<p>这个技巧是在新浪微博上看到的，源地址为<a href="http://weibo.com/1745945040/CpBv73dSR?type=comment#_rnd1436172574844" target="_blank" rel="external">戴铭的这条微博</a>，不过看评论有说不懂的，其实第一次看这个微博，看了这些图，我也没怎么在意，完全是因为 App 崩溃后 Xcode 经常是定位到 App 的起始方法里面，让人有点抓狂，如果项目是用 OC 写的，那么可能是如下这个情况：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_00.png" alt=""></p>
+        <h1 id="0x00_前言">0x00 前言</h1><p>这个技巧是在新浪微博上看到的，源地址为<a href="http://weibo.com/1745945040/CpBv73dSR?type=comment#_rnd1436172574844" target="_blank" rel="external">戴铭的这条微博</a>，不过看评论有说不懂的，其实第一次看这个微博，看了这些图，我也没怎么在意，完全是因为 App 崩溃后 Xcode 经常是定位到 App 的起始方法里面，让人有点抓狂，如果项目是用 OC 写的，那么可能是如下这个情况：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_00.png" alt=""></p>
 <p>Swift 就是微博配图里面的那样：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_01.jpg" alt=""></p>
 <p>看完这个微博之后，我并没有转发，但是呢，就在当天下午，项目经理让我改一个 Bug，然后我重现这个 Bug 之后，发现定位到的代码就是上面 OC 版本的那样子，以前也经常遇到，然后我就跟平时一样，查看 Console 中的 Log，打算从 Log 上下手，当我看到 Log 我就又懵逼了，还是跟以前一样，这个 Log 并没有什么卵用：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_02.png" alt=""></p>
 <p>就告诉了我原因是数组越界，然而项目大了，界面复杂一点了，我怎么知道是哪个数组越界了，这样找起来不是非常浪费时间吗？然后我就想起来，之前看到的那条微博，然后我马上去微博上找了，因为我还记得是大神叶孤城<em>_</em>转发的，然后我就找到了，然后看了下，跟着配图操作了一下，哇擦类，竟然成功了！然后我就打算写一篇文章，记录在自己的博客上面，所以就有了这篇文章。好了，废话说了这么多，开始一步步操作吧。</p>
-<h1 id="0x01_操作步骤">0x01 操作步骤</h1><hr>
-<p>首先，当出现这中崩溃，Xcode 是直接帮我们打开了 Debug navigator 界面，就是上面 OC 版本的那样子，然后我们点击标识为 0 的进程：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_03.png" alt=""></p>
+<h1 id="0x01_操作步骤">0x01 操作步骤</h1><p>首先，当出现这中崩溃，Xcode 是直接帮我们打开了 Debug navigator 界面，就是上面 OC 版本的那样子，然后我们点击标识为 0 的进程：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_03.png" alt=""></p>
 <p>然后在 Console 中输入如下命令，然后回车：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_04.png" alt=""></p>
 <p>接着，我们切换到 Breakpoint navigator：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_05.png" alt=""></p>
 <p>点击最下面的“+”号，选择 Add Exception Breakpoint：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_06.png" alt=""></p>
@@ -395,8 +407,7 @@
 <p>最后，重新运行，然后重复之前的操作，将 Bug 重现一下，就会定位到导致 App 崩溃的那一行代码了：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_10.png" alt=""></p>
 <p>下面是 Console 的 Log：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_11.png" alt=""></p>
 <p>就是这么简单啦！</p>
-<hr>
-<p>2015.12.04 更新</p>
+<h1 id="0x02_更新">0x02 更新</h1><p>2015.12.04 更新</p>
 <p>按照上面一步步设置之后，在当前项目是可以的，不过在新项目当中就不能用了，还要再手动设置一次，很麻烦，再做如下这步，就可以在全部的项目当中使用了，不用每一个新项目都设置一遍：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iOS-Xcode-Debug-Skills-0x00_12.png" alt=""></p>
 
       
@@ -555,15 +566,6 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>
-                  
-                  Twitter
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
                 <a href="http://weibo.com/fuckingcode" target="_blank" title="Weibo">
                   
                     <i class="fa fa-fw fa-weibo"></i>
@@ -573,29 +575,11 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-twitter"></i>
                   
-                  DouBan
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  ZhiHu
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>
-                  
-                  Instagram
+                  Twitter
                 </a>
               </span>
             
@@ -609,11 +593,38 @@
               </span>
             
               <span class="links-of-author-item">
+                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
                 <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank" title="GooglePlus">
                   
                     <i class="fa fa-fw fa-google-plus"></i>
                   
                   GooglePlus
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  DouBan
                 </a>
               </span>
             
@@ -641,7 +652,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_操作步骤"><span class="nav-number">2.</span> <span class="nav-text">0x01 操作步骤</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_操作步骤"><span class="nav-number">2.</span> <span class="nav-text">0x01 操作步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_更新"><span class="nav-number">3.</span> <span class="nav-text">0x02 更新</span></a></li></ol></div>
             
           </div>
         </section>
@@ -675,7 +686,7 @@
 <!-- <div class="theme-info"> -->
 <!--   主题 - -->
 <!--   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next"> -->
-<!--     NexT.Mist -->
+<!--     NexT.Muse -->
 <!--   </a> -->
 <!-- </div> -->
 <!--  -->
@@ -684,7 +695,7 @@
 
 <div class="theme-info">
   <span id="busuanzi_container_site_pv">
-    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次, </span>
+    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次，</span>
   <span id="busuanzi_container_site_uv">
     访客数 <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span> 人次</span>
 </div>

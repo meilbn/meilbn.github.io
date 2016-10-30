@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next muse use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -84,29 +84,29 @@
 
 
 
-<meta name="description" content="记录一下在 iOS 逆向工程学习过程中查找目标 App 在 iPhone 里的目录 (安装目录和沙盒目录) 的步骤">
+<meta name="description" content="0x00 前言本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 iOS应用逆向工程(第2版)，有兴趣的同学可以购买学习。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="查找目标 App 在 iPhone 里的目录">
 <meta property="og:url" content="http://yoursite.com/2015/08/19/iosre-find-app-installation-and-sandbox-directory/index.html">
 <meta property="og:site_name" content="Happy Hacking">
-<meta property="og:description" content="记录一下在 iOS 逆向工程学习过程中查找目标 App 在 iPhone 里的目录 (安装目录和沙盒目录) 的步骤">
+<meta property="og:description" content="0x00 前言本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 iOS应用逆向工程(第2版)，有兴趣的同学可以购买学习。">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-00.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-01.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-02.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-03.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-04.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-05.png">
-<meta property="og:updated_time" content="2016-10-27T11:34:42.000Z">
+<meta property="og:updated_time" content="2016-10-30T02:04:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="查找目标 App 在 iPhone 里的目录">
-<meta name="twitter:description" content="记录一下在 iOS 逆向工程学习过程中查找目标 App 在 iPhone 里的目录 (安装目录和沙盒目录) 的步骤">
+<meta name="twitter:description" content="0x00 前言本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 iOS应用逆向工程(第2版)，有兴趣的同学可以购买学习。">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -188,6 +188,8 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
             首页
           </a>
         </li>
@@ -195,6 +197,8 @@
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -204,6 +208,8 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
             分类
           </a>
         </li>
@@ -211,6 +217,8 @@
         
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -220,6 +228,8 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
             关于
           </a>
         </li>
@@ -227,6 +237,8 @@
         
         <li class="menu-item menu-item-commonweal">
           <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
             公益404
           </a>
@@ -238,6 +250,8 @@
           
             <a href="javascript:;" class="st-search-show-outputs">
           
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -373,6 +387,7 @@
 
       
         <h1 id="0x00_前言">0x00 前言</h1><p>本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 <a href="http://www.amazon.cn/iOS%E5%BA%94%E7%94%A8%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B-%E6%B2%99%E6%A2%93%E7%A4%BE/dp/B00VFDVY7E/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1439878290&amp;sr=1-1&amp;keywords=ios+%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B" target="_blank" rel="external">iOS应用逆向工程(第2版)</a>，有兴趣的同学可以购买学习。</p>
+<a id="more"></a>
 <h1 id="0x01_准备工作">0x01 准备工作</h1><p>准备工作就不扯那么多了，要学习 iOS 逆向工程，最基本的是需要有一台已经越狱的 iPhone，而且已经安装了 OpenSSH 和 Cycript，最好是还有一台 Mac。</p>
 <h1 id="0x02_定位目标_App_的安装目录">0x02 定位目标 App 的安装目录</h1><p>首先，我们先找到目标 App 的安装目标，AppStore 上下载的 App 一般都是安装在 <code>/var/mobile/Containers/Bundle/Application/</code> 下的，书中提到的这个小技巧，非常方便，简单粗暴，先关掉所有从 AppStore 上安装的 App，就只运行目标 App，然后用 Mac 通过 SSH 连接 iPhone，使用命令打印出所有的进程：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-00.png" alt=""></p>
 <p>可以看到有非常多的进程，找起来好麻烦，这里有一个更方便查看的命令，那就是使用 <code>grep</code>，因为我们知道了 App 所在目录的路径前缀，所以直接用 <code>grep</code> 来 “筛选” 出来，命令如下：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-01.png" alt=""></p>
@@ -552,15 +567,6 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>
-                  
-                  Twitter
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
                 <a href="http://weibo.com/fuckingcode" target="_blank" title="Weibo">
                   
                     <i class="fa fa-fw fa-weibo"></i>
@@ -570,29 +576,11 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-twitter"></i>
                   
-                  DouBan
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  ZhiHu
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>
-                  
-                  Instagram
+                  Twitter
                 </a>
               </span>
             
@@ -606,11 +594,38 @@
               </span>
             
               <span class="links-of-author-item">
+                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
                 <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank" title="GooglePlus">
                   
                     <i class="fa fa-fw fa-google-plus"></i>
                   
                   GooglePlus
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  DouBan
                 </a>
               </span>
             
@@ -672,7 +687,7 @@
 <!-- <div class="theme-info"> -->
 <!--   主题 - -->
 <!--   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next"> -->
-<!--     NexT.Mist -->
+<!--     NexT.Muse -->
 <!--   </a> -->
 <!-- </div> -->
 <!--  -->
@@ -681,7 +696,7 @@
 
 <div class="theme-info">
   <span id="busuanzi_container_site_pv">
-    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次, </span>
+    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次，</span>
   <span id="busuanzi_container_site_uv">
     访客数 <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span> 人次</span>
 </div>
