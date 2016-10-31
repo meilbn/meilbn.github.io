@@ -1,0 +1,1170 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Connection,IPC,Objective-C,Pasteboard,Service,XPC," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 6 Inter-Process Communication 时做的笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Inter-Process Communication">
+<meta property="og:url" content="http://meilbn.com/2016/10/31/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter6-Inter-Process-Communication/index.html">
+<meta property="og:site_name" content="Happy Hacking">
+<meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 6 Inter-Process Communication 时做的笔记。">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_6_Inter-Process_Communication.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/illustration/blog/jinxing_perfect.jpg">
+<meta property="og:updated_time" content="2016-10-31T12:50:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Inter-Process Communication">
+<meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 6 Inter-Process Communication 时做的笔记。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://meilbn.com/2016/10/31/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter6-Inter-Process-Communication/"/>
+
+
+  <title> Inter-Process Communication | Happy Hacking </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-69209675-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Happy Hacking</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我的眼里只有代码</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Inter-Process Communication
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-31T20:42:40+08:00" content="2016-10-31">
+              2016-10-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/31/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter6-Inter-Process-Communication/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/31/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter6-Inter-Process-Communication/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/31/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter6-Inter-Process-Communication/" class="leancloud_visitors" data-flag-title="Inter-Process Communication">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_6_Inter-Process_Communication.png" alt=""></p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="external">CFHipsterRef</a> Chapter 6 Inter-Process Communication 时做的笔记。</p>
+<a id="more"></a>
+<h1 id="0x01_进程间通信（Inter-Process_Communication）">0x01 进程间通信（Inter-Process Communication）</h1><p>指导叙事已经通过历史的幸运机遇将技术融合在一起，创造出比以往更好的东西。而且，虽然 Apple 的技术栈在很多方面都是如此，但是进程间通信是一个突出的反例。</p>
+<p>不充分利用每个时刻可用的解决方案，而是有点堆积起来。结果，一小部分重叠，互相不兼容的 IPC 技术散步在各种抽象层上。</p>
+<ul>
+<li>Mach Ports</li>
+<li>Distributed Notifications</li>
+<li>Distribued Objects</li>
+<li>AppleEvents &amp; AppleScript</li>
+<li>Pasteboard</li>
+<li>XPC</li>
+</ul>
+<p>从低级内核抽象到高级内核抽象，面向对象 APIs，他们都有特定的性能和安全特性。但从根本上来说，它们都是从上下文边界之外发送和接收数据的机制。</p>
+<h1 id="0x02_Mach_Ports">0x02 Mach Ports</h1><p>所有的进程间通信最终都是依赖 Mach kernel APIs 提供的功能。</p>
+<p>Mach ports 轻量，功能强大，但是文档很少（有多么少？最新的权威资源是一个 1990 年左右的 Mach 3.0 PostScript 文件，放在卡内基梅隆大学 FTP 服务器上），直接使用不方便（有多不方便？哦，请看下面的代码）。</p>
+<p>通过给定的 Mach port（端口）发送一个消息实质上是一个 <code>mach_msg_send</code> 调用，但是它需要一些配置才能构建要发送的消息：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">natural_t data;</span><br><span class="line">mach_port_t port;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> &#123;</span><br><span class="line">    mach_msg_header_t header;</span><br><span class="line">    mach_msg_body_t body;</span><br><span class="line">    mach_msg_type_descriptor_t type;</span><br><span class="line">&#125; message;</span><br><span class="line"></span><br><span class="line">message<span class="variable">.header</span> = (mach_msg_header_t) &#123;</span><br><span class="line">    <span class="variable">.msgh_remote_port</span> = port,</span><br><span class="line">    <span class="variable">.msgh_local_port</span> = MACH_PORT_NULL,</span><br><span class="line">    <span class="variable">.msgh_bits</span> = MACH_MSGH_BITS(MACH_MSG_TYPE_COPY_SEND, <span class="number">0</span>),</span><br><span class="line">    <span class="variable">.msgh_size</span> = <span class="keyword">sizeof</span>(message)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">message<span class="variable">.body</span> = (mach_msg_body_t) &#123;</span><br><span class="line">    <span class="variable">.msgh_descriptor_count</span> = <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">message<span class="variable">.type</span> = (mach_msg_type_descriptor_t) &#123;</span><br><span class="line">    <span class="variable">.pad1</span> = data,</span><br><span class="line">    <span class="variable">.pad2</span> = <span class="keyword">sizeof</span>(data)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">mach_msg_return_t error = mach_msg_send(&amp;message<span class="variable">.header</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (error = MACH_MSG_SUCCESS) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在接收端的事情就更容易一点了，因为消息只需要被声明，而不需要初始化：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mach_port_t port;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> &#123;</span><br><span class="line">    mach_msg_header_t header;</span><br><span class="line">    mach_msg_body_t body;</span><br><span class="line">    mach_msg_type_descriptor_t type;</span><br><span class="line">    mach_msg_trailer_t trailer;</span><br><span class="line">&#125; message;</span><br><span class="line"></span><br><span class="line">mach_msg_return_t error = mach_msg_receive(&amp;message<span class="variable">.header</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (error == MACH_MSG_SUCCESS) &#123;</span><br><span class="line">    natural_t data = messahe<span class="variable">.type</span><span class="variable">.pad1</span>;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>幸运的是，Core Foundation 和 Foundation 提供了更高级的 Mach ports APIs。<code>CDMachPort / NSMachPort</code> 是在可以用作 runloop 源的内核 APIs 之上的封装器（wrappers），而 <code>CFMessagePort / NSMessagePort</code> 便于两个端口（ports）之间的同步通信。</p>
+<p><code>CFMessagePort</code> 实际上对于简单的一对一通信是相当不错的。几行代码，一个本地命名端口就可以作为 runloop 源附加，以便于在每次接收到消息的时候都会有一个回调（callback）运行。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="built_in">CFDataRef</span> Callback(<span class="built_in">CFMessagePortRef</span> port,</span><br><span class="line">                          SInt32 messageID,</span><br><span class="line">                          <span class="built_in">CFDataRef</span> data,</span><br><span class="line">                          <span class="keyword">void</span> *info) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFMessagePortRef</span> localPort = <span class="built_in">CFMessagePortCreateLocal</span>(<span class="literal">nil</span>, <span class="built_in">CFSTR</span>(<span class="string">"com.example.app.port.server"</span>), Callback, <span class="literal">nil</span>, <span class="literal">nil</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFRunLoopSourceRef</span> runLoopSource = <span class="built_in">CFMessagePortCreateRunLoopSource</span>(<span class="literal">nil</span>, localPort, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFRunLoopAddSource</span>(<span class="built_in">CFRunLoopGetCurrent</span>(), runLoopSource, k<span class="built_in">CFRunLoopCommonModes</span>);</span><br></pre></td></tr></table></figure>
+<p>发送数据也很简单。只需指定远程端口，消息 payload，发送和接收的超时时间。<code>CFMessagePortSendRequest</code> 负责其余部分：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">CFDataRef</span> data;</span><br><span class="line">SInt32 messageID = <span class="number">0x1111</span>; <span class="comment">// Arbitrary</span></span><br><span class="line"><span class="built_in">CFTimeInterval</span> timeout = <span class="number">10.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFMessagePortRef</span> remotePort = <span class="built_in">CFMessagePortCreateRemote</span>(<span class="literal">nil</span>, <span class="built_in">CFSTR</span>(<span class="string">"com.example.app.port.client"</span>));</span><br><span class="line"></span><br><span class="line">SInt32 status = <span class="built_in">CFMessagePortSendRequest</span>(remotePort, messageID, data, timeout, timeout, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (status == k<span class="built_in">CFMessagePortSuccess</span>) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="0x03_Distributed_Notifications">0x03 Distributed Notifications</h1><p>在 Cocoa 中有很多种对象相互通信的方式：</p>
+<p>当然，直接发送消息。还有 target-action，delegate（委托）, callback（回调），它们都是解耦的，一对一的设计模式。KVO 允许多个对象订阅（subscribe）事件， 但是它并不是解耦的，而是强联系（strongly couples）。另一方面，通知（Notifications）允许消息被全局广播（broadcast），并且可以被已知的监听对象拦截。</p>
+<p>每个应用管理其自己的用于基础应用程序发布与订阅（pub-sub）的 <code>NSNotificationCenter</code> 实例。但是也有一些鲜为人知的 Core Foundation API，<code>CFNotificationCenterGetDistributedCenter</code> 允许通知在系统范围内进行通信。</p>
+<p>要监听通知，可以通过指定要监听的通知名称来为分布式通知中心（distributed nitification canter）添加一个观察者，还有一个每次收到通知的时候要执行的函数指针：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> Callback(<span class="built_in">CFNotificationCenterRef</span> center,</span><br><span class="line">                     <span class="keyword">void</span> *observer,</span><br><span class="line">                     <span class="built_in">CFStringRef</span> name,</span><br><span class="line">                     <span class="keyword">const</span> <span class="keyword">void</span> *object,</span><br><span class="line">                     <span class="built_in">CFDictionaryRef</span> userInfo) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFNotificationCenterRef</span> distributedCenter = <span class="built_in">CFNotificationCenterGetDistributedCenter</span>();</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFNotificationSuspensionBehavior</span> = <span class="built_in">CFNitificationSuspensionBehaviorDeliverImmediately</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFNotificationCenterAddObserver</span>(distributedCenter, <span class="literal">NULL</span>, Callback, <span class="built_in">CFSTR</span>(<span class="string">"notification.identifier"</span>), <span class="literal">NULL</span>, behavior);</span><br></pre></td></tr></table></figure>
+<p>发送一个分布式的通知甚至更简单；只需发布（post）标识符（identifier），对象（object）和用户信息（user info）：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> *object;</span><br><span class="line"><span class="built_in">CFDictionaryRef</span> userInfo;</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFNotificationCenterRef</span> distributedCenter = <span class="built_in">CFNotificationCenterGetDistributedCenter</span>();</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFNotificationCenterPostNotification</span>(distributedCenter, <span class="built_in">CFSTR</span>(<span class="string">"notification.identifier"</span>), object, userInfo, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<p>在链接两个应用的所有方法中，分布式通知（distributed notifications）是目前为止最简单的。使用它们发送较大的 payloads 不是一个好的主意，但是对于简单的任务，比如同步偏好设置或者触发一个数据获取，分布式通知是完美的。</p>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/illustration/blog/jinxing_perfect.jpg" alt=""></p>
+<h1 id="0x04_Distributed_Objects">0x04 Distributed Objects</h1><p>分布式对象（Distributed Objects，DO）是 Cocoa 的一个远程消息传递功能，它与 NeXT 的鼎盛时期是在上世纪 90 年代中期。虽然它没有被广泛使用，但是完全无摩擦的 IPC 的梦想（the dream of totally frictionless IPC）在我们现代技术栈中仍然没有实现。</p>
+<p>声明一个 DO 对象只需设置一个 <code>NSConnection</code> 并且给它注册一个特定的名字：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">Protocol</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">id</span> &lt;Protocol&gt; vendedObject;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSConnection</span> *connection = [[<span class="built_in">NSConnection</span> alloc] init];</span><br><span class="line">[connection setRootObject:vendedObject];</span><br><span class="line">[connection registerName:<span class="string">@"server"</span>];</span><br></pre></td></tr></table></figure>
+<p>然后另一个应用将创建一个为该同一注册名称注册的 connection，并立即获取一个原子代理（atomic proxy），它的功能就像是原始对象：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">id</span> proxy = [<span class="built_in">NSConnection</span> rootProxyForConnectionWithRegisteredName:<span class="string">@"server"</span> host:<span class="literal">nil</span>];</span><br><span class="line">[proxy setProtocolForProxy:<span class="class"><span class="keyword">@protocol</span>(<span class="title">Protocol</span>)];</span></span><br></pre></td></tr></table></figure>
+<p>每当一个分布式对象代理被消息传递时，将通过 <code>NSConnection</code> 创建一个远程程序调用（Remote Procedure Call, RPC），以针对被声明的对象来评估消息并将结果返回到 proxy（在幕后（Behind the scenes），一个有操作系统管理的共享 <code>NSPortNameServer</code> 实例负责连接（hooking up）已命名的连接（connections））。</p>
+<p>分布式对象是简单的，透明和健壮的。</p>
+<p>实际上，分布式对象不能像本地对象一样使用，要是因为发送到 proxy 的任何消息可能导致抛出异常就好了。不像其他的语言，Objective-C 不使用异常来控制流（control flow）。因此，在 <code>@try/@catch</code> 中包含的所有内容对于 Cocoa 的约定来说是不合适的。</p>
+<p>DO 也因为其他一些原因很笨拙。当尝试在一个 connection 上编组值（marshal values）时，对象和原语（primitives）之间的分隔尤其明显。此外，connections 是完全未加密的，并且对于底层通信信道（underlying communication channels）的缺乏可扩展性使其成为一个使用非常严重的处理断路器（deal-breaker）。</p>
+<p>所有这些实际上是通过 Distributed Objects 指定代理行为（proxying behavior）的属性和方法参数注释使用的痕迹：</p>
+<ul>
+<li><code>in</code>：参数只作输入用，不会引用（Argument is used as input, but not referenced later）</li>
+<li><code>out</code>：参数通过引用用于返回一个值（Argument is used to return a value by reference）</li>
+<li><code>inout</code>：参数通过引用用于输入和返回（Argument is used as input and returned by reference）</li>
+<li><code>const</code>：参数是常量（Argument is constant）</li>
+<li><code>oneway</code>：返回无阻塞结果（Return without blocking for result）</li>
+<li><code>bycopy</code>：返回一个对象的副本（Return a copy of the object）</li>
+<li><code>byref</code>：返回一个对象的 proxy（Return a proxy of the object）</li>
+</ul>
+<h1 id="0x05_AppleEvents_&amp;_AppleScript">0x05 AppleEvents &amp; AppleScript</h1><p>AppleEvents 是经典的 Macintosh 操作系统中最久的遗产。在系统 7 中引入，AppleEvents 允许使用 AppleScript 本地控制 apps，或者使用一个功能叫 Program Linking 远程控制。到目前为止，使用 Cocoa 脚本桥（Cocoa Scripting Bridge）的 AppleScript 仍然是以程序方式与 OS X 应用程序交互的最直接的方式。</p>
+<p>也就是说，这很容易成为最奇怪的技术之一。</p>
+<p>AppleScript 使用自然语言语法，旨在使非程序员更容易使用。虽然它以人类可理解的方式成功传达了意图，但是它编写起来是一个噩梦。</p>
+<p>为了更好地理解，下面介绍下如何让 Safari 在最前面的窗口的活动标签中打开一个 URL：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">tell</span> <span class="type">application</span> <span class="string">"Safari"</span></span><br><span class="line">  <span class="keyword">set</span> <span class="keyword">the</span> URL <span class="keyword">of</span> <span class="keyword">the</span> <span class="keyword">front</span> document <span class="keyword">to</span> <span class="string">"http://nshipster.com"</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">tell</span></span><br></pre></td></tr></table></figure>
+<p>在许多方面，AppleScript 的自然语言语法比一个资产更负责任（more of a liability than an asset）。英语，就像任何其他口头语言，在正常构造中具有大量的冗余和歧义。虽然这对于人类来说是完全可以接受的，但是所有这些是计算机难以解决的。</p>
+<p>即使对于一个经验丰富的 Objective-C 开发者，没有经常参考文档或者示例代码几乎是不可能编写 AppleScript 的。</p>
+<p>幸运的是，Scripting Bridge 为 Cocoa 应用程序提供了一个适当编程接口。</p>
+<h1 id="0x06_Cocoa_Scripting_Bridge">0x06 Cocoa Scripting Bridge</h1><p>为了通过 Scripting Bridge 与一个应用程序交互，必须先生成编程接口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sdef /Applications/Safari.app | sdp -fh --basename Safari</span><br></pre></td></tr></table></figure>
+<p><code>sdef</code> 为应用程序生成脚本定义文件。这些文件然后可以通过管道传输到 <code>sdp</code> 以转换为另一种格式 —— 在这种情况下，一个 C 头文件（C header）。然后可以添加生成的 <code>.h</code> 文件并 <code>#import</code> 到一个项目里，以获得该应用程序的第一等（first-class）对象接口。</p>
+<p>下面是和以前一样的例子，使用 Cocoa Scripting Bridge 表示：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">"Safari.h"</span></span></span><br><span class="line"></span><br><span class="line">SafariApplication *safari = [SBApplication applicationWithBundleIdentifier:<span class="string">@"com.appli.Safari"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (SafariWindow *window <span class="keyword">in</span> safari<span class="variable">.windows</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (window<span class="variable">.visible</span>) &#123;</span><br><span class="line">        window<span class="variable">.currentTab</span><span class="variable">.URL</span> = [<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://nshipster.com"</span>];</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>相比 AppleScript，这个更冗长一点，但是这个更容易集成到现有的代码库里。也更清楚地了解同样的代码如何适应轻微的不同的行为（虽然这可能只是更熟悉 Objective-C 的效果）。</p>
+<p>唉，AppleScript 的关注似乎在下降，因为发布的 OS X 和 iWork 应用程序极大地削弱了它们的脚本化（scriptability）。在这一点上，在你自己的应用程序中添加支持可能不太值得。</p>
+<h1 id="0x07_Pasteboard">0x07 Pasteboard</h1><p>粘贴板（Pasteboard）是 OS X 和 iOS 上最明显的进程间通信机制。每当用户在应用程序之间复制或粘贴一段文本，一张图像，或者一个文档时，通过 <code>com.apple.pboard</code> 服务来调解从一个进程到另一个进程的数据交换。</p>
+<p>在 OS X 上有 <code>NSPasteBoard</code>，在 iOS 上有 <code>UIPasteboard</code>。他们几乎是一样的，虽然像大多数同行（counterparts），iOS 提供了一个更干净，更现代的 API，比 OS X 上功能略少。</p>
+<p>以代码的方式写入 Pasteboard 几乎和在 GUI 应用程序中调用<code>编辑（Edit）&gt; 复制（Copy）</code> 一样简单：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSImage</span> *image;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSPasteboard</span> *pasteboard = [<span class="built_in">NSPasteboard</span> generalPasteboard];</span><br><span class="line">[pasteboard clearContents];</span><br><span class="line">[pasteboard writeObjects:@[image]];</span><br></pre></td></tr></table></figure>
+<p>相互的粘贴操作更复杂一点，需要迭代 Pasteboard 的内容：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSPasteboard</span> *pasteboard = [<span class="built_in">NSPasteboard</span> generalPasteboard];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ([pasteboard canReadObjectForClasses:@[[<span class="built_in">NSImage</span> class]] options:<span class="literal">nil</span>]) &#123;</span><br><span class="line">    <span class="built_in">NSArray</span> *contents = [pasteboard readObjectsForClasses:@[[<span class="built_in">NSImage</span> class]] options:<span class="literal">nil</span>];</span><br><span class="line">    <span class="built_in">NSImage</span> *image = [contents firstObject];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>什么使得 Pasteboard 作为传输数据的机制特别引人注目的是同时提供了复制到粘贴板上的多个表示（representations）的内容的概念。例如，一段选择的文本可以被复制为富文本（rich text， RTF）和纯文本（TXT）两种，允许例如 WYSIWYG（所见即所得，What you see is what you get） 编辑器通过抓取富文本表示来保留样式信息，以及代码编辑器仅使用纯文本表示。</p>
+<p>甚至可以通过遵循 <code>NSPasteboardItemDataProvider</code> 协议在按需的基础上提供这些表示。这允许仅在必要时生成诸如来自富文本的纯文本的派生表示。</p>
+<p>每个表示都被一个唯一类型标识符（Unique Type Identifier, UTI）标识，该概念在下一章中更详细地讨论。</p>
+<h1 id="0x08_XPC">0x08 XPC</h1><p>XPC 是 SDK 中最先进的进程间通信。它的架构目标是避免长时间允许的进程，以适应可用的资源，并尽可能延迟地初始化。将 XPC 结合到应用程序里面的动机不是为了做不可能的事情，而是为进程间通信提供更好的特权分离和故障隔离。</p>
+<p>它是 <code>NSTask</code> 的替代品，并且还有更多。</p>
+<p>2011 年推出的 XPC 为 OS X 上的 App Sandbox，iOS 上的远程视图控制器（Remote View Controllers）和应用扩展提供基础架构。它也被系统框架和第一方应用（first-party）广泛使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ find /Applications -name \*.xpc</span><br></pre></td></tr></table></figure>
+<p>通过调查 XPC 服务，可以更好地理解在自己的应用程序中使用 XPC 的时机。在应用程序中经常出现的主题，像图像和视频转换服务，系统调用，webservice 集成和第三方认证。</p>
+<p>XPC 负责进程间通信和 service 生命周期管理。从注册 service，运行它和与其他 service 通信的一切都由 <code>launchd</code> 处理。一个 XPC service 可以根据需要启动，或者如果它们崩溃则重新启动，又或者如果空闲则终止。因此，service 应该被设计为完全无状态的，以便允许在任何执行点都能突然终止。</p>
+<p>作为 iOS 采用并移植到 OS X 的新安全模式的一部分，XPC 服务在默认的情况下允许在最受限制的环境中：没有文件系统访问，没有网络访问，没有 root 权限提升。任何功能必须由一个授权集列入白名单。</p>
+<p>XPC 可以通过 <code>libxpc</code> C API 或者 <code>NSXPCConnection</code> Objective-C API 访问（虽然应该总是尝试使用可用于完成特定任务的最高级的 API，本书在标题中有 “Low-Level” 这个词，因此本节中的示例将使用 <code>libxpc</code>）。</p>
+<p>XPC 服务驻留在一个应用程序 bundle 中，或者通过 launchd 在后台运行。</p>
+<p>服务调用 <code>xpc_main</code> 和一个事件处理程序来接收新 XPC 连接：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> connection_handler(xpc_connection_t peer) &#123;</span><br><span class="line">    xpc_connection_set_event_handler(peer, ^(xpc_object_t event) &#123;</span><br><span class="line">        peer_event_handler(peer, event);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    xpc_connection_resume(peer);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> *argv[]) &#123;</span><br><span class="line">    xpc_main(connection_handler);</span><br><span class="line">    exit(EXIT_FAILURE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每个 XPC connection 是一对一的，这意味着这个 service 在不同的连接上运行，每次调用 <code>xpc_connection_create</code> 都会创建一个新的对等体（这类似于 BSD sockets API 中的 <code>accept</code>，服务器监听单个文件描述符（file descriptor），为每个入站连接创建额外的描述符）。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">xpc_connection_t c = xpc_connection_create(<span class="string">"com.example.service"</span>, <span class="literal">NULL</span>);</span><br><span class="line">xpc_connection_set_event_handler(c, ^(xpc_object_t event) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">xpc_connection_resume(c);</span><br></pre></td></tr></table></figure>
+<p>当通过一个 XPC connection 发送消息时，它会自动被派发（dispatched）到一个由 runtime 管理的队列上。一旦 connection 在远程端被打开，消息就出队（dequeued）并发送。</p>
+<p>每个消息都是一个字典（dictionary），具有字符串键（keys）和强类型值（strongly-typed values）：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xpc_dictionary_t message = xpc_dictionary_create(<span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>);</span><br><span class="line">xpc_dictionary_set_uint64(message, <span class="string">"foo"</span>, <span class="number">1</span>);</span><br><span class="line">xpc_connection_send_message(c, message);</span><br><span class="line">xpc_release(message);</span><br></pre></td></tr></table></figure>
+<p>XPC 对象对一下基本类型进行操作：</p>
+<ul>
+<li>Data</li>
+<li>Boolean</li>
+<li>Double</li>
+<li>String</li>
+<li>Signed Integer</li>
+<li>Unsigned Integer</li>
+<li>Date</li>
+<li>UUID</li>
+<li>Array</li>
+<li>Dictionary</li>
+<li>Null</li>
+</ul>
+<p>XPC 提供了一个简便的方法从 <code>dispatch_data_t</code> 数据类型转换，这简化了从 GCD 到 XPC 的工作流：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> *buffer;</span><br><span class="line">size_t length;</span><br><span class="line">dispatch_data_t ddata = dispatch_data_create(buffer, length, DISPATCH_TARGET_QUEUE_DEFAULT, DISPATCH_DATA_DESTRUCTOR_MUNMAP);</span><br><span class="line"></span><br><span class="line">xpc_object_t xdata = xpc_data_create_with_dispatch_data(ddata);</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dispatch_queue_t</span> queue;</span><br><span class="line">xpc_connection_send_message_with_reply(c, message, queue, ^(xpc_object_t reply) &#123;</span><br><span class="line">    <span class="keyword">if</span> (xpc_get_type(event) == XPC_TYPE_DICTIONARY) &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="0x09_Registering_Services">0x09 Registering Services</h1><p>XPC 还可以注册为 launchd 来用，配置为匹配 IOKit 事件自动启动，BSD 通知或者 CFDistributedNotifications。这些标准在 service 的 <code>launchd.plist</code> 文件中指定：</p>
+<p>launchd.plist</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>LaunchEvents<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>com.apple.iokit.matching<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">key</span>&gt;</span>com.example.device-attach<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">key</span>&gt;</span>idProduct<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">integer</span>&gt;</span>2794<span class="tag">&lt;/<span class="title">integer</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">key</span>&gt;</span>idVendor<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">integer</span>&gt;</span>725<span class="tag">&lt;/<span class="title">integer</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">key</span>&gt;</span>IOProviderClass<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">string</span>&gt;</span>IOUSBDevice<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">key</span>&gt;</span>IOMatchLaunchStream<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">true</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">key</span>&gt;</span>ProcessType<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">string</span>&gt;</span>Adaptive<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>launchd</code> 属性列表最近添加的是 <code>ProcessType</code> key，高级描述了启动代理（launch agent）的预期目的。基于规定的竞争行为，操作系统将相应地自动地调节 CPU 和 I/O 带宽。</p>
+<p>Process Types and Contention Behavior</p>
+<table>
+<thead>
+<tr>
+<th>Standart</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Adaptive</td>
+<td>Contend with apps when doing work on their behalf</td>
+</tr>
+<tr>
+<td>Background</td>
+<td>Never contend with apps</td>
+</tr>
+<tr>
+<td>Interactive</td>
+<td>Always contend with apps</td>
+</tr>
+</tbody>
+</table>
+<p>要注册一个 service 去大约每 5 分钟运行一次（允许一个系统资源的宽限期在以更积极的优先级调度之前变得更可用），一组标准被传递到 <code>xpc_activity_register</code>：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">xpc_object_t criteria = xpc_dictionary_create(<span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>);</span><br><span class="line">xpc_dictionary_set_int64(criteria, XPC_ACTIVITY_INTERVAL, <span class="number">5</span> * <span class="number">60</span>);</span><br><span class="line">xpc_dictionary_set_int64(criteria, XPC_ACTIVITY_GRACE_PERIOD, <span class="number">10</span> * <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">xpc_activity_register(<span class="string">"com.example.app.activity"</span>, criteria, ^(xpc_activity_t activity) &#123;</span><br><span class="line">    <span class="comment">// Process Data</span></span><br><span class="line">    </span><br><span class="line">    xpc_activity_set_state(activity, XPC_ACTIVITY_STATE_CONTINUE);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">        <span class="comment">// Update UI</span></span><br><span class="line">        </span><br><span class="line">        xpc_activity_set_state(activity, XPC_ACTIVITY_STATE_DONE);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+      
+
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Connection/" rel="tag">#Connection</a>
+          
+            <a href="/tags/IPC/" rel="tag">#IPC</a>
+          
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
+          
+            <a href="/tags/Pasteboard/" rel="tag">#Pasteboard</a>
+          
+            <a href="/tags/Service/" rel="tag">#Service</a>
+          
+            <a href="/tags/XPC/" rel="tag">#XPC</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/29/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter5-Grand-Central-Dispatch/" rel="next" title="Grand Central Dispatch">
+                <i class="fa fa-chevron-left"></i> Grand Central Dispatch
+              </a>
+            
+          </div>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/31/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter6-Inter-Process-Communication/"
+           data-title="Inter-Process Communication" data-url="http://meilbn.com/2016/10/31/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter6-Inter-Process-Communication/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="我的眼里只有代码" />
+          <p class="site-author-name" itemprop="name">我的眼里只有代码</p>
+          <p class="site-description motion-element" itemprop="description">You are the code of my eye.<br>'Cause you are the apple of my eye.<br>爱代码，爱机车，爱野马。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/meilbn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/fuckingcode" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/meilbn" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-square"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank" title="GooglePlus">
+                  
+                    <i class="fa fa-fw fa-google-plus"></i>
+                  
+                  GooglePlus
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  DouBan
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_进程间通信（Inter-Process_Communication）"><span class="nav-number">2.</span> <span class="nav-text">0x01 进程间通信（Inter-Process Communication）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_Mach_Ports"><span class="nav-number">3.</span> <span class="nav-text">0x02 Mach Ports</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_Distributed_Notifications"><span class="nav-number">4.</span> <span class="nav-text">0x03 Distributed Notifications</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_Distributed_Objects"><span class="nav-number">5.</span> <span class="nav-text">0x04 Distributed Objects</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05_AppleEvents_&_AppleScript"><span class="nav-number">6.</span> <span class="nav-text">0x05 AppleEvents & AppleScript</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x06_Cocoa_Scripting_Bridge"><span class="nav-number">7.</span> <span class="nav-text">0x06 Cocoa Scripting Bridge</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x07_Pasteboard"><span class="nav-number">8.</span> <span class="nav-text">0x07 Pasteboard</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x08_XPC"><span class="nav-number">9.</span> <span class="nav-text">0x08 XPC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x09_Registering_Services"><span class="nav-number">10.</span> <span class="nav-text">0x09 Registering Services</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我的眼里只有代码</span>
+</div>
+
+<!-- <div class="powered-by"> -->
+<!--   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动 -->
+<!-- </div> -->
+<!--  -->
+<!-- <div class="theme-info"> -->
+<!--   主题 - -->
+<!--   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next"> -->
+<!--     NexT.Muse -->
+<!--   </a> -->
+<!-- </div> -->
+<!--  -->
+<!-- <div class="powered-by"> -->
+<!-- </div> -->
+
+<div class="theme-info">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次，</span>
+  <span id="busuanzi_container_site_uv">
+    访客数 <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span> 人次</span>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"happyhacking"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("dFo2NvCcL1s5zeJtuvzonGrj-gzGzoHsz", "3gyJUovHABTEqJVyX08exA3z");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
