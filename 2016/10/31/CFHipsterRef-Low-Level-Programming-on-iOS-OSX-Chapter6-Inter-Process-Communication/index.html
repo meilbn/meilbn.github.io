@@ -97,8 +97,8 @@
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 6 Inter-Process Communication 时做的笔记。">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_6_Inter-Process_Communication.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/illustration/blog/jinxing_perfect.jpg">
-<meta property="og:updated_time" content="2016-10-31T12:50:13.000Z">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/illustration/blog/jinxing_perfect.jpg">
+<meta property="og:updated_time" content="2016-10-31T12:54:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Inter-Process Communication">
 <meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 6 Inter-Process Communication 时做的笔记。">
@@ -414,7 +414,7 @@
 <p>发送一个分布式的通知甚至更简单；只需发布（post）标识符（identifier），对象（object）和用户信息（user info）：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> *object;</span><br><span class="line"><span class="built_in">CFDictionaryRef</span> userInfo;</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFNotificationCenterRef</span> distributedCenter = <span class="built_in">CFNotificationCenterGetDistributedCenter</span>();</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFNotificationCenterPostNotification</span>(distributedCenter, <span class="built_in">CFSTR</span>(<span class="string">"notification.identifier"</span>), object, userInfo, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
 <p>在链接两个应用的所有方法中，分布式通知（distributed notifications）是目前为止最简单的。使用它们发送较大的 payloads 不是一个好的主意，但是对于简单的任务，比如同步偏好设置或者触发一个数据获取，分布式通知是完美的。</p>
-<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/illustration/blog/jinxing_perfect.jpg" alt=""></p>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/illustration/blog/jinxing_perfect.jpg" alt=""></p>
 <h1 id="0x04_Distributed_Objects">0x04 Distributed Objects</h1><p>分布式对象（Distributed Objects，DO）是 Cocoa 的一个远程消息传递功能，它与 NeXT 的鼎盛时期是在上世纪 90 年代中期。虽然它没有被广泛使用，但是完全无摩擦的 IPC 的梦想（the dream of totally frictionless IPC）在我们现代技术栈中仍然没有实现。</p>
 <p>声明一个 DO 对象只需设置一个 <code>NSConnection</code> 并且给它注册一个特定的名字：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">Protocol</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">id</span> &lt;Protocol&gt; vendedObject;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSConnection</span> *connection = [[<span class="built_in">NSConnection</span> alloc] init];</span><br><span class="line">[connection setRootObject:vendedObject];</span><br><span class="line">[connection registerName:<span class="string">@"server"</span>];</span><br></pre></td></tr></table></figure>
