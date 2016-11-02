@@ -1,0 +1,1296 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Image,Objective-C," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 8 ImageIO 时做的笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ImageIO">
+<meta property="og:url" content="http://meilbn.com/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter8-ImageIO/index.html">
+<meta property="og:site_name" content="Happy Hacking">
+<meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 8 ImageIO 时做的笔记。">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_8_Image_IO.png">
+<meta property="og:updated_time" content="2016-11-02T12:26:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ImageIO">
+<meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 8 ImageIO 时做的笔记。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://meilbn.com/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter8-ImageIO/"/>
+
+
+  <title> ImageIO | Happy Hacking </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-69209675-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Happy Hacking</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我的眼里只有代码</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ImageIO
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-02T20:19:34+08:00" content="2016-11-02">
+              2016-11-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter8-ImageIO/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter8-ImageIO/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter8-ImageIO/" class="leancloud_visitors" data-flag-title="ImageIO">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_8_Image_IO.png" alt=""></p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="external">CFHipsterRef</a> Chapter 8 ImageIO 时做的笔记。</p>
+<a id="more"></a>
+<h1 id="0x01_ImageIO">0x01 ImageIO</h1><p>Image I/O 是一个强大的，虽然不太知名的图像处理框架。独立于 Core Graphics，它可以在许多不同格式之间读写，访问照片元数据，并执行常见的图像处理操作。这个框架提供了平台上最快的图像编码器和解码器，具有高级缓存机制，甚至能够增量地加载图像。</p>
+<h1 id="0x02_Supported_Image_Types">0x02 Supported Image Types</h1><p>根据官网文档，Image I/O 支持 “大多数图像格式”。与其拿文档来看，还不如用代码的方式来获取。</p>
+<p><code>CGImageSourceCopyTypeIdentifiers</code> 返回支持的图像类型的 UTI 列表：</p>
+<p style="text-align: center;">Image I/O UTIs</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">UTI</th>
+<th style="text-align:center">iOS</th>
+<th style="text-align:center">OS X</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">com.adobe.photoshop-image</td>
+<td style="text-align:center">　</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.adobe.raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.apple.icns</td>
+<td style="text-align:center">　</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.apple.macpaint</td>
+<td style="text-align:center">　</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.apple.pict</td>
+<td style="text-align:center">　</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.apple.quicktime-image</td>
+<td style="text-align:center">　</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.canon.cr2-raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.canon.crw-raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.canon.tif-raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.compuserve.gif</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.epson.raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.fuji.raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.hasselblad.3fr-raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.hasselblad.fff-raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.ilm.openexr-image</td>
+<td style="text-align:center">　</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.kodak.flashpix-image</td>
+<td style="text-align:center">　</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.kodak.raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.konicaminolta.raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.leafamerica.raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.leica.raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.leica.rwl-raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.microsoft.bmp</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.microsoft.cur</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.microsoft.ico</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.nikon.nrw-raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.nikon.raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.olympus.or-raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.olympus.raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.olympus.sr-raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.panasonic.raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.panasonic.rw2-raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.pentax.raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.samsung.raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.sgi.sgi-image</td>
+<td style="text-align:center">　</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.sony.arw-raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.sony.raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.sony.sr2-raw-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">com.truevision.tga-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">public.jpeg</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">public.jpeg-2000</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">public.mpo-image</td>
+<td style="text-align:center">　</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">public.png</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">public.radiance</td>
+<td style="text-align:center">　</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">public.tiff</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:left">public.xbitmap-image</td>
+<td style="text-align:center">x</td>
+<td style="text-align:center">x</td>
+</tr>
+</tbody>
+</table>
+<p>事实证明，这似乎是 <em>大多数</em> 格式。至少是那些对现在应用程序重要的。普遍支持常见格式：TIFF，JPEG，GIF，PNG，RAW 和 Windows Bitmap，Icon 和 Cursor。另外，在 iOS 上支持多种供应商特定的 RAW 摄像机格式，不过 OS X 还支持其他几种格式。</p>
+<h1 id="0x03_Writing_to_a_file">0x03 Writing to a file</h1><p>Image I/O 提供了高级输出配置，不需要很多开销。</p>
+<p>指定期望输出格式的 UTI 以及任何选项，如压缩质量，方向或是否忽略 Alpha 通道。为目标创建一个 <code>CGImageDestinationRef</code>，将 <code>CGImage</code> 添加到其中，然后进行最终化（finalized）：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIImage</span> *image = ...;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSURL</span> *fileURL = [<span class="built_in">NSURL</span> fileURLWithPath:<span class="string">@"/path/to/output.jpg"</span>];</span><br><span class="line"><span class="built_in">NSString</span> *UTI = <span class="string">@"public.jpeg"</span>;</span><br><span class="line"><span class="built_in">NSDictionary</span> *options = @&#123;</span><br><span class="line">    (__bridge <span class="keyword">id</span>)k<span class="built_in">CGImageDestinationLossyCompressionQuality</span> : @(<span class="number">0.75</span>),</span><br><span class="line">    (__bridge <span class="keyword">id</span>)k<span class="built_in">CGImagePropertyOrientation</span> : @(<span class="number">4</span>),</span><br><span class="line">    (__bridge <span class="keyword">id</span>)k<span class="built_in">CGImagePropertyHasAlpha</span> : @(<span class="literal">NO</span>)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGImageDestinationRef</span> imageDestinationRef = <span class="built_in">CGImageDestinationCreateWithURL</span>((__bridge <span class="built_in">CFURLRef</span>)fileURL, (__bridge <span class="built_in">CFStringRef</span>)UTI, <span class="number">1</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGImageDestinationAddImage</span>(imageDestinaRef, [image <span class="built_in">CGImage</span>], (__bridge <span class="built_in">CFDictionaryRef</span>)options);</span><br><span class="line"><span class="built_in">CGImageDestinationFinalize</span>(imageDestinationRef);</span><br><span class="line"><span class="built_in">CFRelease</span>(imageDestinationRef);</span><br></pre></td></tr></table></figure>
+<h1 id="0x04_Reading_from_a_File">0x04 Reading from a File</h1><p>从一个文件中读取一张图像的过程也非常相似。</p>
+<p>创建一个期望的输出文件的 file URL，并设置任何所需的缓存标记或图像类型提示。使用这个 URL 创建一个 <code>CGImageSourceRef</code>，然后调用 <code>CGImageSourceCreateImageAtIndex</code> 读取数据并创建一个 <code>CGImage</code>。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSURL</span> *fileURL = [<span class="built_in">NSURL</span> fileURLWithPath:<span class="string">@"/path/to/input.jpg"</span>];</span><br><span class="line"><span class="built_in">NSDictionary</span> *options = @&#123;</span><br><span class="line">    (__bridge <span class="keyword">id</span>)k<span class="built_in">CGImageSourceTypeIdentifierHint</span> : <span class="string">@"public.jpeg"</span>,</span><br><span class="line">    (__bridge <span class="keyword">id</span>)k<span class="built_in">CGImageSourceShouldCache</span> : @(<span class="literal">YES</span>),</span><br><span class="line">    (__bridge <span class="keyword">id</span>)k<span class="built_in">CGImageSourceShouldAllowFloat</span> : @(<span class="literal">YES</span>)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGImageSourceRef</span> imageSourceRef = <span class="built_in">CGImageSourceCreateWithURL</span>((__bridge <span class="built_in">CFURLRef</span>)fileURL, <span class="literal">NULL</span>);</span><br><span class="line"><span class="built_in">CGImageRef</span> imageRef = <span class="built_in">CGimageSourceCreateImageAtIndex</span>(imageSourceRef, <span class="number">0</span>, (__bridge <span class="built_in">CFDictionaryRef</span>)options);</span><br><span class="line"></span><br><span class="line"><span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageWith<span class="built_in">CGImage</span>:imageRef];</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFRelease</span>(imageRef);</span><br><span class="line"><span class="built_in">CFRelease</span>(imageSourceRef);</span><br></pre></td></tr></table></figure>
+<h1 id="0x05_Incrementally_Reading_an_Image">0x05 Incrementally Reading an Image</h1><p>前面的示例可以被扩展一下成为增量加载图像，这可以为加载特别大或远程图像提供一个更好的用户体验。</p>
+<p>由于很多应用程序通过 HTTP 来加载图像，session task delegate 方法 <code>URLSession:dataTask:didReceiveData:</code> 是一个性能增益（performance gains）非常好的机会：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)URLSession:(<span class="built_in">NSURLSession</span> *)session dataTask:(<span class="built_in">NSURLSessionDataTask</span> *)dataTask disReceiveData:(<span class="built_in">NSData</span> *)data &#123;</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.mutableResponseData</span> appendData:data];</span><br><span class="line">    <span class="built_in">CGImageSourceUpdateData</span>(<span class="keyword">self</span><span class="variable">.imageSourceRef</span>, (__bridge <span class="built_in">CFDataRef</span>)<span class="keyword">self</span><span class="variable">.mutaleResponseData</span>, [<span class="keyword">self</span><span class="variable">.mutableResponseData</span> length][dataTask countOfBytesExoectedToReceive]); <span class="comment">// 原书这里的代码好像有点问题</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">CGSizeEqualToSize</span>(<span class="keyword">self</span><span class="variable">.imageSize</span>, <span class="built_in">CGSizeZero</span>)) &#123;</span><br><span class="line">        <span class="built_in">NSDictionary</span> *properties = (__bridge_transfer <span class="built_in">NSDictionary</span> *)<span class="built_in">CGImageSourceCopyPropertiesAtIndex</span>(<span class="keyword">self</span><span class="variable">.imageSourceRef</span>, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (properties) &#123;</span><br><span class="line">            <span class="built_in">NSNumber</span> *width = properties[(__bridge <span class="keyword">id</span>)k<span class="built_in">CGImagePropertyPixelWidth</span>];</span><br><span class="line">            <span class="built_in">NSNumber</span> *height = properties[(__bridge <span class="keyword">id</span>)k<span class="built_in">CGImagePropertyPixelHeight</span>];</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (width &amp;&amp; height) &#123;</span><br><span class="line">                <span class="keyword">self</span><span class="variable">.imageSize</span> = <span class="built_in">CGSizeMake</span>([width floatValue], [height floatValue]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CGImageRef</span> imageRef = <span class="built_in">CGImageSourceCreateImageAtIndex</span>(<span class="keyword">self</span><span class="variable">.imageSourceRef</span>, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageWith<span class="built_in">CGImage</span>:imageRef];</span><br><span class="line">    <span class="built_in">CFRelease</span>(imageRef);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">        <span class="comment">// delete or block callback to update with image</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>给定一个 <code>CGImageSourceRef</code>，它将会在请求开始加载时被初始化，这个 delegate 方法调用 <code>CGImageSourceUpdateData</code> 用响应数据缓冲区（response data buffer）更新。</p>
+<p>如果已经加载了足够的数据来确定图像的最终尺寸，<code>CGImageSourceCopyPropertiesAtIndex</code> 可以检索该信息并对其进行高速缓存。从那时起，一个 delegate 或 block 回调将能够发送部分加载的图像以更新主线程上的 UI。</p>
+<h1 id="0x06_Image_Metadata">0x06 Image Metadata</h1><p>在增量图像加载示例中，从其元数据中检索到图像的宽和高，以便可以正确地调整大小 — 即使在所有数据加载之前。</p>
+<p>可以使用相同的方法检索图像元数据，诸如 GPS 数据（位置），相机 EXIF（透镜，曝光，快门速度等），或 IPTC（information suitable for publication，创作者和版权）。</p>
+<p>元数据被分为几个不同的字典，可以用以下任意 key 来指定：</p>
+<ul>
+<li>kCGImagePropertyTIFFDictionary</li>
+<li>kCGImagePropertyGIFDictionary</li>
+<li>kCGImagePropertyJFIFDictionary</li>
+<li>kCGImagePropertyExifDictionary</li>
+<li>kCGImagePropertyPNGDictionary</li>
+<li>kCGImagePropertyIPTCDitionary</li>
+<li>kCGImagePropertyGPSDictionary</li>
+<li>kCGImagePropertyCIFFDictionary</li>
+<li>kCGImageProperty8BIMDictionary</li>
+<li>kCGImagePropertyDNGDictionary</li>
+<li>kCGImagePropertyExifAuxDictionary</li>
+</ul>
+<p>使用 Image I/O 检索图像元数据属性是相当不言自明的：一个调用 <code>CGImageSourceCopyPropertiesAtIndex</code>，从此刻开始它是在 <code>CGImageProperty</code> keys 上所有标准 <code>NSDictionary</code> 访问（it’s all standard <code>NSDictionary</code> access on <code>CGImageProperty</code> keys from there on out）：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSDictionary</span> *properties = (__bridge_transfer <span class="built_in">NSDictionary</span> *)<span class="built_in">CGImageSourceCopyPropertiesAtIndex</span>(<span class="keyword">self</span><span class="variable">.imageSourceRef</span>, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSDictionary</span> *EXIF = properties[(__bridge <span class="keyword">id</span>)k<span class="built_in">CGImagePropertyExifDictionary</span>];</span><br><span class="line"><span class="keyword">if</span> (EXIF) &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *Fnumber = EXIF[(__bridge <span class="keyword">id</span>)k<span class="built_in">CGImagePropertyExifNumber</span>];</span><br><span class="line">    <span class="built_in">NSString</span> *exposure = EXIF[(__bridge <span class="keyword">id</span>)k<span class="built_in">CGImagePropertyExifExposureTime</span>];</span><br><span class="line">    <span class="built_in">NSString</span> *ISO = EXIF[(__bridge <span class="keyword">id</span>)k<span class="built_in">CGImagePropertyExifISOSpeedRatings</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Shot Information: %@ %@ %@"</span>, Fnumber, exposure, ISO);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSDictionary</span> *GPS = properties[(__bridge <span class="keyword">id</span>)k<span class="built_in">CGImagePropertyGPSDictionary</span>];</span><br><span class="line"><span class="keyword">if</span> (GPS) &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *latitude = GPS[(__bridge <span class="keyword">id</span>)k<span class="built_in">CGImagePropertyGPSLatitude</span>];</span><br><span class="line">    <span class="built_in">NSString</span> *latitudeRef = GPS[(__bridge <span class="keyword">id</span>)k<span class="built_in">CGImagePropertyGPSLatitudeRef</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSString</span> *longitude = GPS[(__bridge <span class="keyword">id</span>)k<span class="built_in">CGImagePropertyGPSLongitude</span>];</span><br><span class="line">    <span class="built_in">NSString</span> *longitudeRef = GPS[(__bridge <span class="keyword">id</span>)k<span class="built_in">CGImagePropertyGPSLongitudeRef</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"GPS: %@ %@ / %@ %@"</span>, latitude, latitudeRef, longitude, longitudeRef);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Image/" rel="tag">#Image</a>
+          
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter7-Core-Services/" rel="next" title="Core Services">
+                <i class="fa fa-chevron-left"></i> Core Services
+              </a>
+            
+          </div>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter8-ImageIO/"
+           data-title="ImageIO" data-url="http://meilbn.com/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter8-ImageIO/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="我的眼里只有代码" />
+          <p class="site-author-name" itemprop="name">我的眼里只有代码</p>
+          <p class="site-description motion-element" itemprop="description">You are the code of my eye.<br>'Cause you are the apple of my eye.<br>爱代码，爱机车，爱野马。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/meilbn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/fuckingcode" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/meilbn" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-square"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank" title="GooglePlus">
+                  
+                    <i class="fa fa-fw fa-google-plus"></i>
+                  
+                  GooglePlus
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  DouBan
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_ImageIO"><span class="nav-number">2.</span> <span class="nav-text">0x01 ImageIO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_Supported_Image_Types"><span class="nav-number">3.</span> <span class="nav-text">0x02 Supported Image Types</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_Writing_to_a_file"><span class="nav-number">4.</span> <span class="nav-text">0x03 Writing to a file</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_Reading_from_a_File"><span class="nav-number">5.</span> <span class="nav-text">0x04 Reading from a File</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05_Incrementally_Reading_an_Image"><span class="nav-number">6.</span> <span class="nav-text">0x05 Incrementally Reading an Image</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x06_Image_Metadata"><span class="nav-number">7.</span> <span class="nav-text">0x06 Image Metadata</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我的眼里只有代码</span>
+</div>
+
+<!-- <div class="powered-by"> -->
+<!--   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动 -->
+<!-- </div> -->
+<!--  -->
+<!-- <div class="theme-info"> -->
+<!--   主题 - -->
+<!--   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next"> -->
+<!--     NexT.Muse -->
+<!--   </a> -->
+<!-- </div> -->
+<!--  -->
+<!-- <div class="powered-by"> -->
+<!-- </div> -->
+
+<div class="theme-info">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次，</span>
+  <span id="busuanzi_container_site_uv">
+    访客数 <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span> 人次</span>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"happyhacking"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("dFo2NvCcL1s5zeJtuvzonGrj-gzGzoHsz", "3gyJUovHABTEqJVyX08exA3z");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>

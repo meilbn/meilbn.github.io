@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 7 Core Services 时做的笔记。">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_7_Core_Services.png">
-<meta property="og:updated_time" content="2016-11-02T06:13:25.000Z">
+<meta property="og:updated_time" content="2016-11-02T06:31:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Core Services">
 <meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 7 Core Services 时做的笔记。">
@@ -390,7 +390,8 @@
 <p>这种信息如何被结构化和编码是文件系统的主要不同因素之一。</p>
 <h1 id="0x02_Data_&amp;_Resource_Forks">0x02 Data &amp; Resource Forks</h1><p>旧式的 Apple Macintosh Filesystem（MFS）为每一个文件条目关联（associated）了一个 data fork，resource fork 和多个 named forks。对于应用程序，data fork 将保存二进制可执行文件，而 resource fork 将包含图标位图和本地化字符串等内容。不是所有的文件都有 resource forks，但是它们对于将内容从表示（presentation）分离很有用，就像在字处理文档中一样。</p>
 <p>在 Mac OS 上，文件类型和创建者代码（creator codes）由一个 <code>OSType</code> 表示，一个四字节标识符，最常被编码为四个 ASCII / Macintosh 罗马字符。文件类型的常见示例如下所示：</p>
-<p>OSType of Common File Types</p>
+<p style="text-align: center;">OSType of Common File Types</p>
+
 <table>
 <thead>
 <tr>
@@ -500,6 +501,10 @@
           </div>
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter8-ImageIO/" rel="prev" title="ImageIO">
+                ImageIO <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -570,7 +575,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -587,7 +592,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

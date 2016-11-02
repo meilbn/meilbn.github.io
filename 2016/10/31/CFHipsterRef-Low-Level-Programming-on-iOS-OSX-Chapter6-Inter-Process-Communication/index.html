@@ -98,7 +98,7 @@
 <meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 6 Inter-Process Communication 时做的笔记。">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_6_Inter-Process_Communication.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/illustration/blog/jinxing_perfect.jpg">
-<meta property="og:updated_time" content="2016-10-31T12:54:16.000Z">
+<meta property="og:updated_time" content="2016-11-02T06:30:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Inter-Process Communication">
 <meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 6 Inter-Process Communication 时做的笔记。">
@@ -495,7 +495,8 @@
 <p>launchd.plist</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">key</span>&gt;</span>LaunchEvents<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">key</span>&gt;</span>com.apple.iokit.matching<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">key</span>&gt;</span>com.example.device-attach<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">key</span>&gt;</span>idProduct<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">integer</span>&gt;</span>2794<span class="tag">&lt;/<span class="title">integer</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">key</span>&gt;</span>idVendor<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">integer</span>&gt;</span>725<span class="tag">&lt;/<span class="title">integer</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">key</span>&gt;</span>IOProviderClass<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">string</span>&gt;</span>IOUSBDevice<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">key</span>&gt;</span>IOMatchLaunchStream<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">true</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">key</span>&gt;</span>ProcessType<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">string</span>&gt;</span>Adaptive<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><code>launchd</code> 属性列表最近添加的是 <code>ProcessType</code> key，高级描述了启动代理（launch agent）的预期目的。基于规定的竞争行为，操作系统将相应地自动地调节 CPU 和 I/O 带宽。</p>
-<p>Process Types and Contention Behavior</p>
+<p style="text-align: center;">Process Types and Contention Behavior</p>
+
 <table>
 <thead>
 <tr>
@@ -643,7 +644,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -660,7 +661,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
