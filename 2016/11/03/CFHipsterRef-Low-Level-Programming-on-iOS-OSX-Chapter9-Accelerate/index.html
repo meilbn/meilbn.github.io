@@ -1,0 +1,1253 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Accelerate,Objective-C," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 9 Accelerate 时做的笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Accelerate">
+<meta property="og:url" content="http://meilbn.com/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter9-Accelerate/index.html">
+<meta property="og:site_name" content="Happy Hacking">
+<meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 9 Accelerate 时做的笔记。">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_9_Accelerate.png">
+<meta property="og:updated_time" content="2016-11-03T05:49:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Accelerate">
+<meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 9 Accelerate 时做的笔记。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://meilbn.com/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter9-Accelerate/"/>
+
+
+  <title> Accelerate | Happy Hacking </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-69209675-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Happy Hacking</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我的眼里只有代码</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Accelerate
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-03T13:47:43+08:00" content="2016-11-03">
+              2016-11-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter9-Accelerate/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter9-Accelerate/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter9-Accelerate/" class="leancloud_visitors" data-flag-title="Accelerate">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_9_Accelerate.png" alt=""></p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="external">CFHipsterRef</a> Chapter 9 Accelerate 时做的笔记。</p>
+<a id="more"></a>
+<h1 id="0x01_Accelerate">0x01 Accelerate</h1><p>在过去的十年里，当涉及到硬件是，一直专注于以更少的方式做更多。</p>
+<p>随着每一代微处理器推动着硅的物理极限，更多的重点放在以更少的方式做更多。摩尔定律，观察到可以安装到芯片上的晶体管的数量每 18 个月左右就翻一倍，会在某个时间停止，而且那个时间也很快接近。</p>
+<p>与此同时，移动计算的崛起改变了其性能范式，强调电池寿命超过功率（over power）。</p>
+<p>为了响应这两个新兴的现实，硬件制造商已经制造了多核 CPU，软件开发者已经学会了利用高并行和并发。</p>
+<p>在 iOS 和 OS X 上，利用这些高级功能的最佳方法是 Accelerate 框架。</p>
+<p>通过超过 2,000 个 API，Accelerate 很容易成为 iOS 和 OS X SDK 中最大的框架。但远不止大，它更像是一个伞框架（umbrella framework，使用苹果的术语，封装了其他框架的框架通常称为 umbrella framework），有几个互相关联的组件。</p>
+<p>在顶层，Accelerate 可以在 vecLib &amp; vImage 之间分离。vecLib 包含用于数字信号处理（vDSP）以及矢量和矩阵运算的数据类型和 C 函数，包括线性代数包（Linear Algebra Package，LAPACK）和基础线性代数子程序（Basic Linear Algebra Subprograms，BLAS）标准涵盖的那些。vImage 包含一个广泛的图像操作功能，包括 alpha 合成，转换（conversion），卷积（convolution），形态（morphology），变换（transformation）和直方图（histogram）生成。</p>
+<p>学习使用 Accelerate 只是在 API 数量方面可以是压倒性的。对于任何没有数学或高性能计算背景的人来说，仅概念理解就足够吓跑很多人。</p>
+<h1 id="0x02_SIMD">0x02 SIMD</h1><p>如果 Accelerate 有一个统一的概念，那就是 SIMD，或者说 “单指令，多数据”。SIMD 意味着一个计算机可以使用单个命令同时对多个数据点执行相同的操作。</p>
+<p>例如，给定一个无符号的整型数组，其最大值可以是单个优化的硬件指令（例如，用于 SSE 的 <code>PMAXUB</code>）所能找到的最大值。</p>
+<p>在 iPhone，iPad 和 Mac 中找到的硬件拥有令人印象深刻的功能。在 x86 架构（Mac）上，关键技术是 SSE，AVX 和 AVX2；对于 AMD（iPhone &amp; iPad），则是 NEON。</p>
+<p>Acc 提供了单个统一的 API 集，适应在所有这些不同结构和硬件环境提供相同的行为，以确保最大的性能和稳定性，而无需任何编译标志或平台 hack。</p>
+<h1 id="0x03_Benchmarking_Performance">0x03 Benchmarking Performance</h1><p>这些高级例程在实践中产生了多大的不同？考虑以下常见算术运算的基准（benchmarks）：</p>
+<h2 id="0x0301_Populating_an_Array">0x0301 Populating an Array</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSUInteger</span> count = <span class="number">1000000</span>;</span><br><span class="line"><span class="keyword">float</span> *array = malloc(count * <span class="keyword">sizeof</span>(<span class="keyword">float</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="Baseline">Baseline</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">NSUInteger</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">    array[i] = i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Accelerate">Accelerate</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> initial = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">float</span> increment = <span class="number">1</span>;</span><br><span class="line">vDSP_vramp(&amp;initial, &amp;increment, array, <span class="number">1</span>, count);</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Baseline</th>
+<th style="text-align:left">Accelerate</th>
+<th style="text-align:left">△</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">20.664600 msec</td>
+<td style="text-align:left">2.495000 msec</td>
+<td style="text-align:left">10x</td>
+</tr>
+</tbody>
+</table>
+<h2 id="0x0302_Multiplying_an_Array">0x0302 Multiplying an Array</h2><h3 id="Baseline-1">Baseline</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">NSUInteger</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">    array[i] *= <span class="number">2.0</span>f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Accelerate-1">Accelerate</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cblassscal(count, <span class="number">2.0</span>f, array, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Baseline</th>
+<th style="text-align:left">Accelerate</th>
+<th style="text-align:left">△</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">19.969440 msec</td>
+<td style="text-align:left">2.541220 msec</td>
+<td style="text-align:left">10x</td>
+</tr>
+</tbody>
+</table>
+<h2 id="0x0303_Summing_an_Array">0x0303 Summing an Array</h2><h3 id="Baseline-2">Baseline</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">NSUInteger</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">    sum += array[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Accelerate-2">Accelerate</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> sum = cblas_sasum(count, array, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Baseline</th>
+<th style="text-align:left">Accelerate</th>
+<th style="text-align:left">△</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">41.704483 msec</td>
+<td style="text-align:left">2.165160 msec</td>
+<td style="text-align:left">20x</td>
+</tr>
+</tbody>
+</table>
+<h2 id="0x0304_Searching">0x0304 Searching</h2><h3 id="Create_random_array">Create random array</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">NSUInteger</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">    array[i] = (<span class="keyword">float</span>)arc4random();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Baseline-3">Baseline</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSUInteger</span> MaxLocation = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">NSUInteger</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (array[i] &gt; array[maxLocation]) &#123;</span><br><span class="line">        maxLocation = i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Accelerate-3">Accelerate</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSUInteger</span> maxLocation = cblas_isamax(count, array, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Baseline</th>
+<th style="text-align:left">Accelerate</th>
+<th style="text-align:left">△</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">22.339838 msec</td>
+<td style="text-align:left">5.110880 msec</td>
+<td style="text-align:left">4x</td>
+</tr>
+</tbody>
+</table>
+<p>从这些基准，很明显，对于大数据集，Accelerate 可以获得巨大的性能优势。当然，就像任何优化一样，并非所有情况都会同样受益。最好的方法是始终使用 Instruments 来发现代码中的瓶颈，并估算替代的实现。</p>
+<p>为了理解和识别可能从 Accelerate 中获益的情况，不过，我们需要知道它能做什么。</p>
+<h2 id="0x0305_vecLib">0x0305 vecLib</h2><p>vecLib 是由以下 9 个头文件构成：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">cblas.h / vBLAS.h</td>
+<td style="text-align:left">Interface for BLAS functions</td>
+</tr>
+<tr>
+<td style="text-align:left">clapack.h</td>
+<td style="text-align:left">Interface for LAPACK functions</td>
+</tr>
+<tr>
+<td style="text-align:left">vectorOps.h</td>
+<td style="text-align:left">Vector implementations of the BLAS routines.</td>
+</tr>
+<tr>
+<td style="text-align:left">vBasicOps.h</td>
+<td style="text-align:left">Basic algebraic operations. 8-, 16-, 32-, 64-, 128-bit division, saturated addition / subtraction, shift / rotate, etc.</td>
+</tr>
+<tr>
+<td style="text-align:left">vfp.h</td>
+<td style="text-align:left">Transcendental operations (sin, cos, log, etc.) on single vector floating point quantities.</td>
+</tr>
+<tr>
+<td style="text-align:left">vForce.h</td>
+<td style="text-align:left">Transcendental operations on arrays of floating point quantities.</td>
+</tr>
+<tr>
+<td style="text-align:left">vBigNum.h</td>
+<td style="text-align:left">Operations on large numbers (128-, 256-, 512-, 1024-bit quantities)</td>
+</tr>
+<tr>
+<td style="text-align:left">vDSP.h</td>
+<td style="text-align:left">Digital signal processing algorithms including FFTs, signal clipping, filters, and type conversions.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xDSP-h">xDSP.h</h3><p>快速傅里叶变换（Fast-Fourier Transform, FFT）是基本数字信号处理算法。它将一系列值分解成具有不同频率（different frequencies）的分量（components）。</p>
+<p>尽管它们在数学和工程方面具有广泛的应用，但是大多数应用程序开发者遇到用于音频或视频处理的 FFT，作为一种确定噪声信号中的临界值的方式。</p>
+<p>快速傅里叶变换</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">int</span> y = <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dimensions = x * y;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> log2_x = (<span class="keyword">int</span>)log2((<span class="keyword">double</span>)x);</span><br><span class="line"><span class="keyword">int</span> log2_y = (<span class="keyword">int</span>)log2((<span class="keyword">double</span>)y);</span><br><span class="line"></span><br><span class="line">DSPComplex *data = (DSPComplex *)malloc(<span class="keyword">sizeof</span>(DSPComplex) * dimensions);</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">NSUInteger</span> i = <span class="number">0</span>; i &lt; dimensions; i++) &#123;</span><br><span class="line">   data[i]<span class="variable">.real</span> = (<span class="keyword">float</span>)i;</span><br><span class="line">   data[i]<span class="variable">.imag</span> = (<span class="keyword">float</span>)(dimensions - i) - <span class="number">1.0</span>f; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">DSPSplitComplex input = &#123;</span><br><span class="line">   <span class="variable">.realp</span> = (<span class="keyword">float</span> *)malloc(<span class="keyword">sizeof</span>(<span class="keyword">float</span>) * dimensions),</span><br><span class="line">   <span class="variable">.imagp</span> = (<span class="keyword">float</span> *)malloc(<span class="keyword">sizeof</span>(<span class="keyword">float</span>) * dimensions),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">vDSP_ctoz(data, <span class="number">2</span>, &amp;input, <span class="number">1</span>, dimensions);</span><br><span class="line"></span><br><span class="line">FFTSetup weights = vDSP_create_fftsetup(fmax(log2_x, log2_y), kFFTRadix2);</span><br><span class="line">vDSP_fft2d_zip(weights, &amp;<span class="keyword">inout</span>, <span class="number">1</span>, <span class="number">0</span>, log2_x, log2_y, FFT_FORWARD);</span><br><span class="line">vDSP_destroy_fftsetup(fft_weights);</span><br><span class="line"></span><br><span class="line">vDSP_ztoc(&amp;input, <span class="number">1</span>, data, <span class="number">2</span>, dimensions);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">NSUInteger</span> i = <span class="number">0</span>; i &lt; dimensions; i++) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%g %g"</span>, data[i]<span class="variable">.real</span>, data[i]<span class="variable">.imag</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">free(input<span class="variable">.realp</span>);</span><br><span class="line">free(input<span class="variable">.imagp</span>);</span><br><span class="line">free(data);</span><br></pre></td></tr></table></figure>
+<h3 id="vImage">vImage</h3><p>vImage 是由 6 个头文件组成：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Alpha.h</td>
+<td style="text-align:left">Alpha 合成方法（Alpha compositing functions）</td>
+</tr>
+<tr>
+<td style="text-align:left">Conversion.h</td>
+<td style="text-align:left">图像之间转换（Converting between image format）（e.g. <code>Planar8</code> to <code>PlanarF</code>, <code>ARGB8888</code> to <code>Planar8</code>）</td>
+</tr>
+<tr>
+<td style="text-align:left">Convolution.h</td>
+<td style="text-align:left">Image convolution routines (e.g. blurring and edge detection).</td>
+</tr>
+<tr>
+<td style="text-align:left">Geometry.h</td>
+<td style="text-align:left">几何变换（Geometric transformations）（e.g. rotate, scale, shear, affine warp）</td>
+</tr>
+<tr>
+<td style="text-align:left">Histogram.h</td>
+<td style="text-align:left">用于计算图像直方图和图像归一化的函数（Functions for calculating image histograms and image normalization）</td>
+</tr>
+<tr>
+<td style="text-align:left">Morphology.h</td>
+<td style="text-align:left">图像形态程序（Image morphology procedures）（e.g. feature detection, dilation, erosion）</td>
+</tr>
+<tr>
+<td style="text-align:left">Tranform.h</td>
+<td style="text-align:left">图像变换操作（Image transformation operations）（e.g. gamma correction, colorspace conversion）</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Planar8</td>
+<td style="text-align:left">图像是单个通道（一种颜色或 alpha 值）。每个像素是 8 位无符号整型值。此图像格式的数据类型为 Pixel_8。</td>
+</tr>
+<tr>
+<td style="text-align:left">PlanarF</td>
+<td style="text-align:left">图像是单个通道（一种颜色）。每个像素是 32 位浮点数值。此图像格式的数据类型是 Pixel_F。</td>
+</tr>
+<tr>
+<td style="text-align:left">ARGB8888</td>
+<td style="text-align:left">图像有 4 个交错的通道，alpha，red，green 和 blue，以该顺序。每个像素是 32 位，由 4 个 8 位无符号整型组成的数组。此图像格式的数据类型是 Pixel_8888。</td>
+</tr>
+<tr>
+<td style="text-align:left">ARGBFFFF</td>
+<td style="text-align:left">图像有 4 个交错的通道，alpha，red，green 和 blue，以该顺序。每个像素是 由 4 个浮点数组成的数组。此图像格式的数据类型是 Pixel_FFFF。</td>
+</tr>
+<tr>
+<td style="text-align:left">RGBA8888</td>
+<td style="text-align:left">图像有 4 个交错的通道，alpha，red，green 和 blue，以该顺序。每个像素是 32 位，由 4 个 8 位无符号整型组成的数组。此图像格式的数据类型是 Pixel_8888。</td>
+</tr>
+<tr>
+<td style="text-align:left">RGBAFFFF</td>
+<td style="text-align:left">图像有 4 个交错的通道，alpha，red，green 和 blue，以该顺序。每个像素是 由 4 个浮点数组成的数组。此图像格式的数据类型是 Pixel_FFFF。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Alpha-h">Alpha.h</h4><p>Alpha 合成是根据其 alpha 分量（components）组合多个图像的过程。对于一个图像的每一个像素，用 alpha 或 透明度的值来确定有多少图像将在下方显示。</p>
+<p>vImage 方法可用于混合或剪切。最常见的操作是将一个顶部图像合成到底部图像上：</p>
+<h5 id="Compositing_Two_Images">Compositing Two Images</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIImage</span> *topImage, bottomImage = ...;</span><br><span class="line"><span class="built_in">CGImageRef</span> topImageRef = [topImage <span class="built_in">CGImage</span>];</span><br><span class="line"><span class="built_in">CGImageRef</span> bottomImageRef = [bottomImage <span class="built_in">CGImage</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGDataProviderRef</span> topRrovider = <span class="built_in">CGImageGetDataProvider</span>(topImageRef);</span><br><span class="line"><span class="built_in">CFDataRef</span> topBitmapData = <span class="built_in">CGDataProviderCopyData</span>(topProvider);</span><br><span class="line"></span><br><span class="line">size_t width = <span class="built_in">CGImageGeiWidth</span>(topImageRef);</span><br><span class="line">size_t height = <span class="built_in">CGImageGeiHeight</span>(topImageRef);</span><br><span class="line">size_t bytesPerRow = <span class="built_in">CGImageGetBytesPerRow</span>(topImageRef);</span><br><span class="line"></span><br><span class="line">vImage_Buffer topBuffer = &#123;</span><br><span class="line">    <span class="variable">.data</span> = (<span class="keyword">void</span> *)<span class="built_in">CFDataGetBytePtr</span>(topBitmapData),</span><br><span class="line">    <span class="variable">.width</span> = width,</span><br><span class="line">    <span class="variable">.height</span> = height,</span><br><span class="line">    <span class="variable">.rowBytes</span> = bytesPerRow,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGDataProviderRef</span> bottomProvider = <span class="built_in">CGImageGetDataProvider</span>(bottomImageRef);</span><br><span class="line"><span class="built_in">CFDataRef</span> bottomBitmapData = <span class="built_in">CGDataProviderCopyData</span>(bottomProvider);</span><br><span class="line"></span><br><span class="line">vImage_Buffer bottomBuffer = &#123;</span><br><span class="line">    <span class="variable">.data</span> = (<span class="keyword">void</span> *)<span class="built_in">CFDataGetBytePtr</span>(bottomBitmapData),</span><br><span class="line">    <span class="variable">.width</span> = width,</span><br><span class="line">    <span class="variable">.height</span> = height,</span><br><span class="line">    <span class="variable">.rowBytes</span> = bytesPerRow,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> *outBytes = malloc(height * bytesPerRow);</span><br><span class="line">vImage_Buffer outBuffer = &#123;</span><br><span class="line">    <span class="variable">.data</span> = outBytes,</span><br><span class="line">    <span class="variable">.width</span> = width,</span><br><span class="line">    <span class="variable">.height</span> = height,</span><br><span class="line">    <span class="variable">.rowBytes</span> = bytesPerRow,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">vImage_Error error = vImagePremultipliedAlphaBlend_ARGB8888(&amp;topBuffer, &amp;buttomBuffer, &amp;outBuffer, kvImageDoNotTile);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (error) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Error: %ld"</span>, error);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Conversion-h">Conversion.h</h4><p>图像由像素组成，每个像素具有一个红色，绿色和蓝色强度的离散值的组合表示的颜色。总之，这些强度值构成每个颜色的一个通道，以及一个 alpha 通道，代表透明度。</p>
+<p>有两种图像对该信息进行编码的方式： <em>交错</em> （interleaved），这样每个像素有共同表示的红，绿，蓝和 alpha 值，或 <em>平面</em> （planar），其中设置了一个通道中的所有值，然后是下一个通道中的值，以此类推。</p>
+<p>对于给定图像格式，vImage 提供了用于将强度从一个通道交换到另一个通道的方法：</p>
+<h5 id="Permuting_Color_Channels">Permuting Color Channels</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIImage</span> *image = ...;</span><br><span class="line"><span class="built_in">CGImageRef</span> imageRef = [image <span class="built_in">CGImage</span>];</span><br><span class="line"></span><br><span class="line">size_t width = <span class="built_in">CGImageGetWidth</span>(imageRef);</span><br><span class="line">size_t height = <span class="built_in">CGImageGetHeight</span>(imageRef);</span><br><span class="line">size_t bitsPerComponent = <span class="built_in">CGImageGetBitsPerComponent</span>(imageRef);</span><br><span class="line">size_t bytesPerRow = <span class="built_in">CGImageGetBytesPerRow</span>(imageRef);</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGDataProviderRef</span> sourceImageDataProvider = <span class="built_in">CGImageGetDataProvider</span>(imageRef);</span><br><span class="line"><span class="built_in">CFDataRef</span> sourceImageData = <span class="built_in">CGDataProviderCopyData</span>(sourceImageDataProvider);</span><br><span class="line">vImage_Buffer sourceImageBuffer = &#123;</span><br><span class="line">    <span class="variable">.data</span> = (<span class="keyword">void</span> *)<span class="built_in">CFDataGetBytePtr</span>(sourceImageData),</span><br><span class="line">    <span class="variable">.width</span> = width,</span><br><span class="line">    <span class="variable">.height</span> = height,</span><br><span class="line">    <span class="variable">.rowBytes</span> = bytesPerRow,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">uint8_t *destinationBuffer = malloc(<span class="built_in">CFDataGetLength</span>(sourceImageData));</span><br><span class="line">vImage_Buffer destinationImageBuffer = &#123;</span><br><span class="line">    <span class="variable">.data</span> = destinationBuffer,</span><br><span class="line">    <span class="variable">.width</span> = width,</span><br><span class="line">    <span class="variable">.height</span> = height,</span><br><span class="line">    <span class="variable">.rowBytes</span> = bytesPerRow,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> uint8_t channels[<span class="number">4</span>] = &#123;<span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>&#125;; <span class="comment">// ARGB -&gt; ABGR</span></span><br><span class="line">vImagePermuteChannels_ARGB8888(&amp;sourceImageBuffer, &amp;destinationImageBuffer, channels, kvImageNoFlags);</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGColorSpaceRef</span> colorSpaceRef = <span class="built_in">CGColorSpaceCreateDeviceRGB</span>();</span><br><span class="line"><span class="built_in">CGContextRef</span> destinationContext =</span><br><span class="line">    <span class="built_in">CGBitmapContextCreateWithData</span>(destinationBuffer,</span><br><span class="line">                                  width,</span><br><span class="line">                                  height,</span><br><span class="line">                                  bitsPerComponent,</span><br><span class="line">                                  bytesPerRow,</span><br><span class="line">                                  colorSpaceRef,</span><br><span class="line">                                  k<span class="built_in">CGBitmapByteOrderDefault</span> |</span><br><span class="line">                                  k<span class="built_in">CGImageAlphaPermultipliedFirst</span>,</span><br><span class="line">                                  <span class="literal">NULL</span>,</span><br><span class="line">                                  <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGImageRef</span> permutedImageRef = <span class="built_in">CGBitmapContextCreateImage</span>(destinationContext);</span><br><span class="line"><span class="built_in">UIImage</span> *permutedImage = [<span class="built_in">UIImage</span> imageWith<span class="built_in">CGImage</span>:permutedImageRef];</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGImageRelease</span>(permutedImageRef);</span><br><span class="line"><span class="built_in">CGContextRelease</span>(destinationContext);</span><br><span class="line"><span class="built_in">CGColorSpaceRelease</span>(colorSpaceRef);</span><br></pre></td></tr></table></figure>
+<h4 id="Convolution-h">Convolution.h</h4><p>图像卷积（Image convolution）是将每个像素及其相邻的像素乘以 <em>内核</em> （kernel），或用和为 1 的正方形矩阵。取决于这个内核，一个卷积操作可以是模糊（blur），锐化（sharpen），浮雕（emboss）或边缘检测（detect edges）。</p>
+<p>除了需要一个定制内核的特殊情况，利用 GPU，卷积操作通过 Core Image 框架将被更好地服务（better-served）。然而，对于一个直接基于 GPU 的解决方案，vImage 提供了：</p>
+<h5 id="Blurring_an_Image">Blurring an Image</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIImage</span> *inImage = ...;</span><br><span class="line"><span class="built_in">CGImageRef</span> = inImageRef = [inImage <span class="built_in">CGImage</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGDataProviderRef</span> inProvider = <span class="built_in">CGImageGetDataProvider</span>(inImageRef);</span><br><span class="line"><span class="built_in">CFDataRef</span> inBitmapData = <span class="built_in">CGDataProviderCopyData</span>(inProvider);</span><br><span class="line"></span><br><span class="line">vImage_Buffer inBuffer = &#123;</span><br><span class="line">    <span class="variable">.data</span> = (<span class="keyword">void</span> *)<span class="built_in">CFDataGetBytePtr</span>(inBitmapData),</span><br><span class="line">    <span class="variable">.width</span> = <span class="built_in">CGImageGetWidth</span>(inImageRef),</span><br><span class="line">    <span class="variable">.height</span> = <span class="built_in">CGImageGetHeight</span>(inImageRef),</span><br><span class="line">    <span class="variable">.rowBytes</span> = <span class="built_in">CGImageGetBytesPerRow</span>(inImageRef),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> *outBytes = malloc(<span class="built_in">CGImageGetBytesPerRow</span>(inImageRef) * <span class="built_in">CGImageGetHeight</span>(inImageRef));</span><br><span class="line">vImage_Buffer outBuffer = &#123;</span><br><span class="line">    <span class="variable">.data</span> = outBuffer,</span><br><span class="line">    <span class="variable">.width</span> = inBuffer<span class="variable">.width</span>,</span><br><span class="line">    <span class="variable">.height</span> = inBuffer<span class="variable">.height</span>,</span><br><span class="line">    <span class="variable">.rowBytes</span> = inBuffer<span class="variable">.rowBytes</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">uint32_t length = <span class="number">5</span>; <span class="comment">// Size of convolution</span></span><br><span class="line">vImage_Error error = vImageBoxConvolve_ARGB8888(&amp;inBuffer, &amp;outBuffer, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="number">0</span>, length, length, <span class="literal">NULL</span>, kvImageEdgeExtend);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (error) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Error: %ld"</span>, error);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGColorSpaceRef</span> colorSpaceRef = <span class="built_in">CGColorSpaceCreateDeviceRGB</span>();</span><br><span class="line"><span class="built_in">CGContextRef</span> c = <span class="built_in">CGBitmapContextCreate</span>(outBuffer<span class="variable">.data</span>, outBuffer<span class="variable">.width</span>, outBuffer<span class="variable">.height</span>, <span class="number">8</span>, outBuffer<span class="variable">.rowBytes</span>, colorSpaceRef, k<span class="built_in">CGImageAlphaNoneSkipLast</span>);</span><br><span class="line"><span class="built_in">CGImageRef</span> outImageRef = <span class="built_in">CGBitmapContextCreateImage</span>(c);</span><br><span class="line"><span class="built_in">UIImage</span> *outImage = [<span class="built_in">UIImage</span> imageWith<span class="built_in">CGImage</span>:outImageRef];</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGImageRelease</span>(outImageRef);</span><br><span class="line"><span class="built_in">CGContextRelease</span>(c);</span><br><span class="line"><span class="built_in">CGColorSpaceRelease</span>(colorSpaceRef);</span><br><span class="line"><span class="built_in">CFRelease</span>(inBitmapData);</span><br></pre></td></tr></table></figure>
+<h4 id="Geometry-h">Geometry.h</h4><p>调整一个图像大小是另一种操作，可能更适合于另一个基于 GPU 的框架，如 Image I/O。对于一个给定的 vImage buffer，使用 Accelerate 的 <code>vImageScale_*</code> 可能性能更高，而不是在 <code>CGImageRef</code> 之间来回转换：</p>
+<h5 id="Resizing_an_Image">Resizing an Image</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> scaleFactor = <span class="number">1.0</span> / <span class="number">5.0</span>;</span><br><span class="line"><span class="keyword">void</span> *outBytes = malloc(trunc(inBuffer<span class="variable">.height</span> * scaleFactor) * inBuffer<span class="variable">.rowBytes</span>);</span><br><span class="line">vImage_Buffer outBuffer = &#123;</span><br><span class="line">    <span class="variable">.data</span> = outBytes,</span><br><span class="line">    <span class="variable">.width</span> = trunc(inBuffer<span class="variable">.width</span> * scaleFactor),</span><br><span class="line">    <span class="variable">.height</span> = trunc(inBuffer<span class="variable">.height</span> * scaleFactor),</span><br><span class="line">    <span class="variable">.rowBytes</span> = inBuffer<span class="variable">.rowBytes</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">vImage_Error error = vImageScale_ARGB8888(&amp;inBuffer, &amp;outBuffer, <span class="literal">NULL</span>, kvImageHighQualityResampling);</span><br><span class="line"><span class="keyword">if</span> (error) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Error: %ld"</span>, error);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Histogram-h">Histogram.h</h4><p>检测一个图像是否包含透明度</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIImage</span> *image;</span><br><span class="line"><span class="built_in">CGImage</span> imageRef = [image <span class="built_in">CGImage</span>];</span><br><span class="line"><span class="built_in">CGDataProviderRef</span> dataProvider = <span class="built_in">CGImageGetDataProvider</span>(imageRef);</span><br><span class="line"><span class="built_in">CFDataRef</span> = bitmapData = <span class="built_in">CGDataProviderCopyData</span>(dataProvider);</span><br><span class="line"></span><br><span class="line">vImagePixelCount a[<span class="number">256</span>], r[<span class="number">256</span>], g[<span class="number">256</span>], b[<span class="number">256</span>];</span><br><span class="line">vImagePixelCount *histogram[<span class="number">4</span>] = &#123;a, r, g, b&#125;;</span><br><span class="line">vImage_Buffer buffer = &#123;</span><br><span class="line">    <span class="variable">.data</span> = (<span class="keyword">void</span> *)<span class="built_in">CFDataGetBytePtr</span>(bitmapData),</span><br><span class="line">    <span class="variable">.width</span> = <span class="built_in">CGImageGetWidth</span>(imageRef),</span><br><span class="line">    <span class="variable">.height</span> = <span class="built_in">CGImageGetHeight</span>(imageRef),</span><br><span class="line">    <span class="variable">.rowBytes</span> = <span class="built_in">CGImageGetByesPerRow</span>(imageRef),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">vImage_Error error = vImageHistogramCalculation_ARGB8888(&amp;buffer, histogram, kvImageNoFlags);</span><br><span class="line"><span class="keyword">if</span> (error) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Error: %ld"</span>, error);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">BOOL</span> hasTransparency = <span class="literal">NO</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">NSUInteger</span> i = <span class="number">0</span>; !hasTransparency &amp;&amp; i &lt; <span class="number">255</span>; i++) &#123;</span><br><span class="line">    hasTransparency = histogram[<span class="number">3</span>][i] == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGDataProviderRelease</span>(dataProvider);</span><br><span class="line"><span class="built_in">CFRelease</span>(bitmapData);</span><br></pre></td></tr></table></figure>
+<h4 id="Morphology-h">Morphology.h</h4><p>扩大图像（Dilating an Image）</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">size_t width = image<span class="variable">.size</span><span class="variable">.width</span>;</span><br><span class="line">size_t height = image<span class="variable">.size</span><span class="variable">.height</span>;</span><br><span class="line">size_t bitsPerComponent = <span class="number">8</span>;</span><br><span class="line">size_t bytesPerRow = <span class="built_in">CGImageGetBytesPerRow</span>([image <span class="built_in">CGImage</span>]);</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGColorSpaceRef</span> colorSpaceRef = <span class="built_in">CGColorSpaceCreateDeviceRGB</span>();</span><br><span class="line"><span class="built_in">CGContextRef</span> sourceContext =</span><br><span class="line">    <span class="built_in">CGBitmapContextCreate</span>(<span class="literal">NULL</span>,</span><br><span class="line">                          width,</span><br><span class="line">                          height,</span><br><span class="line">                          bitsPerComponent,</span><br><span class="line">                          bytesPerRow,</span><br><span class="line">                          colorSpaceRef,</span><br><span class="line">                          k<span class="built_in">CGBitmapByteOrderDefault</span> |</span><br><span class="line">                          k<span class="built_in">CGImageAlphaPremultipliedFirst</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGContextDrawImage</span>(sourceContext, <span class="built_in">CGRectMake</span>(<span class="number">0.0</span>f, <span class="number">0.0</span>f, width, height), [image <span class="built_in">CGImage</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> *sourceData = <span class="built_in">CGBitmapContextGetData</span>(sourceContext);</span><br><span class="line">vImage_Buffer sourceBuffer = &#123;</span><br><span class="line">    <span class="variable">.data</span> = sourceData,</span><br><span class="line">    <span class="variable">.width</span> = width,</span><br><span class="line">    <span class="variable">.height</span> = height,</span><br><span class="line">    <span class="variable">.rowBytes</span> = bytesPerRow,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">size_t length = height * bytesPerRow;</span><br><span class="line"><span class="keyword">void</span> *destinationData = malloc(length);</span><br><span class="line">vImage_Buffer destinationBuffer = &#123;</span><br><span class="line">    <span class="variable">.data</span> = destinationData,</span><br><span class="line">    <span class="variable">.width</span> = width,</span><br><span class="line">    <span class="variable">.height</span> = height,</span><br><span class="line">    <span class="variable">.rowBytes</span> = bytesPerRow,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> kernel[<span class="number">9</span>] = &#123;</span><br><span class="line">    <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>,</span><br><span class="line">    <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">vImageDilate_ARGB8888(&amp;sourceBuffer, &amp;destinationBuffer, <span class="number">0</span>, <span class="number">0</span>, kernel, <span class="number">9</span>, <span class="number">9</span>, kvImageCopyInPlace);</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGContextRef</span> destinationContext =</span><br><span class="line">    <span class="built_in">CGBitmapContextCreateWithData</span>(destinationData,</span><br><span class="line">                                  width,</span><br><span class="line">                                  height,</span><br><span class="line">                                  bitsPerComponent,</span><br><span class="line">                                  bytesPerRow,</span><br><span class="line">                                  colorSpaceRef,</span><br><span class="line">                                  k<span class="built_in">CGBitmapByteOrderDefault</span> |</span><br><span class="line">                                  k<span class="built_in">CGImageAlphaPremultipliedFirst</span>,</span><br><span class="line">                                  <span class="literal">NULL</span>,</span><br><span class="line">                                  <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGImageRef</span> dilatedImageRef = <span class="built_in">CGBitmapContextCreateImage</span>(destinationContext);</span><br><span class="line"><span class="built_in">UIImage</span> *dilatedImage = [<span class="built_in">UIImage</span> imageWith<span class="built_in">CGImage</span>:dilatedImageRef];</span><br><span class="line"></span><br><span class="line"><span class="built_in">CGImageRelease</span>(dilatedImageRef);</span><br><span class="line"><span class="built_in">CGContextRelease</span>(destinationContext);</span><br><span class="line"><span class="built_in">CGContextRelease</span>(sourceContext);</span><br><span class="line"><span class="built_in">CGColorSpaceRelease</span>(colorSpaceRef);</span><br></pre></td></tr></table></figure>
+<p>在这个广泛监视，减少隐私和无处不在的连接的时代，安全不再是偏执狂的宠物主题 —— 这是每个人都能很好理解的东西。</p>
+<p>安全框架可以分为 Keychain Services，Cryptographic Message Syntax，Security Transform Services 和 CommonCrypto。</p>
+<h1 id="0x04_Keychain_Services">0x04 Keychain Services</h1><p>Keychain 是 iOS 和 OS X 上的密码管理系统。它存储证书和私钥，以及网站，服务器，无线网络和其他加密卷（encrypted volumes）的密码。</p>
+
+      
+
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Accelerate/" rel="tag">#Accelerate</a>
+          
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter8-ImageIO/" rel="next" title="ImageIO">
+                <i class="fa fa-chevron-left"></i> ImageIO
+              </a>
+            
+          </div>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter9-Accelerate/"
+           data-title="Accelerate" data-url="http://meilbn.com/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter9-Accelerate/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="我的眼里只有代码" />
+          <p class="site-author-name" itemprop="name">我的眼里只有代码</p>
+          <p class="site-description motion-element" itemprop="description">You are the code of my eye.<br>'Cause you are the apple of my eye.<br>爱代码，爱机车，爱野马。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/meilbn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/fuckingcode" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/meilbn" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-square"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank" title="GooglePlus">
+                  
+                    <i class="fa fa-fw fa-google-plus"></i>
+                  
+                  GooglePlus
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  DouBan
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_Accelerate"><span class="nav-number">2.</span> <span class="nav-text">0x01 Accelerate</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_SIMD"><span class="nav-number">3.</span> <span class="nav-text">0x02 SIMD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_Benchmarking_Performance"><span class="nav-number">4.</span> <span class="nav-text">0x03 Benchmarking Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0301_Populating_an_Array"><span class="nav-number">4.1.</span> <span class="nav-text">0x0301 Populating an Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Baseline"><span class="nav-number">4.1.1.</span> <span class="nav-text">Baseline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Accelerate"><span class="nav-number">4.1.2.</span> <span class="nav-text">Accelerate</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0302_Multiplying_an_Array"><span class="nav-number">4.2.</span> <span class="nav-text">0x0302 Multiplying an Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Baseline-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">Baseline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Accelerate-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">Accelerate</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0303_Summing_an_Array"><span class="nav-number">4.3.</span> <span class="nav-text">0x0303 Summing an Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Baseline-2"><span class="nav-number">4.3.1.</span> <span class="nav-text">Baseline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Accelerate-2"><span class="nav-number">4.3.2.</span> <span class="nav-text">Accelerate</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0304_Searching"><span class="nav-number">4.4.</span> <span class="nav-text">0x0304 Searching</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_random_array"><span class="nav-number">4.4.1.</span> <span class="nav-text">Create random array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Baseline-3"><span class="nav-number">4.4.2.</span> <span class="nav-text">Baseline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Accelerate-3"><span class="nav-number">4.4.3.</span> <span class="nav-text">Accelerate</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0305_vecLib"><span class="nav-number">4.5.</span> <span class="nav-text">0x0305 vecLib</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#xDSP-h"><span class="nav-number">4.5.1.</span> <span class="nav-text">xDSP.h</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vImage"><span class="nav-number">4.5.2.</span> <span class="nav-text">vImage</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Alpha-h"><span class="nav-number">4.5.2.1.</span> <span class="nav-text">Alpha.h</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Compositing_Two_Images"><span class="nav-number">4.5.2.1.1.</span> <span class="nav-text">Compositing Two Images</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Conversion-h"><span class="nav-number">4.5.2.2.</span> <span class="nav-text">Conversion.h</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Permuting_Color_Channels"><span class="nav-number">4.5.2.2.1.</span> <span class="nav-text">Permuting Color Channels</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Convolution-h"><span class="nav-number">4.5.2.3.</span> <span class="nav-text">Convolution.h</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Blurring_an_Image"><span class="nav-number">4.5.2.3.1.</span> <span class="nav-text">Blurring an Image</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Geometry-h"><span class="nav-number">4.5.2.4.</span> <span class="nav-text">Geometry.h</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Resizing_an_Image"><span class="nav-number">4.5.2.4.1.</span> <span class="nav-text">Resizing an Image</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Histogram-h"><span class="nav-number">4.5.2.5.</span> <span class="nav-text">Histogram.h</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Morphology-h"><span class="nav-number">4.5.2.6.</span> <span class="nav-text">Morphology.h</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_Keychain_Services"><span class="nav-number">5.</span> <span class="nav-text">0x04 Keychain Services</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我的眼里只有代码</span>
+</div>
+
+<!-- <div class="powered-by"> -->
+<!--   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动 -->
+<!-- </div> -->
+<!--  -->
+<!-- <div class="theme-info"> -->
+<!--   主题 - -->
+<!--   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next"> -->
+<!--     NexT.Muse -->
+<!--   </a> -->
+<!-- </div> -->
+<!--  -->
+<!-- <div class="powered-by"> -->
+<!-- </div> -->
+
+<div class="theme-info">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次，</span>
+  <span id="busuanzi_container_site_uv">
+    访客数 <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span> 人次</span>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"happyhacking"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("dFo2NvCcL1s5zeJtuvzonGrj-gzGzoHsz", "3gyJUovHABTEqJVyX08exA3z");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
