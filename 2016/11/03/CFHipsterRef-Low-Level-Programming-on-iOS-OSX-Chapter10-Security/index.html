@@ -1,0 +1,1100 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Keychain,Objective-C,Security," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 10 Security 时做的笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Security">
+<meta property="og:url" content="http://meilbn.com/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter10-Security/index.html">
+<meta property="og:site_name" content="Happy Hacking">
+<meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 10 Security 时做的笔记。">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_10_Security.png">
+<meta property="og:updated_time" content="2016-11-03T14:23:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Security">
+<meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 10 Security 时做的笔记。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://meilbn.com/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter10-Security/"/>
+
+
+  <title> Security | Happy Hacking </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-69209675-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Happy Hacking</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我的眼里只有代码</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Security
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-03T22:21:05+08:00" content="2016-11-03">
+              2016-11-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter10-Security/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter10-Security/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter10-Security/" class="leancloud_visitors" data-flag-title="Security">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_10_Security.png" alt=""></p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="external">CFHipsterRef</a> Chapter 10 Security 时做的笔记。</p>
+<a id="more"></a>
+<h1 id="0x01_Security">0x01 Security</h1><p>使用 Security 框架，应用程序可以以编程方式访问 keychain，允许对用户数据进行受保护访问，不会不断地提示进行身份验证。</p>
+<p>不幸的是，最终用户的便利性是以开发者为代价的，因为在 Cocoa 中有一些用来与 Keychain 交互的 API 很麻烦。</p>
+<p>与 Keychain 的交互是通过查询来调解的，而不是直接操作。查询本身可能相当复杂，并且使用 C API 很麻烦。</p>
+<p>查询是由以下组件组成的字典（dictionary）：</p>
+<ul>
+<li>要搜索的项目的类别，”Generic Password”，”Internet Password”，”Certificate”，”Key” 或 “Identity”。</li>
+<li>查询返回类型，”Data”，”Attributes”，”Reference” 或 “Persistent Reference”。</li>
+<li>匹配一个或多个属性（attribute）键值对。</li>
+<li>一个或多个搜索键值对以进一步修改结果，例如匹配字符串是否区分大小写，只匹配信任的证书，或者限制只有一个结果或返回全部。</li>
+</ul>
+<p>字符串常量用于几乎所有的键和很多的值，这使得很多 <code>__bridge id</code> 转换 和文档查找。</p>
+<h1 id="0x02_获取_Keychain_Items">0x02 获取 Keychain Items</h1><p>要获取 Keychain item，先构造一个查询，并传递给 <code>SecItemCopyMatching</code>：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *service = <span class="string">@"com.example.app"</span>;</span><br><span class="line"><span class="built_in">NSString</span> *account = <span class="string">@"username"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSDictionary</span> *query = @&#123;</span><br><span class="line">    (__bridge <span class="keyword">id</span>)kSecClass:(__bridge <span class="keyword">id</span>)kSecClassGenericPassword,</span><br><span class="line">    (__bridge <span class="keyword">id</span>)kSecAttrService : service,</span><br><span class="line">    (__bridge <span class="keyword">id</span>)kSecAttrAccount : key,</span><br><span class="line">    (__bridge <span class="keyword">id</span>)kSecMatchLimit : kSecMatchLimitOne,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFTypeRef</span> result;</span><br><span class="line">OSStatus status = SecItemCopyMatching((__bridge <span class="built_in">CFDictionaryRef</span>)query, &amp;result);</span><br></pre></td></tr></table></figure>
+<p>在这个示例中，查询指示 keychain 使用匹配的 username 查找服务 <code>com.example.app</code> 的所有通用密码项。<code>kSecAttrService</code> 定义了凭证的范围，而 <code>kSecAttrAccount</code> 作为一个唯一标识符。传递的搜索选项 <code>kSecMatchLimitOne</code> 确保只返回第一个匹配的结果（如果有的话）。</p>
+<p>如果 <code>status</code> 等于 <code>errSecSuccess</code> （0），则 <code>result</code> 应该被匹配的凭证所填充。</p>
+<h1 id="0x03_添加和更新_Keychain_Items">0x03 添加和更新 Keychain Items</h1><p>也许是 Keychain Services APIs 的主要症结，但是，为了写到 keychain，必须先读取它。有两个写方法：<code>SecItemAdd</code> 和 <code>SecItemUpdate</code>。用具有已匹配现有 item 的属性调用的 <code>SecItemAdd</code> 会返回状态码 <code>errSecDuplicateItem</code>。用没有匹配现有 item 的属性调用 <code>SecItemUpdate</code> 会返回状态码 <code>errSecItemNotFound</code>。因为缺少 <code>UPSERT</code> 类型命令，其中一个是每次都会被 resigned 以有条件地相应：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSData</span> *data = ...;</span><br><span class="line"><span class="keyword">if</span> (status == errSecSuccess) &#123;</span><br><span class="line">    <span class="built_in">NSDictionary</span> *updatedAttributes = @&#123;(__bridge <span class="keyword">id</span>)kSecValueData : data&#125;;</span><br><span class="line">    </span><br><span class="line">    SecItemUpdate((__bridge <span class="built_in">CFDictionaryRef</span>)query, (__bridge <span class="built_in">CFDictionaryRef</span>)updatedAttributes);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *attributes = [query mutableCopy];</span><br><span class="line">    attributes[(__bridge <span class="keyword">id</span>)kSecValueData] = data;</span><br><span class="line">    attributes[(__bridge <span class="keyword">id</span>)kSecAttrAccessible] = (__bridge <span class="keyword">id</span>)kSecAttrAccessibleAfterFirstUnlock;</span><br><span class="line">    </span><br><span class="line">    SecItemAdd((__bridge <span class="built_in">CFDictionaryRef</span>)attributes, <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上一示例开始，使用 <code>kSecValueData</code> 属性 key 在 item 上设置任意数据。原始查询被复制并合并到 <code>SecItemAdd</code> 的另外的属性，而在更新的属性被传给 <code>SecItemUpdate</code>。</p>
+<h1 id="0x04_加密消息语法">0x04 加密消息语法</h1><p>加密消息语法（Cryptographic Message Syntax）是 IETF 用于 S/MIME 消息的公钥加密和数字签名的标准。Apple 的加密消息语法服务在 Security 框架中提供了实现这些行业标准算法的 API。</p>
+<p>如 <a href="http://meilbn.com/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter7-Core-Services/">Core Services</a> 章节所述，MIME 是使 email，恩，有用的互联网标准。如果没有它，email 将不支持非 ASCII 字符或附件。S/MIME 中的 S 指的是如何安全地发送和接收这些消息。</p>
+<p>消息可以由任意数量的签名者或收件人签名或加密，或同时签名和加密。对一个消息签名是允许收件人验证其发件人。对一个消息加密是为了确保这个消息对除了收件人可以解密消息内容之外的任何人都保密。这两个操作是正交的（orthogonal），但是与密码相关。</p>
+<p>编码一个消息</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSData</span> *data;</span><br><span class="line">SecCertificateRef certificateRef;</span><br><span class="line"></span><br><span class="line">CMSEncoderRef encoder;</span><br><span class="line">CMSEncoderCreate(&amp;encoder);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Encrypt</span></span><br><span class="line">CMSEncoderUpdateContent(encoder, [data bytes], [data length]);</span><br><span class="line">CMSEncoderAddRecipients(encoder, certificateRef);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Sign</span></span><br><span class="line">SecIdentityRef identityRef = <span class="literal">nil</span>;</span><br><span class="line">SecIdentityCreateWtihCertificate(<span class="literal">nil</span>, certificateRef, &amp;identityRef);</span><br><span class="line">CMSEncoderUpdateContent(encoder, [data bytes], [data length]);</span><br><span class="line">CMSEncoderAddSigners(encoder, identityRef);</span><br><span class="line"><span class="built_in">CFRelease</span>(identityRef);</span><br><span class="line"></span><br><span class="line">CMSEncoderUpdateContent(encoder, [data bytes], [data length]);</span><br><span class="line">CMSEncoderAddSignedAttributes(encoder, kCMSAttrSmimeCapabilities);</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFDataRef</span> encryptedDataRef;</span><br><span class="line">CMSEncoderCopyEncodedContent(encoder, &amp;encryptedDataRef);</span><br><span class="line"><span class="built_in">NSData</span> *encryptedData = [<span class="built_in">NSData</span> dataWithData:(__bridge <span class="built_in">NSData</span> *)encryptedDataRef];</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFRelease</span>(encoder);</span><br></pre></td></tr></table></figure>
+<p>解码一个消息</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CMSDecoderRef decoder;</span><br><span class="line">CMSDecoderCreate(&amp;decoder);</span><br><span class="line"></span><br><span class="line">CMSDecoderUpdateMessage(decoder, [encryptedData bytes], [encryptedData length]);</span><br><span class="line">CMSDecoderFinalizeMessage(decoder);</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFDataRef</span> decryptedDataRef;</span><br><span class="line">CMSDecoderCopyContent(decoder, &amp;decryptedDataRef);</span><br><span class="line"><span class="built_in">NSData</span> *decryptedData = [<span class="built_in">NSData</span> dataWithData:(__bridge <span class="built_in">NSData</span> *)decryptedDataRef];</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFRelease</span>(decryptedDataRef);</span><br><span class="line"><span class="built_in">CFRelease</span>(decoder);</span><br></pre></td></tr></table></figure>
+<h1 id="0x05_Certificate,_Key_和_Trust_Services">0x05 Certificate, Key 和 Trust Services</h1><p>数字证书用来验证其持有人和发送人的身份。</p>
+<p>理解证书（certificates） 最好的方法是打开一个，看看里面有什么：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$ openssl x509 -in certificate.pem -noout -text</span><br><span class="line"></span><br><span class="line">Certificate:</span><br><span class="line"></span><br><span class="line">    Data:</span><br><span class="line">        Version: <span class="number">1</span> (<span class="number">0</span>x0)</span><br><span class="line">        Serial Number: <span class="number">4919</span> (<span class="number">0</span>x1337)</span><br><span class="line">        Signature Algorithm: md5WithRSAEncryption</span><br><span class="line">        Issuer: C=ZA, ST=Western Cape, L=Cape Town, O=Thawte Consulting cc,</span><br><span class="line">                OU=Certification Services Division,</span><br><span class="line">                CN=Thawte Server CA/emailAddress=server-certs@thawte.com</span><br><span class="line">        Validity</span><br><span class="line">            Not Before: Jun <span class="number">2</span> <span class="number">18</span>:<span class="number">00</span>:<span class="number">00</span> <span class="number">2014</span> GMT</span><br><span class="line">            Not After : Jun <span class="number">2</span> <span class="number">18</span>:<span class="number">00</span>:<span class="number">00</span> <span class="number">2015</span> GMT</span><br><span class="line">        Subject: C=US, ST=Oregon, L=Portland, O=Mattt Thompson,</span><br><span class="line">            OU=NSHipster, CN=nshipster.com/emailAddress=mattt@nshipster.com</span><br><span class="line">        Subject Public Key Info:</span><br><span class="line">            Public Key Algorithm: rsaEncryption</span><br><span class="line">            RSA Public Key: (<span class="number">1024</span> bit)</span><br><span class="line">                Modulus (<span class="number">1024</span> bit):</span><br><span class="line">                    cb:<span class="number">1</span>c:<span class="number">00</span>:aa:bb:<span class="number">89</span>:a0:<span class="number">4</span>c:<span class="number">26</span>:<span class="built_in">cd</span>:<span class="number">8</span>c:<span class="number">4</span>b:<span class="number">0</span>b:<span class="number">13</span>:<span class="number">88</span>:...</span><br><span class="line">                Exponent: <span class="number">65537</span> (<span class="number">0</span>x10001)</span><br><span class="line">    Signature Algorithm: md5WithRSAEncryption</span><br><span class="line">        f5:<span class="number">5</span>c:d6:a0:bf:<span class="number">39</span>:<span class="number">95</span>:fb:fa:ba:f5:f5:<span class="number">5</span>a:d5:d9:f8:<span class="number">42</span>:<span class="number">6</span>b:...</span><br></pre></td></tr></table></figure>
+<p>与其笨重的声誉相反，证书非常容易解析和理解 —— 总之即使对于没有熟练掌握密码学的人来说。</p>
+<p>通过扫描纯文本输出，几个信息浮出表面：</p>
+<ul>
+<li>证书发行人（Certificate issuer）</li>
+<li>有效期（Validity period）</li>
+<li>证书持有者（Certificate holder）</li>
+<li>所有者的公钥（Public key of the owner）</li>
+<li>来自证书认证机构的数字签名（Digital signature from the certiﬁcation authority）</li>
+</ul>
+<p>每个证书都由其颁发证书进行验证，如此沿着证书链建立信任，一直到由认证机构颁发的根证书。</p>
+<p>证书是用于保护互联网的密码基础结构的基础。具有证书的 iOS 和 OS X 开发者最常见的交互之一是验证来自一个 URL 请求的质询（challenge）：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSURLAuthenticationChallenge</span> *challenge = ...;</span><br><span class="line">SecTrustRef trust = challenge<span class="variable">.protectionSpace</span><span class="variable">.serverTrust</span>;</span><br><span class="line">SecPolicyRef X509Policy = SecPolicyCreateBasicX509();</span><br><span class="line">SecTrustSetPolicies(serverTrust, (__bridge <span class="built_in">CFArrayRef</span>)@[(__bridge <span class="keyword">id</span>)X509Policy]);</span><br><span class="line"></span><br><span class="line">SecTrustResultType result;</span><br><span class="line">assert(SecTrustEvaluate(trust, &amp;result) == errSecSuccess);</span><br></pre></td></tr></table></figure>
+<p><code>SecTrustEvaluate</code> 通过验证证书的签名以及证书链中的证书签名一起使证书生效（validates），直到锚证书（anchor certiﬁcate）。为每个指定的策略创建一个证书链，从 leaf 证书开始，检查链中的每一个证书，直到遇到无效的证书，没有更多的证书，或者发现了非默认信任设置的证书。</p>
+<p>在身份认证质询期间验证证书持有者的身份至关重要，因为它可以确保服务器是其声明的，并且可以用敏感信息进行信任。</p>
+<h1 id="0x06_Security_Transform_Services">0x06 Security Transform Services</h1><p>密码学的根本考虑是保护消息从被发送者加密到被接收者解密的时间的含义。当该消息是原始二进制数据时，有时需要采取额外的步骤将该数据编码成文本表示。</p>
+<p>Base64 编码将二进制数据映射到 8 位 chunks，然后由 64 个可打印的 ASCII 字符表示。它对数据进行编码只需要 33% 的开销，不依赖于密文字符，并且具有相对直接的实现。它是一种 UTF-8 的二进制到文本编码。</p>
+<p>Base64 用于任何从 HTTP 基本授权到 CSS 文档中嵌入的 <code>data-uri</code> 资源，一直观地比较固定大小的字节序列，例如 MD5 或 SHA-1 校验和。</p>
+<p>Security 框架使用 <code>SecTransformExecute</code> 函数为 Base64（以及 Base32）编解码提供了内置的支持。</p>
+<p>要对数据进行编码，使用 <code>kSecBase64Encoding</code> 选项创建一个 <code>SecTransformRef</code> 的实例，然后调用 <code>SecTransformExecute</code>：</p>
+<p>Base64 编码</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SecTransformRef transform = SecEncodeTransformCreate(kSecBase64Encoding, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">SecTransformSetAttribute(transform, kSecTransformInputAttributeName, (__bridge <span class="built_in">CFDataRef</span>)data, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSData</span> *encodedData = (__bridge_transfer <span class="built_in">NSData</span> *)SecTransformExecute(transform, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFRelease</span>(transform);</span><br></pre></td></tr></table></figure>
+<p>逆向几乎是相同的，除了传 <code>kSecBase64Decoding</code> 到 <code>SecEncodeTransformCreate</code>：</p>
+<p>Base64 解码</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SecTransformRef transform = SecEncodeTransformCreate(kSecBase64Decoding, <span class="literal">NULL</span>);</span><br><span class="line"><span class="built_in">NSData</span> *decodedData = (__bridge_transfer <span class="built_in">NSData</span> *)SecTransformExecute(transform, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">CFRelease</span>(transform);</span><br></pre></td></tr></table></figure>
+<h1 id="0x07_Randomization_Services">0x07 Randomization Services</h1><p>密码学是基于不可预测的随机值。没有什么保证，它只是安全剧场（security theater）。</p>
+<p><code>SecRandomCopyBytes</code> 从 <code>/dev/random</code> 读取，生成密码安全的随机字节。<code>/dev/random</code> 是在 Unix 上基于设备的环境噪声流熵（streams entropy）的一个特殊的文件。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSUInteger</span> length = <span class="number">1024</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSMutableData</span> *mutableData = [<span class="built_in">NSMutableData</span> dataWithLength:length];</span><br><span class="line"></span><br><span class="line">OSStatus success = SecRandomCopyBytes(kSecRandomDefault, length, mutableData<span class="variable">.mutableBytes</span>);</span><br><span class="line"></span><br><span class="line">__Require_noErr(success, exit);</span><br></pre></td></tr></table></figure>
+<h1 id="0x08_CommonCrypto">0x08 CommonCrypto</h1><p>CommonCrypto 提供了方便的常见加密操作的 API，可以在 iOS 5.0+ 和 OS X 10.5+ 上使用。</p>
+<h2 id="0x0801_摘要（Digests）">0x0801 摘要（Digests）</h2><p>加密 hash 函数在信息安全中扮演了重要的角色。被称为校验和（checksums），指纹或摘要，加密 hash 函数的输出几乎不能被逆向以找到输入。</p>
+<p>例如，”NSHipster” 的 SHA-1 校验和为 <code>7c33b28cb6fe3515548ee58812131de07afeef1b</code>，而对 “CFHipsterRef” 执行相同的 hash 函数生成 “342924012ebde06234135698b372e10c5b86c5b2”。</p>
+<p>要在代码中计算校验和，请使用 <code>CC_SHA1</code> 函数：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSData</span> *data = ...;</span><br><span class="line"></span><br><span class="line">uint8_t output[CC_SHA1_DIGEST_LENGTH];</span><br><span class="line">cc_SHA1(data<span class="variable">.bytes</span>, data<span class="variable">.length</span>, output);</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSData</span> *digest = [<span class="built_in">NSData</span> dataWithBytes:output length:CC_SHA1_DIGEST_LENGTH];</span><br></pre></td></tr></table></figure>
+<p>有很多加密 hash 函数，每个都有不同的安全特性和用例。开发者有责任评估自己产品的要求，以确定最合适的安全技术。</p>
+<h1 id="0x09_HMAC">0x09 HMAC</h1><p>密钥散列消息认证码（keyed-hash message authentication code, HMAC）使用加密 hash 函数和密钥来生成可用于同时验证消息的完整性和真实性的代码。HMAC 的强度取决于加密 hash 函数的强度以及密钥的大小。HMAC 通常由 web 服务使用以确保受保护的调用只有被验证的用户可以访问。</p>
+<p>Common Crypto 提供了 <code>CCHmac</code> 用于生成 HMAC：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSData</span> *data, *key;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> length = CC_SHA1_DIGEST_LENGTH;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> output[length];</span><br><span class="line"></span><br><span class="line">CCHmac(kCCHmacAlgSHA1, key<span class="variable">.bytes</span>, key<span class="variable">.length</span>, data<span class="variable">.bytes</span>, data<span class="variable">.length</span>, output);</span><br></pre></td></tr></table></figure>
+<h1 id="0x0A_Symmetric_Encryption">0x0A Symmetric Encryption</h1><p>在作者撰写此文时，AES-128 &amp; PBKDF2 是安全对称加密的一种合理方法，即加密和解密消息。</p>
+<p>高级加密标准（The Advanced Encryption Standard, AES）是由美国国家标准和技术研究所（NIST）建立的一种加密规范。PBKDF2 是一种使用 hash 函数的方法，通常用于生成一个 block 或 序列码（stream cypher）的 key，就像 AES。</p>
+<p>Security 框架提供了构建 block 来进行对称加密，但是需要开发者自己实现特定的实现。</p>
+<p>第一步是创建一个函数，该函数从一个加密的密码生成一个 PBKDF2 key。Salt 是用作对密码执行单向函数的附加输入的随机数据。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="built_in">NSData</span> *AES128PBKDF2KeyWithPassword(<span class="built_in">NSString</span> *password,</span><br><span class="line">                                           <span class="built_in">NSData</span> *salt,</span><br><span class="line">                                           <span class="built_in">NSError</span> * __autoreleasing *error) &#123;</span><br><span class="line">    <span class="built_in">NSCParameterAssert</span>(password);</span><br><span class="line">    <span class="built_in">NSCParameterAssert</span>(salt);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSMutableData</span> *mutableDerivedKey = [<span class="built_in">NSMutableData</span> dataWithLength:kCCKeySizeAES128];</span><br><span class="line">    </span><br><span class="line">    CCCryptorStatus status =</span><br><span class="line">        CCKeyDerivationPBKDF(kCCPBKDF2,</span><br><span class="line">                             [password UTF8String],</span><br><span class="line">                             [password lengthOfBytesUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>],</span><br><span class="line">                             [salt bytes],</span><br><span class="line">                             [salt length],</span><br><span class="line">                             kCCPRFHmacAlgSHA256,</span><br><span class="line">                             <span class="number">1024</span>,</span><br><span class="line">                             [mutableDerivedKey mutableBytes],</span><br><span class="line">                             kCCKeySizeAES128);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSData</span> *derivedKey = <span class="literal">nil</span>;</span><br><span class="line">    <span class="keyword">if</span> (status != kCCSuccess) &#123;</span><br><span class="line">        <span class="keyword">if</span> (error) &#123;</span><br><span class="line">            *error = [[<span class="built_in">NSError</span> alloc] initWithDomain:<span class="literal">nil</span> code:status userInfo:<span class="literal">nil</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        derivedKey = [<span class="built_in">NSData</span> dataWithData:mutableDerivedKey];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> derivedKey;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来，可以创建加密数据的函数，其将数据和密码加密，并将生成的 salt 和 初始值返回，以及执行操作的时候遇到的错误返回为输出参数：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="built_in">NSData</span> *AES128EncryotedDataWithData(<span class="built_in">NSData</span> *data,</span><br><span class="line">                                           <span class="built_in">NSString</span> *password,</span><br><span class="line">                                           <span class="built_in">NSData</span> * __autoreleasing *salt,</span><br><span class="line">                                           <span class="built_in">NSData</span> * __autoreleasing *initializationVector,</span><br><span class="line">                                           <span class="built_in">NSError</span> * __autoreleasing *error) &#123;</span><br><span class="line">    <span class="built_in">NSCParameterAssert</span>(initializationVector);</span><br><span class="line">    <span class="built_in">NSCParameterAssert</span>(salt);</span><br><span class="line">    </span><br><span class="line">    uint8_t *saltBuffer = malloc(<span class="number">8</span>);</span><br><span class="line">    SecRandomCopyBytes(kSecRandomDefault, <span class="number">8</span>, saltBuffer);</span><br><span class="line">    *salt = [<span class="built_in">NSData</span> dataWithBytes:saltBuffer length:<span class="number">8</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSData</span> *key = AES128PBKDF2KeyWithPassword(password, *salt, error);</span><br><span class="line">    </span><br><span class="line">    uint8_t *initializationVectorBuffer = malloc(kCCBlockSizeAES128);</span><br><span class="line">    SecRandomCopyBytes(kSecRandomDefault, kCCBlockSizeAES128, initializationVectorBuffer);</span><br><span class="line">    *initializationVector = [<span class="built_in">NSData</span> dataWithBytes:initializationVector length:kCCBlockSizeAES128];</span><br><span class="line">    </span><br><span class="line">    size_t size = [data length] + kCCBlockSizeAES128;</span><br><span class="line">    <span class="keyword">void</span> *buffer = malloc(size);</span><br><span class="line">    </span><br><span class="line">    size_t numberOfBytesEncrypted = <span class="number">0</span>;</span><br><span class="line">    CCCryptorStatus status =</span><br><span class="line">        CCCrypt(kCCEncrypt,</span><br><span class="line">                kC<span class="built_in">CAlgorithmAES128</span>,</span><br><span class="line">                kCCOptionPKCS7Padding,</span><br><span class="line">                [key bytes],</span><br><span class="line">                [key length],</span><br><span class="line">                [*initializationVector bytes],</span><br><span class="line">                [data bytes],</span><br><span class="line">                [data length],</span><br><span class="line">                buffer,</span><br><span class="line">                size,</span><br><span class="line">                &amp;numberOfBytesEncrypted);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSData</span> *encryptedData = <span class="literal">nil</span>;</span><br><span class="line">    <span class="keyword">if</span> (status != kCCSuccess) &#123;</span><br><span class="line">        <span class="keyword">if</span> (error) &#123;</span><br><span class="line">            *error = [[<span class="built_in">NSError</span> alloc] initWithDomain:<span class="literal">nil</span> code:status userInfo:<span class="literal">nil</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       encryptedData = [[<span class="built_in">NSData</span> alloc] initWithBytes:buffer length:numberOfBytesEncrypted];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> encryptedData;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，为了加密数据，逆向执行相同的过程，这次传递数据和密码以及从加密函数生成的 salt 和初始化向量：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="built_in">NSData</span> *AES128DecryptedDataWithData(<span class="built_in">NSData</span> *data,</span><br><span class="line">                                           <span class="built_in">NSString</span> *password,</span><br><span class="line">                                           <span class="built_in">NSData</span> *salt,</span><br><span class="line">                                           <span class="built_in">NSData</span> *initializationVector,</span><br><span class="line">                                           <span class="built_in">NSError</span> * __autoreleasing *error) &#123;</span><br><span class="line">    <span class="built_in">NSData</span> *key = AES128PBKDF2KeyWithPassword(password, salt, error);</span><br><span class="line">    </span><br><span class="line">    size_t size = [data length] + kCCBlockSizeAES128;</span><br><span class="line">    <span class="keyword">void</span> *buffer = malloc(size);</span><br><span class="line">    </span><br><span class="line">    size_t numberOfBytesDecrypted = <span class="number">0</span>;</span><br><span class="line">    CCCryptorStatus status =</span><br><span class="line">        CCCrypt(kCCCDecrypt,</span><br><span class="line">        kC<span class="built_in">CAlgorithmAES128</span>,</span><br><span class="line">        kCCOptionPKCS7Padding,</span><br><span class="line">        [key bytes],</span><br><span class="line">        [key length],</span><br><span class="line">        [initializationVector bytes],</span><br><span class="line">        [data bytes],</span><br><span class="line">        [data length],</span><br><span class="line">        buffer,</span><br><span class="line">        size,</span><br><span class="line">        &amp;numberOfBytesDecrypted);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSData</span> *encryptedData = <span class="literal">nil</span>;</span><br><span class="line">    <span class="keyword">if</span> (status != kCCSuccess) &#123;</span><br><span class="line">        <span class="keyword">if</span> (error) &#123;</span><br><span class="line">            *error = [[<span class="built_in">NSError</span> alloc] initWithDomain:<span class="literal">nil</span> code:status userInfo:<span class="literal">nil</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        encryptedData = [[<span class="built_in">NSData</span> alloc] initWithBytes:buffer length:numberOfBytesDecrypted];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> encryptedData;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Keychain/" rel="tag">#Keychain</a>
+          
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
+          
+            <a href="/tags/Security/" rel="tag">#Security</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter9-Accelerate/" rel="next" title="Accelerate">
+                <i class="fa fa-chevron-left"></i> Accelerate
+              </a>
+            
+          </div>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter10-Security/"
+           data-title="Security" data-url="http://meilbn.com/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter10-Security/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="我的眼里只有代码" />
+          <p class="site-author-name" itemprop="name">我的眼里只有代码</p>
+          <p class="site-description motion-element" itemprop="description">You are the code of my eye.<br>'Cause you are the apple of my eye.<br>爱代码，爱机车，爱野马。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/meilbn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/fuckingcode" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/meilbn" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-square"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank" title="GooglePlus">
+                  
+                    <i class="fa fa-fw fa-google-plus"></i>
+                  
+                  GooglePlus
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  DouBan
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_Security"><span class="nav-number">2.</span> <span class="nav-text">0x01 Security</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_获取_Keychain_Items"><span class="nav-number">3.</span> <span class="nav-text">0x02 获取 Keychain Items</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_添加和更新_Keychain_Items"><span class="nav-number">4.</span> <span class="nav-text">0x03 添加和更新 Keychain Items</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_加密消息语法"><span class="nav-number">5.</span> <span class="nav-text">0x04 加密消息语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05_Certificate,_Key_和_Trust_Services"><span class="nav-number">6.</span> <span class="nav-text">0x05 Certificate, Key 和 Trust Services</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x06_Security_Transform_Services"><span class="nav-number">7.</span> <span class="nav-text">0x06 Security Transform Services</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x07_Randomization_Services"><span class="nav-number">8.</span> <span class="nav-text">0x07 Randomization Services</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x08_CommonCrypto"><span class="nav-number">9.</span> <span class="nav-text">0x08 CommonCrypto</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0801_摘要（Digests）"><span class="nav-number">9.1.</span> <span class="nav-text">0x0801 摘要（Digests）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x09_HMAC"><span class="nav-number">10.</span> <span class="nav-text">0x09 HMAC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x0A_Symmetric_Encryption"><span class="nav-number">11.</span> <span class="nav-text">0x0A Symmetric Encryption</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我的眼里只有代码</span>
+</div>
+
+<!-- <div class="powered-by"> -->
+<!--   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动 -->
+<!-- </div> -->
+<!--  -->
+<!-- <div class="theme-info"> -->
+<!--   主题 - -->
+<!--   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next"> -->
+<!--     NexT.Muse -->
+<!--   </a> -->
+<!-- </div> -->
+<!--  -->
+<!-- <div class="powered-by"> -->
+<!-- </div> -->
+
+<div class="theme-info">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次，</span>
+  <span id="busuanzi_container_site_uv">
+    访客数 <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span> 人次</span>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"happyhacking"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("dFo2NvCcL1s5zeJtuvzonGrj-gzGzoHsz", "3gyJUovHABTEqJVyX08exA3z");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
