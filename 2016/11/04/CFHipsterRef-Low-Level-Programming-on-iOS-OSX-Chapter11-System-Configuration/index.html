@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Core Service,Objective-C,UTI," />
+  <meta name="keywords" content="Network,Objective-C,Reachability," />
 
 
 
@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 7 Core Services 时做的笔记。">
+<meta name="description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 11 System Configuration 时做的笔记。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Core Services">
-<meta property="og:url" content="http://meilbn.com/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter7-Core-Services/index.html">
+<meta property="og:title" content="System Configuration">
+<meta property="og:url" content="http://meilbn.com/2016/11/04/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter11-System-Configuration/index.html">
 <meta property="og:site_name" content="Happy Hacking">
-<meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 7 Core Services 时做的笔记。">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_7_Core_Services.png">
-<meta property="og:updated_time" content="2016-11-02T06:31:09.000Z">
+<meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 11 System Configuration 时做的笔记。">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_11_System_Configuration.png">
+<meta property="og:updated_time" content="2016-11-04T06:35:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Core Services">
-<meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 7 Core Services 时做的笔记。">
+<meta name="twitter:title" content="System Configuration">
+<meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 11 System Configuration 时做的笔记。">
 
 
 
@@ -121,10 +121,10 @@
 
 
 
-  <link rel="canonical" href="http://meilbn.com/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter7-Core-Services/"/>
+  <link rel="canonical" href="http://meilbn.com/2016/11/04/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter11-System-Configuration/"/>
 
 
-  <title> Core Services | Happy Hacking </title>
+  <title> System Configuration | Happy Hacking </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -305,7 +305,7 @@
             
             
               
-                Core Services
+                System Configuration
               
             
           </h1>
@@ -317,8 +317,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-02T14:10:22+08:00" content="2016-11-02">
-              2016-11-02
+            <time itemprop="dateCreated" datetime="2016-11-04T14:33:51+08:00" content="2016-11-04">
+              2016-11-04
             </time>
           </span>
 
@@ -347,8 +347,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter7-Core-Services/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter7-Core-Services/" itemprop="commentsCount"></span>
+                <a href="/2016/11/04/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter11-System-Configuration/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/04/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter11-System-Configuration/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -358,7 +358,7 @@
 
           
           
-             <span id="/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter7-Core-Services/" class="leancloud_visitors" data-flag-title="Core Services">
+             <span id="/2016/11/04/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter11-System-Configuration/" class="leancloud_visitors" data-flag-title="System Configuration">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -380,84 +380,115 @@
       
 
       
-        <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_7_Core_Services.png" alt=""></p>
-<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="external">CFHipsterRef</a> Chapter 7 Core Services 时做的笔记。</p>
+        <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_11_System_Configuration.png" alt=""></p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="external">CFHipsterRef</a> Chapter 11 System Configuration 时做的笔记。</p>
 <a id="more"></a>
-<h1 id="0x01_Core_Services">0x01 Core Services</h1><p>让我们花一点时间来真正地思考一下一个文件是什么。</p>
-<p>从根本上来说，文件是一个信息资源。它以这样一种方式持续存在，即它在最初创建它的程序的范围之外保持持久可用。文件本身通常被编码成一维字节数组（one-dimensional byte array），理想地，在存储介质连续的部分中。</p>
-<p>文件本身是无意义的 0 和 1。只有通过程序读和写，它们才是有意义的。</p>
-<p>交换格式（特别是图像编码，如 PNG，GIF 和 JPEG）的一种常见做法是在文件开头使用一个唯一值，也称为文件签名或者“魔术数字”。关于一个文件的信息，例如其名称，大小和其他属性由文件系统存储为元数据（metadata）。从文件读取的程序使用它来确定如何解析和解释文件的数据。</p>
-<p>这种信息如何被结构化和编码是文件系统的主要不同因素之一。</p>
-<h1 id="0x02_Data_&amp;_Resource_Forks">0x02 Data &amp; Resource Forks</h1><p>旧式的 Apple Macintosh Filesystem（MFS）为每一个文件条目关联（associated）了一个 data fork，resource fork 和多个 named forks。对于应用程序，data fork 将保存二进制可执行文件，而 resource fork 将包含图标位图和本地化字符串等内容。不是所有的文件都有 resource forks，但是它们对于将内容从表示（presentation）分离很有用，就像在字处理文档中一样。</p>
-<p>在 Mac OS 上，文件类型和创建者代码（creator codes）由一个 <code>OSType</code> 表示，一个四字节标识符，最常被编码为四个 ASCII / Macintosh 罗马字符。文件类型的常见示例如下所示：</p>
-<p style="text-align: center;">OSType of Common File Types</p>
+<h1 id="0x01_Sysem_Configuration">0x01 Sysem Configuration</h1><p>系统配置（Sysem Configuration）包含用于确定硬件配置和网络状态的 C API。</p>
+<p>大多数开发者对框架的曝光是通过 Apple 的示例代码，简称 “Reachability”。旨在演示使用系统配置调用来确定互联网连接，如今却成为成千上万的应用程序的一部分。因此，表明 Reachability 是其自身成功的一个受害者。而不是记录系统配置 API，它无意地使它们废弃。</p>
+<p>不幸的后果是，大多数开发者对 reachability 是什么，以及如果使用它一知半解。因此，很多那些在其源码中有 <code>Reachability.m</code> 的应用程序可能实际上比根本没有做任何事情的用户体验更糟。</p>
+<h1 id="0x02_Reachability">0x02 Reachability</h1><p>“我连接到互联网了吗？” 是一个难以回答的问题。</p>
+<p>从用户的角度来看，应该很容易，对吧？只需要在 Safari 中输入 <code>apple.com</code>，看看是否有东西加载出来。</p>
+<h2 id="0x0201_Determining_Network_Reachability_Synchronously">0x0201 Determining Network Reachability Synchronously</h2><p>与任何网络一样，建立 reachability 不应同步进行。然而，为了建立到更复杂的同步使用，看起来像是这样：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@import SystemConfiguration;</span><br><span class="line"></span><br><span class="line">SCNetworkReachabilityRef networkReachability = SCNetworkReachabilityCreateWithName(k<span class="built_in">CFAllocatorDefault</span>, [<span class="string">@"www.apple.com"</span> UTF8String]);</span><br><span class="line">SCNetworkReachabilityFlags flags = SCNetworkReachabilityGetFlags(networkReachability, &amp;flags);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Use flags to determine reachability</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">CFRelease</span>(networkReachability);</span><br></pre></td></tr></table></figure>
+<p><code>SCNetworkReachability</code> 是负责确定网络可达性（Reachability）的数据类型。它可以通过传递主机名（host name）（如上面示例）或一个 <code>sockaddr</code> 地址来创建：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">BOOL</span> ignoreAdHocWiFi = <span class="literal">NO</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> sockaddr_in ipAddress;</span><br><span class="line">bzero(&amp;ipAddress, <span class="keyword">sizeof</span>(ipAddress));</span><br><span class="line">ipAddress<span class="variable">.sin_len</span> = <span class="keyword">sizeof</span>(ipAddress);</span><br><span class="line">ipAddress<span class="variable">.sin_family</span> = AF_INET;</span><br><span class="line">ipAddress<span class="variable">.addr</span><span class="variable">.s_addr</span> = htonl(ignoreAdHocWiFi ? INADDR_ANY : IN_LINKLO<span class="built_in">CALNETNUM</span>);</span><br><span class="line"></span><br><span class="line">SCNetworkReachabilityRef networkReachability =</span><br><span class="line">    SCNetworkReachabilityCreateWithAddress(k<span class="built_in">CFAllocatorDefault</span>,</span><br><span class="line">    (<span class="keyword">struct</span> sockaddr *)ipAddress);</span><br></pre></td></tr></table></figure>
+<p><code>SCNetworkReachabilityFlags</code> 是一个同步调用，用于确定可用网络接口的可达性。因为有很多不同的因素影响可达性，所以这个函数返回值不是一个简单的 <code>YES</code> / <code>NO</code>，而是一个特征位掩码（bitmask of characteristics）：</p>
+<p style="text-align: center;">Reachability Flag Values</p>
 
 <table>
 <thead>
 <tr>
-<th>CODE</th>
-<th>Executable Binary</th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Text</td>
-<td>Plain Text</td>
+<td style="text-align:left">Reachable</td>
+<td style="text-align:left">使用当前的网络配置可以访问指定的节点名称或者地址。</td>
 </tr>
 <tr>
-<td>PICT</td>
-<td>QuickDraw Image</td>
+<td style="text-align:left">Transient Connection</td>
+<td style="text-align:left">可以通过一个瞬态连接（如 PPP）访问指定的节点名称或地址。</td>
 </tr>
 <tr>
-<td>SND</td>
-<td>Sound</td>
+<td style="text-align:left">Connection Required</td>
+<td style="text-align:left">使用当前的网络配置可以访问指定的节点名称或者地址，但必须先建立连接。</td>
+</tr>
+<tr>
+<td style="text-align:left">Connection On Traffic</td>
+<td style="text-align:left">使用当前的网络配置可以访问指定的节点名称或者地址，但必须先建立连接。任何针对指定名称或地址的传输都将启动连接。</td>
+</tr>
+<tr>
+<td style="text-align:left">Connection On Demand</td>
+<td style="text-align:left">使用当前的网络配置可以访问指定的节点名称或者地址，但必须先建立连接。</td>
+</tr>
+<tr>
+<td style="text-align:left">Intervention Required</td>
+<td style="text-align:left">使用当前的网络配置可以访问指定的节点名称或者地址，但必须先建立连接。另外，将需要某种形式的用户干预来建立此连接，例如提供密码，认证 token 等。</td>
+</tr>
+<tr>
+<td style="text-align:left">Is Local Address</td>
+<td style="text-align:left">指定的节点名称或地址是与当前系统上的网络接口相关联的。</td>
+</tr>
+<tr>
+<td style="text-align:left">Is Direct</td>
+<td style="text-align:left">网络传输到指定的节点名称或地址将不会通过网关（gateway），而是直接路由（routed）到系统的一个接口上。</td>
 </tr>
 </tbody>
 </table>
-<p><code>OSType</code> 还用于表示粘贴板内容的类型，错误代码和 AppleEvents，System 7 中引入的进程间通信机制。</p>
-<p>实际上，最后一点关于 <code>OSType</code> 被重用的任务（tasks），如处理应用程序之间复制-粘贴（copy-paste）引起的一个有趣的观点：文件只是数据传递的多种方式之一。</p>
-<p>一个这样的例子是通过互联网下载的信息。</p>
-<p>在如今的应用中完成的绝大多数网络都是通过 HTTP。虽然资源的类型有时候可能从 URI 的扩展中收集，但是规范标识符要在 <code>Content-Type</code> HTTP 头部字段（HTTP header field）中找到。此标头（header）的值使用 MIME 类型。MIME 类型是由中央管理机构定义的，互联网号码分配机构（The Internet Assigned Numbers Authority, IANA）也管理根名称服务器（root name servers）和 IP 地址块（IP address blocks）。</p>
-<p>因此，任何取代 <code>OSType</code> 的系统都必须能够容纳互联网媒体以及现有的文件类型。</p>
-<p>改系统是通用类型标识符（Universal Type Identifiers, UTI），并且它已被 OS X 引入。</p>
-<h1 id="0x03_UTI">0x03 UTI</h1><p>UTI 提供了一个可扩展的层次化分类系统，可以提供开发者在处理即使非常奇葩的文件类型时极大的灵活性。例如，一个 Ruby 源文件（.rb）被分类为 “Ruby Source Code &gt; Source Code &gt; Text &gt; Content &gt; Data”；一个 QuickTime 视频文件（.mov）被分类为 “Video &gt; Movie &gt; Audiovisual Content &gt; Content &gt; Data”。</p>
-<p>不限于文件，UTI 可以用于识别一些不同的实体（entities）：</p>
+<p>尽管网络接口的复杂性非常是有趣的，但它们只是对 app 开发者的学术练习（academic exercise），就像它们的用户，真的喜欢 <code>YES</code> 或 <code>NO</code> 答案。</p>
+<p>下面是如何归纳一个复杂的真理：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">BOOL</span> isReachable = ((flags &amp; kSCNetworkReachabilityFlagsReachable) != <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">BOOL</span> needsConnection = ((flags &amp; kSCNetworkReachabilityFlagsConnectionRequired) != <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">BOOL</span> canConnectionAutomatically =</span><br><span class="line">    (((flags &amp; kSCNetworkReachabilityFlagsConnectionOnDemand) != <span class="number">0</span>) ||</span><br><span class="line">    ((flags &amp; kSCNetworkReachabilityFlagsConnectionOnTraffic) != <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line"><span class="built_in">BOOL</span> canConnectWithoutUserInteraction =</span><br><span class="line">    (canConnectionAutomatically &amp;&amp; (flags &amp; kSCNetworkReachabilityFlagsInterventionRequired) == <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">BOOL</span> isNetworkReachable = (isReachable &amp;&amp; (!needsConnection || canConnectWithoutUserInteraction));</span><br></pre></td></tr></table></figure>
+<p>再进一步，reachability flags 也可以用于确定正在使用哪个网络接口：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (isNetworkReachable == <span class="literal">NO</span>) &#123;</span><br><span class="line">    <span class="comment">// Not Reachable</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#if TARGET_OS_IPHONE</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> ((flags &amp; kSCNetworkReachabilityFlagsIsWWAN) != <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// Reachable via WWAN</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">#endif</span></span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// Reachable via WiFi</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在主线程上调用 <code>SCNetworkReachabilityFlags</code> 发起一个 30 秒超时的 DNS 查找。这样不好，不要阻塞，同步调用 <code>SCNetworkReachabilityFlags</code>。</p>
+<h2 id="0x0202_Determining_Network_Reachability_Asynchronously">0x0202 Determining Network Reachability Asynchronously</h2><p>幸运的是，System Configuration 框架提供了一组用于异步监控 reachability 变化的 API。</p>
+<p>首先，定义一个静态回调函数，该函数需要网络 reachability reference，flags 以及要传递的任何附加 context。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> ReachabilityCallback(SCNetworkReachabilityRef target,</span><br><span class="line">                                 SCNetworkConnectionFlags flags,</span><br><span class="line">                                 <span class="keyword">void</span> *context) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一旦声明了回调函数，它就可以被设置到 <code>SCNetworkReachabilityRef</code> 上，然后在 runloop 上调度：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SCNetworkReachabilityContext context = &#123;<span class="number">0</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line"></span><br><span class="line">SCNetworkReachabilitySetCallback(networkReachability, ReachabilityCallback, &amp;context);</span><br><span class="line"></span><br><span class="line">SCNetworkReachabilityScheduleWithRunLoop(reachability, <span class="built_in">CFRunLoopGetMain</span>(), k<span class="built_in">CFRunLoopCommonModes</span>);</span><br></pre></td></tr></table></figure>
+<p>现在，每当设置的网络 reachability 发生变化，<code>ReachabilityCallback</code> 函数就会被调用。然后，可以通过发布到 <code>NSNotificationQueue</code>，或通过调用一个 block 传递到 <code>SCNetworkReachabilityContext</code> 参数中，将此信息传达给应用程序。</p>
+<h1 id="0x03_Network_Configuration_Settings">0x03 Network Configuration Settings</h1><p>原谅有人认为 System Configuration 是一个 one-trick pony。几乎每个对该框架的提及都是在引用网络 reachability，也就是它本身是一个以该死的 Reachability 例子为主导的话题。</p>
+<p>更模糊的功能与查询系统的动态存储有关：<code>SCDynamicStore</code>。这些 API 仅在 OS X 上可用。</p>
+<h1 id="0x0301_Query">0x0301 Query</h1><p><code>SCDynamicStoreRef</code> 为当前系统配置提供了一个键-值接口，该接口由 <code>configd</code> 守护程序（daemon）管理。</p>
+<p>可用使用 <code>SCDynamicStoreCopyKeyList</code> 获取可用的 key 列表：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SCDynamicStoreContext context = &#123; <span class="number">0</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span> &#125;;</span><br><span class="line">SCDynamicStoreRef store = SCDynamicStoreCreate(<span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">nil</span>, &amp;context);</span><br><span class="line"><span class="built_in">NSArray</span> *keys = (__bridge_transfer <span class="built_in">NSArray</span> *)SCDynamicStoreCopyKeyList(store, <span class="built_in">CFSTR</span>(<span class="string">".+"</span>));</span><br></pre></td></tr></table></figure>
 <ul>
-<li>文件（Files）</li>
-<li>目录（Directories）</li>
-<li>粘贴板数据（Pasteboard Data）</li>
-<li>包（Bundles）</li>
-<li>框架（Frameworks）</li>
-<li>互联网媒体（Internet Media）</li>
-<li>流数据（Streaming Data）</li>
-<li>别名和符号链接（Aliases and Symbolic Links）</li>
+<li>Setup:/ Network/Service/…IPv4,</li>
+<li>Setup:/ Network/Service/…IPv6,</li>
+<li>… 100+ Items …</li>
+<li>State:/Network/Interface/p2p0/Link,</li>
+<li>State:/Network/Interface/lo0/IPv6,</li>
+<li>State:/IOKit/LowBatteryWarning,</li>
+<li>State:/Network/MulticastDNS,</li>
+<li>State:/Network/Global/Proxies,</li>
+<li>State:/Network/Interface/bridge0/Link</li>
 </ul>
-<h1 id="0x04_Type_Identifiers">0x04 Type Identifiers</h1><p>公共域（The public domain）保留对大多数应用程序通用的常用或标准类型，例如：</p>
+<p>注：完整的 key 列表可以查看 Apple 的 <a href="https://developer.apple.com" target="_blank" rel="external">System Configuration Programming Guide</a>。</p>
+<p>有了 key 的列表，<code>SCDynamicStore</code> 的目的变得更清晰。IP 地址和网络接口更改时应用程序能够收到通知，甚至当设备电池过低时也能收到通知。</p>
+<p>这里与用于监控网络可达性的语义相同。</p>
+<p>例如，可以使用 <code>State:/Network/Interface</code> key 找到可用网络接口的列表：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SCDynamicStoreContext context = &#123; <span class="number">0</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span> &#125;;</span><br><span class="line">SCDynamicStoreRef store = SCDynamicStoreCreate(<span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">nil</span>, &amp;context);</span><br><span class="line"><span class="built_in">CFPropertyListRef</span> propertyList = SCDynamicStoreCopyValue(store, <span class="built_in">CFSTR</span>(<span class="string">"State:/Network/Interface"</span>));</span><br><span class="line"><span class="built_in">NSArray</span> *interfaces = (__bridge <span class="built_in">NSArray</span> *)<span class="built_in">CFDictionaryGetValue</span>(propertyList, <span class="built_in">CFSTR</span>(<span class="string">"Interfaces"</span>));</span><br></pre></td></tr></table></figure>
 <ul>
-<li>public.text</li>
-<li>public.plain-text</li>
-<li>public.jpeg</li>
-<li>public.html</li>
+<li>lo0</li>
+<li>gif0</li>
+<li>stf0</li>
+<li>en0</li>
+<li>en1</li>
+<li>en2</li>
+<li>bridge0</li>
+<li>p2p0</li>
+<li>utun0</li>
 </ul>
-<h1 id="0x05_Dynamic_Type_Identifiers">0x05 Dynamic Type Identifiers</h1><p>有时一个数据类型没有为其声明 UTI。UTI 通过创建一个动态的标识符来透明地处理这种情况。动态标识符（Dynamic Identifiers）具有域 <code>dyn</code>（domain dyn），字符串后面其余部分是不透明的。它们可以被认为是一个 UTI 兼容封装器（UTI-compatible wrapper），有一个未知的文件名扩展，MIME 类型，OSType 等等。</p>
-<h1 id="0x06_Custom_Type_Identifiers">0x06 Custom Type Identifiers</h1><p>当创建一个自定义类型标识符时，目的是使 UTI 符合物理（a physical）和功能层次结构（functional hierarchy）：</p>
-<ul>
-<li>一个物理层次项目（item）的性质，例如它是一个文件还是一个目录。这应该继承自 <code>public.item</code>。</li>
-<li>一个功能层次与如何使用项目（item）有关。这不应继承自 <code>public.item</code>，但是可以是像 <code>public</code> 这样的。<code>content</code> 或 <code>public.executable</code>。</li>
-</ul>
-<h1 id="0x07_Working_with_UTIs">0x07 Working with UTIs</h1><p>OS X 上的 Core Services 框架和 iOS 上的 Mobile Core Services 框架提供了根据通用类型标识符通过文件扩展和 MIME 类型来识别和分类数据类型的功能。</p>
-<h2 id="0x0701_Comparing">0x0701 Comparing</h2><p>这里有两个比较 UTI 的方法。<code>UTTypeEqual</code> 执行相等判断，这相当于不区分大小的字符串比较。<code>UTTypeConforms</code> 则更深入一点，因为它查找功能和物理层次来找到一个匹配。这跟 <code>isMemberOfClass:</code> 和 <code>isKindOfClass:</code> 之间的区别一样。</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">UTTypeConformsTo(<span class="built_in">CFSTR</span>(<span class="string">"public.jpeg"</span>), <span class="built_in">CFSTR</span>(<span class="string">"public.item"</span>)); <span class="comment">// YES</span></span><br><span class="line"></span><br><span class="line">UTTypeConformsTo(<span class="built_in">CFSTR</span>(<span class="string">"public.jpeg"</span>), <span class="built_in">CFSTR</span>(<span class="string">"public.image"</span>)); <span class="comment">// YES</span></span><br><span class="line"></span><br><span class="line">UTTypeEqual(<span class="built_in">CFSTR</span>(<span class="string">"public.jpeg"</span>), <span class="built_in">CFSTR</span>(<span class="string">"public.image"</span>)); <span class="comment">// NO</span></span><br><span class="line"></span><br><span class="line">UTTypeConformsTo(<span class="built_in">CFSTR</span>(<span class="string">"public.jpeg"</span>), <span class="built_in">CFSTR</span>(<span class="string">"public.png"</span>)); <span class="comment">// NO</span></span><br></pre></td></tr></table></figure>
-<h2 id="0x0702_Copying_Declarations">0x0702 Copying Declarations</h2><p>除了其唯一标识符之外，每个 UTI 都注册了一个属性（attributes）的属性（property）列表。这些属性可以使用 <code>UTTypeCopyDeclaration</code> 来检索：</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">UTTypeCopyDeclaration(<span class="built_in">CFSTR</span>(<span class="string">"public.png"</span>));</span><br><span class="line">&#123;</span><br><span class="line">    UTTypeConformsTo = <span class="string">"public.image"</span>;</span><br><span class="line">    UTTypeDescription = <span class="string">"Portable Network Graphics image"</span>;</span><br><span class="line">    UTTypeIdentifier = <span class="string">"public.png"</span>;</span><br><span class="line">    UTTypeTagSpecification = &#123;</span><br><span class="line">        <span class="string">"com.apple.nspboard-type"</span> = <span class="string">"Apple PNG pasteboard type"</span>;</span><br><span class="line">        <span class="string">"com.apple.ostype"</span> = PNGF;</span><br><span class="line">        <span class="string">"public.filename-extension"</span> = png;</span><br><span class="line">        <span class="string">"public.mime-type"</span> = <span class="string">"image/png"</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="0x0703_Converting">0x0703 Converting</h2><p>当使用 UTI 时，一个常见的任务是获取它们等效的 MIME 类型或者文件名扩展。这可以使用函数 <code>UTTypeCopyPreferredTagWithClass:</code> 来完成：</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *contentType = (__bridge_transfer <span class="built_in">NSString</span> *)UTTypeCopyPreferredTagWithClass(<span class="built_in">CFSTR</span>(<span class="string">"public.text"</span>), kUTTagClassMIMEType);</span><br></pre></td></tr></table></figure>
-<p> 相反，确定 UTI 的一个 MIME 类型，可以使用 <code>UTTypeCreatePreferredIdentifierForTag:</code> 来完成：</p>
- <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *UTI = (__bridge_transfer <span class="built_in">NSString</span> *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, <span class="built_in">CFSTR</span>(<span class="string">"jpg"</span>), <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
-<p><code>UTTypeCopyPreferredTagWithClass</code> &amp; <code>UTTypeCreatePreferredIdentifierForTag</code> 的 tag 类参数可以是以下任意字符串常量：</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span> kUTTagClassFilenameExtension;</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span> kUTTagClassMIMEType;</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span> kUTTagClass<span class="built_in">NSPboardType</span>; <span class="comment">// OS X</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span> kUTTagClassOSType; <span class="comment">// OS X</span></span><br></pre></td></tr></table></figure>
-<p>作为调解数据和文件传输成长和发展格局的一种手段，UTI 做的非常好。从像 “魔法数字” 签名和 resource forks 的特定文件系统机制到提供应用程序极大的灵活性在如何处理数据形式化的类型层次结构的转变。</p>
-<p>充分使用 UTI 将确保应用程序负责任地与文件交互，并与其他东西相处得好。</p>
+<h2 id="0x0302_Monitoring">0x0302 Monitoring</h2><p>动态存储的真正用处是能够监控更改，以便应用程序可以立即响应如 AirPort 被开启或本地 IP 地址发生变化等事情。</p>
+<p>在某种程度上，这只是一个监控网络可达性的更广泛的规划（formulation）。 创建一个动态存储，监听一个特定的网络服务实体 key，并且设置一个回调函数指针：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> Callback(SCDynamicStoreRef store, <span class="built_in">CFArrayRef</span> changedKeys, <span class="keyword">void</span> *info) &#123;</span><br><span class="line">    <span class="keyword">if</span> (info) &#123;</span><br><span class="line">        ((<span class="keyword">void</span> (^)())info)(changedKeys);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">id</span> callback = ^(<span class="built_in">NSArray</span> *changedKeys) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SCDynamicStoreContext context = &#123;<span class="number">0</span>, (__bridge <span class="keyword">void</span> *)callback, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line"></span><br><span class="line">SCDynamicStoreRef store = SCDnamicSoreCreate(<span class="literal">NULL</span>, <span class="built_in">CFSTR</span>(<span class="string">"IPv4AddressMonitor"</span>), Callback, &amp;context);</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> *ipv4 =</span><br><span class="line">    (<span class="built_in">NSString</span> *)SCDynamicStoreKeyCreateNetworkServiceEntity(<span class="literal">NULL</span>,</span><br><span class="line">                                                            kSCDynamicStoreDomainState,</span><br><span class="line">                                                            kSCCompAnyRegex,</span><br><span class="line">                                                            kSCEntNetIPv4);</span><br><span class="line"></span><br><span class="line">SCDynamicStoreSetNotificationKeys(store, <span class="literal">NULL</span>, @[ipv4]);</span><br><span class="line">SCDynamicStoreSetDispatchQueue(store, dispatch_get_main_queue());</span><br></pre></td></tr></table></figure>
+<p>语言是我们特有的意识的本质。这就是我们如何思考。这就是为什么我们完全可以思考。</p>
+<p>我们依据名词来理解世界，用动词浏览它。形容词将将离散观察结果集中到感觉和判断中。我们通过前辈们的书面记录作为一个社会进步。最后，这将会是我们自己的文字，比我们更久。</p>
+<p>我们能够交流完全是一个奇迹。这些想法可以心灵（mind）转移到另一个心灵，是超越信仰的 —— 但是很好理解，它几乎没有记录第二个想法。通过沟通，我们创造彼此之间的理解。我们唤起同情，并扩大我们的道德考虑边界给别人。我们的世界变得更大。</p>
+<p>然而，当语言的距离太难以克服，沟通失败时，它变得难以同情。一种别样的感觉。无论是个人的还是国际的，沟通失败仍然是冲突的主要原因。</p>
+<p>作为一项消除语言和文化距离的技术，有一个强有力的案例表明，Unicode 是为我们的物种创造的最重要的技术之一。</p>
 
       
 
@@ -481,11 +512,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Core-Service/" rel="tag">#Core Service</a>
+            <a href="/tags/Network/" rel="tag">#Network</a>
           
             <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
           
-            <a href="/tags/UTI/" rel="tag">#UTI</a>
+            <a href="/tags/Reachability/" rel="tag">#Reachability</a>
           
         </div>
       
@@ -494,16 +525,12 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/31/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter6-Inter-Process-Communication/" rel="next" title="Inter-Process Communication">
-                <i class="fa fa-chevron-left"></i> Inter-Process Communication
+              <a href="/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter10-Security/" rel="next" title="Security">
+                <i class="fa fa-chevron-left"></i> Security
               </a>
             
           </div>
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter8-ImageIO/" rel="prev" title="ImageIO">
-                ImageIO <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -529,8 +556,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter7-Core-Services/"
-           data-title="Core Services" data-url="http://meilbn.com/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter7-Core-Services/">
+      <div class="ds-thread" data-thread-key="2016/11/04/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter11-System-Configuration/"
+           data-title="System Configuration" data-url="http://meilbn.com/2016/11/04/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter11-System-Configuration/">
       </div>
     
   </div>
@@ -701,7 +728,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_Core_Services"><span class="nav-number">2.</span> <span class="nav-text">0x01 Core Services</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_Data_&_Resource_Forks"><span class="nav-number">3.</span> <span class="nav-text">0x02 Data & Resource Forks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_UTI"><span class="nav-number">4.</span> <span class="nav-text">0x03 UTI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_Type_Identifiers"><span class="nav-number">5.</span> <span class="nav-text">0x04 Type Identifiers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05_Dynamic_Type_Identifiers"><span class="nav-number">6.</span> <span class="nav-text">0x05 Dynamic Type Identifiers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x06_Custom_Type_Identifiers"><span class="nav-number">7.</span> <span class="nav-text">0x06 Custom Type Identifiers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x07_Working_with_UTIs"><span class="nav-number">8.</span> <span class="nav-text">0x07 Working with UTIs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0701_Comparing"><span class="nav-number">8.1.</span> <span class="nav-text">0x0701 Comparing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0702_Copying_Declarations"><span class="nav-number">8.2.</span> <span class="nav-text">0x0702 Copying Declarations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0703_Converting"><span class="nav-number">8.3.</span> <span class="nav-text">0x0703 Converting</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_Sysem_Configuration"><span class="nav-number">2.</span> <span class="nav-text">0x01 Sysem Configuration</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_Reachability"><span class="nav-number">3.</span> <span class="nav-text">0x02 Reachability</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0201_Determining_Network_Reachability_Synchronously"><span class="nav-number">3.1.</span> <span class="nav-text">0x0201 Determining Network Reachability Synchronously</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0202_Determining_Network_Reachability_Asynchronously"><span class="nav-number">3.2.</span> <span class="nav-text">0x0202 Determining Network Reachability Asynchronously</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_Network_Configuration_Settings"><span class="nav-number">4.</span> <span class="nav-text">0x03 Network Configuration Settings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x0301_Query"><span class="nav-number">5.</span> <span class="nav-text">0x0301 Query</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0302_Monitoring"><span class="nav-number">5.1.</span> <span class="nav-text">0x0302 Monitoring</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
