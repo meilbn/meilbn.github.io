@@ -306,6 +306,140 @@
             
               
                 
+                <a class="post-title-link" href="/2015/10/23/reveal-troubleshooting-0x00/" itemprop="url">
+                  Reveal 升级之后不能在手机上查看 App 的解决办法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-23T19:31:38+08:00" content="2015-10-23">
+              2015-10-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/开发工具/" itemprop="url" rel="index">
+                    <span itemprop="name">开发工具</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/23/reveal-troubleshooting-0x00/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/23/reveal-troubleshooting-0x00/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2015/10/23/reveal-troubleshooting-0x00/" class="leancloud_visitors" data-flag-title="Reveal 升级之后不能在手机上查看 App 的解决办法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="0x00_前言">0x00 前言</h1><p>最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 <a href="https://github.com/heardrwt/RevealLoader">RHRevealLoader</a>，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：<code>The operation couldn&#39;t be completed. The iOS app is linked against a older version of the Reveal library. You may need to update the Reveal library i your iOS app.</code>：</p>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x00.png" alt=""></p>
+<p>然后我打开 Cydia 去查看插件是否有更新，可惜没有，所以我就自己找解决办法，最后我找到了这个插件的 GitHub 地址，看了一下 issues，然后就找到了 <a href="https://github.com/heardrwt/RevealLoader/issues/5">issue #5</a>，看到了解决办法：<code>replace at /Library/RHRevealLoader/libReveal.dylib</code>，亲测可行！</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/23/reveal-troubleshooting-0x00/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/06/ios-simple-use-of-nspredicate/" itemprop="url">
                   NSPredicate 的简单使用
                 </a>
@@ -1474,138 +1608,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/06/iOS-Xcode-Debug-Skills-0x00/" itemprop="url">
-                  Xcode Debug 技巧之一
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-06T16:48:50+08:00" content="2015-07-06">
-              2015-07-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/开发工具/" itemprop="url" rel="index">
-                    <span itemprop="name">开发工具</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/06/iOS-Xcode-Debug-Skills-0x00/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/06/iOS-Xcode-Debug-Skills-0x00/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2015/07/06/iOS-Xcode-Debug-Skills-0x00/" class="leancloud_visitors" data-flag-title="Xcode Debug 技巧之一">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          定位到 App 崩溃的那一行代码
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/06/iOS-Xcode-Debug-Skills-0x00/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1651,7 +1653,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1668,7 +1670,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

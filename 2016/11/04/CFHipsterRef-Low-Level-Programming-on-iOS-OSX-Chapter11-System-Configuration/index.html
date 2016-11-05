@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 11 System Configuration 时做的笔记。">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_11_System_Configuration.png">
-<meta property="og:updated_time" content="2016-11-04T06:35:18.000Z">
+<meta property="og:updated_time" content="2016-11-05T08:20:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="System Configuration">
 <meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 11 System Configuration 时做的笔记。">
@@ -451,7 +451,7 @@
 <p>现在，每当设置的网络 reachability 发生变化，<code>ReachabilityCallback</code> 函数就会被调用。然后，可以通过发布到 <code>NSNotificationQueue</code>，或通过调用一个 block 传递到 <code>SCNetworkReachabilityContext</code> 参数中，将此信息传达给应用程序。</p>
 <h1 id="0x03_Network_Configuration_Settings">0x03 Network Configuration Settings</h1><p>原谅有人认为 System Configuration 是一个 one-trick pony。几乎每个对该框架的提及都是在引用网络 reachability，也就是它本身是一个以该死的 Reachability 例子为主导的话题。</p>
 <p>更模糊的功能与查询系统的动态存储有关：<code>SCDynamicStore</code>。这些 API 仅在 OS X 上可用。</p>
-<h1 id="0x0301_Query">0x0301 Query</h1><p><code>SCDynamicStoreRef</code> 为当前系统配置提供了一个键-值接口，该接口由 <code>configd</code> 守护程序（daemon）管理。</p>
+<h2 id="0x0301_Query">0x0301 Query</h2><p><code>SCDynamicStoreRef</code> 为当前系统配置提供了一个键-值接口，该接口由 <code>configd</code> 守护程序（daemon）管理。</p>
 <p>可用使用 <code>SCDynamicStoreCopyKeyList</code> 获取可用的 key 列表：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SCDynamicStoreContext context = &#123; <span class="number">0</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span> &#125;;</span><br><span class="line">SCDynamicStoreRef store = SCDynamicStoreCreate(<span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">nil</span>, &amp;context);</span><br><span class="line"><span class="built_in">NSArray</span> *keys = (__bridge_transfer <span class="built_in">NSArray</span> *)SCDynamicStoreCopyKeyList(store, <span class="built_in">CFSTR</span>(<span class="string">".+"</span>));</span><br></pre></td></tr></table></figure>
 <ul>
@@ -482,7 +482,7 @@
 <li>utun0</li>
 </ul>
 <h2 id="0x0302_Monitoring">0x0302 Monitoring</h2><p>动态存储的真正用处是能够监控更改，以便应用程序可以立即响应如 AirPort 被开启或本地 IP 地址发生变化等事情。</p>
-<p>在某种程度上，这只是一个监控网络可达性的更广泛的规划（formulation）。 创建一个动态存储，监听一个特定的网络服务实体 key，并且设置一个回调函数指针：</p>
+<p>在某种程度上，这只是一个监控网络可达性的更广泛的规划（formulation）。创建一个动态存储，监听一个特定的网络服务实体 key，并且设置一个回调函数指针：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> Callback(SCDynamicStoreRef store, <span class="built_in">CFArrayRef</span> changedKeys, <span class="keyword">void</span> *info) &#123;</span><br><span class="line">    <span class="keyword">if</span> (info) &#123;</span><br><span class="line">        ((<span class="keyword">void</span> (^)())info)(changedKeys);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">id</span> callback = ^(<span class="built_in">NSArray</span> *changedKeys) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SCDynamicStoreContext context = &#123;<span class="number">0</span>, (__bridge <span class="keyword">void</span> *)callback, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line"></span><br><span class="line">SCDynamicStoreRef store = SCDnamicSoreCreate(<span class="literal">NULL</span>, <span class="built_in">CFSTR</span>(<span class="string">"IPv4AddressMonitor"</span>), Callback, &amp;context);</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> *ipv4 =</span><br><span class="line">    (<span class="built_in">NSString</span> *)SCDynamicStoreKeyCreateNetworkServiceEntity(<span class="literal">NULL</span>,</span><br><span class="line">                                                            kSCDynamicStoreDomainState,</span><br><span class="line">                                                            kSCCompAnyRegex,</span><br><span class="line">                                                            kSCEntNetIPv4);</span><br><span class="line"></span><br><span class="line">SCDynamicStoreSetNotificationKeys(store, <span class="literal">NULL</span>, @[ipv4]);</span><br><span class="line">SCDynamicStoreSetDispatchQueue(store, dispatch_get_main_queue());</span><br></pre></td></tr></table></figure>
 <p>语言是我们特有的意识的本质。这就是我们如何思考。这就是为什么我们完全可以思考。</p>
 <p>我们依据名词来理解世界，用动词浏览它。形容词将将离散观察结果集中到感觉和判断中。我们通过前辈们的书面记录作为一个社会进步。最后，这将会是我们自己的文字，比我们更久。</p>
@@ -531,6 +531,10 @@
             
           </div>
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter12-International-Components-for-Unicode/" rel="prev" title="International Components for Unicode">
+                International Components for Unicode <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -602,7 +606,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -619,7 +623,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -728,7 +732,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_Sysem_Configuration"><span class="nav-number">2.</span> <span class="nav-text">0x01 Sysem Configuration</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_Reachability"><span class="nav-number">3.</span> <span class="nav-text">0x02 Reachability</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0201_Determining_Network_Reachability_Synchronously"><span class="nav-number">3.1.</span> <span class="nav-text">0x0201 Determining Network Reachability Synchronously</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0202_Determining_Network_Reachability_Asynchronously"><span class="nav-number">3.2.</span> <span class="nav-text">0x0202 Determining Network Reachability Asynchronously</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_Network_Configuration_Settings"><span class="nav-number">4.</span> <span class="nav-text">0x03 Network Configuration Settings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x0301_Query"><span class="nav-number">5.</span> <span class="nav-text">0x0301 Query</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0302_Monitoring"><span class="nav-number">5.1.</span> <span class="nav-text">0x0302 Monitoring</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_Sysem_Configuration"><span class="nav-number">2.</span> <span class="nav-text">0x01 Sysem Configuration</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_Reachability"><span class="nav-number">3.</span> <span class="nav-text">0x02 Reachability</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0201_Determining_Network_Reachability_Synchronously"><span class="nav-number">3.1.</span> <span class="nav-text">0x0201 Determining Network Reachability Synchronously</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0202_Determining_Network_Reachability_Asynchronously"><span class="nav-number">3.2.</span> <span class="nav-text">0x0202 Determining Network Reachability Asynchronously</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_Network_Configuration_Settings"><span class="nav-number">4.</span> <span class="nav-text">0x03 Network Configuration Settings</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0301_Query"><span class="nav-number">4.1.</span> <span class="nav-text">0x0301 Query</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0302_Monitoring"><span class="nav-number">4.2.</span> <span class="nav-text">0x0302 Monitoring</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

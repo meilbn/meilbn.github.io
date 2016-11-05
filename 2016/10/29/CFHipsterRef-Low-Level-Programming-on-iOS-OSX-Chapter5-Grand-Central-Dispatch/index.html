@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 5 Grand Celtral Dispatch 时做的笔记。">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_5_GCD.png">
-<meta property="og:updated_time" content="2016-10-30T06:47:13.000Z">
+<meta property="og:updated_time" content="2016-11-04T07:20:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Grand Central Dispatch">
 <meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 5 Grand Celtral Dispatch 时做的笔记。">
@@ -413,7 +413,7 @@
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="literal">NULL</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line"></span><br><span class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">    sleep(<span class="number">5</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">    sleep(<span class="number">3</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">dispatch_barrier_async(queue, ^&#123;</span><br><span class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>这个方法对于改变一个集合（比如数组或字典）非常有用：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> <span class="built_in">NSMutableDictionary</span> *mutableDictionary;</span><br><span class="line"><span class="keyword">@property</span> <span class="built_in">dispatch_queue_t</span> queue;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)setObject:(<span class="keyword">id</span>)object forKey:(<span class="keyword">id</span>)key &#123;</span><br><span class="line">    dispatch_barrier_async(<span class="keyword">self</span><span class="variable">.queue</span>, ^&#123;</span><br><span class="line">        <span class="keyword">self</span><span class="variable">.mutableDictionary</span>[key] = object;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="0x06_Sources">0x06 Sources</h1><p>GCD 可以用来处理来自定时器（timers），进程（processes），Mach 端口（mach ports）和文件描述符（file descriptors）等事件。 Dispatch sources 创建之后是挂起状态的，必须显示恢复（resumed）才能启动。</p>
+<h1 id="0x06_Sources">0x06 Sources</h1><p>GCD 可以用来处理来自定时器（timers），进程（processes），Mach 端口（mach ports）和文件描述符（file descriptors）等事件。Dispatch sources 创建之后是挂起状态的，必须显示恢复（resumed）才能启动。</p>
 <p>一个定时器的 dispatch event source 可以被认为是 <code>dispatch_after</code> 的一个更灵活的替代方法，具有被取消的能力，并且还提供最小化时间错位指令的性能影响的余地：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="literal">NULL</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line"></span><br><span class="line">dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, <span class="number">0</span>, <span class="number">0</span>, queue);</span><br><span class="line"></span><br><span class="line">int64_t delay = <span class="number">30</span> * <span class="built_in">NSEC_PER_SEC</span>;</span><br><span class="line">int64_t leeway = <span class="number">5</span> * <span class="built_in">NSEC_PER_SEC</span>;</span><br><span class="line">dispatch_source_set_timer(timer, DISPATCH_TIME_NEW, delay, leeway);</span><br><span class="line"></span><br><span class="line">dispatch_source_set_event_handler(timer, ^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Ding Dong!"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">dispatch_resume(timer);</span><br></pre></td></tr></table></figure>
 <p>可以创建一个文件描述符的 dispatch event 来监听一个文件或文件夹的变化。无论何时触发了一个监视事件，事件 handler 都会被调度到指定的队列上：</p>
@@ -581,7 +581,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -598,7 +598,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">41</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
