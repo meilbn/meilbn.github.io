@@ -1,0 +1,1087 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Dictionary,OS X,Objective-C,Unix,Xcode,iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 13 Dictionary Services 时做的笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dictionary Services">
+<meta property="og:url" content="http://meilbn.com/2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter13-Dictionary-Services/index.html">
+<meta property="og:site_name" content="Happy Hacking">
+<meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 13 Dictionary Services 时做的笔记。">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_13_Dictionary_Services.png">
+<meta property="og:updated_time" content="2016-11-05T12:24:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dictionary Services">
+<meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 13 Dictionary Services 时做的笔记。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://meilbn.com/2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter13-Dictionary-Services/"/>
+
+
+  <title> Dictionary Services | Happy Hacking </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-69209675-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Happy Hacking</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我的眼里只有代码</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Dictionary Services
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-05T20:20:31+08:00" content="2016-11-05">
+              2016-11-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter13-Dictionary-Services/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter13-Dictionary-Services/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter13-Dictionary-Services/" class="leancloud_visitors" data-flag-title="Dictionary Services">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_13_Dictionary_Services.png" alt=""></p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="external">CFHipsterRef</a> Chapter 13 Dictionary Services 时做的笔记。</p>
+<a id="more"></a>
+<h1 id="0x01_Dictionary_Services">0x01 Dictionary Services</h1><p>虽然互联网广泛篡夺了它们“参考”状态，字典和词汇表在幕后扮演了重要的角色。大量的功能依赖于这些信息，从拼写检查，语法检查和自动更正到自动摘要和语义分析。</p>
+<p>所以，作为参考，这里看看计算机在 Unix，OS X 和 iOS 中通过单词给世界带来意义的方式和方法。</p>
+<h1 id="0x02_Unix">0x02 Unix</h1><p>几乎所有的 Unix 发行版都包括一些小的新行分隔（newline-delimited）的单词列表。在 OS X 上，这些可以在 <code>/usr/share/dict</code> 中找到：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ ls /usr/share/dict</span><br><span class="line">    README</span><br><span class="line">    connectives</span><br><span class="line">    propernames</span><br><span class="line">    web2</span><br><span class="line">    web2a</span><br><span class="line">    words@ -&gt; web2</span><br></pre></td></tr></table></figure>
+<p>符号链接 <code>words</code> 是 <code>web2</code> 单词列表，虽然不是很详尽，但仍然是一个相当大的语料库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wc /usr/share/dict/words</span><br><span class="line">    <span class="number">235886</span>   <span class="number">235886</span> <span class="number">2493109</span></span><br></pre></td></tr></table></figure>
+<p>这里用 <code>head</code> 浏览一些有趣的东西。很少如此显而易见的是这些单词都是以 “a” 开头的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ head /usr/share/dict/words</span><br><span class="line">    A</span><br><span class="line">    a</span><br><span class="line">    aa</span><br><span class="line">    aal</span><br><span class="line">    aalii</span><br><span class="line">    aam</span><br><span class="line">    Aani</span><br><span class="line">    aardvark</span><br><span class="line">    aardwolf</span><br><span class="line">    Aaron</span><br></pre></td></tr></table></figure>
+<p>这些巨大的，系统提供的文本文件使其很容易 <code>grep</code> 纵横字谜的线索（crossword puzzle clues），生成记忆密码短语和种子数据库，但从用户角度来看，<code>/usr/share/dict</code> 的单语主义（monolingualism）和缺乏相关的意义使它相当无用。</p>
+<p>OS X 使用自己的系统字典构建。</p>
+<h1 id="0x03_OS_X">0x03 OS X</h1><p><code>/usr/share/dict</code> 的 OS X 模拟可以在 <code>/Library/Dictionaries</code> 中找到。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ ls /Library/Dictionaries/</span><br><span class="line">    Apple Dictionary.dictionary/</span><br><span class="line">    Diccionario General de la Lengua Española Vox.dictionary/</span><br><span class="line">    Duden Dictionary Data Set I.dictionary/</span><br><span class="line">    Dutch.dictionary/</span><br><span class="line">    Italian.dictionary/</span><br><span class="line">    Korean - English.dictionary/</span><br><span class="line">    Korean.dictionary/</span><br><span class="line">    Multidictionnaire de la langue francaise.dictionary/</span><br><span class="line">    New Oxford American Dictionary.dictionary/</span><br><span class="line">    Oxford American Writer<span class="string">'s Thesaurus.dictionary/</span><br><span class="line">    Oxford Dictionary of English.dictionary/</span><br><span class="line">    Oxford Thesaurus of English.dictionary/</span><br><span class="line">    Sanseido Super Daijirin.dictionary/</span><br><span class="line">    Sanseido The WISDOM English-Japanese Japanese-English Dictionary.dictionary/</span><br><span class="line">    Simplified Chinese - English.dictionary/</span><br><span class="line">    The Standard Dictionary of Contemporary Chinese.dictionary/</span></span><br></pre></td></tr></table></figure>
+<p>OS X 附有中文，英文，法语，荷兰语，意大利语，日语和韩语的词典，以及一个英语同义词词典和一个 Apple 特定术语的特殊词典。</p>
+<p>更深入一些，仔细看看 <code>.dictionary</code> bundles，看看他们真正是什么：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ ls <span class="string">"/Library/Dictionaries/New Oxford American Dictionary.dictionary/Contents"</span></span><br><span class="line"></span><br><span class="line">    Body.data</span><br><span class="line">    DefaultStyle.css</span><br><span class="line">    EntryID.data</span><br><span class="line">    EntryID.index</span><br><span class="line">    Images/</span><br><span class="line">    Info.plist</span><br><span class="line">    KeyText.data</span><br><span class="line">    KeyText.index</span><br><span class="line">    Resources/</span><br><span class="line">    _CodeSignature/</span><br><span class="line">    version.plist</span><br></pre></td></tr></table></figure>
+<p>一个文件系统解剖展示了一些有趣的实现细节。特别是新牛津美国词典的情况下，内容包括：</p>
+<ul>
+<li><code>KeyText.data</code>，<code>KeyText.index</code> &amp; <code>Content.data</code> 二进制编码</li>
+<li>CSS 样式条目</li>
+<li>1207 张图片，从 A-Frame 到 Zither</li>
+<li>在 US English Diacritical Pronunciation 和 International Phonetic Alphabet (IPA) 之间切换的偏好</li>
+<li>词典内容的清单 &amp; 签名</li>
+</ul>
+<p>通常，专有二进制编码意味着可以合理处理数据的结束，但是幸运的是，Core Service 提供了读取这个信息的 API。</p>
+<h2 id="0x0301_Gettting_Definition_of_Word">0x0301 Gettting Definition of Word</h2><p>在 OS X 上要获取一个字的定义，可以使用 <code>DCSCopyTextDefinition</code> 函数，在 Core Services 框架中能够找到：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">&lt;CoreServices/CoreServices.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> *word = <span class="string">@"apple"</span>;</span><br><span class="line"><span class="built_in">NSString</span> *definition =</span><br><span class="line">    (__bridge_transfer <span class="built_in">NSString</span> *)DCSCopyTextDefinition(<span class="literal">NULL</span>,</span><br><span class="line">                                                        (__bridge <span class="built_in">CFStringRef</span>)word,</span><br><span class="line">                                                        <span class="built_in">CFRangeMake</span>(<span class="number">0</span>, [word length]));</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, difinition);</span><br></pre></td></tr></table></figure>
+<p>等等，那些伟大的词典都去哪里了？</p>
+<p>好吧，他们都消失在第一个 <code>NULL</code> 参数中。这里可以期望提供一个 <code>DCSCopyTextDefinition</code> 类型，如函数定义所规定的。然而，没有一个公共的函数去构造或复制这样一个类型，使 <code>NULL</code> 成为唯一一个可用的选项。文档也是清晰明确：</p>
+<p><em>“This parameter is reserved for future use, so pass NULL. Dictionary Services searches in all active dictionaries.”</em></p>
+<p>“Dictionary Services searches in all active dictionaries”，这样？听起来像是一个漏洞！</p>
+<h2 id="0x0302_Setting_Active_Dictionaries">0x0302 Setting Active Dictionaries</h2><p>利用漏洞来解决 Apple 平台限制的实践。一个完全易错的获取方法，比如说，同义词词典结果而不是在标准词典中第一个可用的定义：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSUserDefaults</span> *userDefaults = [<span class="built_in">NSUserDefaults</span> standardUserDefaults];</span><br><span class="line"><span class="built_in">NSMutableDictionary</span> *dictionaryPreferences = [[userDefaults persistentDomainForName:<span class="string">@"com.apple.DictionaryServices"</span>] mutableCopy];</span><br><span class="line"><span class="built_in">NSArray</span> *activeDictionaries = [dictionaryPreferences objectForKey:<span class="string">@"DCSActiveDictionaries"</span>];</span><br><span class="line">dictionaryPreferences[<span class="string">@"DCSActiveDictionaries"</span>] = @[<span class="string">@"/Library/Dictionaries/Oxford American Writer's Thesaurus.dictionary"</span>];</span><br><span class="line">[userDefaults setPersistentDomain:dictionaryPreferences forName:<span class="string">@"com.apple.DictionaryServices"</span>];</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSString</span> *word = <span class="string">@"apple"</span>;</span><br><span class="line">    <span class="built_in">NSString</span> *definition = (__bridge_transfer <span class="built_in">NSString</span> *)DCSCopyTextDefinition(<span class="literal">NULL</span>, (__bridge <span class="built_in">CFStringRef</span>)word, <span class="built_in">CFRangeMake</span>(<span class="number">0</span>, [word length]));</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, definition);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dictionaryPreferences[<span class="string">@"DCSActiveDictionaries"</span>] = activeDictionaries;</span><br><span class="line">[userDefaults setPersistentDomain:dictionaryPreferences forName:<span class="string">@"com.apple.DictionaryServices"</span>];</span><br></pre></td></tr></table></figure>
+<p>“但是这是 OS X，一个平台，其宿命不能被来自 Cupertino 的贫乏的沙盒尝试（meager sandboxing attempts）所包含！”，你哭了。“难道没有一个更文明的方法吗？，比如说，私有 API？”</p>
+<p>是的，有。</p>
+<h2 id="0x0303_Private_APIs">0x0303 Private APIs</h2><p>没有公开地暴露，但是仍然可用通过 Core Services 使用一些函数，更接近我们渴望的词典服务（dictionary services）：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="built_in">CFArrayRef</span> DCSCopyAvailableDictionaries();</span><br><span class="line"><span class="keyword">extern</span> <span class="built_in">CFStringRef</span> DCSDictionaryGetName(DCSDictionaryRef dictionary);</span><br><span class="line"><span class="keyword">extern</span> <span class="built_in">CFStringRef</span> DCSDictionaryGetShortName(DCSDictionaryRef dictionary);</span><br><span class="line"><span class="keyword">extern</span> DCSDictionaryRef DCSDictionaryCreate(<span class="built_in">CFURLRef</span> url);</span><br><span class="line"><span class="keyword">extern</span> <span class="built_in">CFStringRef</span> DCSDictionaryGetName(DCSDictionaryRef dictionary);</span><br><span class="line"><span class="keyword">extern</span> <span class="built_in">CFArrayRef</span> DCSDopyRecordsForSearchString(DCSDictionaryRef dictionary, <span class="built_in">CFStringRef</span> string, <span class="keyword">void</span> * <span class="keyword">void</span> *);</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="built_in">CFDictionaryRef</span> DCSCopyDefinitionMarkup(DCSDictionaryRef dictionary, <span class="built_in">CFStringRef</span> record);</span><br><span class="line"><span class="keyword">extern</span> <span class="built_in">CFStringRef</span> DCSRecordCopyData(<span class="built_in">CFTypeRef</span> record);</span><br><span class="line"><span class="keyword">extern</span> <span class="built_in">CFStringRef</span> DCSRecordCopyDataURL(<span class="built_in">CFTypeRef</span> record);</span><br><span class="line"><span class="keyword">extern</span> <span class="built_in">CFStringRef</span> DCSRecordGetAnchor(<span class="built_in">CFTypeRef</span> record);</span><br><span class="line"><span class="keyword">extern</span> <span class="built_in">CFStringRef</span> DCSRecordGetAssociatedObj(<span class="built_in">CFTypeRef</span> record);</span><br><span class="line"><span class="keyword">extern</span> <span class="built_in">CFStringRef</span> DCSRecordGetHeadword(<span class="built_in">CFTypeRef</span> record);</span><br><span class="line"><span class="keyword">extern</span> <span class="built_in">CFStringRef</span> DCSRecordGetRawHeadword(<span class="built_in">CFTypeRef</span> record);</span><br><span class="line"><span class="keyword">extern</span> <span class="built_in">CFStringRef</span> DCSRecordGetString(<span class="built_in">CFTypeRef</span> record);</span><br><span class="line"><span class="keyword">extern</span> <span class="built_in">CFStringRef</span> DCSRecordGetTitle(<span class="built_in">CFTypeRef</span> record);</span><br><span class="line"><span class="keyword">extern</span> DCSDictionaryRef DCSRecordGetSubDictionary(<span class="built_in">CFTypeRef</span> record);</span><br></pre></td></tr></table></figure>
+<p>这些函数并没有在文档中记录，所以来看看它们是怎么使用的。</p>
+<h2 id="0x0304_Getting_Available_Dictionaries">0x0304 Getting Available Dictionaries</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSMapTable</span> *availableDictionariesKeyedByName =</span><br><span class="line">    [<span class="built_in">NSMapTable</span> mapTableWithKeyOptions:<span class="built_in">NSPointerFunctionsCopyIn</span></span><br><span class="line">                          valueOptions:<span class="built_in">NSPointerFunctionsObjectPointerPersonality</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">id</span> dictionary <span class="keyword">in</span> (__bridge_transfer <span class="built_in">NSArray</span> *)DCSCopyAvailableDictionaries()) &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *name = (__bridge <span class="built_in">NSString</span> *)DCSDictionaryGetName((__bridge DCSDictionaryRef)dictionary);</span><br><span class="line">    [availableDictionariesKeyedByName setObject:dictionary forKey:name];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="0x0305_Getting_Definition_for_Word">0x0305 Getting Definition for Word</h2><p>有了可用的 <code>DCSDictionaryRef</code> 类型示例，我们现在可以看到所有的大惊小怪都是关于 <code>DCSCopyTextDefinition</code> 的第一个参数：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *word = <span class="string">@"apple"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">NSString</span> *name <span class="keyword">in</span> availableDictionariesKeyedByName) &#123;</span><br><span class="line">    <span class="keyword">id</span> dictionary = [availableDictionariesKeyedByName objectForKey:name];</span><br><span class="line">    <span class="built_in">CFRange</span> termRange = DCSGetTermRangeInString((__bridge DCSDictionaryRef)dictionary,</span><br><span class="line">                                                (__bridge <span class="built_in">CFStringRef</span>)word, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (termRange<span class="variable">.location</span> == k<span class="built_in">CFNotFound</span>) &#123;</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSString</span> *term = [word substringWithRange:<span class="built_in">NSMakeRange</span>(termRange<span class="variable">.location</span>, termRange<span class="variable">.length</span>)];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSArray</span> *records =</span><br><span class="line">        (__bridge_transfer <span class="built_in">NSArray</span> *)DCSCopyRecordsForSearchString(</span><br><span class="line">            (__bridge DCSDictionaryRef)dictionary,</span><br><span class="line">            (__bridge <span class="built_in">CFStringRef</span>)term, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (records) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">id</span> record <span class="keyword">in</span> records) &#123;</span><br><span class="line">            <span class="built_in">NSString</span> *headword = (__bridge <span class="built_in">NSString</span> *)DCSRecordGetHeadword((__bridge <span class="built_in">CFTypeRef</span>)record);</span><br><span class="line">            <span class="keyword">if</span> (headword) &#123;</span><br><span class="line">                <span class="built_in">NSString</span> *definition =</span><br><span class="line">                    (__bridge_transfer <span class="built_in">NSString</span> *)DCSCopyTextDefinition(</span><br><span class="line">                        (__bridge DCSDictionaryRef)dictionary,</span><br><span class="line">                        (__bridge <span class="built_in">CFStringRef</span>)headword,</span><br><span class="line">                        <span class="built_in">CFRangeMake</span>(<span class="number">0</span>, [headword length]));</span><br><span class="line">                <span class="built_in">NSLog</span>(<span class="string">@"%@: %@"</span>, name, definition);</span><br><span class="line">                </span><br><span class="line">                <span class="built_in">NSString</span> *HTML =</span><br><span class="line">                    (__bridge_transfer <span class="built_in">NSString</span> *)DCSRecordCopyData(</span><br><span class="line">                        (__bridge DSCDictionaryRef)dictionary,</span><br><span class="line">                        (__bridge <span class="built_in">CFStringRef</span>)headword,</span><br><span class="line">                        <span class="built_in">CFRangeMake</span>(<span class="number">0</span>, [headword length]));</span><br><span class="line">                <span class="built_in">NSLog</span>(<span class="string">@"%@: %@"</span>, name, definition);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从这个实验最让人惊讶的是能够访问原始 HTML 的条目，结合字典捆绑的 CSS，产生 Dictionary.app 中显示的内容。</p>
+<h1 id="0x04_iOS">0x04 iOS</h1><p>iOS 开发显然是一个更按部就班的事情，所以试图对平台进行逆向工程将只是一个学术练习。幸运的是，通过晦涩的 UIKit 类 <code>UIReferenceLibraryViewController</code> 有大量的功能可用（从 iOS 5 开始）。</p>
+<p><code>UIReferenceLibraryViewController</code> 跟 <code>MFMessageComposeViewController</code> 很像，其提供了一个围绕系统功能的最小可配置视图控制器，旨在以模态方式呈现。</p>
+<p>只需用所需的 term 初始化并模态化显示：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIReferenceLibraryViewController</span> *referenceLibraryViewController =</span><br><span class="line">    [[<span class="built_in">UIReferenceLibraryViewController</span> alloc] initWithTerm:<span class="string">@"apple"</span>];</span><br><span class="line">[viewController presentViewController:referenceLibraryViewController animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
+<p>这跟在 <code>UITextView</code> 中在高亮文字上点击 “Define” <code>UIMenuItem</code> 的行为很像。</p>
+<p><code>UIReferenceLibraryViewController</code> 也提供了类方法 <code>dictionaryHasDefinitionForTerm:</code>。开发者最好在模态一个字典视图控制器前调用这个方法，不然可能啥都没有显示出来。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">UIReferenceLibraryViewController</span> dictionaryHasDefinitionForTerm:<span class="string">@"apple"</span>];</span><br></pre></td></tr></table></figure>
+<p>从 Unix 的词列表到在 OS X 上（也可能是 iOS）演化的 <code>.dictionary</code> 包，文字是对应用程序编程以及数学常量和 “Sosumi” 警告声至关重要的。思考如何将上述 API 集成到自己的 app 中，或创建一种你以前没有想过的 app。Apple 的平台中有大量的语言学技术，所以要利用它们。</p>
+<p>虽然我们都来自不同的背景，有不同的观点，塑造我们的经历；虽然我们做带有各自动机，信念，偏见和意见的事情，使我们彼此分离，但是有一件事情我们是一样的：</p>
+<p>我们都必须使用 Xcode。不管怎样，好的或坏的。</p>
+<p>至于常见的原因，老实说，事情可以更绝望。也有几个明显的例外，Xcode 好像随着每个版本在变得更好。</p>
+<p>但是当然，Xcode 并不真的只是一个应用程序。在 GUI 下是一个应用程序和命令行工具的联合。</p>
+<h1 id="0x05_Xcode_Tools">0x05 Xcode Tools</h1><h2 id="0x0501_xcode-select">0x0501 xcode-select</h2><p>任何人与 Xcode 的旅程始于一个选择。<code>xcode-selete</code> 提供这个选择。</p>
+
+      
+
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dictionary/" rel="tag">#Dictionary</a>
+          
+            <a href="/tags/OS-X/" rel="tag">#OS X</a>
+          
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
+          
+            <a href="/tags/Unix/" rel="tag">#Unix</a>
+          
+            <a href="/tags/Xcode/" rel="tag">#Xcode</a>
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter12-International-Components-for-Unicode/" rel="next" title="International Components for Unicode">
+                <i class="fa fa-chevron-left"></i> International Components for Unicode
+              </a>
+            
+          </div>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter13-Dictionary-Services/"
+           data-title="Dictionary Services" data-url="http://meilbn.com/2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter13-Dictionary-Services/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="我的眼里只有代码" />
+          <p class="site-author-name" itemprop="name">我的眼里只有代码</p>
+          <p class="site-description motion-element" itemprop="description">You are the code of my eye.<br>'Cause you are the apple of my eye.<br>爱代码，爱机车，爱野马。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/meilbn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/fuckingcode" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/meilbn" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-square"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank" title="GooglePlus">
+                  
+                    <i class="fa fa-fw fa-google-plus"></i>
+                  
+                  GooglePlus
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  DouBan
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_Dictionary_Services"><span class="nav-number">2.</span> <span class="nav-text">0x01 Dictionary Services</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_Unix"><span class="nav-number">3.</span> <span class="nav-text">0x02 Unix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_OS_X"><span class="nav-number">4.</span> <span class="nav-text">0x03 OS X</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0301_Gettting_Definition_of_Word"><span class="nav-number">4.1.</span> <span class="nav-text">0x0301 Gettting Definition of Word</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0302_Setting_Active_Dictionaries"><span class="nav-number">4.2.</span> <span class="nav-text">0x0302 Setting Active Dictionaries</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0303_Private_APIs"><span class="nav-number">4.3.</span> <span class="nav-text">0x0303 Private APIs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0304_Getting_Available_Dictionaries"><span class="nav-number">4.4.</span> <span class="nav-text">0x0304 Getting Available Dictionaries</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0305_Getting_Definition_for_Word"><span class="nav-number">4.5.</span> <span class="nav-text">0x0305 Getting Definition for Word</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_iOS"><span class="nav-number">5.</span> <span class="nav-text">0x04 iOS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05_Xcode_Tools"><span class="nav-number">6.</span> <span class="nav-text">0x05 Xcode Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0501_xcode-select"><span class="nav-number">6.1.</span> <span class="nav-text">0x0501 xcode-select</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我的眼里只有代码</span>
+</div>
+
+<!-- <div class="powered-by"> -->
+<!--   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动 -->
+<!-- </div> -->
+<!--  -->
+<!-- <div class="theme-info"> -->
+<!--   主题 - -->
+<!--   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next"> -->
+<!--     NexT.Muse -->
+<!--   </a> -->
+<!-- </div> -->
+<!--  -->
+<!-- <div class="powered-by"> -->
+<!-- </div> -->
+
+<div class="theme-info">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次，</span>
+  <span id="busuanzi_container_site_uv">
+    访客数 <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span> 人次</span>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"happyhacking"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("dFo2NvCcL1s5zeJtuvzonGrj-gzGzoHsz", "3gyJUovHABTEqJVyX08exA3z");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
