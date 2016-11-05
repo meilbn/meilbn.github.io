@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android,iOS,Developer,GitHub,开发,编程,我的眼里只有代码" />
+  <meta name="keywords" content="Objective-C,Xcode,xcodebuild,xcrun," />
 
 
 
@@ -90,15 +90,17 @@
 
 
 
-<meta name="description" content="You are the code of my eye.&apos;Cause you are the apple of my eye.爱代码，爱机车，爱野马。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Happy Hacking">
-<meta property="og:url" content="http://meilbn.com/tags/Pasteboard/index.html">
+<meta name="description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 14 Xcode Toolchain 时做的笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xcode Toolchain">
+<meta property="og:url" content="http://meilbn.com/2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter14-Xcode-Toolchain/index.html">
 <meta property="og:site_name" content="Happy Hacking">
-<meta property="og:description" content="You are the code of my eye.&apos;Cause you are the apple of my eye.爱代码，爱机车，爱野马。">
+<meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 14 Xcode Toolchain 时做的笔记。">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_14_Xcode_Toolchain.png">
+<meta property="og:updated_time" content="2016-11-05T14:00:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Happy Hacking">
-<meta name="twitter:description" content="You are the code of my eye.&apos;Cause you are the apple of my eye.爱代码，爱机车，爱野马。">
+<meta name="twitter:title" content="Xcode Toolchain">
+<meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 14 Xcode Toolchain 时做的笔记。">
 
 
 
@@ -119,10 +121,10 @@
 
 
 
-  <link rel="canonical" href="http://meilbn.com/tags/Pasteboard/"/>
+  <link rel="canonical" href="http://meilbn.com/2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter14-Xcode-Toolchain/"/>
 
 
-  <title> 标签: Pasteboard | Happy Hacking </title>
+  <title> Xcode Toolchain | Happy Hacking </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -152,7 +154,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -282,46 +284,281 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Pasteboard
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Xcode Toolchain
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-05T21:59:08+08:00" content="2016-11-05">
+              2016-11-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter14-Xcode-Toolchain/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter14-Xcode-Toolchain/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter14-Xcode-Toolchain/" class="leancloud_visitors" data-flag-title="Xcode Toolchain">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
+      
+        <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_14_Xcode_Toolchain.png" alt=""></p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="external">CFHipsterRef</a> Chapter 14 Xcode Toolchain 时做的笔记。</p>
+<a id="more"></a>
+<h1 id="0x01_Xcode_Toolchain">0x01 Xcode Toolchain</h1><p>从 Mavericks 开始，作为一个开发者在 Mac 上开始只需要一个命令：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-<span class="built_in">select</span> <span class="comment">-- install</span></span><br></pre></td></tr></table></figure>
+<p>这将会安装命令行工具，这是编译 Objective-C 代码所必要的。</p>
+<h1 id="0x02_xcrun">0x02 xcrun</h1><p><code>xcrun</code> 是 Xcode 命令行工具的基础。有了它，所有其他的工具都可以被调用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xcrun xcodebuild</span><br></pre></td></tr></table></figure>
+<p>除了运行命令，<code>xcrun</code> 可以找到二进制文件并显示 SDK 的路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ xcrun --find clang</span><br><span class="line">$ xcrun --sdk iphoneos --find pngcrush</span><br><span class="line">$ xcrun --sdk macosx --show-sdk-path</span><br></pre></td></tr></table></figure>
+<p>由于 <code>xcrun</code> 是执行在活动的 Xcode 版本（由 <code>xcode-select</code> 设置）的上下文中，所以在单系统上很容易共存多个版本的 Xcode 工具链（toolchain）。</p>
+<p>在脚本和其他外部工具中使用 <code>xcrun</code> 具有确保跨不同环境的统一性的优点。例如，Xcode 附带了一个 Git 的自定义分布（custom distribution）。通过调用 <code>$ xcrun git</code> 而不只是 <code>$ git</code>，构建系统可以保证运行正确的分布。</p>
+<h1 id="0x03_xcodebuild">0x03 xcodebuild</h1><p>第二个最重要的 Xcode 工具是 <code>xcodebuild</code>，顾名思义，构建 Xcode 项目（projects）和工作空间（workspaces）。</p>
+<p>不需要传递任何构建设置，<code>xcodebuild</code> 默认使用 Xcode.app 最近使用的方案（scheme）和配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xcodebuild</span><br></pre></td></tr></table></figure>
+<p>然而，从方案，targets，配置（configuration），目标地址（destination），SDK 和 derived data 位置的一切都可以配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ xcodebuild -workspace NSHipster.xcworkspace \</span><br><span class="line">             -scheme <span class="string">"NSHipster"</span></span><br></pre></td></tr></table></figure>
+<p>这里有 7 个可以按照顺序被调用的构建动作：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">build</td>
+<td style="text-align:left">在构建根目录（build root，<code>SYMROOT</code>）中构建目标（target）。这是默认的构建动作。</td>
+</tr>
+<tr>
+<td style="text-align:left">analyze</td>
+<td style="text-align:left">从构建根目录中构建并分析一个目标或方案。需要指定一个方案。</td>
+</tr>
+<tr>
+<td style="text-align:left">archive</td>
+<td style="text-align:left">从构建根目录中归档（Archive）一个方案。需要指定一个方案。</td>
+</tr>
+<tr>
+<td style="text-align:left">test</td>
+<td style="text-align:left">从构建根目录中测试一个方案。需要指定一个方案和可选的目标地址。</td>
+</tr>
+<tr>
+<td style="text-align:left">installsrc</td>
+<td style="text-align:left">复制项目的源到源根目录（source root，<code>SRCROOT</code>）。</td>
+</tr>
+<tr>
+<td style="text-align:left">install</td>
+<td style="text-align:left">构建目标并且安装到目标在分发根目录（distribution root，DSTROOT）的安装目录中。</td>
+</tr>
+<tr>
+<td style="text-align:left">clean</td>
+<td style="text-align:left">从构建根目录移除构建的产品（products）和中间文件。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="0x04_genstrings">0x04 genstrings</h1><p><code>genstrings</code> 工具从指定的 C 或 Objective-C 源文件生成一个 <code>.strings</code> 文件。<code>.strings</code> 文件用于在不同语言环境中本地化一个应用程序，在 Apple 的 Cocoa Core Competencies 中的 <a href="https://developer.apple.com/library/mac/documentation/general/conceptual/devpedia-cocoacore/- Internationalization.html" target="_blank" rel="external">“Internationalization”</a> 下有描述。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ genstrings <span class="operator">-a</span> \</span><br><span class="line">             /path/to/<span class="built_in">source</span>/files/*.m</span><br></pre></td></tr></table></figure>
+<p>对于在源文件中每次使用的 <code>NSLocalizedString</code> 宏，<code>genstrings</code> 都会将 key 和注释附加到目标文件中。然后由开发者为每个目标语言环境创建一个该文件的副本，并翻译该文件。</p>
+<p>fr.lproj/Localizable.strings</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/<span class="keyword">*</span> No comment provided by engineer. <span class="keyword">*</span>/</span><br><span class="line"><span class="string">"Username"</span>=<span class="string">"nom d'utilisateur"</span>;</span><br><span class="line">/<span class="keyword">*</span> &#123;User First Name&#125;'s Profile <span class="keyword">*</span>/</span><br><span class="line"><span class="string">"%@'s Profile"</span>=<span class="string">"profil de %1$@"</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="0x05_ibtool">0x05 ibtool</h1><p><code>genstrings</code> 是用于源代码，而 <code>ibtool</code> 是用于 XIB 文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ibtool --generate-strings-file \</span><br><span class="line">         Localizable.strings \</span><br><span class="line">         en.lpoj/Interface.xib</span><br></pre></td></tr></table></figure>
+<p>虽然本地化是它的主要用例，<code>ibtool</code> 有用于跟 Interface Builder 文档工作的几个其他功能。可以使用 <code>--convert</code> 标记来改变对一个类名的所有引用。可以使用 <code>--upgrade</code> 标记将一个文档升级到最新版本。甚至可以分别使用 <code>--enable-auto-layout</code>，<code>--update-frames</code> 和 <code>--update-constraints</code> 标记来启动 Auto Layout，以及更新 frames &amp; constraints（约束）。</p>
+<h1 id="0x06_iprofiler">0x06 iprofiler</h1><p><code>iprofiler</code> 不需要启动 Instruments.app 测算一个 app 的性能：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ iprofiler -allocations \</span><br><span class="line">            -leaks \</span><br><span class="line">            -T <span class="number">15</span>s \</span><br><span class="line">            -o perf \</span><br><span class="line">            <span class="operator">-a</span> NSHipster</span><br></pre></td></tr></table></figure>
+<p>上面的命令将附加到 NSHipster.app 上，运行 15 秒，仪器分配和泄露，然后将结果写入 <code>pref</code> 中。然后这个输出可以通过 Instruments.app 读取和显示。</p>
+<h1 id="0x07_xed">0x07 xed</h1><p>这个命令简单地打开 Xcode。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xed NSHipster.xcworkspace</span><br></pre></td></tr></table></figure>
+<p>通过传递 <code>-w</code> 标记，<code>xed</code> 会等待直到所有一打开的窗口都关闭。这个对于脚本化用户交互非常有用，例如提示用户编辑一个文件，一旦完成就继续。</p>
+<h1 id="0x08_agvtool">0x08 agvtool</h1><p>通过在 <code>Info.plist</code> 文件中读写一个适当的值， <code>agvtool</code> 可以用于修改 Xcode 项目的版本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ agvtool what-version</span><br></pre></td></tr></table></figure>
+<p>…返回当前项目的版本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ agvtool next-version</span><br></pre></td></tr></table></figure>
+<p>…增加 <strong>当前项目的版本</strong> 和 <strong>当前 DYLIB 的版本</strong>。传递 <code>-all</code> 选项也会更新 <code>Info.plist</code> 中的 <code>CFBundleVersion</code> key。</p>
+<h1 id="0x09_Other_Tools">0x09 Other Tools</h1><p>除了上述的 Xcode tools，还有一些其他可执行文件可以被 <code>xcrun</code> 调用。</p>
+<h2 id="0x0901_Compilation_&amp;_Assembly">0x0901 Compilation &amp; Assembly</h2><ul>
+<li>clang：Compiles C，C，Objective-C 和 Objective-C 源文件。</li>
+<li>lldb：Debugs C，C，Objective-C 和 Objective-C 程序。</li>
+<li>nasm：汇编文件。</li>
+<li>ndisasm：反汇编文件。</li>
+<li>symbols：显示一个文件或过程（process）的符号信息。</li>
+<li>strip：删除或修改附加到汇编器和链接编辑器输出的符号表。</li>
+<li>atos：将数字地址转换为二进制映像或进程的符号。</li>
+</ul>
+<h2 id="0x0902_Processors">0x0902 Processors</h2><ul>
+<li>unifdef：从代码中删除条件的 <code>#ifdef</code> 宏。</li>
+<li>ifnames：在 C++ 文件中查找条件。</li>
+</ul>
+<h2 id="0x0903_Libraries">0x0903 Libraries</h2><ul>
+<li>ld：将对象文件和库组合到单个文件中。</li>
+<li>otool：显示对象文件或库的指定部分。</li>
+<li>ar：创建和维护库归档。</li>
+<li>libtool：创建一个用于链接编辑器 <code>ld</code> 的库。</li>
+<li>ranlib：更新归档库的内容目录。</li>
+<li>mksdk：制作和更新 SDK。</li>
+<li>lorder：列出对象文件的依赖关系。</li>
+</ul>
+<h2 id="0x0904_Scripting">0x0904 Scripting</h2><ul>
+<li>sdef：脚本定义提取器。</li>
+<li>sdp：脚本定义处理器。</li>
+<li>amlint：Checks Automator actions for problems.</li>
+</ul>
+<h2 id="0x0905_Packages">0x0905 Packages</h2><ul>
+<li>installer：安装 OS X 包（packages）。</li>
+<li>pkgutil：读取和操作 OS X 包。</li>
+<li>lsbom：列出一个 bom（Bill of Materials） 的内容。</li>
+</ul>
+<h2 id="0x0906_Documentation">0x0906 Documentation</h2><ul>
+<li>headerdoc：进程头文档。</li>
+<li>gatherheaderdoc：编译和链接 <code>headerdoc</code> 输出。</li>
+<li>headerdoc2html：从 <code>headerdoc</code> 输出生成 HTML。</li>
+<li>hdxml2manxml：从 <code>headerdoc</code> XML 输出翻译为使用 <code>xml2man</code> 的文件。</li>
+<li>xml2man：将 Man Page Generation Language（MPGL）XML 文件转换为 manual pages。</li>
+</ul>
+<h2 id="0x0907_Core_Data">0x0907 Core Data</h2><ul>
+<li>momc：编译 Managed Object Model（.mom）文件</li>
+<li>mapc：编译 Core Data Mapping Model（.xcmappingmodel）文件</li>
+</ul>
 
-      <h1 class="post-title">
+      
+
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/10/31/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter6-Inter-Process-Communication/" itemprop="url">
-              
-                <span itemprop="name">Inter-Process Communication</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-31T20:42:40+08:00"
-              content="2016-10-31" >
-          10-31
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
+          
+            <a href="/tags/Xcode/" rel="tag">#Xcode</a>
+          
+            <a href="/tags/xcodebuild/" rel="tag">#xcodebuild</a>
+          
+            <a href="/tags/xcrun/" rel="tag">#xcrun</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter13-Dictionary-Services/" rel="next" title="Dictionary Services">
+                <i class="fa fa-chevron-left"></i> Dictionary Services
+              </a>
+            
+          </div>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -329,6 +566,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter14-Xcode-Toolchain/"
+           data-title="Xcode Toolchain" data-url="http://meilbn.com/2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter14-Xcode-Toolchain/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -348,8 +593,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -480,6 +734,17 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_Xcode_Toolchain"><span class="nav-number">2.</span> <span class="nav-text">0x01 Xcode Toolchain</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_xcrun"><span class="nav-number">3.</span> <span class="nav-text">0x02 xcrun</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_xcodebuild"><span class="nav-number">4.</span> <span class="nav-text">0x03 xcodebuild</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_genstrings"><span class="nav-number">5.</span> <span class="nav-text">0x04 genstrings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05_ibtool"><span class="nav-number">6.</span> <span class="nav-text">0x05 ibtool</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x06_iprofiler"><span class="nav-number">7.</span> <span class="nav-text">0x06 iprofiler</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x07_xed"><span class="nav-number">8.</span> <span class="nav-text">0x07 xed</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x08_agvtool"><span class="nav-number">9.</span> <span class="nav-text">0x08 agvtool</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x09_Other_Tools"><span class="nav-number">10.</span> <span class="nav-text">0x09 Other Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0901_Compilation_&_Assembly"><span class="nav-number">10.1.</span> <span class="nav-text">0x0901 Compilation & Assembly</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0902_Processors"><span class="nav-number">10.2.</span> <span class="nav-text">0x0902 Processors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0903_Libraries"><span class="nav-number">10.3.</span> <span class="nav-text">0x0903 Libraries</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0904_Scripting"><span class="nav-number">10.4.</span> <span class="nav-text">0x0904 Scripting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0905_Packages"><span class="nav-number">10.5.</span> <span class="nav-text">0x0905 Packages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0906_Documentation"><span class="nav-number">10.6.</span> <span class="nav-text">0x0906 Documentation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0907_Core_Data"><span class="nav-number">10.7.</span> <span class="nav-text">0x0907 Core Data</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -589,6 +854,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
