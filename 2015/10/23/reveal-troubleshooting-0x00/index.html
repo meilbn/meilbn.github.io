@@ -97,9 +97,9 @@
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 RHRevealLoader，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：The operation couldn&amp;#39;t be completed. The iOS app is">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x00.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/reveal-troubleshooting-0x01.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/reveal-troubleshooting-0x02.png">
-<meta property="og:updated_time" content="2016-10-30T06:47:45.000Z">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x01.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x02.png">
+<meta property="og:updated_time" content="2016-11-20T12:58:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reveal 升级之后不能在手机上查看 App 的解决办法">
 <meta name="twitter:description" content="0x00 前言最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 RHRevealLoader，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：The operation couldn&amp;#39;t be completed. The iOS app is">
@@ -392,9 +392,9 @@
 <p>需要输入一下 root 的密码，这样就 OK 啦。</p>
 <h1 id="0x02_第二版更新_(v2)">0x02 第二版更新 (v2)</h1><p>前一段时间，Reveal 发布了第二版，不再是 <code>libReveal.dylib</code>，而是 <code>RevealServer.framework</code>，所以真机连接再一次失效，不过按照老办法，试了一下，然而并没有效果，又试了一下将 <code>RevealServer.framework</code> 中的 <code>RevealServer</code> 单独拷贝到手机，还是没有用，结果无奈去官网寻找解决办法，结果当然是找到了！办法就是把 <code>RevealServer</code> 拷贝到手机的时候，将文件名改成 <code>libReveal.dylib</code> 就行了。命令如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp /Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/RevealServer.framework/RevealServer root@your-iPhone<span class="string">'s-IP-address:/Library/RHRevealLoader/libReveal.dylib</span></span><br></pre></td></tr></table></figure>
-<p>大功告成：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/reveal-troubleshooting-0x01.png" alt=""></p>
+<p>大功告成：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x01.png" alt=""></p>
 <p>USB 连接查看也可以了，原本的局域网 WiFi 查看还在。</p>
-<p>查看第三方 App 也还是可以的：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/reveal-troubleshooting-0x02.png" alt=""></p>
+<p>查看第三方 App 也还是可以的：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x02.png" alt=""></p>
 <p>参考链接：<br><a href="http://support.revealapp.com/kb/getting-started/reveal-integration-guide" target="_blank" rel="external">Reveal Integration Guide</a><br><a href="http://support.revealapp.com/discussions/questions/59651-where-is-librevealdylib-in-20-version" target="_blank" rel="external">Where is libReveal.dylib in 2.0 version</a><br><a href="http://petersteinberger.com/blog/2013/how-to-inspect-the-view-hierarchy-of-3rd-party-apps/" target="_blank" rel="external">How to Inspect the View Hierarchy of Third-Party Apps</a></p>
 
       
