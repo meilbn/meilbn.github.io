@@ -102,7 +102,7 @@
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-03.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-04.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-05.png">
-<meta property="og:updated_time" content="2016-10-30T02:04:29.000Z">
+<meta property="og:updated_time" content="2016-11-20T13:08:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="查找目标 App 在 iPhone 里的目录">
 <meta name="twitter:description" content="0x00 前言本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 iOS应用逆向工程(第2版)，有兴趣的同学可以购买学习。">
@@ -387,7 +387,7 @@
       
         <h1 id="0x00_前言">0x00 前言</h1><p>本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 <a href="http://www.amazon.cn/iOS%E5%BA%94%E7%94%A8%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B-%E6%B2%99%E6%A2%93%E7%A4%BE/dp/B00VFDVY7E/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1439878290&amp;sr=1-1&amp;keywords=ios+%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B" target="_blank" rel="external">iOS应用逆向工程(第2版)</a>，有兴趣的同学可以购买学习。</p>
 <a id="more"></a>
-<h1 id="0x01_准备工作">0x01 准备工作</h1><p>准备工作就不扯那么多了，要学习 iOS 逆向工程，最基本的是需要有一台已经越狱的 iPhone，而且已经安装了 OpenSSH 和 Cycript，最好是还有一台 Mac。</p>
+<h1 id="0x01_准备工作">0x01 准备工作</h1><p>准备工作就不扯那么多了，要学习 iOS 逆向工程，最基本的是需要有一台已经越狱的 iPhone，而且已经安装了 OpenSSH 和 Cycript，刚越狱的 iPhone 的 SSH 密码默认是 <code>alpine.</code>（带英文标点），为了安全，最好修改成其他的，然后最好是还有一台 Mac。</p>
 <h1 id="0x02_定位目标_App_的安装目录">0x02 定位目标 App 的安装目录</h1><p>首先，我们先找到目标 App 的安装目标，AppStore 上下载的 App 一般都是安装在 <code>/var/mobile/Containers/Bundle/Application/</code> 下的，书中提到的这个小技巧，非常方便，简单粗暴，先关掉所有从 AppStore 上安装的 App，就只运行目标 App，然后用 Mac 通过 SSH 连接 iPhone，使用命令打印出所有的进程：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-00.png" alt=""></p>
 <p>可以看到有非常多的进程，找起来好麻烦，这里有一个更方便查看的命令，那就是使用 <code>grep</code>，因为我们知道了 App 所在目录的路径前缀，所以直接用 <code>grep</code> 来 “筛选” 出来，命令如下：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-01.png" alt=""></p>
 <p>可以看到，只有一个结果，这个就是我们目标 App (这里是以 QQ 为例) 在我们的 iPhone 中所在的安装目录的绝对路径了。</p>
@@ -543,7 +543,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
