@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://meilbn.com/2015/08/18/The-problems-encountered-in-the-development-of-iOS-00/index.html">
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="记录一些在 iOS 开发当中遇到的问题以及自己找到或者想到的解决办法">
-<meta property="og:updated_time" content="2016-10-27T11:35:29.000Z">
+<meta property="og:updated_time" content="2017-08-21T05:28:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 iOS 开发中遇到的问题（零）">
 <meta name="twitter:description" content="记录一些在 iOS 开发当中遇到的问题以及自己找到或者想到的解决办法">
@@ -480,6 +480,16 @@
 </li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">UITabBar</span> appearance] setBackgroundImage:[[<span class="built_in">UIImage</span> alloc] init]];</span><br><span class="line">[[<span class="built_in">UITabBar</span> appearance] setShadowImage:[[<span class="built_in">UIImage</span> alloc] init]];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置导航栏 left Bar Button Item，如果是想要干掉返回按钮，并且使右滑返回失效，就直接设置 leftBarButtonItem。如果是想增加一个按钮，则：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span><span class="variable">.navigationItem</span><span class="variable">.leftItemsSupplementBackButton</span> = <span class="literal">YES</span>;</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.navigationItem</span><span class="variable">.leftBarButtonItem</span> = [[<span class="built_in">UIBarButtonItem</span> alloc] initWithTitle:<span class="string">@"Title"</span> style:<span class="built_in">UIBarButtonItemStylePlain</span> target:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(action)];</span><br></pre></td></tr></table></figure>
+<p>Google 搜索关键字：ios set navigation bar left button item back button disappear<br><a href="https://stackoverflow.com/questions/18760677/add-a-button-next-to-the-back-button" target="_blank" rel="external">Stack Overflow</a></p>
+<ul>
+<li>比较 <strong>版本号</strong> 字符串时，普通的比较在某些情况下是有问题的，因为默认是一个一个字符比较的，所以在比较版本号的字符串时，需要指定一下 option：NSNumericSearch，如下：</li>
+</ul>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">str0 </span>compare:<span class="keyword">str1 </span>options:NSNumericSearch]</span><br></pre></td></tr></table></figure>
+<p>比如当 <code>1.1.1</code> 和 <code>1.1.12</code> 比较的时候，默认的方法是返回降序的，如果是用上面的方法，返回是升序。</p>
 
       
 
@@ -605,7 +615,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
