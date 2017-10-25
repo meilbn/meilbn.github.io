@@ -1,0 +1,1178 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="BBR,Linode,Shadowsocks,VPS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="0x00 前言首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：
+
+搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。
+阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵用，没便宜），500 多一年，流量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VPS 搭建 Shadowsocks 并开始 BBR">
+<meta property="og:url" content="http://meilbn.com/2017/10/25/VPS-build-shadowsocks-and-bbr/index.html">
+<meta property="og:site_name" content="Happy Hacking">
+<meta property="og:description" content="0x00 前言首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：
+
+搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。
+阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵用，没便宜），500 多一年，流量">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-00.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-01.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-02.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-03.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-04.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-05.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-06.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-07.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-08.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-09.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-10.png">
+<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-11.png">
+<meta property="og:updated_time" content="2017-10-25T05:31:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VPS 搭建 Shadowsocks 并开始 BBR">
+<meta name="twitter:description" content="0x00 前言首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：
+
+搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。
+阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵用，没便宜），500 多一年，流量">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://meilbn.com/2017/10/25/VPS-build-shadowsocks-and-bbr/"/>
+
+
+
+
+
+  <title> VPS 搭建 Shadowsocks 并开始 BBR | Happy Hacking </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-69209675-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Happy Hacking</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我的眼里只有代码</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2017/10/25/VPS-build-shadowsocks-and-bbr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我的眼里只有代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Happy Hacking">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                VPS 搭建 Shadowsocks 并开始 BBR
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T13:19:31+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/25/VPS-build-shadowsocks-and-bbr/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/10/25/VPS-build-shadowsocks-and-bbr/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/25/VPS-build-shadowsocks-and-bbr/" class="leancloud_visitors" data-flag-title="VPS 搭建 Shadowsocks 并开始 BBR">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="0x00_前言">0x00 前言</h1><p>首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：</p>
+<ul>
+<li>搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。</li>
+<li>阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵用，没便宜），500 多一年，流量另算，1 GB 1 块钱，速度很快，但是 2017 年 10 月份十九大之前，竟然被封了 IP。所以换别的服务商。</li>
+<li>Vultr：阿里云被封了 IP 之后，看同事在用这个，就买了这个的日本机房的 VPS，但是搭完之后，没过3天，就被封了 IP，又燃起换服务商的想法，然后看到 Linode 有日本机房的 VPS 可以选，然后就退款，换到 Linode 了。</li>
+<li>Linode：换到 Linode 才真正开始了折腾之路，申请过更换 IP，但是被拒，然后我的解决办法是切换机房，从日本东京切换到新加坡，或者删掉已有的重新创建一个，IP 也是不一样的，但是依然被封 IP，有时候新创建的 VPS 的 IP 是已经被封的。感觉是因为用了 <code>rc4-md5</code> 的加密算法，遂使用更安全更快速的 <code>chacha20</code>，依然逃不过被封 IP 的厄运。</li>
+</ul>
+<p>FUCKING GFW!!!!!!!!!!!!!!!!!!!!</p>
+<a id="more"></a>
+<h1 id="ox01_开始搭建_SS">ox01 开始搭建 SS</h1><p>上面啰嗦了这么多，现在开始搭建 SS，这里服务商就以 Linode 为例，系统就用 Ubuntu 14.04 LTS。</p>
+<h2 id="0x0100_创建服务器">0x0100 创建服务器</h2><ul>
+<li>在 Linode 上新建一个服务器，配置随便，搭 SS 用最低的就够用了，然后地点选日本：</li>
+</ul>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-00.png" alt=""></p>
+<ul>
+<li>创建好了之后，点击名称或者 Dashboard 进入详情：</li>
+</ul>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-01.png" alt=""></p>
+<ul>
+<li>现在服务器还没有配置一个系统，我们点击 Deploy an Image，来安装一个系统：</li>
+</ul>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-02.png" alt=""></p>
+<ul>
+<li>系统选择 Ubuntu 14.04 LTS，再设置一下 root 密码，后面 ssh 登录会用到：</li>
+</ul>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-03.png" alt=""></p>
+<ul>
+<li>创建完之后，等下面 Host Job Queue 中的进度都完成了，点击 Boot 按钮启动服务器。或者直接点 Boot 按钮，Linode 会按队列来一个个执行：</li>
+</ul>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-04.png" alt=""></p>
+<ul>
+<li>服务器运行起来之后，现在我们就可以使用 ssh 登录服务器了，但是为了避免分配的服务器的 IP 是已经被封的，首先我们先 ping 一下 IP，避免做无用功：</li>
+</ul>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-05.png" alt=""></p>
+<p>看来是被封过的，那我们只能重头开始重新创建一个服务器了。</p>
+<ul>
+<li>拿到一个 IP 没有被封的服务器，我们 ssh 连接上去，如果电脑终端连接不上去的，可以先用 Linode 提供的 Glish 连接：</li>
+</ul>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-06.png" alt=""></p>
+<h2 id="0x0101_搭建_SS">0x0101 搭建 SS</h2><ul>
+<li>首先，我们先更新一下 apt-get：</li>
+</ul>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-<span class="built_in">get</span> <span class="keyword">update</span></span><br></pre></td></tr></table></figure>
+<p>然后等待完成，需要一点时间。</p>
+<ul>
+<li>完成之后，我们先安装 python-pip 等一些库（中间需要确认安装一下，输入 y 然后回车）：</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-<span class="built_in">get</span> install <span class="keyword">python</span>-pip <span class="keyword">python</span>-m2crypto</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后就可以安装 SS 了：</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip <span class="keyword">install</span> shadowsocks</span><br></pre></td></tr></table></figure>
+<ul>
+<li>很快就安装好了，然后我们创建所需的文件夹和 config.json 文件：</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cd /etc</span><br><span class="line"><span class="variable">$ </span>mkdir shadowsocks</span><br><span class="line"><span class="variable">$ </span>cd shadowsocks/</span><br><span class="line"><span class="variable">$ </span>vi config.json</span><br></pre></td></tr></table></figure>
+<p>然后输入一下内容：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">server</span>": <span class="value"><span class="string">"YOUR_SERVER_IP"</span></span>,</span><br><span class="line">  "<span class="attribute">server_port</span>": <span class="value"><span class="number">8388</span></span>,</span><br><span class="line">  "<span class="attribute">local_port</span>": <span class="value"><span class="number">1080</span></span>,</span><br><span class="line">  "<span class="attribute">password</span>": <span class="value"><span class="string">"YOUR_SS_PASSWORD"</span></span>,</span><br><span class="line">  "<span class="attribute">timeout</span>": <span class="value"><span class="number">300</span></span>,</span><br><span class="line">  "<span class="attribute">method</span>": <span class="value"><span class="string">"aes-256-cfb"</span></span>,</span><br><span class="line">  "<span class="attribute">fast_open</span>": <span class="value"><span class="literal">false</span></span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后就可以启动 SS 了：</li>
+</ul>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo <span class="regexp">/usr/</span>local<span class="regexp">/bin/</span>ssserver -c <span class="regexp">/etc/</span>shadowsocks<span class="regexp">/config.json --user nobody -qq -d start</span></span><br></pre></td></tr></table></figure>
+<p>也可以把这个命令加到 <code>/etc/rc.local</code> 里面，每次系统启动都会启动 SS，注意要在 <code>exit 0</code> 之前：</p>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-07.png" alt=""></p>
+<p>然后要么重启一下服务器，要么重新运行一下刚刚添加的那条命令，启动 SS。</p>
+<p>到这里，SS 搭建就完成了。</p>
+<h2 id="0x0102_加密方式">0x0102 加密方式</h2><p>上面使用的加密方式是 <code>aes-256-cfb</code>，还有一个更快更安全的 <code>chacha20</code>，但是我用过这个，还是被封 IP，要是想用这个加密方式，还要额外的几步，因为还缺少了一个库：<code>libsodium</code>，不然启动 SS 的时候，会报错，安装方法如下：</p>
+<ul>
+<li>首先先下载这个库：</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cd /tmp</span><br><span class="line"><span class="variable">$ </span>wget <span class="symbol">https:</span>/<span class="regexp">/download.libsodium.org/libsodium</span><span class="regexp">/releases/</span><span class="constant">LATEST.</span>tar.gz</span><br><span class="line"><span class="variable">$ </span>tar zxf <span class="constant">LATEST.</span>tar.gz</span><br><span class="line"><span class="variable">$ </span>cd libsodium*</span><br><span class="line"><span class="variable">$ </span>./configure</span><br><span class="line"><span class="variable">$ </span>sudo make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+<p>可能又会报错：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configure: <span class="keyword">error</span>: <span class="keyword">no</span> acceptable C compiler found <span class="keyword">in</span> <span class="label">$PATH</span></span><br></pre></td></tr></table></figure>
+<p>因为没有 C 编译器，所以继续安装：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get <span class="keyword">install</span> build-essential</span><br><span class="line"><span class="comment"># 安装成功之后再重新编译</span></span><br><span class="line">$ sudo make &amp;&amp; sudo make <span class="keyword">install</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后将下面的代码加入到 <code>/etc/ld.so.conf</code>：</li>
+</ul>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span> ld.<span class="keyword">so</span>.<span class="keyword">conf</span>.<span class="keyword">d</span><span class="comment">/*.conf"</span><br><span class="line">/lib</span><br><span class="line">/usr/lib64</span><br><span class="line">/usr/local/lib</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>再重新载入配置：</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo ldconfig</span><br></pre></td></tr></table></figure>
+<ul>
+<li>最后重新启动 SS 即可。</li>
+</ul>
+<h1 id="0x02_更换系统内核并开启_TCP_BBR">0x02 更换系统内核并开启 TCP BBR</h1><p>TCP BBR 是 Google 开发的心得拥塞控制算法，据说是用在 YouTube 上，并且在去年 9 月开源并且现在已经集成到 Linux 4.9-rc8 之后版本的内核中。虽然 Linode 也更新到了 4.9 版本内核，但是并没有 TCP BBR，所以还是要自己更换一下内核。</p>
+<h2 id="0x0200_更换系统内核">0x0200 更换系统内核</h2><p>这里要注意的一点是，如果你的 VPS 使用的是 OpenVZ 的虚拟技术，你是不能使用 BBR 的。并且系统要求在 CentOS 6+，Debian 7+，Ubuntu 12+。</p>
+<p>首先确定下自己购买的 VPS 的架构吧，这里就不涉及了，自己去找吧。</p>
+<p>这里我就选 <code>4.13.9</code> 了，如果你要选择别的内核版本，完整列表在<a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/" target="_blank" rel="external">这里</a>。</p>
+<ul>
+<li>下载内核文件：</li>
+</ul>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd /tmp</span><br><span class="line">$ wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.13.9/linux-image-<span class="number">4.13.9-04</span>1309-generic_<span class="number">4.13.9-04</span><span class="number">1309.2017102</span>11231_amd64.deb</span><br></pre></td></tr></table></figure>
+<ul>
+<li>等待下载完成，然后使用 <code>dpkg -i</code> 命令安装：</li>
+</ul>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dpkg -i linux-image-<span class="number">4.13.9-04</span>1309-generic_<span class="number">4.13.9-04</span><span class="number">1309.2017102</span>11231_amd64.deb</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装完成以后，查看一下已安装的内核列表：</li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dpkg -l <span class="string">| linux-image</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果看到了刚刚安装的内核，证明安装成功了，然后我执行一下内核更新，然后重启：</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>update-grub</span><br><span class="line"><span class="variable">$ </span>reboot</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重新 ssh 连接，查看一下系统内核：</li>
+</ul>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ uname -<span class="literal">a</span></span><br></pre></td></tr></table></figure>
+<p>发现还是旧的内核，网上找了一下原因，解决办法如下：</p>
+<ul>
+<li>安装内核系统引导：</li>
+</ul>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-<span class="keyword">get</span> install linux-image-<span class="keyword">virtual</span> grub2</span><br></pre></td></tr></table></figure>
+<p>会出现这个界面，我是直接回车确定的：</p>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-08.png" alt=""></p>
+<ul>
+<li>确定一下你的内核已经被安装上，是否有刚刚安装的那个内核：</li>
+</ul>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">ls</span> /<span class="keyword">boot</span>/vmlinuz*</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-09.png" alt=""></p>
+<ul>
+<li>然后编辑 <code>grub</code> 文件：</li>
+</ul>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi <span class="regexp">/etc/</span><span class="keyword">default</span><span class="regexp">/grub</span></span><br></pre></td></tr></table></figure>
+<p>如果和下面有不一样的，修改成一样的（其实我这基本都不用改，默认就是这样）：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">GRUB_TIMEOUT=<span class="value"><span class="number">10</span></span></span></span><br><span class="line"><span class="setting">GRUB_CMDLINE_LINUX=<span class="value"><span class="string">"console=ttyS0,19200n8"</span></span></span></span><br><span class="line"><span class="setting">GRUB_DISABLE_LINUX_UUID=<span class="value"><span class="keyword">true</span></span></span></span><br><span class="line"><span class="setting">GRUB_SERIAL_COMMAND=<span class="value"><span class="string">"serial --speed=19200 --unit=0 --word=8 --parity=no --stop=1"</span></span></span></span><br><span class="line"><span class="setting">GRUB_TERMINAL=<span class="value">serial</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>更新 grub：</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>update-grub</span><br></pre></td></tr></table></figure>
+<ul>
+<li>显示在最顶端的 kernel 就是即将启动的 kernel 。如果没显示在最顶端，就把其余的 kernel 删掉（一般都在最顶端）：</li>
+</ul>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-<span class="keyword">get</span> purge 旧内核名称</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后进入 Linode 的 Dashboard，点击 Edit：</li>
+</ul>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-10.png" alt=""></p>
+<ul>
+<li>在 Kernel 选项处选择 GRUB 2，然后点击 Save Changes 按钮，然后重启 VPS，看看是否内核更新了：</li>
+</ul>
+<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-11.png" alt=""></p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ uname -<span class="literal">a</span></span><br></pre></td></tr></table></figure>
+<p>如果显示的是你安装的新的内核，说明成功了。</p>
+<h2 id="0x0201_开启_TCP_BBR">0x0201 开启 TCP BBR</h2><ul>
+<li>执行下面两条命令：</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">"net.core.default_qdisc=fq"</span> <span class="prompt">&gt;&gt; </span>/etc/sysctl.conf</span><br><span class="line">echo <span class="string">"net.ipv4.tcp_congestion_control=bbr"</span> <span class="prompt">&gt;&gt; </span>/etc/sysctl.conf</span><br></pre></td></tr></table></figure>
+<ul>
+<li>保存生效：</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sysctl -p</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行：</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl net<span class="class">.ipv4</span><span class="class">.tcp_available_congestion_control</span></span><br></pre></td></tr></table></figure>
+<p>则会打印：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net<span class="class">.ipv4</span><span class="class">.tcp_available_congestion_control</span> = bbr cubic reno</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后查看 TCP BBR 是否运行：</li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsmod <span class="string">| grep bbr</span></span><br></pre></td></tr></table></figure>
+<p>如果结果中有 <code>tcp_bbr</code> 说明 BBR 已经启动了。</p>
+<h1 id="0x03_参考链接">0x03 参考链接</h1><p><a href="https://groups.google.com/forum/#!forum/bbr-dev" target="_blank" rel="external">BBR 官方论坛</a><br><a href="https://github.com/google/bbr/blob/master/Documentation/bbr-quick-start.md" target="_blank" rel="external">BBR Quick Start</a></p>
+
+      
+
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BBR/" rel="tag"># BBR</a>
+          
+            <a href="/tags/Linode/" rel="tag"># Linode</a>
+          
+            <a href="/tags/Shadowsocks/" rel="tag"># Shadowsocks</a>
+          
+            <a href="/tags/VPS/" rel="tag"># VPS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/24/How-to-making-a-CocoaPod/" rel="next" title="How to making a CocoaPod">
+                <i class="fa fa-chevron-left"></i> How to making a CocoaPod
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="我的眼里只有代码" />
+          <p class="site-author-name" itemprop="name">我的眼里只有代码</p>
+           
+              <p class="site-description motion-element" itemprop="description">You are the code of my eye.<br>'Cause you are the apple of my eye.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/meilbn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/fuckingcode" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/meilbn" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook-square"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank" title="GooglePlus">
+                  
+                    <i class="fa fa-fw fa-google-plus"></i>
+                  
+                  GooglePlus
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  DouBan
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ox01_开始搭建_SS"><span class="nav-number">2.</span> <span class="nav-text">ox01 开始搭建 SS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0100_创建服务器"><span class="nav-number">2.1.</span> <span class="nav-text">0x0100 创建服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0101_搭建_SS"><span class="nav-number">2.2.</span> <span class="nav-text">0x0101 搭建 SS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0102_加密方式"><span class="nav-number">2.3.</span> <span class="nav-text">0x0102 加密方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_更换系统内核并开启_TCP_BBR"><span class="nav-number">3.</span> <span class="nav-text">0x02 更换系统内核并开启 TCP BBR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0200_更换系统内核"><span class="nav-number">3.1.</span> <span class="nav-text">0x0200 更换系统内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0201_开启_TCP_BBR"><span class="nav-number">3.2.</span> <span class="nav-text">0x0201 开启 TCP BBR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_参考链接"><span class="nav-number">4.</span> <span class="nav-text">0x03 参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我的眼里只有代码</span>
+</div>
+
+<!-- <div class="powered-by"> -->
+<!--   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动 -->
+<!-- </div> -->
+<!--  -->
+<!-- <div class="theme-info"> -->
+<!--   主题 - -->
+<!--   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next"> -->
+<!--     NexT.Muse -->
+<!--   </a> -->
+<!-- </div> -->
+<!--  -->
+<!-- <div class="powered-by"> -->
+<!-- </div> -->
+
+
+<div class="theme-info">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次，</span>
+  <span id="busuanzi_container_site_uv">
+    访客数 <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span> 人次</span>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'ihappyhacking';
+      var disqus_identifier = '2017/10/25/VPS-build-shadowsocks-and-bbr/';
+
+      var disqus_title = "VPS 搭建 Shadowsocks 并开始 BBR";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("dFo2NvCcL1s5zeJtuvzonGrj-gzGzoHsz", "3gyJUovHABTEqJVyX08exA3z");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

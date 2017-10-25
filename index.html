@@ -295,6 +295,182 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2017/10/25/VPS-build-shadowsocks-and-bbr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我的眼里只有代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Happy Hacking">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/25/VPS-build-shadowsocks-and-bbr/" itemprop="url">
+                  VPS 搭建 Shadowsocks 并开始 BBR
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T13:19:31+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/25/VPS-build-shadowsocks-and-bbr/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/10/25/VPS-build-shadowsocks-and-bbr/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/25/VPS-build-shadowsocks-and-bbr/" class="leancloud_visitors" data-flag-title="VPS 搭建 Shadowsocks 并开始 BBR">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="0x00_前言">0x00 前言</h1><p>首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：</p>
+<ul>
+<li>搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。</li>
+<li>阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵用，没便宜），500 多一年，流量另算，1 GB 1 块钱，速度很快，但是 2017 年 10 月份十九大之前，竟然被封了 IP。所以换别的服务商。</li>
+<li>Vultr：阿里云被封了 IP 之后，看同事在用这个，就买了这个的日本机房的 VPS，但是搭完之后，没过3天，就被封了 IP，又燃起换服务商的想法，然后看到 Linode 有日本机房的 VPS 可以选，然后就退款，换到 Linode 了。</li>
+<li>Linode：换到 Linode 才真正开始了折腾之路，申请过更换 IP，但是被拒，然后我的解决办法是切换机房，从日本东京切换到新加坡，或者删掉已有的重新创建一个，IP 也是不一样的，但是依然被封 IP，有时候新创建的 VPS 的 IP 是已经被封的。感觉是因为用了 <code>rc4-md5</code> 的加密算法，遂使用更安全更快速的 <code>chacha20</code>，依然逃不过被封 IP 的厄运。</li>
+</ul>
+<p>FUCKING GFW!!!!!!!!!!!!!!!!!!!!</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/25/VPS-build-shadowsocks-and-bbr/#далее" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://meilbn.com/2017/08/24/How-to-making-a-CocoaPod/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1821,176 +1997,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter9-Accelerate/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我的眼里只有代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Happy Hacking">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter9-Accelerate/" itemprop="url">
-                  Accelerate
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-03T13:47:43+08:00">
-                2016-11-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter9-Accelerate/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter9-Accelerate/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter9-Accelerate/" class="leancloud_visitors" data-flag-title="Accelerate">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_9_Accelerate.png" alt=""></p>
-<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref">CFHipsterRef</a> Chapter 9 Accelerate 时做的笔记。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/11/03/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter9-Accelerate/#далее" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2040,7 +2046,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2062,7 +2068,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
