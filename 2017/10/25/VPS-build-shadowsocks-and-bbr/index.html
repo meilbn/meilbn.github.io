@@ -98,7 +98,7 @@
 搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。
 阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵用，没便宜），500 多一年，流量">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VPS 搭建 Shadowsocks 并开启 BBR">
+<meta property="og:title" content="科学上网 - VPS 搭建 Shadowsocks 并开启 BBR">
 <meta property="og:url" content="http://meilbn.com/2017/10/25/VPS-build-shadowsocks-and-bbr/index.html">
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：
@@ -117,9 +117,9 @@
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-09.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-10.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-11.png">
-<meta property="og:updated_time" content="2017-10-25T07:31:54.000Z">
+<meta property="og:updated_time" content="2017-10-30T02:23:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="VPS 搭建 Shadowsocks 并开启 BBR">
+<meta name="twitter:title" content="科学上网 - VPS 搭建 Shadowsocks 并开启 BBR">
 <meta name="twitter:description" content="0x00 前言首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：
 
 搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。
@@ -157,7 +157,7 @@
 
 
 
-  <title> VPS 搭建 Shadowsocks 并开启 BBR | Happy Hacking </title>
+  <title> 科学上网 - VPS 搭建 Shadowsocks 并开启 BBR | Happy Hacking </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -336,7 +336,7 @@
             
             
               
-                VPS 搭建 Shadowsocks 并开启 BBR
+                科学上网 - VPS 搭建 Shadowsocks 并开启 BBR
               
             
           </h1>
@@ -401,7 +401,7 @@
 
           
           
-             <span id="/2017/10/25/VPS-build-shadowsocks-and-bbr/" class="leancloud_visitors" data-flag-title="VPS 搭建 Shadowsocks 并开启 BBR">
+             <span id="/2017/10/25/VPS-build-shadowsocks-and-bbr/" class="leancloud_visitors" data-flag-title="科学上网 - VPS 搭建 Shadowsocks 并开启 BBR">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -434,7 +434,7 @@
 <ul>
 <li><a href="https://bandwagonhost.com/aff.php?aff=21621" target="_blank" rel="external">搬瓦工</a>：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。</li>
 <li>阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵用，没便宜），500 多一年，流量另算，1 GB 1 块钱，速度很快，但是 2017 年 10 月份十九大之前，竟然被封了 IP。所以换别的服务商。</li>
-<li><a href="https://www.vultr.com/?ref=7238810" target="_blank" rel="external">Vultr</a>：阿里云被封了 IP 之后，看同事在用这个，就买了这个的日本机房的 VPS，但是搭完之后，没过3天，就被封了 IP，又燃起换服务商的想法，然后看到 Linode 有日本机房的 VPS 可以选，然后就退款，换到 Linode 了。</li>
+<li><a href="https://www.vultr.com/?ref=7238810" target="_blank" rel="external">Vultr</a>（通过此链接注册，你可以免费获得 10 美元，同时也能帮助我获得一些小奖励，谢谢！）：阿里云被封了 IP 之后，看同事在用这个，就买了这个的日本机房的 VPS，但是搭完之后，没过3天，就被封了 IP，又燃起换服务商的想法，然后看到 Linode 有日本机房的 VPS 可以选，然后就退款，换到 Linode 了。</li>
 <li><a href="https://www.linode.com/?r=f2bc7074ae89253f83de5918700abc6a82f1685a" target="_blank" rel="external">Linode</a>：换到 Linode 才真正开始了折腾之路，申请过更换 IP，但是被拒，然后我的解决办法是切换机房，从日本东京切换到新加坡，或者删掉已有的重新创建一个，IP 也是不一样的，但是依然被封 IP，有时候新创建的 VPS 的 IP 是已经被封的。感觉是因为用了 <code>rc4-md5</code> 的加密算法，遂使用更安全更快速的 <code>chacha20</code>，依然逃不过被封 IP 的厄运。</li>
 </ul>
 <p>FUCKING GFW!!!!!!!!!!!!!!!!!!!!</p>
@@ -488,6 +488,7 @@
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cd /etc</span><br><span class="line"><span class="variable">$ </span>mkdir shadowsocks</span><br><span class="line"><span class="variable">$ </span>cd shadowsocks/</span><br><span class="line"><span class="variable">$ </span>vi config.json</span><br></pre></td></tr></table></figure>
 <p>然后输入一下内容：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">server</span>": <span class="value"><span class="string">"YOUR_SERVER_IP"</span></span>,</span><br><span class="line">  "<span class="attribute">server_port</span>": <span class="value"><span class="number">8388</span></span>,</span><br><span class="line">  "<span class="attribute">local_port</span>": <span class="value"><span class="number">1080</span></span>,</span><br><span class="line">  "<span class="attribute">password</span>": <span class="value"><span class="string">"YOUR_SS_PASSWORD"</span></span>,</span><br><span class="line">  "<span class="attribute">timeout</span>": <span class="value"><span class="number">300</span></span>,</span><br><span class="line">  "<span class="attribute">method</span>": <span class="value"><span class="string">"aes-256-cfb"</span></span>,</span><br><span class="line">  "<span class="attribute">fast_open</span>": <span class="value"><span class="literal">false</span></span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+<p>（2017-10-30 更新）：最近封锁越来越严重，推荐使用常用端口。</p>
 <ul>
 <li>然后就可以启动 SS 了：</li>
 </ul>
@@ -591,7 +592,28 @@
 </ul>
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsmod <span class="string">| grep bbr</span></span><br></pre></td></tr></table></figure>
 <p>如果结果中有 <code>tcp_bbr</code> 说明 BBR 已经启动了。</p>
-<h1 id="0x03_参考链接">0x03 参考链接</h1><p><a href="https://groups.google.com/forum/#!forum/bbr-dev" target="_blank" rel="external">BBR 官方论坛</a><br><a href="https://github.com/google/bbr/blob/master/Documentation/bbr-quick-start.md" target="_blank" rel="external">BBR Quick Start</a><br><a href="https://github.com/shadowsocks/shadowsocks/wiki/Encryption" target="_blank" rel="external">Shadowsocks wiki Encryption</a></p>
+<h1 id="0x03_修改_SSH_远程登录端口">0x03 修改 SSH 远程登录端口</h1><ul>
+<li>修改 <code>/etc/ssh/sshd_config</code>，在 <code>Port 22</code> 下添加你的端口：</li>
+</ul>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Port</span> <span class="number">22</span></span><br><span class="line"><span class="keyword">Port</span> YOUR_PORT</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改 <code>/etc/ssh/ssh_config</code>，在 <code>Host *</code> 下添加你的端口：</li>
+</ul>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host <span class="keyword">*</span></span><br><span class="line">Port 22</span><br><span class="line">Port YOUR_PORT</span><br><span class="line"><span class="comment"># ForwardAgent no</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重启 SSH</li>
+</ul>
+<figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">service</span> ssh <span class="literal">restart</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>再 SSH 连接新的端口，成功连接后再修改上面的配置把 22 端口注释掉。再在本机 <code>~/.ssh/</code> 下新建一个 <code>config</code> 文件，文件内容为：</li>
+</ul>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host YOUR_HOST</span><br><span class="line">    <span class="built_in">User</span> YOUR_USER_NAME</span><br><span class="line">    Port YOUR_NEW_PORT</span><br></pre></td></tr></table></figure>
+<p>这样下次连接就只需要 <code>ssh YOUR_HOST</code> 就可以了。</p>
+<ul>
+<li>修改 SSH 默认端口后 git 的一些远程操作会失败，解决办法也是修改 <code>config</code> 文件：</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host github<span class="class">.com</span></span><br><span class="line">HostName github<span class="class">.com</span></span><br><span class="line">Port <span class="number">22</span></span><br><span class="line">Host bitbucket<span class="class">.org</span></span><br><span class="line">HostName bitbucket<span class="class">.org</span></span><br><span class="line">Port <span class="number">22</span></span><br></pre></td></tr></table></figure>
+<h1 id="0x04_参考链接">0x04 参考链接</h1><p><a href="https://groups.google.com/forum/#!forum/bbr-dev" target="_blank" rel="external">BBR 官方论坛</a><br><a href="https://github.com/google/bbr/blob/master/Documentation/bbr-quick-start.md" target="_blank" rel="external">BBR Quick Start</a><br><a href="https://github.com/shadowsocks/shadowsocks/wiki/Encryption" target="_blank" rel="external">Shadowsocks wiki Encryption</a></p>
 
       
 
@@ -865,7 +887,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ox01_开始搭建_SS"><span class="nav-number">2.</span> <span class="nav-text">ox01 开始搭建 SS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0100_创建服务器"><span class="nav-number">2.1.</span> <span class="nav-text">0x0100 创建服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0101_搭建_SS"><span class="nav-number">2.2.</span> <span class="nav-text">0x0101 搭建 SS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0102_加密方式"><span class="nav-number">2.3.</span> <span class="nav-text">0x0102 加密方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_更换系统内核并开启_TCP_BBR"><span class="nav-number">3.</span> <span class="nav-text">0x02 更换系统内核并开启 TCP BBR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0200_更换系统内核"><span class="nav-number">3.1.</span> <span class="nav-text">0x0200 更换系统内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0201_开启_TCP_BBR"><span class="nav-number">3.2.</span> <span class="nav-text">0x0201 开启 TCP BBR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_参考链接"><span class="nav-number">4.</span> <span class="nav-text">0x03 参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ox01_开始搭建_SS"><span class="nav-number">2.</span> <span class="nav-text">ox01 开始搭建 SS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0100_创建服务器"><span class="nav-number">2.1.</span> <span class="nav-text">0x0100 创建服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0101_搭建_SS"><span class="nav-number">2.2.</span> <span class="nav-text">0x0101 搭建 SS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0102_加密方式"><span class="nav-number">2.3.</span> <span class="nav-text">0x0102 加密方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_更换系统内核并开启_TCP_BBR"><span class="nav-number">3.</span> <span class="nav-text">0x02 更换系统内核并开启 TCP BBR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0200_更换系统内核"><span class="nav-number">3.1.</span> <span class="nav-text">0x0200 更换系统内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0201_开启_TCP_BBR"><span class="nav-number">3.2.</span> <span class="nav-text">0x0201 开启 TCP BBR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_修改_SSH_远程登录端口"><span class="nav-number">4.</span> <span class="nav-text">0x03 修改 SSH 远程登录端口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_参考链接"><span class="nav-number">5.</span> <span class="nav-text">0x04 参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -1012,7 +1034,7 @@
       var disqus_shortname = 'ihappyhacking';
       var disqus_identifier = '2017/10/25/VPS-build-shadowsocks-and-bbr/';
 
-      var disqus_title = "VPS 搭建 Shadowsocks 并开启 BBR";
+      var disqus_title = "科学上网 - VPS 搭建 Shadowsocks 并开启 BBR";
 
 
       function run_disqus_script(disqus_script) {
