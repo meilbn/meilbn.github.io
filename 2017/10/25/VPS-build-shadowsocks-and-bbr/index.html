@@ -113,7 +113,7 @@
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-09.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-10.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-11.png">
-<meta property="og:updated_time" content="2018-01-19T07:06:05.000Z">
+<meta property="og:updated_time" content="2018-01-19T07:19:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="科学上网 - VPS 搭建 Shadowsocks 并开启 BBR">
 <meta name="twitter:description" content="0x00 前言本文仅供学习，请勿用于非法用途！ 首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：  搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。 阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵">
@@ -549,7 +549,7 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/default/grub</span><br></pre></td></tr></table></figure>
 <p>如果和下面有不一样的，修改成一样的（其实我这基本都不用改，默认就是这样）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GRUB_TIMEOUT=10</span><br><span class="line">GRUB_CMDLINE_LINUX=&quot;console=ttyS0,19200n8&quot;</span><br><span class="line">GRUB_DISABLE_LINUX_UUID=true</span><br><span class="line">GRUB_SERIAL_COMMAND=&quot;serial --speed=19200 --unit=0 --word=8 --parity=no --stop=1&quot;</span><br><span class="line">GRUB_TERMINAL=serial</span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">GRUB_TIMEOUT</span>=<span class="number">10</span></span><br><span class="line"><span class="attr">GRUB_CMDLINE_LINUX</span>=<span class="string">"console=ttyS0,19200n8"</span></span><br><span class="line"><span class="attr">GRUB_DISABLE_LINUX_UUID</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">GRUB_SERIAL_COMMAND</span>=<span class="string">"serial --speed=19200 --unit=0 --word=8 --parity=no --stop=1"</span></span><br><span class="line"><span class="attr">GRUB_TERMINAL</span>=serial</span><br></pre></td></tr></table></figure>
 <ul>
 <li>更新 grub：</li>
 </ul>
