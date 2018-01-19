@@ -93,14 +93,14 @@
 
 
 
-<meta name="description" content="0x00 前言Reveal 的使用 (静态库链接)。
-首先，这里是讲用 Xcode 和 Reveal 来查看自己的 App 的视图，如果你是想看第三方的 App 的界面，那么就不需要看下去了。">
+<meta name="description" content="0x00 前言Reveal 的使用 (静态库链接)。 首先，这里是讲用 Xcode 和 Reveal 来查看自己的 App 的视图，如果你是想看第三方的 App 的界面，那么就不需要看下去了。">
+<meta name="keywords" content="Reveal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Integrating Reveal：Static Linking">
 <meta property="og:url" content="http://meilbn.com/2015/08/01/integrating-reveal-static-linking/index.html">
 <meta property="og:site_name" content="Happy Hacking">
-<meta property="og:description" content="0x00 前言Reveal 的使用 (静态库链接)。
-首先，这里是讲用 Xcode 和 Reveal 来查看自己的 App 的视图，如果你是想看第三方的 App 的界面，那么就不需要看下去了。">
+<meta property="og:description" content="0x00 前言Reveal 的使用 (静态库链接)。 首先，这里是讲用 Xcode 和 Reveal 来查看自己的 App 的视图，如果你是想看第三方的 App 的界面，那么就不需要看下去了。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_00.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_01.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_02.png">
@@ -116,8 +116,8 @@
 <meta property="og:updated_time" content="2017-08-24T08:24:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Integrating Reveal：Static Linking">
-<meta name="twitter:description" content="0x00 前言Reveal 的使用 (静态库链接)。
-首先，这里是讲用 Xcode 和 Reveal 来查看自己的 App 的视图，如果你是想看第三方的 App 的界面，那么就不需要看下去了。">
+<meta name="twitter:description" content="0x00 前言Reveal 的使用 (静态库链接)。 首先，这里是讲用 Xcode 和 Reveal 来查看自己的 App 的视图，如果你是想看第三方的 App 的界面，那么就不需要看下去了。">
+<meta name="twitter:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_00.png">
 
 
 
@@ -436,7 +436,7 @@
 <li>可以转动视图来查看各个方向上的层次结构：<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_03.png" alt=""></li>
 </ol>
 <p>对于自己的 App，如果你要求不是那么高的话，Xcode 也是差不多够用了，当然，这是在没有和 Reveal 的对比下，相信我，看完了 Reveal，你绝逼会想买的。</p>
-<h1 id="0x02_Reveal_登场">0x02 Reveal 登场</h1><p>现在该是 Reveal 的 Show Time 了！你也可以查看相关的<a href="http://support.revealapp.com/kb/getting-started/integrating-reveal-static-linking" target="_blank" rel="external">官方教程</a>，要想用 Reveal 来查看自己的 App 的视图，先要配置一下项目，也很简单，只要如下几步：</p>
+<h1 id="0x02_Reveal_登场">0x02 Reveal 登场</h1><p>现在该是 Reveal 的 Show Time 了！你也可以查看相关的<a href="http://support.revealapp.com/kb/getting-started/integrating-reveal-static-linking" target="_blank" rel="noopener">官方教程</a>，要想用 Reveal 来查看自己的 App 的视图，先要配置一下项目，也很简单，只要如下几步：</p>
 <ol>
 <li>你要先安装了 Reveal</li>
 <li>打开 Reveal，点击菜单栏上的 <strong><em>Help -&gt; Show Reveal Library in Finder</em></strong> ：<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_04.png" alt=""></li>
@@ -444,7 +444,7 @@
 <li>然后点击上方的 <em>Project -&gt; Targets -&gt; Build Phases -&gt; Link Binary With Libraries</em> ，将 Reveal.framework 移除 (如果有的话)：<img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_06.png" alt=""></li>
 <li>点击 <em>Build Settings</em> ，搜索 <code>Other Linker Flags</code>，添加下面这行代码：</li>
 </ol>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-ObjC -lz -framework Reveal</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-ObjC -lz -framework Reveal</span><br></pre></td></tr></table></figure>
 <p>如图所示：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_07.png" alt=""></p>
 <p>如果是这样，就算是配置完成了：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_08.png" alt=""></p>
 <h1 id="0x03_Reveal_查看_App_视图">0x03 Reveal 查看 App 视图</h1><p>配置完了当然就可以用 Reveal 查看自己的 App 的视图了，直接运行，然后打开 Reveal，点击左上角的 <code>No Connection</code> 来选择要查看的 App：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/integrating-reveal-static-linking_09.png" alt=""></p>
@@ -748,7 +748,7 @@
 <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -94,11 +94,13 @@
 
 
 <meta name="description" content="0x00 前言最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 RHRevealLoader，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：The operation couldn&amp;#39;t be completed. The iOS app is">
+<meta name="keywords" content="Reveal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Reveal 升级之后不能在手机上查看 App 的解决办法">
 <meta property="og:url" content="http://meilbn.com/2015/10/23/reveal-troubleshooting-0x00/index.html">
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 RHRevealLoader，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：The operation couldn&amp;#39;t be completed. The iOS app is">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x00.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x01.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x02.png">
@@ -106,6 +108,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reveal 升级之后不能在手机上查看 App 的解决办法">
 <meta name="twitter:description" content="0x00 前言最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 RHRevealLoader，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：The operation couldn&amp;#39;t be completed. The iOS app is">
+<meta name="twitter:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x00.png">
 
 
 
@@ -412,9 +415,9 @@
       
 
       
-        <h1 id="0x00_前言">0x00 前言</h1><p>最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 <a href="https://github.com/heardrwt/RevealLoader" target="_blank" rel="external">RHRevealLoader</a>，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：<code>The operation couldn&#39;t be completed. The iOS app is linked against a older version of the Reveal library. You may need to update the Reveal library i your iOS app.</code>：</p>
+        <h1 id="0x00_前言">0x00 前言</h1><p>最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 <a href="https://github.com/heardrwt/RevealLoader" target="_blank" rel="noopener">RHRevealLoader</a>，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：<code>The operation couldn&#39;t be completed. The iOS app is linked against a older version of the Reveal library. You may need to update the Reveal library i your iOS app.</code>：</p>
 <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x00.png" alt=""></p>
-<p>然后我打开 Cydia 去查看插件是否有更新，可惜没有，所以我就自己找解决办法，最后我找到了这个插件的 GitHub 地址，看了一下 issues，然后就找到了 <a href="https://github.com/heardrwt/RevealLoader/issues/5" target="_blank" rel="external">issue #5</a>，看到了解决办法：<code>replace at /Library/RHRevealLoader/libReveal.dylib</code>，亲测可行！</p>
+<p>然后我打开 Cydia 去查看插件是否有更新，可惜没有，所以我就自己找解决办法，最后我找到了这个插件的 GitHub 地址，看了一下 issues，然后就找到了 <a href="https://github.com/heardrwt/RevealLoader/issues/5" target="_blank" rel="noopener">issue #5</a>，看到了解决办法：<code>replace at /Library/RHRevealLoader/libReveal.dylib</code>，亲测可行！</p>
 <a id="more"></a>
 <h1 id="0x01_替换">0x01 替换</h1><p>看了报错信息，就可以知道，Reveal library 的版本太老了。然后我们就要将新的 library 替换手机里旧的 library，新的 library 在：<code>/Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/</code> 下，名字叫：<code>libReveal.dylib</code>。</p>
 <p>替换很简单，我们可以通过 <code>scp</code> 命令来实现，命令如下：</p>
@@ -425,7 +428,7 @@
 <p>大功告成：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x01.png" alt=""></p>
 <p>USB 连接查看也可以了，原本的局域网 WiFi 查看还在。</p>
 <p>查看第三方 App 也还是可以的：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/reveal-troubleshooting-0x02.png" alt=""></p>
-<p>参考链接：<br><a href="http://support.revealapp.com/kb/getting-started/reveal-integration-guide" target="_blank" rel="external">Reveal Integration Guide</a><br><a href="http://support.revealapp.com/discussions/questions/59651-where-is-librevealdylib-in-20-version" target="_blank" rel="external">Where is libReveal.dylib in 2.0 version</a><br><a href="http://petersteinberger.com/blog/2013/how-to-inspect-the-view-hierarchy-of-3rd-party-apps/" target="_blank" rel="external">How to Inspect the View Hierarchy of Third-Party Apps</a></p>
+<p>参考链接：<br><a href="http://support.revealapp.com/kb/getting-started/reveal-integration-guide" target="_blank" rel="noopener">Reveal Integration Guide</a><br><a href="http://support.revealapp.com/discussions/questions/59651-where-is-librevealdylib-in-20-version" target="_blank" rel="noopener">Where is libReveal.dylib in 2.0 version</a><br><a href="http://petersteinberger.com/blog/2013/how-to-inspect-the-view-hierarchy-of-3rd-party-apps/" target="_blank" rel="noopener">How to Inspect the View Hierarchy of Third-Party Apps</a></p>
 
       
 
@@ -721,7 +724,7 @@
 <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

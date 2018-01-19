@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Network,Objective-C,Reachability," />
+  <meta name="keywords" content="Objective-C,Reachability,Network," />
 
 
 
@@ -94,16 +94,19 @@
 
 
 <meta name="description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 11 System Configuration 时做的笔记。">
+<meta name="keywords" content="Objective-C,Reachability,Network">
 <meta property="og:type" content="article">
 <meta property="og:title" content="System Configuration">
 <meta property="og:url" content="http://meilbn.com/2016/11/04/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter11-System-Configuration/index.html">
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 11 System Configuration 时做的笔记。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_11_System_Configuration.png">
 <meta property="og:updated_time" content="2016-11-05T08:20:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="System Configuration">
 <meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 11 System Configuration 时做的笔记。">
+<meta name="twitter:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_11_System_Configuration.png">
 
 
 
@@ -411,7 +414,7 @@
 
       
         <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_11_System_Configuration.png" alt=""></p>
-<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="external">CFHipsterRef</a> Chapter 11 System Configuration 时做的笔记。</p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="noopener">CFHipsterRef</a> Chapter 11 System Configuration 时做的笔记。</p>
 <a id="more"></a>
 <h1 id="0x01_Sysem_Configuration">0x01 Sysem Configuration</h1><p>系统配置（Sysem Configuration）包含用于确定硬件配置和网络状态的 C API。</p>
 <p>大多数开发者对框架的曝光是通过 Apple 的示例代码，简称 “Reachability”。旨在演示使用系统配置调用来确定互联网连接，如今却成为成千上万的应用程序的一部分。因此，表明 Reachability 是其自身成功的一个受害者。而不是记录系统配置 API，它无意地使它们废弃。</p>
@@ -419,9 +422,9 @@
 <h1 id="0x02_Reachability">0x02 Reachability</h1><p>“我连接到互联网了吗？” 是一个难以回答的问题。</p>
 <p>从用户的角度来看，应该很容易，对吧？只需要在 Safari 中输入 <code>apple.com</code>，看看是否有东西加载出来。</p>
 <h2 id="0x0201_Determining_Network_Reachability_Synchronously">0x0201 Determining Network Reachability Synchronously</h2><p>与任何网络一样，建立 reachability 不应同步进行。然而，为了建立到更复杂的同步使用，看起来像是这样：</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@import SystemConfiguration;</span><br><span class="line"></span><br><span class="line">SCNetworkReachabilityRef networkReachability = SCNetworkReachabilityCreateWithName(k<span class="built_in">CFAllocatorDefault</span>, [<span class="string">@"www.apple.com"</span> UTF8String]);</span><br><span class="line">SCNetworkReachabilityFlags flags = SCNetworkReachabilityGetFlags(networkReachability, &amp;flags);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Use flags to determine reachability</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">CFRelease</span>(networkReachability);</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> SystemConfiguration;</span><br><span class="line"></span><br><span class="line"><span class="built_in">SCNetworkReachabilityRef</span> networkReachability = <span class="built_in">SCNetworkReachabilityCreateWithName</span>(kCFAllocatorDefault, [<span class="string">@"www.apple.com"</span> UTF8String]);</span><br><span class="line"><span class="built_in">SCNetworkReachabilityFlags</span> flags = <span class="built_in">SCNetworkReachabilityGetFlags</span>(networkReachability, &amp;flags);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Use flags to determine reachability</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">CFRelease</span>(networkReachability);</span><br></pre></td></tr></table></figure>
 <p><code>SCNetworkReachability</code> 是负责确定网络可达性（Reachability）的数据类型。它可以通过传递主机名（host name）（如上面示例）或一个 <code>sockaddr</code> 地址来创建：</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">BOOL</span> ignoreAdHocWiFi = <span class="literal">NO</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> sockaddr_in ipAddress;</span><br><span class="line">bzero(&amp;ipAddress, <span class="keyword">sizeof</span>(ipAddress));</span><br><span class="line">ipAddress<span class="variable">.sin_len</span> = <span class="keyword">sizeof</span>(ipAddress);</span><br><span class="line">ipAddress<span class="variable">.sin_family</span> = AF_INET;</span><br><span class="line">ipAddress<span class="variable">.addr</span><span class="variable">.s_addr</span> = htonl(ignoreAdHocWiFi ? INADDR_ANY : IN_LINKLO<span class="built_in">CALNETNUM</span>);</span><br><span class="line"></span><br><span class="line">SCNetworkReachabilityRef networkReachability =</span><br><span class="line">    SCNetworkReachabilityCreateWithAddress(k<span class="built_in">CFAllocatorDefault</span>,</span><br><span class="line">    (<span class="keyword">struct</span> sockaddr *)ipAddress);</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">BOOL</span> ignoreAdHocWiFi = <span class="literal">NO</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> sockaddr_in ipAddress;</span><br><span class="line">bzero(&amp;ipAddress, <span class="keyword">sizeof</span>(ipAddress));</span><br><span class="line">ipAddress.sin_len = <span class="keyword">sizeof</span>(ipAddress);</span><br><span class="line">ipAddress.sin_family = AF_INET;</span><br><span class="line">ipAddress.addr.s_addr = htonl(ignoreAdHocWiFi ? INADDR_ANY : IN_LINKLOCALNETNUM);</span><br><span class="line"></span><br><span class="line"><span class="built_in">SCNetworkReachabilityRef</span> networkReachability =</span><br><span class="line">    <span class="built_in">SCNetworkReachabilityCreateWithAddress</span>(kCFAllocatorDefault,</span><br><span class="line">    (<span class="keyword">struct</span> sockaddr *)ipAddress);</span><br></pre></td></tr></table></figure>
 <p><code>SCNetworkReachabilityFlags</code> 是一个同步调用，用于确定可用网络接口的可达性。因为有很多不同的因素影响可达性，所以这个函数返回值不是一个简单的 <code>YES</code> / <code>NO</code>，而是一个特征位掩码（bitmask of characteristics）：</p>
 <p style="text-align: center;">Reachability Flag Values</p>
 
@@ -471,13 +474,13 @@
 <p>下面是如何归纳一个复杂的真理：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">BOOL</span> isReachable = ((flags &amp; kSCNetworkReachabilityFlagsReachable) != <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">BOOL</span> needsConnection = ((flags &amp; kSCNetworkReachabilityFlagsConnectionRequired) != <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">BOOL</span> canConnectionAutomatically =</span><br><span class="line">    (((flags &amp; kSCNetworkReachabilityFlagsConnectionOnDemand) != <span class="number">0</span>) ||</span><br><span class="line">    ((flags &amp; kSCNetworkReachabilityFlagsConnectionOnTraffic) != <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line"><span class="built_in">BOOL</span> canConnectWithoutUserInteraction =</span><br><span class="line">    (canConnectionAutomatically &amp;&amp; (flags &amp; kSCNetworkReachabilityFlagsInterventionRequired) == <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">BOOL</span> isNetworkReachable = (isReachable &amp;&amp; (!needsConnection || canConnectWithoutUserInteraction));</span><br></pre></td></tr></table></figure>
 <p>再进一步，reachability flags 也可以用于确定正在使用哪个网络接口：</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (isNetworkReachable == <span class="literal">NO</span>) &#123;</span><br><span class="line">    <span class="comment">// Not Reachable</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#if TARGET_OS_IPHONE</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> ((flags &amp; kSCNetworkReachabilityFlagsIsWWAN) != <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// Reachable via WWAN</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">#endif</span></span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// Reachable via WiFi</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (isNetworkReachable == <span class="literal">NO</span>) &#123;</span><br><span class="line">    <span class="comment">// Not Reachable</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#if TARGET_OS_IPHONE</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> ((flags &amp; kSCNetworkReachabilityFlagsIsWWAN) != <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// Reachable via WWAN</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#endif</span></span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// Reachable via WiFi</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在主线程上调用 <code>SCNetworkReachabilityFlags</code> 发起一个 30 秒超时的 DNS 查找。这样不好，不要阻塞，同步调用 <code>SCNetworkReachabilityFlags</code>。</p>
 <h2 id="0x0202_Determining_Network_Reachability_Asynchronously">0x0202 Determining Network Reachability Asynchronously</h2><p>幸运的是，System Configuration 框架提供了一组用于异步监控 reachability 变化的 API。</p>
 <p>首先，定义一个静态回调函数，该函数需要网络 reachability reference，flags 以及要传递的任何附加 context。</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> ReachabilityCallback(SCNetworkReachabilityRef target,</span><br><span class="line">                                 SCNetworkConnectionFlags flags,</span><br><span class="line">                                 <span class="keyword">void</span> *context) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> ReachabilityCallback(<span class="built_in">SCNetworkReachabilityRef</span> target,</span><br><span class="line">                                 <span class="built_in">SCNetworkConnectionFlags</span> flags,</span><br><span class="line">                                 <span class="keyword">void</span> *context) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>一旦声明了回调函数，它就可以被设置到 <code>SCNetworkReachabilityRef</code> 上，然后在 runloop 上调度：</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SCNetworkReachabilityContext context = &#123;<span class="number">0</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line"></span><br><span class="line">SCNetworkReachabilitySetCallback(networkReachability, ReachabilityCallback, &amp;context);</span><br><span class="line"></span><br><span class="line">SCNetworkReachabilityScheduleWithRunLoop(reachability, <span class="built_in">CFRunLoopGetMain</span>(), k<span class="built_in">CFRunLoopCommonModes</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">SCNetworkReachabilityContext</span> context = &#123;<span class="number">0</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">SCNetworkReachabilitySetCallback</span>(networkReachability, ReachabilityCallback, &amp;context);</span><br><span class="line"></span><br><span class="line"><span class="built_in">SCNetworkReachabilityScheduleWithRunLoop</span>(reachability, <span class="built_in">CFRunLoopGetMain</span>(), kCFRunLoopCommonModes);</span><br></pre></td></tr></table></figure>
 <p>现在，每当设置的网络 reachability 发生变化，<code>ReachabilityCallback</code> 函数就会被调用。然后，可以通过发布到 <code>NSNotificationQueue</code>，或通过调用一个 block 传递到 <code>SCNetworkReachabilityContext</code> 参数中，将此信息传达给应用程序。</p>
 <h1 id="0x03_Network_Configuration_Settings">0x03 Network Configuration Settings</h1><p>原谅有人认为 System Configuration 是一个 one-trick pony。几乎每个对该框架的提及都是在引用网络 reachability，也就是它本身是一个以该死的 Reachability 例子为主导的话题。</p>
 <p>更模糊的功能与查询系统的动态存储有关：<code>SCDynamicStore</code>。这些 API 仅在 OS X 上可用。</p>
@@ -495,7 +498,7 @@
 <li>State:/Network/Global/Proxies,</li>
 <li>State:/Network/Interface/bridge0/Link</li>
 </ul>
-<p>注：完整的 key 列表可以查看 Apple 的 <a href="https://developer.apple.com" target="_blank" rel="external">System Configuration Programming Guide</a>。</p>
+<p>注：完整的 key 列表可以查看 Apple 的 <a href="https://developer.apple.com" target="_blank" rel="noopener">System Configuration Programming Guide</a>。</p>
 <p>有了 key 的列表，<code>SCDynamicStore</code> 的目的变得更清晰。IP 地址和网络接口更改时应用程序能够收到通知，甚至当设备电池过低时也能收到通知。</p>
 <p>这里与用于监控网络可达性的语义相同。</p>
 <p>例如，可以使用 <code>State:/Network/Interface</code> key 找到可用网络接口的列表：</p>
@@ -549,11 +552,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Network/" rel="tag"># Network</a>
-          
             <a href="/tags/Objective-C/" rel="tag"># Objective-C</a>
           
             <a href="/tags/Reachability/" rel="tag"># Reachability</a>
+          
+            <a href="/tags/Network/" rel="tag"># Network</a>
           
         </div>
       
@@ -818,7 +821,7 @@
 <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

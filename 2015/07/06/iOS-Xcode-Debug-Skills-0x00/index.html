@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Debug,Xcode,iOS," />
+  <meta name="keywords" content="Xcode,iOS,Debug," />
 
 
 
@@ -94,11 +94,13 @@
 
 
 <meta name="description" content="定位到 App 崩溃的那一行代码">
+<meta name="keywords" content="Xcode,iOS,Debug">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Xcode Debug 技巧之一">
 <meta property="og:url" content="http://meilbn.com/2015/07/06/iOS-Xcode-Debug-Skills-0x00/index.html">
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="定位到 App 崩溃的那一行代码">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_00.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_01.jpg">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_02.png">
@@ -116,6 +118,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xcode Debug 技巧之一">
 <meta name="twitter:description" content="定位到 App 崩溃的那一行代码">
+<meta name="twitter:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_00.png">
 
 
 
@@ -426,7 +429,7 @@
       
 
       
-        <h1 id="0x00_前言">0x00 前言</h1><p>这个技巧是在新浪微博上看到的，源地址为<a href="http://weibo.com/1745945040/CpBv73dSR?type=comment#_rnd1436172574844" target="_blank" rel="external">戴铭的这条微博</a>，不过看评论有说不懂的，其实第一次看这个微博，看了这些图，我也没怎么在意，完全是因为 App 崩溃后 Xcode 经常是定位到 App 的起始方法里面，让人有点抓狂，如果项目是用 OC 写的，那么可能是如下这个情况：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_00.png" alt=""></p>
+        <h1 id="0x00_前言">0x00 前言</h1><p>这个技巧是在新浪微博上看到的，源地址为<a href="http://weibo.com/1745945040/CpBv73dSR?type=comment#_rnd1436172574844" target="_blank" rel="noopener">戴铭的这条微博</a>，不过看评论有说不懂的，其实第一次看这个微博，看了这些图，我也没怎么在意，完全是因为 App 崩溃后 Xcode 经常是定位到 App 的起始方法里面，让人有点抓狂，如果项目是用 OC 写的，那么可能是如下这个情况：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_00.png" alt=""></p>
 <p>Swift 就是微博配图里面的那样：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_01.jpg" alt=""></p>
 <p>看完这个微博之后，我并没有转发，但是呢，就在当天下午，项目经理让我改一个 Bug，然后我重现这个 Bug 之后，发现定位到的代码就是上面 OC 版本的那样子，以前也经常遇到，然后我就跟平时一样，查看 Console 中的 Log，打算从 Log 上下手，当我看到 Log 我就又懵逼了，还是跟以前一样，这个 Log 并没有什么卵用：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github%2Fblog%2FiOS-Xcode-Debug-Skills-0x00_02.png" alt=""></p>
 <p>就告诉了我原因是数组越界，然而项目大了，界面复杂一点了，我怎么知道是哪个数组越界了，这样找起来不是非常浪费时间吗？然后我就想起来，之前看到的那条微博，然后我马上去微博上找了，因为我还记得是大神叶孤城<em>_</em>转发的，然后我就找到了，然后看了下，跟着配图操作了一下，哇擦类，竟然成功了！然后我就打算写一篇文章，记录在自己的博客上面，所以就有了这篇文章。好了，废话说了这么多，开始一步步操作吧。</p>
@@ -472,11 +475,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Debug/" rel="tag"># Debug</a>
-          
             <a href="/tags/Xcode/" rel="tag"># Xcode</a>
           
             <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Debug/" rel="tag"># Debug</a>
           
         </div>
       
@@ -741,7 +744,7 @@
 <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

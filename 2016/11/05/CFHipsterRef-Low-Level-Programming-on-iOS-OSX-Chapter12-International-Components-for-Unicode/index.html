@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ICU,Objective-C,Unicode," />
+  <meta name="keywords" content="Objective-C,Unicode,ICU," />
 
 
 
@@ -94,16 +94,19 @@
 
 
 <meta name="description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 12 International Components for Unicode 时做的笔记。">
+<meta name="keywords" content="Objective-C,Unicode,ICU">
 <meta property="og:type" content="article">
 <meta property="og:title" content="International Components for Unicode">
 <meta property="og:url" content="http://meilbn.com/2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter12-International-Components-for-Unicode/index.html">
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 12 International Components for Unicode 时做的笔记。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_12_International_Components_for_Unicode.png">
 <meta property="og:updated_time" content="2016-11-05T08:21:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="International Components for Unicode">
 <meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 12 International Components for Unicode 时做的笔记。">
+<meta name="twitter:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_12_International_Components_for_Unicode.png">
 
 
 
@@ -411,7 +414,7 @@
 
       
         <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_12_International_Components_for_Unicode.png" alt=""></p>
-<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="external">CFHipsterRef</a> Chapter 12 International Components for Unicode 时做的笔记。</p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="noopener">CFHipsterRef</a> Chapter 12 International Components for Unicode 时做的笔记。</p>
 <a id="more"></a>
 <h1 id="0x01_International_Components_for_Unicode">0x01 International Components for Unicode</h1><p>至少就 Apple 的 SDK 而言，Unicode 扮演的角色很难去夸大。本章将讨论在 Foundation 和 Core Foundation 中如何使用 Unicode 的一个方面，特别是 ICU 或 Unicode 的国际组件。</p>
 <h1 id="0x02_Unicode">0x02 Unicode</h1><p>Unicode 是国际计算的基石。这一切始于 1987 年，有三个人：来自 Xerox 的 Joe Becker 和来自 Apple 的 Lee Collins &amp; Mark Davis。</p>
@@ -454,9 +457,9 @@
 <p>字符清单（Character inventories）可能被 <code>NSLinguisticTagger</code> 用作评估字符串的 <code>NSLinguisticTagSchemeLanguage</code> 的一个低通（low pass）。具有超出语言拼写库（orthographic inventory）的字符的字符串不太可能匹配。相反，示例字符（exemplar characters）的相对频率可能在两个可能的候选之间是有用的。</p>
 <p>可以使用 <code>NSLocaleExemplarCharacterSet</code> key 检索 <code>NSLocale</code> 的示例字符。</p>
 <p><code>UILocalizedIndexedCollation</code> 使用排序索引来对当前语言环境适当地分段语言记录。美式英语使用拉丁字母（Latin alphabet）来整理信息，如名字：</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[A B C <span class="keyword">D</span> <span class="keyword">E</span> F <span class="keyword">G</span> <span class="keyword">H</span> I J K <span class="keyword">L</span> <span class="keyword">M</span> <span class="keyword">N</span> O P Q R S T <span class="keyword">U</span> V W X Y Z]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[A B C D E F G H I J K L M N O P Q R S T U V W X Y Z]</span><br></pre></td></tr></table></figure>
 <p>然而，瑞典语扩展了拉丁字母表，还有一些额外的字符：</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[A Á B C Č <span class="keyword">D</span> Đ <span class="keyword">E</span> É F <span class="keyword">G</span> <span class="keyword">H</span> I J K <span class="keyword">L</span> <span class="keyword">M</span> <span class="keyword">N</span> Ŋ O P Q R S Š T Ŧ <span class="keyword">U</span> V W X Y Z Ž Ø Æ Å Ä Ö]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[A Á B C Č D Đ E É F G H I J K L M N Ŋ O P Q R S Š T Ŧ U V W X Y Z Ž Ø Æ Å Ä Ö]</span><br></pre></td></tr></table></figure>
 <p>省略规则指定应如何格式化截断的文本，这取决于截断的位置是起始，中间还是结尾，以及在该点是否有字边界（word boundary）：</p>
 <p style="text-align: center;">Example Ellipsis Rules</p>
 
@@ -611,9 +614,9 @@
 <p>ICU 变换通过 Core Foundation 中的 <code>CFStringTransform</code> 函数被暴露出来。大约十几个字符串常量定义为常用操作，比如 <code>CFStringTransformToLatin</code>，方便地将文本音译成其相应的拉丁字母表示。不幸运的是，这些常量具有不透明值，这最终掩盖了 <code>CFStringTransform</code> 将接受任何有效的 ICU 变换的事实。</p>
 <p>一个 ICU 变换由一个或多个分号分隔的映射组成。每个映射在左手边和右手边值之间是单项或双向的。</p>
 <p>例如，一个在一个版权符号和其 ASCII 表示之间的双向变换可以被表示为：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(C) <span class="tag">&lt;&gt;</span> ©;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(C) &lt;&gt; ©;</span><br></pre></td></tr></table></figure>
 <p><code>}</code> 操作数将规则约束到特定的上下文，比如在此单向映射中，只删除小写字母后的连字符：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="symbol">:lowercase</span> <span class="symbol">letter:</span>] &#125; <span class="string">'-'</span> &gt; <span class="string">''</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[:lowercase letter:] &#125; &apos;-&apos; &gt; &apos;&apos;;</span><br></pre></td></tr></table></figure>
 <p>每个映射按顺序评估，因此应从最具体的规则开始列出，并以最一般的规则结束。</p>
 <p>ICU 为常见和有用的操作提供了许多内置的音译，可以与其他规则组合以完成几乎任何自动文本转换任务。</p>
 <h2 id="0x0501_Text_Processing">0x0501 Text Processing</h2><p>ICU 有用于基本的文本处理任务的音译比如改变大小写或规范化：</p>
@@ -758,11 +761,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ICU/" rel="tag"># ICU</a>
-          
             <a href="/tags/Objective-C/" rel="tag"># Objective-C</a>
           
             <a href="/tags/Unicode/" rel="tag"># Unicode</a>
+          
+            <a href="/tags/ICU/" rel="tag"># ICU</a>
           
         </div>
       
@@ -1027,7 +1030,7 @@
 <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="NSPredicate,Objective-C," />
+  <meta name="keywords" content="Objective-C,NSPredicate," />
 
 
 
@@ -94,11 +94,13 @@
 
 
 <meta name="description" content="0x00 前言最近在重新学习 Objective-C，因为觉得基础非常重要，而且对 Objective-C 的使用都基本上是工作中用到的，了解得还不够多，就算当初学习 Objective-C 的时候知道了，但是到现在也忘了不少东西。内容主要来自《Objective-C 基础教程（第2版）》，这本书的代码可以到这里下载。">
+<meta name="keywords" content="Objective-C,NSPredicate">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NSPredicate 的简单使用">
 <meta property="og:url" content="http://meilbn.com/2015/09/06/ios-simple-use-of-nspredicate/index.html">
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言最近在重新学习 Objective-C，因为觉得基础非常重要，而且对 Objective-C 的使用都基本上是工作中用到的，了解得还不够多，就算当初学习 Objective-C 的时候知道了，但是到现在也忘了不少东西。内容主要来自《Objective-C 基础教程（第2版）》，这本书的代码可以到这里下载。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-10-30T06:43:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NSPredicate 的简单使用">
@@ -409,12 +411,12 @@
       
 
       
-        <h1 id="0x00_前言">0x00 前言</h1><p>最近在重新学习 Objective-C，因为觉得基础非常重要，而且对 Objective-C 的使用都基本上是工作中用到的，了解得还不够多，就算当初学习 Objective-C 的时候知道了，但是到现在也忘了不少东西。内容主要来自<a href="http://www.amazon.cn/%E5%9B%BE%E7%81%B5%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%9B%E4%B9%A6%E2%80%A2%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97-Objective-C%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B-%E5%85%8B%E7%BA%B3%E6%96%AF%E7%89%B9/dp/B00COG40Y0/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1441502082&amp;sr=1-1&amp;keywords=Objective-C+%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B" target="_blank" rel="external">《Objective-C 基础教程（第2版）》</a>，这本书的代码可以到<a href="http://www.apress.com/9781430241881" target="_blank" rel="external">这里</a>下载。</p>
+        <h1 id="0x00_前言">0x00 前言</h1><p>最近在重新学习 Objective-C，因为觉得基础非常重要，而且对 Objective-C 的使用都基本上是工作中用到的，了解得还不够多，就算当初学习 Objective-C 的时候知道了，但是到现在也忘了不少东西。内容主要来自<a href="http://www.amazon.cn/%E5%9B%BE%E7%81%B5%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%9B%E4%B9%A6%E2%80%A2%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97-Objective-C%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B-%E5%85%8B%E7%BA%B3%E6%96%AF%E7%89%B9/dp/B00COG40Y0/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1441502082&amp;sr=1-1&amp;keywords=Objective-C+%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">《Objective-C 基础教程（第2版）》</a>，这本书的代码可以到<a href="http://www.apress.com/9781430241881" target="_blank" rel="noopener">这里</a>下载。</p>
 <a id="more"></a>
 <h1 id="0x01_NSPredicate">0x01 NSPredicate</h1><p>其实当初第一次接触 NSPredicate 的时候，觉得不是很懂，也觉得有点难，也没去多了解一下，直到最近重新学基础时才发觉，其实 NSPredicate 挺好用的，也很好理解，以前用的最多的应该是正则吧，各种语言里面都是可以用的，就是需要记住的符号什么的好多，如果长时间不用的话，就会忘记，虽然这很正常。</p>
 <p>基本上每个 App 都会涉及到数据的筛选过滤，也就是搜索，很少见到哪个 App 没有搜索功能。Cocoa 用 NSPredicate 描述查询的方式，原理类似于数据库查询，其实感觉语法上也有点相似呢。</p>
 <h1 id="0x02_创建谓词">0x02 创建谓词</h1><p>我们这里还是使用书上的例子，不过不用担心，就算没有看过书上的例子代码也是 OK 的，不难理解。<br>下面是一个快速创建一辆汽车的 C 函数：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Car *makeCar(NSString *name, NSString *make, NSString *model, <span class="keyword">int</span> modelYear, <span class="keyword">int</span> numberOfDoors, <span class="keyword">float</span> mileage, <span class="keyword">int</span> horsepower) &#123;</span><br><span class="line">	Car *car = [[[Car alloc] init] autorelease];</span><br><span class="line">	car.name = name;</span><br><span class="line">	car.make = make;</span><br><span class="line">	car.model = model;</span><br><span class="line">	car.modelYear = modelYear;</span><br><span class="line">	car.numberOfDoors = numberOfDoors;</span><br><span class="line">	car.mileage = mileage;</span><br><span class="line">	</span><br><span class="line">	Slant6 *engine = [[[Slant6 alloc] init] autorelease];</span><br><span class="line">	[engine setValue:[NSNumber numberWithInt:horsepower] forKey:@<span class="string">"horsepower"</span>];</span><br><span class="line">	car.engine = engine;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Make some tires.</span></span><br><span class="line">	<span class="comment">// int i;</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">		Tire * tire= [[[Tire alloc] init] autorelease];</span><br><span class="line">		[car setTire:tire  atIndex:i];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> (car);</span><br><span class="line">&#125; <span class="comment">// makeCar</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Car *<span class="title">makeCar</span><span class="params">(NSString *name, NSString *make, NSString *model, <span class="keyword">int</span> modelYear, <span class="keyword">int</span> numberOfDoors, <span class="keyword">float</span> mileage, <span class="keyword">int</span> horsepower)</span> </span>&#123;</span><br><span class="line">	Car *car = [[[Car alloc] init] autorelease];</span><br><span class="line">	car.name = name;</span><br><span class="line">	car.make = make;</span><br><span class="line">	car.model = model;</span><br><span class="line">	car.modelYear = modelYear;</span><br><span class="line">	car.numberOfDoors = numberOfDoors;</span><br><span class="line">	car.mileage = mileage;</span><br><span class="line">	</span><br><span class="line">	Slant6 *engine = [[[Slant6 alloc] init] autorelease];</span><br><span class="line">	[engine setValue:[NSNumber numberWithInt:horsepower] forKey:@<span class="string">"horsepower"</span>];</span><br><span class="line">	car.engine = engine;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Make some tires.</span></span><br><span class="line">	<span class="comment">// int i;</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">		Tire * tire= [[[Tire alloc] init] autorelease];</span><br><span class="line">		[car setTire:tire  atIndex:i];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> (car);</span><br><span class="line">&#125; <span class="comment">// makeCar</span></span><br></pre></td></tr></table></figure>
 <p>可以使用这个 C 函数来创建一辆汽车：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Car *car = makeCar(<span class="string">@"Herbie"</span>, <span class="string">@"Honda"</span>, <span class="string">@"CRX"</span>, <span class="number">1984</span>, <span class="number">2</span>, <span class="number">34000</span>, <span class="number">58</span>);</span><br><span class="line">[garage addCar:car];</span><br></pre></td></tr></table></figure>
 <p>上面代码创建一辆汽车，具体的汽车信息为：Herbie 品牌，型号为双门1984 Honda CRX，马力引擎为58，已行驶34000英里。</p>
@@ -428,7 +430,7 @@
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">predicate = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"engine.horsepower &gt; 150"</span>];</span><br><span class="line">match = [predicate evaluateWithObject:car];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, (match) ? <span class="string">"YES"</span> : <span class="string">"NO"</span>);</span><br></pre></td></tr></table></figure>
 <p>这个谓词字符串的左侧是一个键路径，该键路径链接到 car 内部，查找 engine，然后再查找 engine 的 horsepower，然后将其与150进行比较，看它是否大于150。</p>
 <p>以上都是通过特定的谓词条件检查单个对象，都很简单，但是在实际工作当中，我们通常都是从一堆的数据里面进行筛选的，比如，有一个车库，我们需要筛选出哪些汽车的马力大于150，普通的做法可能如下：</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Car *car <span class="keyword">in</span> [garage cars]) &#123;</span><br><span class="line">	<span class="keyword">if</span> ([predicate evaluateWithObject:car]) &#123;</span><br><span class="line">		<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, car<span class="variable">.name</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Car *car <span class="keyword">in</span> [garage cars]) &#123;</span><br><span class="line">	<span class="keyword">if</span> ([predicate evaluateWithObject:car]) &#123;</span><br><span class="line">		<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, car.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用 for 循环遍历每一辆汽车，然后检查其马力是否大于150，大于150的话，就输出汽车的名字。</p>
 <h1 id="0x04_数据过滤器">0x04 数据过滤器</h1><p>懒惰一直是编程人员的缺点，但是在某种意义上也是优点。如果不用编写这样的 for 循环和 if 语句，没什么不好的。而且 Cocoa 也提供了这样的方法：<code>-filteredArrayUsingPredicate:</code>，这个方法是 NSArray 数组中的一种类别方法，它会循环遍历数组中的对象，根据谓词来计算每个对象的值，如果是 YES，那么就将这个对象添加到将被返回的新数组中，感觉这个和上面的那个 for 循环类似吧？</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *results = [cars filteredArrayUsingPredicate:predicate];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, results);</span><br></pre></td></tr></table></figure>
@@ -510,7 +512,7 @@
 <p>这里提一个问题，以下代码会输出什么呢？</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *names1 = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"Herbie"</span>, <span class="string">@"Badger"</span>, <span class="string">@"Judge"</span>, <span class="string">@"Elvis"</span>, <span class="literal">nil</span>];</span><br><span class="line"><span class="built_in">NSArray</span> *names2 = [<span class="built_in">NSArray</span> arrayWithObjects:<span class="string">@"Judge"</span>, <span class="string">@"Paper Car"</span>, <span class="string">@"Badger"</span>, <span class="string">@"Phoenix"</span>, <span class="literal">nil</span>];</span><br><span class="line">predicate = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"SELF IN %@"</span>, names1];</span><br><span class="line">results = [names2 filteredArrayUsingPredicate:predicate];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, results);</span><br></pre></td></tr></table></figure>
 <p>答案如下：</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="list">(</span><br><span class="line">    <span class="keyword">Judge</span>,</span><br><span class="line">    Badger</span><br><span class="line">)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(</span><br><span class="line">    Judge,</span><br><span class="line">    Badger</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>对于取两个数组交集的运算来说，这种方式很巧妙。谓词包含了第一个数组的内容，因此和下面的形式类似：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELF IN &#123;<span class="string">"Herbie"</span>, <span class="string">"Badger"</span>, <span class="string">"Judge"</span>, <span class="string">"Elvis"</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>现在，使用该谓词筛选第二个名称数组，在 name2 中如果有同时存在两个数组中的字符串，那么 <code>SELF IN</code> 会确定它是符合条件的，因此它就会保留在结果数组中，如果对象只存在于第二个数组中，那么它不会与谓词中的任何字符串匹配，所以该对象将被过滤掉，而只存在于第一个数组中的字符串因为要用来进行比较，所以将一直保留在原来的位置，不会出现在结果数组中。</p>
@@ -575,9 +577,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/NSPredicate/" rel="tag"># NSPredicate</a>
-          
             <a href="/tags/Objective-C/" rel="tag"># Objective-C</a>
+          
+            <a href="/tags/NSPredicate/" rel="tag"># NSPredicate</a>
           
         </div>
       
@@ -842,7 +844,7 @@
 <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -94,16 +94,19 @@
 
 
 <meta name="description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 15 Third Party Tools 时做的笔记。">
+<meta name="keywords" content="Objective-C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Third Party Tools">
 <meta property="og:url" content="http://meilbn.com/2016/11/06/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter15-Third-Party-Tools/index.html">
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 15 Third Party Tools 时做的笔记。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_15_Third-Party_Tools.png">
 <meta property="og:updated_time" content="2016-11-06T14:24:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Third Party Tools">
 <meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 15 Third Party Tools 时做的笔记。">
+<meta name="twitter:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_15_Third-Party_Tools.png">
 
 
 
@@ -411,11 +414,11 @@
 
       
         <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_15_Third-Party_Tools.png" alt=""></p>
-<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="external">CFHipsterRef</a> Chapter 15 Third Party Tools 时做的笔记。</p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="noopener">CFHipsterRef</a> Chapter 15 Third Party Tools 时做的笔记。</p>
 <a id="more"></a>
 <h1 id="0x01_appledoc">0x01 appledoc</h1><p>Cocoa 开发者中有一句谚语，Objective-C 的冗长有助于自文档化（self-documenting）代码。在 <code>longMethodNamesWithNamedParameters:</code> 和这些参数的显式类型之间，Objective-C 方法不会留下太多的想象。</p>
 <p>但是即使是自文档化代码可以通过文档来改进，只需少量的工作就能对他人产生显著的好处。</p>
-<p>在 Objective-C 中，选择的文档工具是 <a href="http://gentlebytes.com/appledoc/" target="_blank" rel="external"><code>appledoc</code></a>。<code>appledoc</code> 能够从 <code>.h</code> 文件中生成 HTML 和 Xcode 兼容的 <code>.docset</code> 文档，看起来跟 Apple 的官方文档几乎一样。</p>
+<p>在 Objective-C 中，选择的文档工具是 <a href="http://gentlebytes.com/appledoc/" target="_blank" rel="noopener"><code>appledoc</code></a>。<code>appledoc</code> 能够从 <code>.h</code> 文件中生成 HTML 和 Xcode 兼容的 <code>.docset</code> 文档，看起来跟 Apple 的官方文档几乎一样。</p>
 <p>Objective-C 文档由任何 <code>@interface</code> 或 <code>@protocol</code>之前的 /<em>* </em>/ 注释块（注意额外的初始星号）以及任何方法或 <code>@property</code> 声明所指定。文档可能还包含系统字段的标签，如参数或返回值：</p>
 <ul>
 <li>@param [param] [Description]：描述了应该传递什么值或此参数</li>
@@ -424,13 +427,13 @@
 <li>@discussion [Discussion]：提供额外的背景情况</li>
 <li>@warning [description]：调出异常或潜在的危险的行为</li>
 </ul>
-<p><code>appledoc</code> 可以通过遵循项目页面上提供的最新的安装说明或使用 <a href="http://brew.sh" target="_blank" rel="external">Homebrew</a> 安装：</p>
+<p><code>appledoc</code> 可以通过遵循项目页面上提供的最新的安装说明或使用 <a href="http://brew.sh" target="_blank" rel="noopener">Homebrew</a> 安装：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install appledoc</span><br></pre></td></tr></table></figure>
 <p>要生成文档，可以在一个 Xcode 项目的根目录中执行 <code>appledoc</code>命令，传递元数据比如项目和公司名称：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ appledoc --project-name CFHipsterRef \</span><br><span class="line">           --project-company <span class="string">"NSHipster"</span> \</span><br><span class="line">           --company-id com.nshipster \</span><br><span class="line">           --output ~/Documents \</span><br><span class="line">           .</span><br></pre></td></tr></table></figure>
 <p>这会从目标目录中找到的头文件中生成并安装一个 Xcode <code>.docset</code> 文件。</p>
 <p>额外的配置选项，包括 HTML 输出，可以通过传递 <code>--help</code> 找到：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ appledoc --help</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ appledoc --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
 <h1 id="0x02_xctool">0x02 xctool</h1><p><code>xctool</code> 是 <code>xcodebuild</code> 的替代，<code>xcodebuild</code> 是 Xcode.app 下的工具。</p>
 <p><code>xctool</code> 的优美不只是表面上的，构建进度也可以格式化报告，可以由其他工具读取：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xctool -reporter plain:output.txt build</span><br></pre></td></tr></table></figure>
@@ -447,7 +450,7 @@
 <p>要安装 <code>xctool</code>，运行下面命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install xctool</span><br></pre></td></tr></table></figure>
 <h1 id="0x03_OCLint">0x03 OCLint</h1><p>OCLint 是一个静态代码分析器，用于检查 C 代码是否存在常见的问题源，想空的 <code>if/else/try/catch/finally</code> 语句，未使用的局部变量和参数，具有高 NCSS（非注释源语句，Non Commenting Source Statements）复杂代码，冗余代码和其他不良做法。</p>
-<p>安装 OCLint 最佳的方式是使用 Homebrew <a href="http://caskroom.io" target="_blank" rel="external">Cask</a>：</p>
+<p>安装 OCLint 最佳的方式是使用 Homebrew <a href="http://caskroom.io" target="_blank" rel="noopener">Cask</a>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew cask install oclint</span><br></pre></td></tr></table></figure>
 <p>还记得 xctool 的 <code>json-compilation-database</code> 报告器选项吗？与 <code>oclint-json-compilation-database</code> 一起使用来启动 OCLint：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ xctool -workspace NSHipster.xcworkspace \</span><br><span class="line">         -scheme <span class="string">"NSHipster"</span> \</span><br><span class="line">         -reporter json-compilation-database \</span><br><span class="line">         build &gt; compile_commands.json</span><br><span class="line"></span><br><span class="line">$ oclint-json-compilation-database</span><br></pre></td></tr></table></figure>
@@ -456,7 +459,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xcodebuild [flags] | xcpretty -c</span><br></pre></td></tr></table></figure>
 <p>这种方法的一个主要好处是它真的很快 —— 事实上，在某些情况下，<code>xcpretty</code> 实际上比直接调用 <code>xcodebuild</code> 还要快一点，因为它节省了打印到控制台的时间。</p>
 <p>与 <code>xctool</code> 另一个共性是报告器功能，其特点是格式化输出为 jUnit 风格的 XML，HTML 或 上述 OCTool 兼容的 json-compilation-database 格式。</p>
-<p><code>xcpretty</code> 可以使用 <a href="http://rubygems.org" target="_blank" rel="external">RubyGems</a> 安装，其在 OS X 中已经默认安装：</p>
+<p><code>xcpretty</code> 可以使用 <a href="http://rubygems.org" target="_blank" rel="noopener">RubyGems</a> 安装，其在 OS X 中已经默认安装：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem install xcpretty</span><br></pre></td></tr></table></figure>
 <h1 id="0x05_Nomad">0x05 Nomad</h1><p>Nomad 是用于 iOS 和 OS X 开发的世界级命令行工具的集合。它自动化常见的管理任务，以便于开发者可以专注于构建软件。</p>
 <p>每个工具都可以独立地安装，或者用一条命令一起安装：</p>
@@ -464,7 +467,7 @@
 <h1 id="0x06_Cupertino">0x06 Cupertino</h1><p>应用程序 provisioning 的过程被所有 Apple 开发者普遍厌恶。</p>
 <p>除了整个过程是一个噩梦的开始到结束，许多操作需要通过 Web 界面进行交互。这不仅需要大量额外的点击，而且使其很难自动化。</p>
 <p>Cupertino 提供了一个 CLI 用来管理设备，provisioning profiles，app IDs 和 证书（certificates）。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ ios devices:list</span><br><span class="line"></span><br><span class="line">+------------------------------+---------------------------------------+</span><br><span class="line">|      Listing <span class="number">2</span> devices. You can register <span class="number">98</span> additional devices.      |</span><br><span class="line">+---------------------------+------------------------------------------+</span><br><span class="line">| Device Name               | Device Identifier                        |</span><br><span class="line">+---------------------------+------------------------------------------+</span><br><span class="line">| Johnny Appleseed iPad     | <span class="number">0123456789012345678901234567890123</span>abcdef |</span><br><span class="line">| Johnny Appleseed iPhone   | abcdef0123456789012345678901234567890123 |</span><br><span class="line">+---------------------------+------------------------------------------+</span><br><span class="line"></span><br><span class="line">$ ios devices:add <span class="string">"iPad 1"</span>=abc123</span><br><span class="line">$ ios devices:add <span class="string">"iPad 2"</span>=def456 <span class="string">"iPad 3"</span>=ghi789 ...</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ ios devices:list</span><br><span class="line"></span><br><span class="line">+------------------------------+---------------------------------------+</span><br><span class="line">|      Listing 2 devices. You can register 98 additional devices.      |</span><br><span class="line">+---------------------------+------------------------------------------+</span><br><span class="line">| Device Name               | Device Identifier                        |</span><br><span class="line">+---------------------------+------------------------------------------+</span><br><span class="line">| Johnny Appleseed iPad     | 0123456789012345678901234567890123abcdef |</span><br><span class="line">| Johnny Appleseed iPhone   | abcdef0123456789012345678901234567890123 |</span><br><span class="line">+---------------------------+------------------------------------------+</span><br><span class="line"></span><br><span class="line">$ ios devices:add <span class="string">"iPad 1"</span>=abc123</span><br><span class="line">$ ios devices:add <span class="string">"iPad 2"</span>=def456 <span class="string">"iPad 3"</span>=ghi789 ...</span><br></pre></td></tr></table></figure>
 <h1 id="0x07_Shenzhen">0x07 Shenzhen</h1><p>有一件事 web 开发者相对于 iOS 是可以在几秒钟之内连续部署代码，与为 Cupertino 的批准（有时候拒绝！）一个更新而等待几天截然不同。</p>
 <p>幸运的是，一个家庭手工业随着开发和企业分发而兴起。第三方像 HockeyApp，DeployGate 和 TestFlight 提供开发者一个更简单的方式去注册测试用户和发送最新的 QA 版本。</p>
 <p>Shenzhen 是一个进一步自动化此过程的工具，通过构建 <code>.ipa</code> 文件然后分发到一个 FTP/SFTP 服务器，S3 bucket 或任何上述第三方服务。</p>
@@ -474,13 +477,13 @@
 <p>此工具特别适合用于测试远程通知 —— 特别在一个新的 app 中实现功能。</p>
 <h1 id="0x09_Venice">0x09 Venice</h1><p>应用内购买（In-app Purchase）已经，或多或少，成为 app 开发者最有利的商业模式。</p>
 <p>Venice 是一个用于验证 Apple 应用内购买收据的 CLI，并且用收据数据检索相关联的信息。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ iap verify /path/to/receipt</span><br><span class="line"></span><br><span class="line">+-----------------------------+-------------------------------+</span><br><span class="line">|                           Receipt                           |</span><br><span class="line">+-----------------------------+-------------------------------+</span><br><span class="line">| app_item_id                 |                               |</span><br><span class="line">| bid                         | com.foo.bar                   |</span><br><span class="line">| bvrs                        | <span class="number">20120427</span>                      |</span><br><span class="line">| original_purchase_date      | Sun, <span class="number">01</span> Jan <span class="number">2013</span> <span class="number">12</span>:<span class="number">00</span>:<span class="number">00</span> GMT |</span><br><span class="line">| original_transaction_id     | <span class="number">1000000000000001</span>              |</span><br><span class="line">| product_id                  | com.example.product           |</span><br><span class="line">| purchase_date               | Sun, <span class="number">01</span> Jan <span class="number">2013</span> <span class="number">12</span>:<span class="number">00</span>:<span class="number">00</span> GMT |</span><br><span class="line">| quantity                    | <span class="number">1</span>                             |</span><br><span class="line">| transaction_id              | <span class="number">1000000000000001</span>              |</span><br><span class="line">| version_external_identifier |                               |</span><br><span class="line">+-----------------------------+-------------------------------+</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ iap verify /path/to/receipt</span><br><span class="line"></span><br><span class="line">+-----------------------------+-------------------------------+</span><br><span class="line">|                           Receipt                           |</span><br><span class="line">+-----------------------------+-------------------------------+</span><br><span class="line">| app_item_id                 |                               |</span><br><span class="line">| bid                         | com.foo.bar                   |</span><br><span class="line">| bvrs                        | 20120427                      |</span><br><span class="line">| original_purchase_date      | Sun, 01 Jan 2013 12:00:00 GMT |</span><br><span class="line">| original_transaction_id     | 1000000000000001              |</span><br><span class="line">| product_id                  | com.example.product           |</span><br><span class="line">| purchase_date               | Sun, 01 Jan 2013 12:00:00 GMT |</span><br><span class="line">| quantity                    | 1                             |</span><br><span class="line">| transaction_id              | 1000000000000001              |</span><br><span class="line">| version_external_identifier |                               |</span><br><span class="line">+-----------------------------+-------------------------------+</span><br></pre></td></tr></table></figure>
 <p>就像 Houston，Venice 具有一个客户端库组件，允许它部署在一个 Rails 或 Sinatra 应用程序。验证服务器上的收据允许保留他们自己过去购买的记录，这对于最新的指标和历史分析是有用的。因此，关于 IAP，这是推荐的做法。</p>
 <h1 id="0x0A_Dubai">0x0A Dubai</h1><p>Passbook 管理登机牌，电影票，零售优惠券和会员卡。使用 PassKit API，开发者可以注册 web services 以自动更新通信证上的内容，比如登机牌上的登机口更改或向会员卡添加积分。</p>
 <p>Dubai 可以很容易地从脚本或命令行生成 <code>.pkpass</code> 文件，允许快速迭代你的 passes 的设计和内容，或生成一次性的动态。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pk generate Example.pass -T boarding-pass</span><br></pre></td></tr></table></figure>
 <p>一旦一个 pass 生成，它可以用 Dubai 通过 HTTP 开启一个本地服务，允许 passes 在 iOS 模拟器上动态地预览：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ pk serve Example.pass -c /path/to/certificate.p12</span><br><span class="line">$ open http://localhost:<span class="number">4567</span>/pass.pkpass</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ pk serve Example.pass -c /path/to/certificate.p12</span><br><span class="line">$ open http://localhost:4567/pass.pkpass</span><br></pre></td></tr></table></figure>
 
       
 
@@ -776,7 +779,7 @@
 <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

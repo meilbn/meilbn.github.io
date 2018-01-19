@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Objective-C,Xcode,xcodebuild,xcrun," />
+  <meta name="keywords" content="Objective-C,Xcode,xcrun,xcodebuild," />
 
 
 
@@ -94,16 +94,19 @@
 
 
 <meta name="description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 14 Xcode Toolchain 时做的笔记。">
+<meta name="keywords" content="Objective-C,Xcode,xcrun,xcodebuild">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Xcode Toolchain">
 <meta property="og:url" content="http://meilbn.com/2016/11/05/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter14-Xcode-Toolchain/index.html">
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 14 Xcode Toolchain 时做的笔记。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_14_Xcode_Toolchain.png">
-<meta property="og:updated_time" content="2016-11-05T14:00:47.000Z">
+<meta property="og:updated_time" content="2018-01-19T07:08:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xcode Toolchain">
 <meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 14 Xcode Toolchain 时做的笔记。">
+<meta name="twitter:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_14_Xcode_Toolchain.png">
 
 
 
@@ -411,10 +414,10 @@
 
       
         <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_14_Xcode_Toolchain.png" alt=""></p>
-<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="external">CFHipsterRef</a> Chapter 14 Xcode Toolchain 时做的笔记。</p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="noopener">CFHipsterRef</a> Chapter 14 Xcode Toolchain 时做的笔记。</p>
 <a id="more"></a>
 <h1 id="0x01_Xcode_Toolchain">0x01 Xcode Toolchain</h1><p>从 Mavericks 开始，作为一个开发者在 Mac 上开始只需要一个命令：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-<span class="built_in">select</span> <span class="comment">-- install</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select -- install</span><br></pre></td></tr></table></figure>
 <p>这将会安装命令行工具，这是编译 Objective-C 代码所必要的。</p>
 <h1 id="0x02_xcrun">0x02 xcrun</h1><p><code>xcrun</code> 是 Xcode 命令行工具的基础。有了它，所有其他的工具都可以被调用。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xcrun xcodebuild</span><br></pre></td></tr></table></figure>
@@ -466,16 +469,16 @@
 </tr>
 </tbody>
 </table>
-<h1 id="0x04_genstrings">0x04 genstrings</h1><p><code>genstrings</code> 工具从指定的 C 或 Objective-C 源文件生成一个 <code>.strings</code> 文件。<code>.strings</code> 文件用于在不同语言环境中本地化一个应用程序，在 Apple 的 Cocoa Core Competencies 中的 <a href="https://developer.apple.com/library/mac/documentation/general/conceptual/devpedia-cocoacore/- Internationalization.html" target="_blank" rel="external">“Internationalization”</a> 下有描述。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ genstrings <span class="operator">-a</span> \</span><br><span class="line">             /path/to/<span class="built_in">source</span>/files/*.m</span><br></pre></td></tr></table></figure>
+<h1 id="0x04_genstrings">0x04 genstrings</h1><p><code>genstrings</code> 工具从指定的 C 或 Objective-C 源文件生成一个 <code>.strings</code> 文件。<code>.strings</code> 文件用于在不同语言环境中本地化一个应用程序，在 Apple 的 Cocoa Core Competencies 中的 <a href="https://developer.apple.com/library/mac/documentation/general/conceptual/devpedia-cocoacore/- Internationalization.html" target="_blank" rel="noopener">“Internationalization”</a> 下有描述。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ genstrings -a \</span><br><span class="line">             /path/to/<span class="built_in">source</span>/files/*.m</span><br></pre></td></tr></table></figure>
 <p>对于在源文件中每次使用的 <code>NSLocalizedString</code> 宏，<code>genstrings</code> 都会将 key 和注释附加到目标文件中。然后由开发者为每个目标语言环境创建一个该文件的副本，并翻译该文件。</p>
 <p>fr.lproj/Localizable.strings</p>
-<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/<span class="keyword">*</span> No comment provided by engineer. <span class="keyword">*</span>/</span><br><span class="line"><span class="string">"Username"</span>=<span class="string">"nom d'utilisateur"</span>;</span><br><span class="line">/<span class="keyword">*</span> &#123;User First Name&#125;'s Profile <span class="keyword">*</span>/</span><br><span class="line"><span class="string">"%@'s Profile"</span>=<span class="string">"profil de %1$@"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/* No comment provided by engineer. */</span><br><span class="line">&quot;Username&quot;=&quot;nom d&apos;utilisateur&quot;;</span><br><span class="line">/* &#123;User First Name&#125;&apos;s Profile */</span><br><span class="line">&quot;%@&apos;s Profile&quot;=&quot;profil de %1$@&quot;;</span><br></pre></td></tr></table></figure>
 <h1 id="0x05_ibtool">0x05 ibtool</h1><p><code>genstrings</code> 是用于源代码，而 <code>ibtool</code> 是用于 XIB 文件。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ibtool --generate-strings-file \</span><br><span class="line">         Localizable.strings \</span><br><span class="line">         en.lpoj/Interface.xib</span><br></pre></td></tr></table></figure>
 <p>虽然本地化是它的主要用例，<code>ibtool</code> 有用于跟 Interface Builder 文档工作的几个其他功能。可以使用 <code>--convert</code> 标记来改变对一个类名的所有引用。可以使用 <code>--upgrade</code> 标记将一个文档升级到最新版本。甚至可以分别使用 <code>--enable-auto-layout</code>，<code>--update-frames</code> 和 <code>--update-constraints</code> 标记来启动 Auto Layout，以及更新 frames &amp; constraints（约束）。</p>
 <h1 id="0x06_iprofiler">0x06 iprofiler</h1><p><code>iprofiler</code> 不需要启动 Instruments.app 测算一个 app 的性能：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ iprofiler -allocations \</span><br><span class="line">            -leaks \</span><br><span class="line">            -T <span class="number">15</span>s \</span><br><span class="line">            -o perf \</span><br><span class="line">            <span class="operator">-a</span> NSHipster</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ iprofiler -allocations \</span><br><span class="line">            -leaks \</span><br><span class="line">            -T 15s \</span><br><span class="line">            -o perf \</span><br><span class="line">            -a NSHipster</span><br></pre></td></tr></table></figure>
 <p>上面的命令将附加到 NSHipster.app 上，运行 15 秒，仪器分配和泄露，然后将结果写入 <code>pref</code> 中。然后这个输出可以通过 Instruments.app 读取和显示。</p>
 <h1 id="0x07_xed">0x07 xed</h1><p>这个命令简单地打开 Xcode。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xed NSHipster.xcworkspace</span><br></pre></td></tr></table></figure>
@@ -563,9 +566,9 @@
           
             <a href="/tags/Xcode/" rel="tag"># Xcode</a>
           
-            <a href="/tags/xcodebuild/" rel="tag"># xcodebuild</a>
-          
             <a href="/tags/xcrun/" rel="tag"># xcrun</a>
+          
+            <a href="/tags/xcodebuild/" rel="tag"># xcodebuild</a>
           
         </div>
       
@@ -806,7 +809,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_Xcode_Toolchain"><span class="nav-number">2.</span> <span class="nav-text">0x01 Xcode Toolchain</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_xcrun"><span class="nav-number">3.</span> <span class="nav-text">0x02 xcrun</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_xcodebuild"><span class="nav-number">4.</span> <span class="nav-text">0x03 xcodebuild</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_genstrings"><span class="nav-number">5.</span> <span class="nav-text">0x04 genstrings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05_ibtool"><span class="nav-number">6.</span> <span class="nav-text">0x05 ibtool</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x06_iprofiler"><span class="nav-number">7.</span> <span class="nav-text">0x06 iprofiler</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x07_xed"><span class="nav-number">8.</span> <span class="nav-text">0x07 xed</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x08_agvtool"><span class="nav-number">9.</span> <span class="nav-text">0x08 agvtool</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x09_Other_Tools"><span class="nav-number">10.</span> <span class="nav-text">0x09 Other Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0901_Compilation_&_Assembly"><span class="nav-number">10.1.</span> <span class="nav-text">0x0901 Compilation & Assembly</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0902_Processors"><span class="nav-number">10.2.</span> <span class="nav-text">0x0902 Processors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0903_Libraries"><span class="nav-number">10.3.</span> <span class="nav-text">0x0903 Libraries</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0904_Scripting"><span class="nav-number">10.4.</span> <span class="nav-text">0x0904 Scripting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0905_Packages"><span class="nav-number">10.5.</span> <span class="nav-text">0x0905 Packages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0906_Documentation"><span class="nav-number">10.6.</span> <span class="nav-text">0x0906 Documentation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0907_Core_Data"><span class="nav-number">10.7.</span> <span class="nav-text">0x0907 Core Data</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_Xcode_Toolchain"><span class="nav-number">2.</span> <span class="nav-text">0x01 Xcode Toolchain</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_xcrun"><span class="nav-number">3.</span> <span class="nav-text">0x02 xcrun</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_xcodebuild"><span class="nav-number">4.</span> <span class="nav-text">0x03 xcodebuild</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_genstrings"><span class="nav-number">5.</span> <span class="nav-text">0x04 genstrings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05_ibtool"><span class="nav-number">6.</span> <span class="nav-text">0x05 ibtool</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x06_iprofiler"><span class="nav-number">7.</span> <span class="nav-text">0x06 iprofiler</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x07_xed"><span class="nav-number">8.</span> <span class="nav-text">0x07 xed</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x08_agvtool"><span class="nav-number">9.</span> <span class="nav-text">0x08 agvtool</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x09_Other_Tools"><span class="nav-number">10.</span> <span class="nav-text">0x09 Other Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0901_Compilation_&_Assembly"><span class="nav-number">10.1.</span> <span class="nav-text">0x0901 Compilation &amp; Assembly</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0902_Processors"><span class="nav-number">10.2.</span> <span class="nav-text">0x0902 Processors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0903_Libraries"><span class="nav-number">10.3.</span> <span class="nav-text">0x0903 Libraries</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0904_Scripting"><span class="nav-number">10.4.</span> <span class="nav-text">0x0904 Scripting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0905_Packages"><span class="nav-number">10.5.</span> <span class="nav-text">0x0905 Packages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0906_Documentation"><span class="nav-number">10.6.</span> <span class="nav-text">0x0906 Documentation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0907_Core_Data"><span class="nav-number">10.7.</span> <span class="nav-text">0x0907 Core Data</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -830,7 +833,7 @@
 <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Charles,Mac,抓包," />
+  <meta name="keywords" content="Mac,Charles,抓包," />
 
 
 
@@ -94,11 +94,13 @@
 
 
 <meta name="description" content="0x00 前言在 Windows 平台上，抓包工具有 Fiddler，但是不能在 MacOSX 上使用，好在我们还有另外一个抓包神器：Charles，而且是用 Java 编写的，所以是跨平台的，可能对有些人来说有一个缺点，那就是 Charles 是收费的，不过不要着急，下面会提供破解方法。">
+<meta name="keywords" content="Mac,Charles,抓包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 Mac 上使用 Charles 抓包">
 <meta property="og:url" content="http://meilbn.com/2015/07/23/use-charles-capture-package-in-mac/index.html">
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言在 Windows 平台上，抓包工具有 Fiddler，但是不能在 MacOSX 上使用，好在我们还有另外一个抓包神器：Charles，而且是用 Java 编写的，所以是跨平台的，可能对有些人来说有一个缺点，那就是 Charles 是收费的，不过不要着急，下面会提供破解方法。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-00.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-01.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-02.png">
@@ -112,6 +114,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Mac 上使用 Charles 抓包">
 <meta name="twitter:description" content="0x00 前言在 Windows 平台上，抓包工具有 Fiddler，但是不能在 MacOSX 上使用，好在我们还有另外一个抓包神器：Charles，而且是用 Java 编写的，所以是跨平台的，可能对有些人来说有一个缺点，那就是 Charles 是收费的，不过不要着急，下面会提供破解方法。">
+<meta name="twitter:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-00.png">
 
 
 
@@ -418,9 +421,9 @@
       
 
       
-        <h1 id="0x00_前言">0x00 前言</h1><p>在 Windows 平台上，抓包工具有 <a href="http://www.telerik.com/fiddler" target="_blank" rel="external">Fiddler</a>，但是不能在 MacOSX 上使用，好在我们还有另外一个抓包神器：<a href="http://www.charlesproxy.com/" target="_blank" rel="external">Charles</a>，而且是用 Java 编写的，所以是跨平台的，可能对有些人来说有一个缺点，那就是 Charles 是收费的，不过不要着急，下面会提供破解方法。</p>
+        <h1 id="0x00_前言">0x00 前言</h1><p>在 Windows 平台上，抓包工具有 <a href="http://www.telerik.com/fiddler" target="_blank" rel="noopener">Fiddler</a>，但是不能在 MacOSX 上使用，好在我们还有另外一个抓包神器：<a href="http://www.charlesproxy.com/" target="_blank" rel="noopener">Charles</a>，而且是用 Java 编写的，所以是跨平台的，可能对有些人来说有一个缺点，那就是 Charles 是收费的，不过不要着急，下面会提供破解方法。</p>
 <a id="more"></a>
-<h1 id="0x01_安装与破解">0x01 安装与破解</h1><p>Charles 既然是 Java 编写的，那么破解起来就挺容易的，不愿意购买的可以点击<a href="http://www.gfzj.us/tech/2015/06/24/charles-hacking.html" target="_blank" rel="external">这里</a>查看破解教程，不过，购买的话是最好的，毕竟做开发的都不容易，支持正版，用起来也是非常舒心的。<br>安装就不多说了，很简单，只要安装了 JDK 就能运行，打开之后会弹出提示框，选择 Allow，然后界面大概就是这样子的：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-00.png" alt=""></p>
+<h1 id="0x01_安装与破解">0x01 安装与破解</h1><p>Charles 既然是 Java 编写的，那么破解起来就挺容易的，不愿意购买的可以点击<a href="http://www.gfzj.us/tech/2015/06/24/charles-hacking.html" target="_blank" rel="noopener">这里</a>查看破解教程，不过，购买的话是最好的，毕竟做开发的都不容易，支持正版，用起来也是非常舒心的。<br>安装就不多说了，很简单，只要安装了 JDK 就能运行，打开之后会弹出提示框，选择 Allow，然后界面大概就是这样子的：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-00.png" alt=""></p>
 <p>一打开就开始抓包了，这些抓到的都是 Mac 端的包，可以看到，HTTP 和 HTTPS 都已经被抓到了。</p>
 <h1 id="0x02_移动端抓包">0x02 移动端抓包</h1><p>手机与 Mac 端必须在同一个路由器下才能实现抓包，先查看电脑的 IP：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-01.png" alt=""></p>
 <p>这里以 iPhone 为例，手机连接好 Wifi 之后，打开 <strong><em>Settings(设置) -&gt; Wi-Fi</em></strong> ，点击你连接的 Wi-Fi 的最右边的查看信息按钮进入详情界面，选择最下面的 <strong><em>Manual(手动)</em></strong> ， <strong><em>Server(服务器)</em></strong> 填 Mac 端的 IP， <strong><em>Port(端口)</em></strong> 填 <code>8888</code> 就行了：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/use-charles-capture-package-in-mac-02.png" alt=""></p>
@@ -461,9 +464,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Charles/" rel="tag"># Charles</a>
-          
             <a href="/tags/Mac/" rel="tag"># Mac</a>
+          
+            <a href="/tags/Charles/" rel="tag"># Charles</a>
           
             <a href="/tags/抓包/" rel="tag"># 抓包</a>
           
@@ -730,7 +733,7 @@
 <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

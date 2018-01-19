@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Core Service,Objective-C,UTI," />
+  <meta name="keywords" content="Objective-C,Core Service,UTI," />
 
 
 
@@ -94,16 +94,19 @@
 
 
 <meta name="description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 7 Core Services 时做的笔记。">
+<meta name="keywords" content="Objective-C,Core Service,UTI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Core Services">
 <meta property="og:url" content="http://meilbn.com/2016/11/02/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter7-Core-Services/index.html">
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 7 Core Services 时做的笔记。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_7_Core_Services.png">
 <meta property="og:updated_time" content="2016-11-02T06:31:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Core Services">
 <meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 7 Core Services 时做的笔记。">
+<meta name="twitter:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_7_Core_Services.png">
 
 
 
@@ -411,7 +414,7 @@
 
       
         <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_7_Core_Services.png" alt=""></p>
-<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="external">CFHipsterRef</a> Chapter 7 Core Services 时做的笔记。</p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="noopener">CFHipsterRef</a> Chapter 7 Core Services 时做的笔记。</p>
 <a id="more"></a>
 <h1 id="0x01_Core_Services">0x01 Core Services</h1><p>让我们花一点时间来真正地思考一下一个文件是什么。</p>
 <p>从根本上来说，文件是一个信息资源。它以这样一种方式持续存在，即它在最初创建它的程序的范围之外保持持久可用。文件本身通常被编码成一维字节数组（one-dimensional byte array），理想地，在存储介质连续的部分中。</p>
@@ -485,7 +488,7 @@
 <p> 相反，确定 UTI 的一个 MIME 类型，可以使用 <code>UTTypeCreatePreferredIdentifierForTag:</code> 来完成：</p>
  <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *UTI = (__bridge_transfer <span class="built_in">NSString</span> *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, <span class="built_in">CFSTR</span>(<span class="string">"jpg"</span>), <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
 <p><code>UTTypeCopyPreferredTagWithClass</code> &amp; <code>UTTypeCreatePreferredIdentifierForTag</code> 的 tag 类参数可以是以下任意字符串常量：</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span> kUTTagClassFilenameExtension;</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span> kUTTagClassMIMEType;</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span> kUTTagClass<span class="built_in">NSPboardType</span>; <span class="comment">// OS X</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span> kUTTagClassOSType; <span class="comment">// OS X</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span> kUTTagClassFilenameExtension;</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span> kUTTagClassMIMEType;</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span> kUTTagClassNSPboardType; <span class="comment">// OS X</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">CFStringRef</span> kUTTagClassOSType; <span class="comment">// OS X</span></span><br></pre></td></tr></table></figure>
 <p>作为调解数据和文件传输成长和发展格局的一种手段，UTI 做的非常好。从像 “魔法数字” 签名和 resource forks 的特定文件系统机制到提供应用程序极大的灵活性在如何处理数据形式化的类型层次结构的转变。</p>
 <p>充分使用 UTI 将确保应用程序负责任地与文件交互，并与其他东西相处得好。</p>
 
@@ -518,9 +521,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Core-Service/" rel="tag"># Core Service</a>
-          
             <a href="/tags/Objective-C/" rel="tag"># Objective-C</a>
+          
+            <a href="/tags/Core-Service/" rel="tag"># Core Service</a>
           
             <a href="/tags/UTI/" rel="tag"># UTI</a>
           
@@ -763,7 +766,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_Core_Services"><span class="nav-number">2.</span> <span class="nav-text">0x01 Core Services</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_Data_&_Resource_Forks"><span class="nav-number">3.</span> <span class="nav-text">0x02 Data & Resource Forks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_UTI"><span class="nav-number">4.</span> <span class="nav-text">0x03 UTI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_Type_Identifiers"><span class="nav-number">5.</span> <span class="nav-text">0x04 Type Identifiers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05_Dynamic_Type_Identifiers"><span class="nav-number">6.</span> <span class="nav-text">0x05 Dynamic Type Identifiers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x06_Custom_Type_Identifiers"><span class="nav-number">7.</span> <span class="nav-text">0x06 Custom Type Identifiers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x07_Working_with_UTIs"><span class="nav-number">8.</span> <span class="nav-text">0x07 Working with UTIs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0701_Comparing"><span class="nav-number">8.1.</span> <span class="nav-text">0x0701 Comparing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0702_Copying_Declarations"><span class="nav-number">8.2.</span> <span class="nav-text">0x0702 Copying Declarations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0703_Converting"><span class="nav-number">8.3.</span> <span class="nav-text">0x0703 Converting</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_Core_Services"><span class="nav-number">2.</span> <span class="nav-text">0x01 Core Services</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_Data_&_Resource_Forks"><span class="nav-number">3.</span> <span class="nav-text">0x02 Data &amp; Resource Forks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_UTI"><span class="nav-number">4.</span> <span class="nav-text">0x03 UTI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_Type_Identifiers"><span class="nav-number">5.</span> <span class="nav-text">0x04 Type Identifiers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05_Dynamic_Type_Identifiers"><span class="nav-number">6.</span> <span class="nav-text">0x05 Dynamic Type Identifiers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x06_Custom_Type_Identifiers"><span class="nav-number">7.</span> <span class="nav-text">0x06 Custom Type Identifiers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x07_Working_with_UTIs"><span class="nav-number">8.</span> <span class="nav-text">0x07 Working with UTIs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0701_Comparing"><span class="nav-number">8.1.</span> <span class="nav-text">0x0701 Comparing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0702_Copying_Declarations"><span class="nav-number">8.2.</span> <span class="nav-text">0x0702 Copying Declarations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0703_Converting"><span class="nav-number">8.3.</span> <span class="nav-text">0x0703 Converting</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -787,7 +790,7 @@
 <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

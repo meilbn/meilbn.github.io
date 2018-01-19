@@ -93,34 +93,25 @@
 
 
 
-<meta name="description" content="这里我们先只讨论创建公开的 Pod，因为我还没有需求使用私用 Pod。这里使用 GitHub 来托管代码库
-0x00 准备工作如果想要创建一个 Pod，说明你的库的代码也敲的差不多了，可以发布出来让其他人使用了。如果还没有一个对应的 GitHub repo，就先创建一个，然后你可以：
-
-git clone 到本地，然后把代码拖进去
-在原来的项目的目录下，添加一个 remote，如果原来的项目不是一">
+<meta name="description" content="这里我们先只讨论创建公开的 Pod，因为我还没有需求使用私用 Pod。这里使用 GitHub 来托管代码库 0x00 准备工作如果想要创建一个 Pod，说明你的库的代码也敲的差不多了，可以发布出来让其他人使用了。如果还没有一个对应的 GitHub repo，就先创建一个，然后你可以：  git clone 到本地，然后把代码拖进去 在原来的项目的目录下，添加一个 remote，如果原来的项目不是一">
+<meta name="keywords" content="CocoaPods">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to making a CocoaPod">
 <meta property="og:url" content="http://meilbn.com/2017/08/24/How-to-making-a-CocoaPod/index.html">
 <meta property="og:site_name" content="Happy Hacking">
-<meta property="og:description" content="这里我们先只讨论创建公开的 Pod，因为我还没有需求使用私用 Pod。这里使用 GitHub 来托管代码库
-0x00 准备工作如果想要创建一个 Pod，说明你的库的代码也敲的差不多了，可以发布出来让其他人使用了。如果还没有一个对应的 GitHub repo，就先创建一个，然后你可以：
-
-git clone 到本地，然后把代码拖进去
-在原来的项目的目录下，添加一个 remote，如果原来的项目不是一">
+<meta property="og:description" content="这里我们先只讨论创建公开的 Pod，因为我还没有需求使用私用 Pod。这里使用 GitHub 来托管代码库 0x00 准备工作如果想要创建一个 Pod，说明你的库的代码也敲的差不多了，可以发布出来让其他人使用了。如果还没有一个对应的 GitHub repo，就先创建一个，然后你可以：  git clone 到本地，然后把代码拖进去 在原来的项目的目录下，添加一个 remote，如果原来的项目不是一">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/How-to-making-a-CocoaPod_00.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/How-to-making-a-CocoaPod_01.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/How-to-making-a-CocoaPod_02.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/How-to-making-a-CocoaPod_03_S.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/How-to-making-a-CocoaPod_04.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/How-to-making-a-CocoaPod_05.png">
-<meta property="og:updated_time" content="2017-08-24T08:47:33.000Z">
+<meta property="og:updated_time" content="2018-01-19T07:07:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to making a CocoaPod">
-<meta name="twitter:description" content="这里我们先只讨论创建公开的 Pod，因为我还没有需求使用私用 Pod。这里使用 GitHub 来托管代码库
-0x00 准备工作如果想要创建一个 Pod，说明你的库的代码也敲的差不多了，可以发布出来让其他人使用了。如果还没有一个对应的 GitHub repo，就先创建一个，然后你可以：
-
-git clone 到本地，然后把代码拖进去
-在原来的项目的目录下，添加一个 remote，如果原来的项目不是一">
+<meta name="twitter:description" content="这里我们先只讨论创建公开的 Pod，因为我还没有需求使用私用 Pod。这里使用 GitHub 来托管代码库 0x00 准备工作如果想要创建一个 Pod，说明你的库的代码也敲的差不多了，可以发布出来让其他人使用了。如果还没有一个对应的 GitHub repo，就先创建一个，然后你可以：  git clone 到本地，然后把代码拖进去 在原来的项目的目录下，添加一个 remote，如果原来的项目不是一">
+<meta name="twitter:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/How-to-making-a-CocoaPod_00.png">
 
 
 
@@ -438,23 +429,23 @@ git clone 到本地，然后把代码拖进去
 <h1 id="0x01_创建和编辑_podspec">0x01 创建和编辑 podspec</h1><p>每个 Pod 都对应一个 podspec 文件，描述 Pod 的信息及依赖。<br>使用命令 <code>pod spec create</code> 来创建 podspec：</p>
 <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/How-to-making-a-CocoaPod_01.png" alt=""></p>
 <p>然后编辑 podspec 文件，里面的说明都非常详细，这里就放一下我自己这个项目的 podspec 了：</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new do |s|</span><br><span class="line"></span><br><span class="line">  s.<span class="variable">name         =</span> <span class="string">"Sandboxer"</span></span><br><span class="line">  s.<span class="variable">version      =</span> <span class="string">"1.0.0"</span></span><br><span class="line">  s.<span class="variable">summary      =</span> <span class="string">"iOS file browser written in Objective-C."</span></span><br><span class="line"></span><br><span class="line">  s.<span class="variable">description  =</span> &lt;&lt;-DESC</span><br><span class="line">                    - iOS file browser written <span class="keyword">in</span> Objective-C.</span><br><span class="line">                    - Use for browse sandbox files <span class="constant">and</span> directories, <span class="constant">or</span> manage them, like delete.</span><br><span class="line">                    - iOS <span class="number">7</span>+.</span><br><span class="line">                   DESC</span><br><span class="line"></span><br><span class="line">  s.<span class="variable">homepage     =</span> <span class="string">"https://github.com/meilbn/Sandboxer-Objc"</span></span><br><span class="line">  <span class="comment"># s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"</span></span><br><span class="line"></span><br><span class="line">  s.<span class="variable">license      =</span> <span class="string">"MIT"</span></span><br><span class="line"></span><br><span class="line">  s.<span class="variable">author             =</span> &#123; <span class="string">"meilbn"</span> =&gt; <span class="string">"codingallnight@gmail.com"</span> &#125;</span><br><span class="line">  s.<span class="variable">social_media_url   =</span> <span class="string">"https://twitter.com/meilbn"</span></span><br><span class="line"></span><br><span class="line">  s.<span class="variable">platform     =</span> :ios, <span class="string">"7.0"</span></span><br><span class="line"></span><br><span class="line">  s.<span class="variable">source       =</span> &#123; :<span class="variable">git =</span>&gt; <span class="string">"https://github.com/meilbn/Sandboxer-Objc.git"</span>, :<span class="variable">tag =</span>&gt; <span class="string">"#&#123;s.version&#125;"</span> &#125;</span><br><span class="line"></span><br><span class="line">  s.<span class="variable">source_files  =</span> <span class="string">"Sandboxer"</span>, <span class="string">"Sandboxer/**/*.&#123;h,m&#125;"</span></span><br><span class="line"></span><br><span class="line">  s.<span class="variable">resources =</span> <span class="string">"Sandboxer/SandboxerResources.bundle"</span></span><br><span class="line"></span><br><span class="line">  s.<span class="variable">frameworks =</span> <span class="string">"QuickLook"</span>, <span class="string">"WebKit"</span></span><br><span class="line"></span><br><span class="line">  s.<span class="variable">requires_arc =</span> <span class="constant">true</span></span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new do |s|</span><br><span class="line"></span><br><span class="line">  s.name         = &quot;Sandboxer&quot;</span><br><span class="line">  s.version      = &quot;1.0.0&quot;</span><br><span class="line">  s.summary      = &quot;iOS file browser written in Objective-C.&quot;</span><br><span class="line"></span><br><span class="line">  s.description  = &lt;&lt;-DESC</span><br><span class="line">                    - iOS file browser written in Objective-C.</span><br><span class="line">                    - Use for browse sandbox files and directories, or manage them, like delete.</span><br><span class="line">                    - iOS 7+.</span><br><span class="line">                   DESC</span><br><span class="line"></span><br><span class="line">  s.homepage     = &quot;https://github.com/meilbn/Sandboxer-Objc&quot;</span><br><span class="line">  # s.screenshots  = &quot;www.example.com/screenshots_1.gif&quot;, &quot;www.example.com/screenshots_2.gif&quot;</span><br><span class="line"></span><br><span class="line">  s.license      = &quot;MIT&quot;</span><br><span class="line"></span><br><span class="line">  s.author             = &#123; &quot;meilbn&quot; =&gt; &quot;codingallnight@gmail.com&quot; &#125;</span><br><span class="line">  s.social_media_url   = &quot;https://twitter.com/meilbn&quot;</span><br><span class="line"></span><br><span class="line">  s.platform     = :ios, &quot;7.0&quot;</span><br><span class="line"></span><br><span class="line">  s.source       = &#123; :git =&gt; &quot;https://github.com/meilbn/Sandboxer-Objc.git&quot;, :tag =&gt; &quot;#&#123;s.version&#125;&quot; &#125;</span><br><span class="line"></span><br><span class="line">  s.source_files  = &quot;Sandboxer&quot;, &quot;Sandboxer/**/*.&#123;h,m&#125;&quot;</span><br><span class="line"></span><br><span class="line">  s.resources = &quot;Sandboxer/SandboxerResources.bundle&quot;</span><br><span class="line"></span><br><span class="line">  s.frameworks = &quot;QuickLook&quot;, &quot;WebKit&quot;</span><br><span class="line"></span><br><span class="line">  s.requires_arc = true</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <h1 id="0x02_Push_到_GitHub">0x02 Push 到 GitHub</h1><p>编辑完 podspec 文件，就可以将项目的文件都提交到 GitHub 了：</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">git</span> <span class="keyword">push </span>origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
 <p>还可以打上 tag：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git tag -a <span class="number">1.0</span>.<span class="number">0</span> -m <span class="string">"v1.0.0"</span></span><br><span class="line"><span class="variable">$ </span>git push --tags</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -a 1.0.0 -m <span class="string">"v1.0.0"</span></span><br><span class="line">$ git push --tags</span><br></pre></td></tr></table></figure>
 <p>然后 GitHub 上的仓库就能看到刚刚上传的代码了。</p>
 <h1 id="0x03_验证_Pod">0x03 验证 Pod</h1><p>既然代码都上传到 GitHub 了，接下来就是验证 Pod 了。<br>使用命令 <code>pod spec lint Sandboxer.podspec</code> 来验证，但是有一个问题是，如果你的代码有警告的话，验证就会失败，如果你想忽略这些警告，可以加上 <code>--allow-warnings</code> 来忽略这些警告：</p>
 <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/How-to-making-a-CocoaPod_02.png" alt=""></p>
 <p>这样，就说明 Pod 验证成功了</p>
 <h1 id="0x04_上传_Pod_到_CocoaPods">0x04 上传 Pod 到 CocoaPods</h1><p>既然 Pod 验证成功了，最后一步就是将它上传到 CocoaPods，自己能用，别人也能用了。<br>如果是第一次上传 Pod，则需要注册一下（可能需要翻下墙），已有的请略过。</p>
-<h2 id="注册">注册</h2><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod trunk <span class="keyword">register</span> your_email <span class="string">'your_name'</span> --description=<span class="string">'macbook air'</span></span><br></pre></td></tr></table></figure>
+<h2 id="注册">注册</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod trunk register your_email <span class="string">'your_name'</span> --description=<span class="string">'macbook air'</span></span><br></pre></td></tr></table></figure>
 <p>如果想要查看该命令执行的一些详细信息，可以加上 <code>--verbose</code>。</p>
 <p><strong>完成之后需要到填写的邮箱里面验证一下，才能继续下面的操作。</strong></p>
 <p>注册成功以后，可以使用命令 <code>pod trunk me</code> 来查看自己的信息，发布过哪些 Pod，还有登录记录：</p>
 <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/How-to-making-a-CocoaPod_03_S.png" alt=""></p>
 <h2 id="上传">上传</h2><p>终于到了上传这一步了，命令如下（如果之前验证加过忽略警告的，还是需要再加上）：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod trunk push Sandboxer<span class="class">.podspec</span> --allow-warnings</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod trunk push Sandboxer.podspec --allow-warnings</span><br></pre></td></tr></table></figure>
 <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/How-to-making-a-CocoaPod_04.png" alt=""></p>
 <p>这条命令会：</p>
 <ul>
@@ -462,13 +453,25 @@ git clone 到本地，然后把代码拖进去
 <li>上传 podspec 到 Trunk 或者你的私有 specs 仓库</li>
 <li>Trunk 会发布一个代表你的 podspec 的 JSON 文件</li>
 </ul>
-<p>成功了之后，CocoaPods 的 Specs repo 也会有上传操作：</p>
+<p>成功了之后，CocoaPods 的 <a href="https://github.com/CocoaPods/Specs" target="_blank" rel="noopener">Specs repo</a> 也会有上传操作：</p>
 <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/How-to-making-a-CocoaPod_05.png" alt=""></p>
 <p>如果这条命令顺利执行完的话，就没什么问题了，Pod 就发布成功了。然后就可以通过命令 <code>pod search Sandboxer</code> 来看看是否能够找到（如果找不到，需要更新一下本地的 specs，最简单的就是在一个已有 Podfile 的项目上运行命令：<code>pod update</code>）。</p>
+<h1 id="0x05_关于_Pod_里面添加了资源文件_Bundle_之后找不到_Bundle_的问题">0x05 关于 Pod 里面添加了资源文件 Bundle 之后找不到 Bundle 的问题</h1><p>在测试自己的 Pod 的时候，发现图标和国际化文字都出不来，发现使用 <code>[[NSBundle mainBundle] pathForResource:@&quot;SandboxerResources&quot; ofType:@&quot;bundle&quot;]</code> 获取的 <code>path</code> 是 <code>nil</code> 的，就找了下原因，在 CocoaPods 0.36 以前，Pod 资源最后都会被直接拷贝到 client target 的 <code>[NSBundle mainBundle]</code> 里。你可以用访问 <code>mainBundle</code> 里资源的方式访问它们。比如用 <code>+ (UIImage *)imageNamed:(NSString *)name</code> 来访问 Pod 的图片。</p>
+<p>但是在 CocoaPods 0.36 之后，这件事情发生了一些变化。由于 iOS 8 Dynamic Frameworks 特性的引入，CocoaPods 能帮你打包 framework 了。<a href="http://blog.cocoapods.org/CocoaPods-0.36/" target="_blank" rel="noopener">0.36 版的 release note</a> 很详细地说明了加入 framework 特性所带来的变化。一个显著区别就是当你的 Pod 库以 framework 形式被使用时，你的资源不是被拷贝到 mainBundle 下，而是被放到 Pod 的最终产物 —— framework 里。此时，你必须保证自己在访问这个 framework 的 bundle，而不是 client target 的。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">NSBundle</span> bundleForClass:&lt;<span class="meta">#ClassFromPodspec#&gt;]</span></span><br></pre></td></tr></table></figure>
+<p>上面这段代码可以返回某个 class 对应的 bundle 对象。具体的，</p>
+<ul>
+<li>如果你的 Pod 以 framework 形式被链接，那么返回这个 framework 的 bundle。</li>
+<li>如果以静态库（.a）的形式被链接，那么返回 client target 的 bundle，即 mainBundle。</li>
+</ul>
+<p>所以我就将获取 Bundle 的方法改成了：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="built_in">NSBundle</span> *bundle = <span class="literal">nil</span>;</span><br><span class="line"><span class="keyword">if</span> (!bundle) &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *path = [[<span class="built_in">NSBundle</span> mainBundle] pathForResource:<span class="string">@"SandboxerResources"</span> ofType:<span class="string">@"bundle"</span>];</span><br><span class="line">    <span class="keyword">if</span> (MLBIsStringEmpty(path)) &#123;</span><br><span class="line">        <span class="built_in">NSBundle</span> *bd = [<span class="built_in">NSBundle</span> bundleForClass:[Sandboxer <span class="keyword">class</span>]];</span><br><span class="line">        <span class="keyword">if</span> (bd) &#123;</span><br><span class="line">            path = [bd pathForResource:<span class="string">@"SandboxerResources"</span> ofType:<span class="string">@"bundle"</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    bundle = [<span class="built_in">NSBundle</span> bundleWithPath:path];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，bundle 就可以正确获取了。</p>
 <h1 id="参考链接">参考链接</h1><ul>
-<li><a href="https://cocoapods.org/" target="_blank" rel="external">CocoaPods</a></li>
-<li><a href="https://guides.cocoapods.org/making/getting-setup-with-trunk.html" target="_blank" rel="external">Pod to the CocoaPods Trunk</a></li>
-<li><a href="https://guides.cocoapods.org/syntax/podspec.html" target="_blank" rel="external">Podspec Syntax Reference</a></li>
+<li><a href="https://cocoapods.org/" target="_blank" rel="noopener">CocoaPods</a></li>
+<li><a href="https://guides.cocoapods.org/making/getting-setup-with-trunk.html" target="_blank" rel="noopener">Pod to the CocoaPods Trunk</a></li>
+<li><a href="https://guides.cocoapods.org/syntax/podspec.html" target="_blank" rel="noopener">Podspec Syntax Reference</a></li>
+<li><a href="http://blog.xianqu.org/2015/08/pod-resources/" target="_blank" rel="noopener">给 Pod 添加资源文件</a></li>
 </ul>
 
       
@@ -741,7 +744,7 @@ git clone 到本地，然后把代码拖进去
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_准备工作"><span class="nav-number">1.</span> <span class="nav-text">0x00 准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_创建和编辑_podspec"><span class="nav-number">2.</span> <span class="nav-text">0x01 创建和编辑 podspec</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_Push_到_GitHub"><span class="nav-number">3.</span> <span class="nav-text">0x02 Push 到 GitHub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_验证_Pod"><span class="nav-number">4.</span> <span class="nav-text">0x03 验证 Pod</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_上传_Pod_到_CocoaPods"><span class="nav-number">5.</span> <span class="nav-text">0x04 上传 Pod 到 CocoaPods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注册"><span class="nav-number">5.1.</span> <span class="nav-text">注册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上传"><span class="nav-number">5.2.</span> <span class="nav-text">上传</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_准备工作"><span class="nav-number">1.</span> <span class="nav-text">0x00 准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_创建和编辑_podspec"><span class="nav-number">2.</span> <span class="nav-text">0x01 创建和编辑 podspec</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_Push_到_GitHub"><span class="nav-number">3.</span> <span class="nav-text">0x02 Push 到 GitHub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_验证_Pod"><span class="nav-number">4.</span> <span class="nav-text">0x03 验证 Pod</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_上传_Pod_到_CocoaPods"><span class="nav-number">5.</span> <span class="nav-text">0x04 上传 Pod 到 CocoaPods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注册"><span class="nav-number">5.1.</span> <span class="nav-text">注册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上传"><span class="nav-number">5.2.</span> <span class="nav-text">上传</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05_关于_Pod_里面添加了资源文件_Bundle_之后找不到_Bundle_的问题"><span class="nav-number">6.</span> <span class="nav-text">0x05 关于 Pod 里面添加了资源文件 Bundle 之后找不到 Bundle 的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">7.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -765,7 +768,7 @@ git clone 到本地，然后把代码拖进去
 <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

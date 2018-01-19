@@ -94,12 +94,14 @@
 
 
 <meta name="description" content="记录一些在 iOS 开发当中遇到的问题以及自己找到或者想到的解决办法">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 iOS 开发中遇到的问题（零）">
 <meta property="og:url" content="http://meilbn.com/2015/08/18/The-problems-encountered-in-the-development-of-iOS-00/index.html">
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="记录一些在 iOS 开发当中遇到的问题以及自己找到或者想到的解决办法">
-<meta property="og:updated_time" content="2017-08-31T05:40:40.000Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-19T07:09:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 iOS 开发中遇到的问题（零）">
 <meta name="twitter:description" content="记录一些在 iOS 开发当中遇到的问题以及自己找到或者想到的解决办法">
@@ -414,34 +416,34 @@
 
       
         <ul>
-<li>界面返回之后刷新 UITableView 数据，或者刷新指定行的数据，列表出现滚动，原因是重写了 UITableView 的下面这个方法，去掉就OK了。<a href="http://stackoverflow.com/questions/24767665/uitableview-bouncing-back-to-the-top-of-a-section-when-calling-reloadrowsatindex" target="_blank" rel="external">Stack Overflow</a>：</li>
+<li>界面返回之后刷新 UITableView 数据，或者刷新指定行的数据，列表出现滚动，原因是重写了 UITableView 的下面这个方法，去掉就OK了。<a href="http://stackoverflow.com/questions/24767665/uitableview-bouncing-back-to-the-top-of-a-section-when-calling-reloadrowsatindex" target="_blank" rel="noopener">Stack Overflow</a>：</li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">CGFloat</span>)tableView:(<span class="built_in">UITableView</span> *)tableView estimatedHeightForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>UISearchBar 的结果列表，想要高度和 UITableView 的 Cell 高度一致的话，这样设置就行了：</li>
 </ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span><span class="variable">.searchDisplayController</span><span class="variable">.searchResultsTableView</span><span class="variable">.rowHeight</span> = <span class="keyword">self</span><span class="variable">.tableView</span><span class="variable">.rowHeight</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.searchDisplayController.searchResultsTableView.rowHeight = <span class="keyword">self</span>.tableView.rowHeight;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>出现 Terminating app due to uncaught exception ‘NSInvalidArgumentException’, reason: ‘Could not find a storyboard named ‘Main’ in bundle NSBundle &lt;*.app&gt; (loaded)’，原因是删掉了 Main.storyboard，但是还需要从 Info.plst 里面点掉对应的字段：</li>
 </ul>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Remove <span class="operator">the</span> <span class="string">"Main storyboard file base name"</span> <span class="operator">or</span> <span class="string">"UIMainStoryboardFile"</span> Key <span class="built_in">from</span> your info.plist <span class="built_in">file</span>.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Remove the &quot;Main storyboard file base name&quot; or &quot;UIMainStoryboardFile&quot; Key from your info.plist file.</span><br></pre></td></tr></table></figure>
 <ul>
-<li>去掉 UITableviewCell 的点击效果。<a href="http://stackoverflow.com/questions/190908/how-can-i-disable-the-uitableview-selection-highlighting" target="_blank" rel="external">Stack Overflow</a></li>
+<li>去掉 UITableviewCell 的点击效果。<a href="http://stackoverflow.com/questions/190908/how-can-i-disable-the-uitableview-selection-highlighting" target="_blank" rel="noopener">Stack Overflow</a></li>
 </ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cell<span class="variable">.selectionStyle</span> = <span class="built_in">UITableViewCellSelectionStyleNone</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cell.selectionStyle = <span class="built_in">UITableViewCellSelectionStyleNone</span>;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>UIlabel layer.cornerRadius not working in iOS 7.1，解决办法：Set the property clipsToBounds to YES。<a href="http://stackoverflow.com/questions/22316836/uilabel-layer-cornerradius-not-working-in-ios-7-1" target="_blank" rel="external">Stack Overflow</a></p>
+<li><p>UIlabel layer.cornerRadius not working in iOS 7.1，解决办法：Set the property clipsToBounds to YES。<a href="http://stackoverflow.com/questions/22316836/uilabel-layer-cornerradius-not-working-in-ios-7-1" target="_blank" rel="noopener">Stack Overflow</a></p>
 </li>
-<li><p>隐藏导航栏上的返回按钮。<a href="http://stackoverflow.com/questions/614212/how-to-hide-back-button-on-navigation-bar-on-iphone" target="_blank" rel="external">Stack Overflow</a></p>
+<li><p>隐藏导航栏上的返回按钮。<a href="http://stackoverflow.com/questions/614212/how-to-hide-back-button-on-navigation-bar-on-iphone" target="_blank" rel="noopener">Stack Overflow</a></p>
 </li>
 </ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span><span class="variable">.navigationItem</span><span class="variable">.hidesBackButton</span> = <span class="literal">YES</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.navigationItem.hidesBackButton = <span class="literal">YES</span>;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>设置 UITextField 的 placeholder 的字体颜色。<a href="http://stackoverflow.com/questions/1340224/iphone-uitextfield-change-placeholder-text-color" target="_blank" rel="external">Stack Overflow</a></li>
+<li>设置 UITextField 的 placeholder 的字体颜色。<a href="http://stackoverflow.com/questions/1340224/iphone-uitextfield-change-placeholder-text-color" target="_blank" rel="noopener">Stack Overflow</a></li>
 </ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIColor</span> *color = [<span class="built_in">UIColor</span> lightTextColor];</span><br><span class="line">YOURTEXTFIELD<span class="variable">.attributedPlaceholder</span> = [[<span class="built_in">NSAttributedString</span> alloc] initWithString:<span class="string">@"PlaceHolder Text"</span> attributes:@&#123;<span class="built_in">NSForegroundColorAttributeName</span>: color&#125;];</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIColor</span> *color = [<span class="built_in">UIColor</span> lightTextColor];</span><br><span class="line">YOURTEXTFIELD.attributedPlaceholder = [[<span class="built_in">NSAttributedString</span> alloc] initWithString:<span class="string">@"PlaceHolder Text"</span> attributes:@&#123;<span class="built_in">NSForegroundColorAttributeName</span>: color&#125;];</span><br></pre></td></tr></table></figure>
 <ul>
-<li>获取键盘的高度。<a href="http://stackoverflow.com/questions/3546571/how-to-get-uikeyboard-size-with-apple-iphone-sdk" target="_blank" rel="external">Stack Overflow</a></li>
+<li>获取键盘的高度。<a href="http://stackoverflow.com/questions/3546571/how-to-get-uikeyboard-size-with-apple-iphone-sdk" target="_blank" rel="noopener">Stack Overflow</a></li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)someMethodWhereYouSetUpYourObserver &#123;</span><br><span class="line">	<span class="comment">// This could be in an init method.</span></span><br><span class="line">	[[<span class="built_in">NSNotificationCenter</span> defaultCenter] addObserver:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(myNotificationMethod:) name:<span class="built_in">UIKeyboardDidShowNotification</span> object:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)myNotificationMethod:(<span class="built_in">NSNotification</span>*)notification &#123;</span><br><span class="line">	<span class="built_in">NSDictionary</span>* keyboardInfo = [notification userInfo];</span><br><span class="line">	<span class="built_in">NSValue</span>* keyboardFrameBegin = [keyboardInfo valueForKey:<span class="built_in">UIKeyboardFrameBeginUserInfoKey</span>];</span><br><span class="line">	<span class="built_in">CGRect</span> keyboardFrameBeginRect = [keyboardFrameBegin <span class="built_in">CGRectValue</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>不要忘记在 viewWillDisappear 方法里面移除观察：</p>
@@ -449,51 +451,51 @@
 <ul>
 <li>设置 SearchBar TextField 颜色：</li>
 </ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UITextField</span> *searchField = [<span class="keyword">self</span><span class="variable">.searchBar</span> valueForKey:<span class="string">@"_searchField"</span>];</span><br><span class="line">searchField<span class="variable">.textColor</span> = [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">[searchField setValue:[<span class="built_in">UIColor</span> whiteColor] forKeyPath:<span class="string">@"_placeholderLabel.textColor"</span>];</span><br><span class="line">[<span class="keyword">self</span><span class="variable">.searchBar</span> setImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"nav_search_btn_bg"</span>] forSearchBarIcon:<span class="built_in">UISearchBarIconSearch</span> state:<span class="built_in">UIControlStateNormal</span>];</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UITextField</span> *searchField = [<span class="keyword">self</span>.searchBar valueForKey:<span class="string">@"_searchField"</span>];</span><br><span class="line">searchField.textColor = [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">[searchField setValue:[<span class="built_in">UIColor</span> whiteColor] forKeyPath:<span class="string">@"_placeholderLabel.textColor"</span>];</span><br><span class="line">[<span class="keyword">self</span>.searchBar setImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"nav_search_btn_bg"</span>] forSearchBarIcon:<span class="built_in">UISearchBarIconSearch</span> state:<span class="built_in">UIControlStateNormal</span>];</span><br></pre></td></tr></table></figure>
 <ul>
-<li>高亮 UITableView 选中的那一行的颜色。<a href="http://stackoverflow.com/questions/5841056/uitableviewcell-selected-rows-text-color-change" target="_blank" rel="external">Stack Overflow</a></li>
+<li>高亮 UITableView 选中的那一行的颜色。<a href="http://stackoverflow.com/questions/5841056/uitableviewcell-selected-rows-text-color-change" target="_blank" rel="noopener">Stack Overflow</a></li>
 </ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cell<span class="variable">.textLabel</span><span class="variable">.highlightedTextColor</span> = [<span class="built_in">UIColor</span> redColor];</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cell.textLabel.highlightedTextColor = [<span class="built_in">UIColor</span> redColor];</span><br></pre></td></tr></table></figure>
 <ul>
-<li>设置 UItableView 的某一行高亮。<a href="http://stackoverflow.com/questions/4518723/how-to-highlight-a-row-in-a-uitableview" target="_blank" rel="external">Stack Overflow</a></li>
+<li>设置 UItableView 的某一行高亮。<a href="http://stackoverflow.com/questions/4518723/how-to-highlight-a-row-in-a-uitableview" target="_blank" rel="noopener">Stack Overflow</a></li>
 </ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[cell<span class="variable">.textLabel</span> setHighlighted:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[cell.textLabel setHighlighted:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>在头文件中使用 @property 定义了一个可变对象，如下，通过上一个界面传过来，在使用的时候，当改变其值的时候，会出现崩溃，原因是 copy 这个属性，将这个属性去掉行OK了。</li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSMutableDictionary</span> *userRegisterInfo;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>Creating a UISearchDisplayController programmatically。<a href="http://stackoverflow.com/questions/8696260/creating-a-uisearchdisplaycontroller-programmatically" target="_blank" rel="external">Stack Overflow</a></p>
+<li><p>Creating a UISearchDisplayController programmatically。<a href="http://stackoverflow.com/questions/8696260/creating-a-uisearchdisplaycontroller-programmatically" target="_blank" rel="noopener">Stack Overflow</a></p>
 </li>
-<li><p>UITextView 获取键盘 return 按钮事件。<a href="http://stackoverflow.com/questions/10423142/uitextfield-uitextview-i-need-to-be-able-to-detect-user-return-key-and-i-n" target="_blank" rel="external">Stack Overflow</a></p>
+<li><p>UITextView 获取键盘 return 按钮事件。<a href="http://stackoverflow.com/questions/10423142/uitextfield-uitextview-i-need-to-be-able-to-detect-user-return-key-and-i-n" target="_blank" rel="noopener">Stack Overflow</a></p>
 </li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)textView:(<span class="built_in">UITextView</span> *)textView shouldChangeTextInRange:(<span class="built_in">NSRange</span>)range replacementText:(<span class="built_in">NSString</span> *)text; &#123;</span><br><span class="line">	<span class="keyword">if</span> ([text isEqualToString:<span class="string">@"\n"</span>]) &#123;</span><br><span class="line">		<span class="comment">//Do whatever you want</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>UITableView 多自定义 Cell 类型。<a href="http://stackoverflow.com/questions/14303832/uitableview-with-two-custom-cells-multiple-identifiers" target="_blank" rel="external">Stack Overflow</a></p>
+<li><p>UITableView 多自定义 Cell 类型。<a href="http://stackoverflow.com/questions/14303832/uitableview-with-two-custom-cells-multiple-identifiers" target="_blank" rel="noopener">Stack Overflow</a></p>
 </li>
-<li><p>在 Storyboard 中设置 Tab Bar Item 的 Selected Image 没有用，提示：CUICatalog: Invalid asset name supplied: (null)。<a href="http://stackoverflow.com/questions/22011106/error-cuicatalog-invalid-asset-name-supplied-null-or-invalid-scale-factor" target="_blank" rel="external">Stack Overflow</a></p>
+<li><p>在 Storyboard 中设置 Tab Bar Item 的 Selected Image 没有用，提示：CUICatalog: Invalid asset name supplied: (null)。<a href="http://stackoverflow.com/questions/22011106/error-cuicatalog-invalid-asset-name-supplied-null-or-invalid-scale-factor" target="_blank" rel="noopener">Stack Overflow</a></p>
 </li>
-<li><p>iOS UITableView first section header not show。<a href="http://stackoverflow.com/questions/21088428/ios-why-is-my-first-section-header-in-table-not-showing" target="_blank" rel="external">Stack Overflow</a>，原因：It wasn’t showing because i hadn’t implemented heightForHeaderInSection</p>
+<li><p>iOS UITableView first section header not show。<a href="http://stackoverflow.com/questions/21088428/ios-why-is-my-first-section-header-in-table-not-showing" target="_blank" rel="noopener">Stack Overflow</a>，原因：It wasn’t showing because i hadn’t implemented heightForHeaderInSection</p>
 </li>
-<li><p>设置 UITabBar shadow backgroundimage。<a href="http://stackoverflow.com/questions/14371343/ios-uitabbar-remove-top-shadow-gradient-line" target="_blank" rel="external">Stack Overflow</a></p>
+<li><p>设置 UITabBar shadow backgroundimage。<a href="http://stackoverflow.com/questions/14371343/ios-uitabbar-remove-top-shadow-gradient-line" target="_blank" rel="noopener">Stack Overflow</a></p>
 </li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">UITabBar</span> appearance] setBackgroundImage:[[<span class="built_in">UIImage</span> alloc] init]];</span><br><span class="line">[[<span class="built_in">UITabBar</span> appearance] setShadowImage:[[<span class="built_in">UIImage</span> alloc] init]];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>设置导航栏 left Bar Button Item，如果是想要干掉返回按钮，并且使右滑返回失效，就直接设置 leftBarButtonItem。如果是想增加一个按钮，则：</li>
 </ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span><span class="variable">.navigationItem</span><span class="variable">.leftItemsSupplementBackButton</span> = <span class="literal">YES</span>;</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.navigationItem</span><span class="variable">.leftBarButtonItem</span> = [[<span class="built_in">UIBarButtonItem</span> alloc] initWithTitle:<span class="string">@"Title"</span> style:<span class="built_in">UIBarButtonItemStylePlain</span> target:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(action)];</span><br></pre></td></tr></table></figure>
-<p>Google 搜索关键字：ios set navigation bar left button item back button disappear<br><a href="https://stackoverflow.com/questions/18760677/add-a-button-next-to-the-back-button" target="_blank" rel="external">Stack Overflow</a></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.navigationItem.leftItemsSupplementBackButton = <span class="literal">YES</span>;</span><br><span class="line">    <span class="keyword">self</span>.navigationItem.leftBarButtonItem = [[<span class="built_in">UIBarButtonItem</span> alloc] initWithTitle:<span class="string">@"Title"</span> style:<span class="built_in">UIBarButtonItemStylePlain</span> target:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(action)];</span><br></pre></td></tr></table></figure>
+<p>Google 搜索关键字：ios set navigation bar left button item back button disappear<br><a href="https://stackoverflow.com/questions/18760677/add-a-button-next-to-the-back-button" target="_blank" rel="noopener">Stack Overflow</a></p>
 <ul>
 <li>比较 <strong>版本号</strong> 字符串时，普通的比较在某些情况下是有问题的，因为默认是一个一个字符比较的，所以在比较版本号的字符串时，需要指定一下 option：NSNumericSearch，如下：</li>
 </ul>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">str0 </span>compare:<span class="keyword">str1 </span>options:NSNumericSearch]</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[str0 compare:str1 options:<span class="built_in">NSNumericSearch</span>]</span><br></pre></td></tr></table></figure>
 <p>比如当 <code>1.1.1</code> 和 <code>1.1.12</code> 比较的时候，默认的方法是返回降序的，如果是用上面的方法，返回是升序。</p>
 <ul>
 <li>离线推送的 DeviceToken 转字符串</li>
 </ul>
-<p>Google 搜索关键字：ios device token to string<br><a href="https://stackoverflow.com/a/16411517/4318339" target="_blank" rel="external">Stack Overflow</a></p>
+<p>Google 搜索关键字：ios device token to string<br><a href="https://stackoverflow.com/a/16411517/4318339" target="_blank" rel="noopener">Stack Overflow</a></p>
 
       
 
@@ -764,7 +766,7 @@
 <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

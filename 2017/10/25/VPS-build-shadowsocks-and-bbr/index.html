@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="BBR,Linode,Shadowsocks,VPS," />
+  <meta name="keywords" content="Shadowsocks,VPS,Linode,BBR," />
 
 
 
@@ -93,18 +93,14 @@
 
 
 
-<meta name="description" content="0x00 前言首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：
-
-搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。
-阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵用，没便宜），500 多一年，流量">
+<meta name="description" content="0x00 前言本文仅供学习，请勿用于非法用途！ 首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：  搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。 阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵">
+<meta name="keywords" content="Shadowsocks,VPS,Linode,BBR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="科学上网 - VPS 搭建 Shadowsocks 并开启 BBR">
 <meta property="og:url" content="http://meilbn.com/2017/10/25/VPS-build-shadowsocks-and-bbr/index.html">
 <meta property="og:site_name" content="Happy Hacking">
-<meta property="og:description" content="0x00 前言首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：
-
-搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。
-阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵用，没便宜），500 多一年，流量">
+<meta property="og:description" content="0x00 前言本文仅供学习，请勿用于非法用途！ 首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：  搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。 阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-00.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-01.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-02.png">
@@ -117,13 +113,11 @@
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-09.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-10.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-11.png">
-<meta property="og:updated_time" content="2017-10-30T02:23:55.000Z">
+<meta property="og:updated_time" content="2018-01-19T07:06:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="科学上网 - VPS 搭建 Shadowsocks 并开启 BBR">
-<meta name="twitter:description" content="0x00 前言首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：
-
-搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。
-阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵用，没便宜），500 多一年，流量">
+<meta name="twitter:description" content="0x00 前言本文仅供学习，请勿用于非法用途！ 首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：  搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。 阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵">
+<meta name="twitter:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-00.png">
 
 
 
@@ -430,12 +424,13 @@
       
 
       
-        <h1 id="0x00_前言">0x00 前言</h1><p>首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：</p>
+        <h1 id="0x00_前言">0x00 前言</h1><p><strong>本文仅供学习，请勿用于非法用途！</strong></p>
+<p>首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：</p>
 <ul>
-<li><a href="https://bandwagonhost.com/aff.php?aff=21621" target="_blank" rel="external">搬瓦工</a>：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。</li>
+<li><a href="https://bandwagonhost.com/aff.php?aff=21621" target="_blank" rel="noopener">搬瓦工</a>：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。</li>
 <li>阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵用，没便宜），500 多一年，流量另算，1 GB 1 块钱，速度很快，但是 2017 年 10 月份十九大之前，竟然被封了 IP。所以换别的服务商。</li>
-<li><a href="https://www.vultr.com/?ref=7238810" target="_blank" rel="external">Vultr</a>（通过此链接注册，你可以免费获得 10 美元，同时也能帮助我获得一些小奖励，谢谢！）：阿里云被封了 IP 之后，看同事在用这个，就买了这个的日本机房的 VPS，但是搭完之后，没过3天，就被封了 IP，又燃起换服务商的想法，然后看到 Linode 有日本机房的 VPS 可以选，然后就退款，换到 Linode 了。</li>
-<li><a href="https://www.linode.com/?r=f2bc7074ae89253f83de5918700abc6a82f1685a" target="_blank" rel="external">Linode</a>：换到 Linode 才真正开始了折腾之路，申请过更换 IP，但是被拒，然后我的解决办法是切换机房，从日本东京切换到新加坡，或者删掉已有的重新创建一个，IP 也是不一样的，但是依然被封 IP，有时候新创建的 VPS 的 IP 是已经被封的。感觉是因为用了 <code>rc4-md5</code> 的加密算法，遂使用更安全更快速的 <code>chacha20</code>，依然逃不过被封 IP 的厄运。</li>
+<li><a href="https://www.vultr.com/?ref=7238810" target="_blank" rel="noopener">Vultr</a>（通过此链接注册，你可以免费获得 10 美元，同时也能帮助我获得一些小奖励，谢谢！）：阿里云被封了 IP 之后，看同事在用这个，就买了这个的日本机房的 VPS，但是搭完之后，没过3天，就被封了 IP，又燃起换服务商的想法，然后看到 Linode 有日本机房的 VPS 可以选，然后就退款，换到 Linode 了。</li>
+<li><a href="https://www.linode.com/?r=f2bc7074ae89253f83de5918700abc6a82f1685a" target="_blank" rel="noopener">Linode</a>：换到 Linode 才真正开始了折腾之路，申请过更换 IP，但是被拒，然后我的解决办法是切换机房，从日本东京切换到新加坡，或者删掉已有的重新创建一个，IP 也是不一样的，但是依然被封 IP，有时候新创建的 VPS 的 IP 是已经被封的。感觉是因为用了 <code>rc4-md5</code> 的加密算法，遂使用更安全更快速的 <code>chacha20</code>，依然逃不过被封 IP 的厄运。</li>
 </ul>
 <p>FUCKING GFW!!!!!!!!!!!!!!!!!!!!</p>
 <a id="more"></a>
@@ -472,27 +467,27 @@
 <h2 id="0x0101_搭建_SS">0x0101 搭建 SS</h2><ul>
 <li>首先，我们先更新一下 apt-get：</li>
 </ul>
-<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-<span class="built_in">get</span> <span class="keyword">update</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get update</span><br></pre></td></tr></table></figure>
 <p>然后等待完成，需要一点时间。</p>
 <ul>
 <li>完成之后，我们先安装 python-pip 等一些库（中间需要确认安装一下，输入 y 然后回车）：</li>
 </ul>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-<span class="built_in">get</span> install <span class="keyword">python</span>-pip <span class="keyword">python</span>-m2crypto</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install python-pip python-m2crypto</span><br></pre></td></tr></table></figure>
 <ul>
 <li>然后就可以安装 SS 了：</li>
 </ul>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip <span class="keyword">install</span> shadowsocks</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install shadowsocks</span><br></pre></td></tr></table></figure>
 <ul>
 <li>很快就安装好了，然后我们创建所需的文件夹和 config.json 文件：</li>
 </ul>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cd /etc</span><br><span class="line"><span class="variable">$ </span>mkdir shadowsocks</span><br><span class="line"><span class="variable">$ </span>cd shadowsocks/</span><br><span class="line"><span class="variable">$ </span>vi config.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /etc</span><br><span class="line">$ mkdir shadowsocks</span><br><span class="line">$ <span class="built_in">cd</span> shadowsocks/</span><br><span class="line">$ vi config.json</span><br></pre></td></tr></table></figure>
 <p>然后输入一下内容：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">server</span>": <span class="value"><span class="string">"YOUR_SERVER_IP"</span></span>,</span><br><span class="line">  "<span class="attribute">server_port</span>": <span class="value"><span class="number">8388</span></span>,</span><br><span class="line">  "<span class="attribute">local_port</span>": <span class="value"><span class="number">1080</span></span>,</span><br><span class="line">  "<span class="attribute">password</span>": <span class="value"><span class="string">"YOUR_SS_PASSWORD"</span></span>,</span><br><span class="line">  "<span class="attribute">timeout</span>": <span class="value"><span class="number">300</span></span>,</span><br><span class="line">  "<span class="attribute">method</span>": <span class="value"><span class="string">"aes-256-cfb"</span></span>,</span><br><span class="line">  "<span class="attribute">fast_open</span>": <span class="value"><span class="literal">false</span></span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"server"</span>: <span class="string">"YOUR_SERVER_IP"</span>,</span><br><span class="line">  <span class="attr">"server_port"</span>: <span class="number">8388</span>,</span><br><span class="line">  <span class="attr">"local_port"</span>: <span class="number">1080</span>,</span><br><span class="line">  <span class="attr">"password"</span>: <span class="string">"YOUR_SS_PASSWORD"</span>,</span><br><span class="line">  <span class="attr">"timeout"</span>: <span class="number">300</span>,</span><br><span class="line">  <span class="attr">"method"</span>: <span class="string">"aes-256-cfb"</span>,</span><br><span class="line">  <span class="attr">"fast_open"</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>（2017-10-30 更新）：最近封锁越来越严重，推荐使用常用端口。</p>
 <ul>
 <li>然后就可以启动 SS 了：</li>
 </ul>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo <span class="regexp">/usr/</span>local<span class="regexp">/bin/</span>ssserver -c <span class="regexp">/etc/</span>shadowsocks<span class="regexp">/config.json --user nobody -qq -d start</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /usr/<span class="built_in">local</span>/bin/ssserver -c /etc/shadowsocks/config.json --user nobody -qq -d start</span><br></pre></td></tr></table></figure>
 <p>也可以把这个命令加到 <code>/etc/rc.local</code> 里面，每次系统启动都会启动 SS，注意要在 <code>exit 0</code> 之前：</p>
 <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-07.png" alt=""></p>
 <p>然后要么重启一下服务器，要么重新运行一下刚刚添加的那条命令，启动 SS。</p>
@@ -501,68 +496,68 @@
 <ul>
 <li>安装 <code>libsodium</code>，需 <code>&gt;= 1.0.0</code>：</li>
 </ul>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo apt-get install build-essential</span><br><span class="line"><span class="variable">$ </span>cd /tmp</span><br><span class="line"><span class="variable">$ </span>wget <span class="symbol">https:</span>/<span class="regexp">/download.libsodium.org/libsodium</span><span class="regexp">/releases/</span><span class="constant">LATEST.</span>tar.gz</span><br><span class="line"><span class="variable">$ </span>tar zxf <span class="constant">LATEST.</span>tar.gz</span><br><span class="line"><span class="variable">$ </span>cd libsodium*</span><br><span class="line"><span class="variable">$ </span>./configure</span><br><span class="line"><span class="variable">$ </span>make -j2</span><br><span class="line"><span class="variable">$ </span>sudo make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install build-essential</span><br><span class="line">$ <span class="built_in">cd</span> /tmp</span><br><span class="line">$ wget https://download.libsodium.org/libsodium/releases/LATEST.tar.gz</span><br><span class="line">$ tar zxf LATEST.tar.gz</span><br><span class="line">$ <span class="built_in">cd</span> libsodium*</span><br><span class="line">$ ./configure</span><br><span class="line">$ make -j2</span><br><span class="line">$ sudo make install</span><br></pre></td></tr></table></figure>
 <ul>
 <li>然后将下面的代码加入到 <code>/etc/ld.so.conf</code>：</li>
 </ul>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span> ld.<span class="keyword">so</span>.<span class="keyword">conf</span>.<span class="keyword">d</span><span class="comment">/*.conf"</span><br><span class="line">/lib</span><br><span class="line">/usr/lib64</span><br><span class="line">/usr/local/lib</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">include ld.so.conf.d/*.conf<span class="string">"</span></span><br><span class="line"><span class="string">/lib</span></span><br><span class="line"><span class="string">/usr/lib64</span></span><br><span class="line"><span class="string">/usr/local/lib</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>再重新载入配置：</li>
 </ul>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo ldconfig</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ldconfig</span><br></pre></td></tr></table></figure>
 <ul>
 <li>最后重新启动 SS 即可。</li>
 </ul>
 <h1 id="0x02_更换系统内核并开启_TCP_BBR">0x02 更换系统内核并开启 TCP BBR</h1><p>TCP BBR 是 Google 开发的心得拥塞控制算法，据说是用在 YouTube 上，并且在去年 9 月开源并且现在已经集成到 Linux 4.9-rc8 之后版本的内核中。虽然 Linode 也更新到了 4.9 版本内核，但是并没有 TCP BBR，所以还是要自己更换一下内核。</p>
 <h2 id="0x0200_更换系统内核">0x0200 更换系统内核</h2><p>这里要注意的一点是，如果你的 VPS 使用的是 OpenVZ 的虚拟技术，你是不能使用 BBR 的。并且系统要求在 CentOS 6+，Debian 7+，Ubuntu 12+。</p>
 <p>首先确定下自己购买的 VPS 的架构吧，这里就不涉及了，自己去找吧。</p>
-<p>这里我就选 <code>4.13.9</code> 了，如果你要选择别的内核版本，完整列表在<a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/" target="_blank" rel="external">这里</a>。</p>
+<p>这里我就选 <code>4.13.9</code> 了，如果你要选择别的内核版本，完整列表在<a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/" target="_blank" rel="noopener">这里</a>。</p>
 <ul>
 <li>下载内核文件：</li>
 </ul>
-<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd /tmp</span><br><span class="line">$ wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.13.9/linux-image-<span class="number">4.13.9-04</span>1309-generic_<span class="number">4.13.9-04</span><span class="number">1309.2017102</span>11231_amd64.deb</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /tmp</span><br><span class="line">$ wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.13.9/linux-image-4.13.9-041309-generic_4.13.9-041309.201710211231_amd64.deb</span><br></pre></td></tr></table></figure>
 <ul>
 <li>等待下载完成，然后使用 <code>dpkg -i</code> 命令安装：</li>
 </ul>
-<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dpkg -i linux-image-<span class="number">4.13.9-04</span>1309-generic_<span class="number">4.13.9-04</span><span class="number">1309.2017102</span>11231_amd64.deb</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dpkg -i linux-image-4.13.9-041309-generic_4.13.9-041309.201710211231_amd64.deb</span><br></pre></td></tr></table></figure>
 <ul>
 <li>安装完成以后，查看一下已安装的内核列表：</li>
 </ul>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dpkg -l <span class="string">| linux-image</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dpkg -l | linux-image</span><br></pre></td></tr></table></figure>
 <ul>
 <li>如果看到了刚刚安装的内核，证明安装成功了，然后我执行一下内核更新，然后重启：</li>
 </ul>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>update-grub</span><br><span class="line"><span class="variable">$ </span>reboot</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ update-grub</span><br><span class="line">$ reboot</span><br></pre></td></tr></table></figure>
 <ul>
 <li>重新 ssh 连接，查看一下系统内核：</li>
 </ul>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ uname -<span class="literal">a</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ uname -a</span><br></pre></td></tr></table></figure>
 <p>发现还是旧的内核，网上找了一下原因，解决办法如下：</p>
 <ul>
 <li>安装内核系统引导：</li>
 </ul>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-<span class="keyword">get</span> install linux-image-<span class="keyword">virtual</span> grub2</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install linux-image-virtual grub2</span><br></pre></td></tr></table></figure>
 <p>会出现这个界面，我是直接回车确定的：</p>
 <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-08.png" alt=""></p>
 <ul>
 <li>确定一下你的内核已经被安装上，是否有刚刚安装的那个内核：</li>
 </ul>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">ls</span> /<span class="keyword">boot</span>/vmlinuz*</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ls /boot/vmlinuz*</span><br></pre></td></tr></table></figure>
 <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-09.png" alt=""></p>
 <ul>
 <li>然后编辑 <code>grub</code> 文件：</li>
 </ul>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi <span class="regexp">/etc/</span><span class="keyword">default</span><span class="regexp">/grub</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/default/grub</span><br></pre></td></tr></table></figure>
 <p>如果和下面有不一样的，修改成一样的（其实我这基本都不用改，默认就是这样）：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">GRUB_TIMEOUT=<span class="value"><span class="number">10</span></span></span></span><br><span class="line"><span class="setting">GRUB_CMDLINE_LINUX=<span class="value"><span class="string">"console=ttyS0,19200n8"</span></span></span></span><br><span class="line"><span class="setting">GRUB_DISABLE_LINUX_UUID=<span class="value"><span class="keyword">true</span></span></span></span><br><span class="line"><span class="setting">GRUB_SERIAL_COMMAND=<span class="value"><span class="string">"serial --speed=19200 --unit=0 --word=8 --parity=no --stop=1"</span></span></span></span><br><span class="line"><span class="setting">GRUB_TERMINAL=<span class="value">serial</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GRUB_TIMEOUT=10</span><br><span class="line">GRUB_CMDLINE_LINUX=&quot;console=ttyS0,19200n8&quot;</span><br><span class="line">GRUB_DISABLE_LINUX_UUID=true</span><br><span class="line">GRUB_SERIAL_COMMAND=&quot;serial --speed=19200 --unit=0 --word=8 --parity=no --stop=1&quot;</span><br><span class="line">GRUB_TERMINAL=serial</span><br></pre></td></tr></table></figure>
 <ul>
 <li>更新 grub：</li>
 </ul>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>update-grub</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ update-grub</span><br></pre></td></tr></table></figure>
 <ul>
 <li>显示在最顶端的 kernel 就是即将启动的 kernel 。如果没显示在最顶端，就把其余的 kernel 删掉（一般都在最顶端）：</li>
 </ul>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-<span class="keyword">get</span> purge 旧内核名称</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get purge 旧内核名称</span><br></pre></td></tr></table></figure>
 <ul>
 <li>然后进入 Linode 的 Dashboard，点击 Edit：</li>
 </ul>
@@ -571,49 +566,49 @@
 <li>在 Kernel 选项处选择 GRUB 2，然后点击 Save Changes 按钮，然后重启 VPS，看看是否内核更新了：</li>
 </ul>
 <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-11.png" alt=""></p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ uname -<span class="literal">a</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ uname -a</span><br></pre></td></tr></table></figure>
 <p>如果显示的是你安装的新的内核，说明成功了。</p>
 <h2 id="0x0201_开启_TCP_BBR">0x0201 开启 TCP BBR</h2><ul>
 <li>执行下面两条命令：</li>
 </ul>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">"net.core.default_qdisc=fq"</span> <span class="prompt">&gt;&gt; </span>/etc/sysctl.conf</span><br><span class="line">echo <span class="string">"net.ipv4.tcp_congestion_control=bbr"</span> <span class="prompt">&gt;&gt; </span>/etc/sysctl.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"net.core.default_qdisc=fq"</span> &gt;&gt; /etc/sysctl.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"net.ipv4.tcp_congestion_control=bbr"</span> &gt;&gt; /etc/sysctl.conf</span><br></pre></td></tr></table></figure>
 <ul>
 <li>保存生效：</li>
 </ul>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sysctl -p</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sysctl -p</span><br></pre></td></tr></table></figure>
 <ul>
 <li>执行：</li>
 </ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl net<span class="class">.ipv4</span><span class="class">.tcp_available_congestion_control</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl net.ipv4.tcp_available_congestion_control</span><br></pre></td></tr></table></figure>
 <p>则会打印：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net<span class="class">.ipv4</span><span class="class">.tcp_available_congestion_control</span> = bbr cubic reno</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.tcp_available_congestion_control = bbr cubic reno</span><br></pre></td></tr></table></figure>
 <ul>
 <li>然后查看 TCP BBR 是否运行：</li>
 </ul>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsmod <span class="string">| grep bbr</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsmod | grep bbr</span><br></pre></td></tr></table></figure>
 <p>如果结果中有 <code>tcp_bbr</code> 说明 BBR 已经启动了。</p>
 <h1 id="0x03_修改_SSH_远程登录端口">0x03 修改 SSH 远程登录端口</h1><ul>
 <li>修改 <code>/etc/ssh/sshd_config</code>，在 <code>Port 22</code> 下添加你的端口：</li>
 </ul>
-<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Port</span> <span class="number">22</span></span><br><span class="line"><span class="keyword">Port</span> YOUR_PORT</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Port 22</span><br><span class="line">Port YOUR_PORT</span><br></pre></td></tr></table></figure>
 <ul>
 <li>修改 <code>/etc/ssh/ssh_config</code>，在 <code>Host *</code> 下添加你的端口：</li>
 </ul>
-<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host <span class="keyword">*</span></span><br><span class="line">Port 22</span><br><span class="line">Port YOUR_PORT</span><br><span class="line"><span class="comment"># ForwardAgent no</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host *</span><br><span class="line">Port 22</span><br><span class="line">Port YOUR_PORT</span><br><span class="line"># ForwardAgent no</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <ul>
 <li>重启 SSH</li>
 </ul>
-<figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">service</span> ssh <span class="literal">restart</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service ssh restart</span><br></pre></td></tr></table></figure>
 <ul>
 <li>再 SSH 连接新的端口，成功连接后再修改上面的配置把 22 端口注释掉。再在本机 <code>~/.ssh/</code> 下新建一个 <code>config</code> 文件，文件内容为：</li>
 </ul>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host YOUR_HOST</span><br><span class="line">    <span class="built_in">User</span> YOUR_USER_NAME</span><br><span class="line">    Port YOUR_NEW_PORT</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host YOUR_HOST</span><br><span class="line">    User YOUR_USER_NAME</span><br><span class="line">    Port YOUR_NEW_PORT</span><br></pre></td></tr></table></figure>
 <p>这样下次连接就只需要 <code>ssh YOUR_HOST</code> 就可以了。</p>
 <ul>
 <li>修改 SSH 默认端口后 git 的一些远程操作会失败，解决办法也是修改 <code>config</code> 文件：</li>
 </ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host github<span class="class">.com</span></span><br><span class="line">HostName github<span class="class">.com</span></span><br><span class="line">Port <span class="number">22</span></span><br><span class="line">Host bitbucket<span class="class">.org</span></span><br><span class="line">HostName bitbucket<span class="class">.org</span></span><br><span class="line">Port <span class="number">22</span></span><br></pre></td></tr></table></figure>
-<h1 id="0x04_参考链接">0x04 参考链接</h1><p><a href="https://groups.google.com/forum/#!forum/bbr-dev" target="_blank" rel="external">BBR 官方论坛</a><br><a href="https://github.com/google/bbr/blob/master/Documentation/bbr-quick-start.md" target="_blank" rel="external">BBR Quick Start</a><br><a href="https://github.com/shadowsocks/shadowsocks/wiki/Encryption" target="_blank" rel="external">Shadowsocks wiki Encryption</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">Port 22</span><br><span class="line">Host bitbucket.org</span><br><span class="line">HostName bitbucket.org</span><br><span class="line">Port 22</span><br></pre></td></tr></table></figure>
+<h1 id="0x04_参考链接">0x04 参考链接</h1><p><a href="https://groups.google.com/forum/#!forum/bbr-dev" target="_blank" rel="noopener">BBR 官方论坛</a><br><a href="https://github.com/google/bbr/blob/master/Documentation/bbr-quick-start.md" target="_blank" rel="noopener">BBR Quick Start</a><br><a href="https://github.com/shadowsocks/shadowsocks/wiki/Encryption" target="_blank" rel="noopener">Shadowsocks wiki Encryption</a></p>
 
       
 
@@ -644,13 +639,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/BBR/" rel="tag"># BBR</a>
-          
-            <a href="/tags/Linode/" rel="tag"># Linode</a>
-          
             <a href="/tags/Shadowsocks/" rel="tag"># Shadowsocks</a>
           
             <a href="/tags/VPS/" rel="tag"># VPS</a>
+          
+            <a href="/tags/Linode/" rel="tag"># Linode</a>
+          
+            <a href="/tags/BBR/" rel="tag"># BBR</a>
           
         </div>
       
@@ -673,8 +668,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/08/collecting-some-of-the-methods-in-the-development/" rel="prev" title="收集的一些开发中用到的方法">
-                收集的一些开发中用到的方法 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/08/collecting-some-of-the-methods-in-the-development/" rel="prev" title="一些开发中用到的方法">
+                一些开发中用到的方法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -915,7 +910,7 @@
 <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

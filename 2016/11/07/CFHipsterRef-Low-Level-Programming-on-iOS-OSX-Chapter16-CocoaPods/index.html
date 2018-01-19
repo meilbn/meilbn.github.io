@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="CocoaPods,Objective-C," />
+  <meta name="keywords" content="Objective-C,CocoaPods," />
 
 
 
@@ -94,16 +94,19 @@
 
 
 <meta name="description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 16 CocoaPods 时做的笔记。">
+<meta name="keywords" content="Objective-C,CocoaPods">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CocoaPods">
 <meta property="og:url" content="http://meilbn.com/2016/11/07/CFHipsterRef-Low-Level-Programming-on-iOS-OSX-Chapter16-CocoaPods/index.html">
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 16 CocoaPods 时做的笔记。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_16_CocoaPods.png">
 <meta property="og:updated_time" content="2017-08-24T02:25:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CocoaPods">
 <meta name="twitter:description" content="0x00 前言这篇文章是自己在学习 CFHipsterRef Chapter 16 CocoaPods 时做的笔记。">
+<meta name="twitter:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_16_CocoaPods.png">
 
 
 
@@ -411,7 +414,7 @@
 
       
         <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/CFHipsterRef_Chapter_16_CocoaPods.png" alt=""></p>
-<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="external">CFHipsterRef</a> Chapter 16 CocoaPods 时做的笔记。</p>
+<h1 id="0x00_前言">0x00 前言</h1><p>这篇文章是自己在学习 <a href="https://gum.co/cfhipsterref" target="_blank" rel="noopener">CFHipsterRef</a> Chapter 16 CocoaPods 时做的笔记。</p>
 <a id="more"></a>
 <h1 id="0x01_Using_CocoaPods">0x01 Using CocoaPods</h1><p>作为使用者和一个库的作者，CocoaPods 都是非常容易上手的。安装只需要几分钟的时间。</p>
 <h2 id="0x01_Installing_CocoaPods">0x01 Installing CocoaPods</h2><p>通过 RubyGems 安装 CocoaPods，RubyGems 是一个标准的 OS X 安装的 Ruby 包管理器，</p>
@@ -423,11 +426,11 @@
 <p>要生成一个 Podfile，<code>cd</code> 到你的 <code>.xcodeproj</code> 文件所在的目录然后输入以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pod init</span><br></pre></td></tr></table></figure>
 <p>Podfile</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">platform <span class="symbol">:ios</span>, <span class="string">'7.0'</span></span><br><span class="line"></span><br><span class="line">target <span class="string">"AppName"</span> <span class="keyword">do</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">platform :ios, &apos;7.0&apos;</span><br><span class="line"></span><br><span class="line">target &quot;AppName&quot; do</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <p>依赖项可以有不同级别的规范。对于大多数的库，将它们包括进你的项目中绑定到一个次版本或补丁版本是最安全和最简单的方法。</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">pod</span> <span class="string">'X'</span>, <span class="string">'~&gt; 1.1'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod &apos;X&apos;, &apos;~&gt; 1.1&apos;</span><br></pre></td></tr></table></figure>
 <p>要包括一个为包括到公共 specs 数据库的库，可以使用 Git，Mercurial 或 SVN 仓库，可以指定一个 <code>commit</code>，<code>branch</code> 或 <code>tag</code>。</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod <span class="string">'Y'</span>, :git =&gt; <span class="string">'https://github.com/NSHipster/Y.git'</span>, :commit =&gt; <span class="string">'b4dc0ffee'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod &apos;Y&apos;, :git =&gt; &apos;https://github.com/NSHipster/Y.git&apos;, :commit =&gt; &apos;b4dc0ffee&apos;</span><br></pre></td></tr></table></figure>
 <p>一旦指定了所有的依赖项，它们就使用以下命令安装：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pod install</span><br></pre></td></tr></table></figure>
 <p>当运行这个命令的时候，CocoaPods 将会递归分析每个项目的依赖关系，将它们解析为依赖图，并序列化为 <code>Podfile.lock</code> 文件。</p>
@@ -442,12 +445,12 @@
 <p>记住：提高软件生态系统中的贡献标准降低了参与的标准。</p>
 <h2 id="0x0401_Specification">0x0401 Specification</h2><p><code>.podspec</code> 文件是 CocoaPods 依赖的原子单位。它指定了一个库的名称，版本，license 和源文件，以及其他元数据。</p>
 <p>NSHipsterKit.podspec</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.<span class="keyword">new</span> <span class="keyword">do</span> |s|</span><br><span class="line">  s.name     = <span class="string">'NSHipsterKit'</span></span><br><span class="line">  s.version  = <span class="string">'1.0.0'</span></span><br><span class="line">  s.license  = <span class="string">'MIT'</span></span><br><span class="line">  s.summary  = <span class="string">"A pretty obscure library. You've probably never heard of it."</span></span><br><span class="line">  s.homepage = <span class="string">'http://nshipster.com'</span></span><br><span class="line">  s.authors  = &#123; <span class="string">'Mattt Thompson'</span> =&gt;</span><br><span class="line">                <span class="string">'mattt@nshipster.com'</span> &#125;</span><br><span class="line">  s.social_media_url = <span class="string">"https://twitter.com/mattt"</span></span><br><span class="line">  s.source = &#123; :git =&gt; <span class="string">'https://github.com/nshipster/NSHipsterKit.git'</span>, :tag =&gt; <span class="string">'1.0.0'</span> &#125;</span><br><span class="line">  s.source_files = <span class="string">'NSHipsterKit'</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new do |s|</span><br><span class="line">  s.name     = &apos;NSHipsterKit&apos;</span><br><span class="line">  s.version  = &apos;1.0.0&apos;</span><br><span class="line">  s.license  = &apos;MIT&apos;</span><br><span class="line">  s.summary  = &quot;A pretty obscure library. You&apos;ve probably never heard of it.&quot;</span><br><span class="line">  s.homepage = &apos;http://nshipster.com&apos;</span><br><span class="line">  s.authors  = &#123; &apos;Mattt Thompson&apos; =&gt;</span><br><span class="line">                &apos;mattt@nshipster.com&apos; &#125;</span><br><span class="line">  s.social_media_url = &quot;https://twitter.com/mattt&quot;</span><br><span class="line">  s.source = &#123; :git =&gt; &apos;https://github.com/nshipster/NSHipsterKit.git&apos;, :tag =&gt; &apos;1.0.0&apos; &#125;</span><br><span class="line">  s.source_files = &apos;NSHipsterKit&apos;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <p>一旦发布到公共 specs 数据库，任何人都可以将其添加到自己的项目中：</p>
 <p>Podfile</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">pod</span> <span class="string">'NSHipsterKit'</span>, <span class="string">'~&gt; 1.0'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod &apos;NSHipsterKit&apos;, &apos;~&gt; 1.0&apos;</span><br></pre></td></tr></table></figure>
 <p><code>.podspec</code> 文件也可以用于组织内置或私有依赖项：</p>
-<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod <span class="char">'Z'</span>, :path =&gt; <span class="symbol">'path</span>/<span class="keyword">to</span>/directory/<span class="keyword">with</span>/podspec'</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod &apos;Z&apos;, :path =&gt; &apos;path/to/directory/with/podspec&apos;</span><br></pre></td></tr></table></figure>
 <h1 id="0x05_Publishing_a_CocoaPod">0x05 Publishing a CocoaPod</h1><p>虽然它开始工作地非常出色，但在 GitHub 上使用 Pull Requests 管理新的 pods 的过程变得很琐碎，对于库的作者和 spec 组织者来说都是。有时 podspecs 会不传递 <code>$ pod lint</code> 而提交，导致 specs repo 构建失败。其他时候，来自原始库作者意外的人的劣质提交会意外地打乱事情。</p>
 <p>CocoaPods Trunk 服务，在 CocoaPods 0.33 中引入，解决了很多问题，使这个过程的对所有参与者都很好。作为一个集中式服务，它还具有能够获取库使用分析以及其他指标的好处。</p>
 <p>要开始使用，你必须先使用 Trunk 服务注册你的机器。这非常简单，只需要指定你的 email 地址（那个你用来提交库代码的）以及你的名称。</p>
@@ -486,9 +489,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CocoaPods/" rel="tag"># CocoaPods</a>
-          
             <a href="/tags/Objective-C/" rel="tag"># Objective-C</a>
+          
+            <a href="/tags/CocoaPods/" rel="tag"># CocoaPods</a>
           
         </div>
       
@@ -753,7 +756,7 @@
 <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

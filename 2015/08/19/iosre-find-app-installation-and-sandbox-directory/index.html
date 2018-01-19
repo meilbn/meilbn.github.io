@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Cycript,iOS,逆向工程," />
+  <meta name="keywords" content="iOS,逆向工程,Cycript," />
 
 
 
@@ -94,11 +94,13 @@
 
 
 <meta name="description" content="0x00 前言本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 iOS应用逆向工程(第2版)，有兴趣的同学可以购买学习。">
+<meta name="keywords" content="iOS,逆向工程,Cycript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="查找目标 App 在 iPhone 里的目录">
 <meta property="og:url" content="http://meilbn.com/2015/08/19/iosre-find-app-installation-and-sandbox-directory/index.html">
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 iOS应用逆向工程(第2版)，有兴趣的同学可以购买学习。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-00.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-01.png">
 <meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-02.png">
@@ -109,6 +111,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="查找目标 App 在 iPhone 里的目录">
 <meta name="twitter:description" content="0x00 前言本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 iOS应用逆向工程(第2版)，有兴趣的同学可以购买学习。">
+<meta name="twitter:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-00.png">
 
 
 
@@ -415,7 +418,7 @@
       
 
       
-        <h1 id="0x00_前言">0x00 前言</h1><p>本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 <a href="http://www.amazon.cn/iOS%E5%BA%94%E7%94%A8%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B-%E6%B2%99%E6%A2%93%E7%A4%BE/dp/B00VFDVY7E/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1439878290&amp;sr=1-1&amp;keywords=ios+%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B" target="_blank" rel="external">iOS应用逆向工程(第2版)</a>，有兴趣的同学可以购买学习。</p>
+        <h1 id="0x00_前言">0x00 前言</h1><p>本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 <a href="http://www.amazon.cn/iOS%E5%BA%94%E7%94%A8%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B-%E6%B2%99%E6%A2%93%E7%A4%BE/dp/B00VFDVY7E/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1439878290&amp;sr=1-1&amp;keywords=ios+%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B" target="_blank" rel="noopener">iOS应用逆向工程(第2版)</a>，有兴趣的同学可以购买学习。</p>
 <a id="more"></a>
 <h1 id="0x01_准备工作">0x01 准备工作</h1><p>准备工作就不扯那么多了，要学习 iOS 逆向工程，最基本的是需要有一台已经越狱的 iPhone，而且已经安装了 OpenSSH 和 Cycript，刚越狱的 iPhone 的 SSH 密码默认是 <code>alpine.</code>（带英文标点），为了安全，最好修改成其他的，然后最好是还有一台 Mac。</p>
 <h1 id="0x02_定位目标_App_的安装目录">0x02 定位目标 App 的安装目录</h1><p>首先，我们先找到目标 App 的安装目标，AppStore 上下载的 App 一般都是安装在 <code>/var/mobile/Containers/Bundle/Application/</code> 下的，书中提到的这个小技巧，非常方便，简单粗暴，先关掉所有从 AppStore 上安装的 App，就只运行目标 App，然后用 Mac 通过 SSH 连接 iPhone，使用命令打印出所有的进程：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-00.png" alt=""></p>
@@ -430,10 +433,10 @@
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSFileManager</span> defaultManager] URLsForDirectory:<span class="built_in">NSDocumentDirectory</span> inDomains:<span class="built_in">NSUserDomainMask</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
 <p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/iosre-find-app-installation-and-sandbox-directory-05.png" alt=""></p>
 <p>这里说一下我在这个过程中遇到的问题以及怎么解决的，从上面这些图中可以看到，有时候我输入了命令，没有正确执行，比如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh: connect to host <span class="number">192.168</span>.<span class="number">36.75</span> port <span class="number">22</span>: Host is down</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh: connect to host 192.168.36.75 port 22: Host is down</span><br></pre></td></tr></table></figure>
 <p>这个问题的话，只要将手机解锁一下就 OK 了，反正我是这么解决的。</p>
 <p>输入 <code>cycript -p QQ</code> 的时候，报了这个错误：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iPhone-<span class="number">5</span>S:~ root<span class="comment"># cycript -p QQ</span></span><br><span class="line"></span><br><span class="line">*** _krncall(mach_vm_<span class="built_in">read</span>_overwrite(task, data + offsetof(Baton, error), sizeof(baton-&gt;error), reinterpret_cast&lt;mach_vm_address_t&gt;(&amp;baton-&gt;error), &amp;error)):../Mach/Inject.cpp(<span class="number">293</span>):InjectLibrary [<span class="built_in">return</span>=<span class="number">0</span>x4]</span><br><span class="line">iPhone-<span class="number">5</span>S:~ root<span class="comment"># cycript -p QQ</span></span><br><span class="line">unable to find process `QQ<span class="string">' using ps</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iPhone-5S:~ root<span class="comment"># cycript -p QQ</span></span><br><span class="line"></span><br><span class="line">*** _krncall(mach_vm_read_overwrite(task, data + offsetof(Baton, error), sizeof(baton-&gt;error), reinterpret_cast&lt;mach_vm_address_t&gt;(&amp;baton-&gt;error), &amp;error)):../Mach/Inject.cpp(293):InjectLibrary [<span class="built_in">return</span>=0x4]</span><br><span class="line">iPhone-5S:~ root<span class="comment"># cycript -p QQ</span></span><br><span class="line">unable to find process `QQ<span class="string">' using ps</span></span><br></pre></td></tr></table></figure>
 <p>看错误信息，我感觉到应该是手机上 QQ 出了问题，我重新将 QQ 切换回前台，发现这个时候 QQ 应该是被杀掉的样子，然后等 QQ 重新运行好了，再输入 <code>cycript -p QQ</code> 就能正确执行了。</p>
 <p>cycript 退出命令为：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?<span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
@@ -469,11 +472,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Cycript/" rel="tag"># Cycript</a>
-          
             <a href="/tags/iOS/" rel="tag"># iOS</a>
           
             <a href="/tags/逆向工程/" rel="tag"># 逆向工程</a>
+          
+            <a href="/tags/Cycript/" rel="tag"># Cycript</a>
           
         </div>
       
@@ -738,7 +741,7 @@
 <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
