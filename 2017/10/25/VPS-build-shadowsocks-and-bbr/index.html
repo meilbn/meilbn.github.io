@@ -101,23 +101,23 @@
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="0x00 前言本文仅供学习，请勿用于非法用途！ 首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：  搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。 阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-00.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-01.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-02.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-03.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-04.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-05.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-06.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-07.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-08.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-09.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-10.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-11.png">
-<meta property="og:updated_time" content="2018-06-15T03:33:33.766Z">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac27a4c7f6.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac28919a7f.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac293add1f.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac29ec1d77.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac2aba97b5.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac2b6ec4c9.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac2c576485.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac2d1e6ff6.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac2e0babc8.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac2ee20c72.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac2f8dbf06.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac3045b617.png">
+<meta property="og:updated_time" content="2018-11-01T09:10:36.992Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="科学上网 - VPS 搭建 Shadowsocks 并开启 BBR">
 <meta name="twitter:description" content="0x00 前言本文仅供学习，请勿用于非法用途！ 首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：  搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。 阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵">
-<meta name="twitter:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-00.png">
+<meta name="twitter:image" content="https://i.loli.net/2018/11/01/5bdac27a4c7f6.png">
 
 
 
@@ -439,32 +439,32 @@
 <h2 id="0x0100_创建服务器">0x0100 创建服务器</h2><ul>
 <li>在 Linode 上新建一个服务器，配置随便，搭 SS 用最低的就够用了，然后地点选日本：</li>
 </ul>
-<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-00.png" alt=""></p>
+<p><img src="https://i.loli.net/2018/11/01/5bdac27a4c7f6.png" alt=""></p>
 <ul>
 <li>创建好了之后，点击名称或者 Dashboard 进入详情：</li>
 </ul>
-<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-01.png" alt=""></p>
+<p><img src="https://i.loli.net/2018/11/01/5bdac28919a7f.png" alt=""></p>
 <ul>
 <li>现在服务器还没有配置一个系统，我们点击 Deploy an Image，来安装一个系统：</li>
 </ul>
-<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-02.png" alt=""></p>
+<p><img src="https://i.loli.net/2018/11/01/5bdac293add1f.png" alt=""></p>
 <ul>
 <li>系统选择 Ubuntu 14.04 LTS，再设置一下 root 密码，后面 ssh 登录会用到：</li>
 </ul>
-<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-03.png" alt=""></p>
+<p><img src="https://i.loli.net/2018/11/01/5bdac29ec1d77.png" alt=""></p>
 <ul>
 <li>创建完之后，等下面 Host Job Queue 中的进度都完成了，点击 Boot 按钮启动服务器。或者直接点 Boot 按钮，Linode 会按队列来一个个执行：</li>
 </ul>
-<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-04.png" alt=""></p>
+<p><img src="https://i.loli.net/2018/11/01/5bdac2aba97b5.png" alt=""></p>
 <ul>
 <li>服务器运行起来之后，现在我们就可以使用 ssh 登录服务器了，但是为了避免分配的服务器的 IP 是已经被封的，首先我们先 ping 一下 IP，避免做无用功：</li>
 </ul>
-<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-05.png" alt=""></p>
+<p><img src="https://i.loli.net/2018/11/01/5bdac2b6ec4c9.png" alt=""></p>
 <p>看来是被封过的，那我们只能重头开始重新创建一个服务器了。</p>
 <ul>
 <li>拿到一个 IP 没有被封的服务器，我们 ssh 连接上去，如果电脑终端连接不上去的，可以先用 Linode 提供的 Glish 连接：</li>
 </ul>
-<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-06.png" alt=""></p>
+<p><img src="https://i.loli.net/2018/11/01/5bdac2c576485.png" alt=""></p>
 <h2 id="0x0101_搭建_SS">0x0101 搭建 SS</h2><ul>
 <li>首先，我们先更新一下 apt-get：</li>
 </ul>
@@ -490,7 +490,7 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /usr/<span class="built_in">local</span>/bin/ssserver -c /etc/shadowsocks/config.json --user nobody -qq -d start</span><br></pre></td></tr></table></figure>
 <p>也可以把这个命令加到 <code>/etc/rc.local</code> 里面，每次系统启动都会启动 SS，注意要在 <code>exit 0</code> 之前：</p>
-<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-07.png" alt=""></p>
+<p><img src="https://i.loli.net/2018/11/01/5bdac2d1e6ff6.png" alt=""></p>
 <p>然后要么重启一下服务器，要么重新运行一下刚刚添加的那条命令，启动 SS。</p>
 <p>到这里，SS 搭建就完成了。</p>
 <h2 id="0x0102_加密方式">0x0102 加密方式</h2><p>上面使用的加密方式是 <code>aes-256-cfb</code>，还有一个更快更安全的 <code>chacha20</code> 或者 <code>salsa20</code>，但是我用过 <code>chacha20</code>，还是被封 IP，要是想用这个加密方式，还要额外的几步，因为还缺少了一个库：<code>libsodium</code>，不然启动 SS 的时候，会报错，安装方法如下：</p>
@@ -539,12 +539,12 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install linux-image-virtual grub2</span><br></pre></td></tr></table></figure>
 <p>会出现这个界面，我是直接回车确定的：</p>
-<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-08.png" alt=""></p>
+<p><img src="https://i.loli.net/2018/11/01/5bdac2e0babc8.png" alt=""></p>
 <ul>
 <li>确定一下你的内核已经被安装上，是否有刚刚安装的那个内核：</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ls /boot/vmlinuz*</span><br></pre></td></tr></table></figure>
-<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-09.png" alt=""></p>
+<p><img src="https://i.loli.net/2018/11/01/5bdac2ee20c72.png" alt=""></p>
 <ul>
 <li>然后编辑 <code>grub</code> 文件：</li>
 </ul>
@@ -562,11 +562,11 @@
 <ul>
 <li>然后进入 Linode 的 Dashboard，点击 Edit：</li>
 </ul>
-<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-10.png" alt=""></p>
+<p><img src="https://i.loli.net/2018/11/01/5bdac2f8dbf06.png" alt=""></p>
 <ul>
 <li>在 Kernel 选项处选择 GRUB 2，然后点击 Save Changes 按钮，然后重启 VPS，看看是否内核更新了：</li>
 </ul>
-<p><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/VPS-build-shadowsocks-and-bbr-11.png" alt=""></p>
+<p><img src="https://i.loli.net/2018/11/01/5bdac3045b617.png" alt=""></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ uname -a</span><br></pre></td></tr></table></figure>
 <p>如果显示的是你安装的新的内核，说明成功了。</p>
 <h2 id="0x0201_开启_TCP_BBR">0x0201 开启 TCP BBR</h2><ul>

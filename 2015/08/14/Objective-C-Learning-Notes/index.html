@@ -101,15 +101,15 @@
 <meta property="og:site_name" content="Happy Hacking">
 <meta property="og:description" content="以前开始 iOS 开发之前学习 Objective-C 的时候做的笔记">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-00.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-01.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-02.png">
-<meta property="og:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-03.png">
-<meta property="og:updated_time" content="2016-10-27T11:39:23.000Z">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdabefcd32e8.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdabf0c082a2.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdabf1b36c23.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/01/5bdabf275937a.png">
+<meta property="og:updated_time" content="2018-11-01T08:54:07.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C 学习笔记">
 <meta name="twitter:description" content="以前开始 iOS 开发之前学习 Objective-C 的时候做的笔记">
-<meta name="twitter:image" content="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-00.png">
+<meta name="twitter:image" content="https://i.loli.net/2018/11/01/5bdabefcd32e8.png">
 
 
 
@@ -912,7 +912,7 @@
 <li>强指针：默认情况下，所有的指针都是强指针 <code>__strong</code></li>
 <li>弱指针：<code>__weak</code></li>
 </ol>
-<p>Xcode 是默认使用 ARC 的，如果某个 .m 文件真的不想使用 ARC，可以通过以下步骤来不适用 ARC：<br>选择 Xcode 右侧项目树的根，然后是 <strong>TARGETS -&gt; Build Phases -&gt; Compile Sources</strong> ，下拉，选择目标 .m 文件，回车或者双击，弹出输入框，输入 <code>-fno-objc-arc</code> 回车，就可以了，如下图所示：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-00.png" alt=""></p>
+<p>Xcode 是默认使用 ARC 的，如果某个 .m 文件真的不想使用 ARC，可以通过以下步骤来不适用 ARC：<br>选择 Xcode 右侧项目树的根，然后是 <strong>TARGETS -&gt; Build Phases -&gt; Compile Sources</strong> ，下拉，选择目标 .m 文件，回车或者双击，弹出输入框，输入 <code>-fno-objc-arc</code> 回车，就可以了，如下图所示：<br><img src="https://i.loli.net/2018/11/01/5bdabefcd32e8.png" alt=""></p>
 <p>如果开发环境是非 ARC 的，想要使用 ARC 的，将上面的 <code>-fno-objc-arc</code> 改成 <code>-f-objc-arc</code> 就可以了。</p>
 <p>ARC 循环引用<br>当两端循环引用的时候，解决方案如下：</p>
 <ol>
@@ -929,12 +929,12 @@
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Dog</span></span></span><br><span class="line">- (<span class="keyword">void</span>)dealloc &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Dog ---- dealloc"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
 <p>main.m：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Person *p = [[Person alloc] init];</span><br><span class="line">Dog *d = [[Dog alloc] init];</span><br><span class="line"><span class="comment">// 第一种情况：</span></span><br><span class="line"><span class="comment">// 当两个互指之后，会出现内存泄露，两个对象的 dealloc 没有被调用，也就是两个对象的内存没有被释放</span></span><br><span class="line">p.dog = d;</span><br><span class="line">d.person = p;</span><br></pre></td></tr></table></figure>
-<p>如图所示：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-01.png" alt=""></p>
+<p>如图所示：<br><img src="https://i.loli.net/2018/11/01/5bdabf0c082a2.png" alt=""></p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第二种情况：</span></span><br><span class="line"><span class="comment">// 如果注释上面两行代码中的任意一行，两个对象都可以被释放</span></span><br><span class="line"><span class="comment">// 因为当 main 函数执行完毕之后，对象 p 和 d 都被回收，但是两个内存中的对象有强指针，不会被回收，所以会造成内存泄露</span></span><br><span class="line">p.dog = d;</span><br><span class="line"><span class="comment">// d.person = p;</span></span><br></pre></td></tr></table></figure>
-<p>如图所示：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-02.png" alt=""></p>
+<p>如图所示：<br><img src="https://i.loli.net/2018/11/01/5bdabf1b36c23.png" alt=""></p>
 <p>如果将 Dog 中的 person 属性改成 weak：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) Person *person;</span><br></pre></td></tr></table></figure>
-<p>那么，上面第二种情况就变成了如下图所示：<br><img src="http://7xjxaq.com1.z0.glb.clouddn.com/github/blog/Objective-C-Learning-Notes-03.png" alt=""></p>
+<p>那么，上面第二种情况就变成了如下图所示：<br><img src="https://i.loli.net/2018/11/01/5bdabf275937a.png" alt=""></p>
 <p>这样的话，当程序运行结束，被回收的就是 Person 对象，既然 Person 对象被回收了，那么 Dog 对象就没有了强指针，也会被回收了。</p>
 
       
