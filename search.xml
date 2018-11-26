@@ -4,6 +4,20 @@
   
     
     <entry>
+      <title><![CDATA[FrameWork 使用小技巧]]></title>
+      <url>http://meilbn.com/2018/11/26/app-framework-tips/</url>
+      <content type="text"><![CDATA[可以在 “FrameWork” -&gt; “底部更多（三个点）” -&gt; “小技巧” 找到这篇文章的入口。 有任何问题、建议或 Bug 都可以点击 “FrameWork” 中的 “底部更多（三个点）” -&gt; “联系我” 来给我发邮件。或者直接发送到 codingallnight@gmail.com。 或者可以在微博上 at 我 @我的眼里只有代码。 English]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[FrameWork Usage Tips]]></title>
+      <url>http://meilbn.com/2018/11/26/app-framework-tips-en/</url>
+      <content type="text"><![CDATA[You can find this page in “FrameWork“ -&gt; “More (three dots)” -&gt; “Tips”. If you have any questions, suggestions or bugs, you can sending email to me in “FrameWork“ -&gt; “More (three dots)” -&gt; “Contact Me”. Or sending email directly to codingallnight@gmail.com. Or you can @ me on Weibo @我的眼里只有代码 or Twitter @meilbn. 中文版]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[GeeMoon Releases]]></title>
       <url>http://meilbn.com/2018/06/08/app-geemoon-releases-en/</url>
       <content type="text"><![CDATA[GeeMoon releases history, record the growth of GeeMoon. 中文版 v1.1.0 (2018-11-06) Search transactions add Advanced Search. Fixed refreshing nearby POI when scrolling list in pick location view in iOS 12. Can select all history locations. Long press any transaction in Transactions can starting multi-select mode, can calculate total expenses and incomes money you selected, or can delete the selected transactions. Click the transaction files to display the big image. Transaction files display performance optimization Fixed pending transaction modification without saving success. Other bug fixes. v1.0.6 (2018-08-08) UI Optimize. Fixed the bug of Calculator’s calculate result precision. v1.0.5 (2018-07-16) Bug Fixes: Adding wrong local notification when save account while opened repayment reminder. v1.0.4 (2018-07-15) Transaction Search: Fuzzy searching category, note, accounts and money. Transaction Map: Show transactions which saved location on the map. Added some debugging mechanism. v1.0.3 (2018-07-10) Picking location added history locations. Security added TouchID (If device supports TouchID). Fixed showing swap accounts button in non-transfer transaction when editing template. v1.0.2 (2018-07-04) Accounts in Overview can fold or unfold. Reminding user Notification permission has been Authorized or not. When editing account to open the repayment reminder, determine whether there is permission to push Notification. When editing transfer transaction, the from account and to account can be exchanged, saving time. v1.0.1 (2018-06-22) Fixed 3D Touch shortcut title localization issue. Currency code selection list add search, search by code alphabet. Currency code selection list navigation bar adds “More/Less” button, which can be switched to display only the currency code or localized name of currency code and code. Income and Expense color can be switched. Account add billing day and repayment due day reminders. Fixed date picker dosen’t scroll to specific row while editing account’s billing date or repayment due date. v1.0.0 (2018-06-14)First version. Multiple accounts, Divided into ordinary accounts (such as wallet, Debit Card, etc.) and credit accounts (such as credit cards, etc.) Calendar view, look up everyday’s transactions Reports, Display incomes and expenses according to the selected period, and list the total incomes and expenses of each categories and tags Transactions ordered in timeline, and display main infomations Template, Same or similar transactions are pre-created as templates, saving time Scheduled transaction, regular expenses set Repeating, will automatic accounting Budgets, Set a good plan to save money Multiple currencies, can set rate manually Including two safe modes, Passcode and Pattern, default is None Reminder, add reminders to prevent forgotten accounting, keep accounting habits All features are unlimited, such as unlimited number of created accounts, budgets, categories, tags, etc. No Ads.]]></content>
