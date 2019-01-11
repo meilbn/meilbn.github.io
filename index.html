@@ -1,29 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
 
 
 
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -32,7 +28,21 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="/lib/Han/dist/han.min.css?v=3.3"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -64,7 +74,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"/>
   
 
 
@@ -72,52 +82,40 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Android,iOS,Developer,GitHub,开发,编程,我的眼里只有代码" />
+<link rel="stylesheet" href="/css/main.css?v=6.7.0"/>
 
 
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
 
 
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/default_avatar.jpg?v=6.7.0">
 
 
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/default_avatar.jpg?v=6.7.0">
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
-
-
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
 
 
 
 
-<meta name="description" content="You are the code of my eye.&apos;Cause you are the apple of my eye.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Happy Hacking">
-<meta property="og:url" content="http://meilbn.com/index.html">
-<meta property="og:site_name" content="Happy Hacking">
-<meta property="og:description" content="You are the code of my eye.&apos;Cause you are the apple of my eye.">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Happy Hacking">
-<meta name="twitter:description" content="You are the code of my eye.&apos;Cause you are the apple of my eye.">
 
 
 
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -129,32 +127,50 @@
 </script>
 
 
-
-  <link rel="canonical" href="http://meilbn.com/"/>
-
-
-
-
-
-  <title> Happy Hacking </title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
   
 
 
 
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-69209675-1', 'auto');
-  ga('send', 'pageview');
+  <meta name="description" content="You are the code of my eye.&apos;Cause you are the apple of my eye.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Happy Hacking">
+<meta property="og:url" content="http://meilbn.com/index.html">
+<meta property="og:site_name" content="Happy Hacking">
+<meta property="og:description" content="You are the code of my eye.&apos;Cause you are the apple of my eye.">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Happy Hacking">
+<meta name="twitter:description" content="You are the code of my eye.&apos;Cause you are the apple of my eye.">
+
+
+
+
+
+
+  <link rel="canonical" href="http://meilbn.com/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
 </script>
 
+  <title>Happy Hacking – 我的眼里只有代码</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-69209675-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-69209675-1');
+  </script>
 
 
 
@@ -164,6 +180,34 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -171,29 +215,31 @@
   
 
   <div class="container sidebar-position-left 
-   page-home 
- ">
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Happy Hacking</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
-        <p class="site-subtitle">我的眼里只有代码</p>
+        <h1 class="site-subtitle" itemprop="description">我的眼里只有代码</h1>
       
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -201,88 +247,202 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-guestbook">
-          <a href="/guestbook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br />
-            
-            留言
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home menu-item-active">
 
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签<span class="badge">56</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类<span class="badge">9</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档<span class="badge">43</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br/>公益 404</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-guestbook">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/guestbook/" rel="section"><i class="menu-item-icon fa fa-fw fa-comment"></i> <br/>留言</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
       
     </ul>
   
 
   
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input"/>
+</form>
+
+<script>
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'pqUHVF4KWmspE68xTa-7','2.0.0');
+</script>
+
+
+
+    </div>
+  
 </nav>
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -295,17 +455,23 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/12/18/app-framework-supported-device-colors/">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/12/18/app-framework-supported-device-colors/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我的眼里只有代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/default_avatar.jpg">
+      <meta itemprop="name" content="我的眼里只有代码"/>
+      <meta itemprop="description" content="You are the code of my eye.<br>'Cause you are the apple of my eye."/>
+      <meta itemprop="image" content="/images/default_avatar.jpg"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Happy Hacking">
+      <meta itemprop="name" content="Happy Hacking"/>
     </span>
 
     
@@ -313,21 +479,22 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/18/app-framework-supported-device-colors/" itemprop="url">
-                  FrameWork 支持的手机壳颜色
-                </a>
+                
+                <a href="/2018/12/18/app-framework-supported-device-colors/" class="post-title-link" itemprop="url">FrameWork 支持的手机壳颜色</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -335,18 +502,23 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T12:50:16+08:00">
-                2018-12-18
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-18 12:50:16 / 修改时间：13:33:59" itemprop="dateCreated datePublished" datetime="2018-12-18T12:50:16+08:00">2018-12-18</time>
             
 
             
+              
 
+              
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -357,11 +529,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/个人项目/" itemprop="url" rel="index">
-                    <span itemprop="name">个人项目</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/个人项目/" itemprop="url" rel="index"><span itemprop="name">个人项目</span></a></span>
 
                 
                 
@@ -377,7 +545,9 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/12/18/app-framework-supported-device-colors/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/18/app-framework-supported-device-colors/" itemprop="commentCount"></span>
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/12/18/app-framework-supported-device-colors/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -385,20 +555,48 @@
 
           
           
-             <span id="/2018/12/18/app-framework-supported-device-colors/" class="leancloud_visitors" data-flag-title="FrameWork 支持的手机壳颜色">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/2018/12/18/app-framework-supported-device-colors/" class="leancloud_visitors" data-flag-title="FrameWork 支持的手机壳颜色">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
 
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
           
 
           
@@ -407,8 +605,10 @@
       </header>
     
 
-
-    <div class="post-body" itemprop="articleBody">
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -417,28 +617,32 @@
         
           <p><a href="https://itunes.apple.com/us/app/apple-store/id1412383595?mt=8" target="_blank" rel="noopener">FrameWork</a> 目前版本（v1.1.0）支持的手机壳颜色。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/18/app-framework-supported-device-colors/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/12/18/app-framework-supported-device-colors/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
-
     </div>
 
-    <div>
+    
+
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
+    
 
     <footer class="post-footer">
       
@@ -452,6 +656,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -464,17 +672,23 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/12/14/BaiduMap-SDK-Xcode-Compile-Error/">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/12/14/BaiduMap-SDK-Xcode-Compile-Error/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我的眼里只有代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/default_avatar.jpg">
+      <meta itemprop="name" content="我的眼里只有代码"/>
+      <meta itemprop="description" content="You are the code of my eye.<br>'Cause you are the apple of my eye."/>
+      <meta itemprop="image" content="/images/default_avatar.jpg"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Happy Hacking">
+      <meta itemprop="name" content="Happy Hacking"/>
     </span>
 
     
@@ -482,21 +696,22 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/14/BaiduMap-SDK-Xcode-Compile-Error/" itemprop="url">
-                  百度地图 SDK 导入 Xcode 编译出错：symbol(s) not found for architecture arm64
-                </a>
+                
+                <a href="/2018/12/14/BaiduMap-SDK-Xcode-Compile-Error/" class="post-title-link" itemprop="url">百度地图 SDK 导入 Xcode 编译出错：symbol(s) not found for architecture arm64</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -504,18 +719,23 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-14T11:09:20+08:00">
-                2018-12-14
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-14 11:09:20 / 修改时间：14:20:04" itemprop="dateCreated datePublished" datetime="2018-12-14T11:09:20+08:00">2018-12-14</time>
             
 
             
+              
 
+              
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -526,11 +746,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
 
                 
                 
@@ -546,7 +762,9 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/12/14/BaiduMap-SDK-Xcode-Compile-Error/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/14/BaiduMap-SDK-Xcode-Compile-Error/" itemprop="commentCount"></span>
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/12/14/BaiduMap-SDK-Xcode-Compile-Error/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -554,20 +772,48 @@
 
           
           
-             <span id="/2018/12/14/BaiduMap-SDK-Xcode-Compile-Error/" class="leancloud_visitors" data-flag-title="百度地图 SDK 导入 Xcode 编译出错：symbol(s) not found for architecture arm64">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/2018/12/14/BaiduMap-SDK-Xcode-Compile-Error/" class="leancloud_visitors" data-flag-title="百度地图 SDK 导入 Xcode 编译出错：symbol(s) not found for architecture arm64">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
 
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
           
 
           
@@ -576,8 +822,10 @@
       </header>
     
 
-
-    <div class="post-body" itemprop="articleBody">
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -586,28 +834,32 @@
         
           <h1 id="0x00_前言">0x00 前言</h1><p>上周接了一个外包的活，因为使用的是百度坐标，所以需要用到百度地图 SDK 里面的坐标转换功能，所以就导入了百度地图的 SDK。项目使用的是 Swift 语言开发，但是有 Objective-C 代码，所以是混编，恰好是因为混编，所以问题解决起来非常快。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/14/BaiduMap-SDK-Xcode-Compile-Error/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/12/14/BaiduMap-SDK-Xcode-Compile-Error/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
-
     </div>
 
-    <div>
+    
+
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
+    
 
     <footer class="post-footer">
       
@@ -621,6 +873,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -633,17 +889,23 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/11/26/app-framework-tips-en/">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/11/26/app-framework-tips-en/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我的眼里只有代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/default_avatar.jpg">
+      <meta itemprop="name" content="我的眼里只有代码"/>
+      <meta itemprop="description" content="You are the code of my eye.<br>'Cause you are the apple of my eye."/>
+      <meta itemprop="image" content="/images/default_avatar.jpg"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Happy Hacking">
+      <meta itemprop="name" content="Happy Hacking"/>
     </span>
 
     
@@ -651,21 +913,22 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/26/app-framework-tips-en/" itemprop="url">
-                  FrameWork Usage Tips
-                </a>
+                
+                <a href="/2018/11/26/app-framework-tips-en/" class="post-title-link" itemprop="url">FrameWork Usage Tips</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -673,18 +936,35 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T15:52:23+08:00">
-                2018-11-26
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-26 15:52:23" itemprop="dateCreated datePublished" datetime="2018-11-26T15:52:23+08:00">2018-11-26</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-28 23:27:02" itemprop="dateModified" datetime="2018-11-28T23:27:02+08:00">2018-11-28</time>
+              
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -695,11 +975,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/个人项目/" itemprop="url" rel="index">
-                    <span itemprop="name">个人项目</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/个人项目/" itemprop="url" rel="index"><span itemprop="name">个人项目</span></a></span>
 
                 
                 
@@ -715,7 +991,9 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/11/26/app-framework-tips-en/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/26/app-framework-tips-en/" itemprop="commentCount"></span>
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/11/26/app-framework-tips-en/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -723,20 +1001,48 @@
 
           
           
-             <span id="/2018/11/26/app-framework-tips-en/" class="leancloud_visitors" data-flag-title="FrameWork Usage Tips">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/2018/11/26/app-framework-tips-en/" class="leancloud_visitors" data-flag-title="FrameWork Usage Tips">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
 
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
           
 
           
@@ -745,8 +1051,10 @@
       </header>
     
 
-
-    <div class="post-body" itemprop="articleBody">
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -758,28 +1066,32 @@
 <p>Or you can @ me on Weibo <a href="https://weibo.com/fuckingcode" target="_blank" rel="noopener">@我的眼里只有代码</a> or Twitter <a href="https://twitter.com/meilbn" target="_blank" rel="noopener">@meilbn</a>.</p>
 <!-- Other social accont can be finf in my blog's profile page (mobile browser may not have profile page). -->
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/26/app-framework-tips-en/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/26/app-framework-tips-en/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
-
     </div>
 
-    <div>
+    
+
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
+    
 
     <footer class="post-footer">
       
@@ -793,6 +1105,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -805,17 +1121,23 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/11/26/app-framework-tips/">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/11/26/app-framework-tips/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我的眼里只有代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/default_avatar.jpg">
+      <meta itemprop="name" content="我的眼里只有代码"/>
+      <meta itemprop="description" content="You are the code of my eye.<br>'Cause you are the apple of my eye."/>
+      <meta itemprop="image" content="/images/default_avatar.jpg"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Happy Hacking">
+      <meta itemprop="name" content="Happy Hacking"/>
     </span>
 
     
@@ -823,21 +1145,22 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/26/app-framework-tips/" itemprop="url">
-                  FrameWork 使用小技巧
-                </a>
+                
+                <a href="/2018/11/26/app-framework-tips/" class="post-title-link" itemprop="url">FrameWork 使用小技巧</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -845,18 +1168,35 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T15:52:23+08:00">
-                2018-11-26
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-26 15:52:23" itemprop="dateCreated datePublished" datetime="2018-11-26T15:52:23+08:00">2018-11-26</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-18 12:50:35" itemprop="dateModified" datetime="2018-12-18T12:50:35+08:00">2018-12-18</time>
+              
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -867,11 +1207,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/个人项目/" itemprop="url" rel="index">
-                    <span itemprop="name">个人项目</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/个人项目/" itemprop="url" rel="index"><span itemprop="name">个人项目</span></a></span>
 
                 
                 
@@ -887,7 +1223,9 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/11/26/app-framework-tips/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/26/app-framework-tips/" itemprop="commentCount"></span>
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/11/26/app-framework-tips/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -895,20 +1233,48 @@
 
           
           
-             <span id="/2018/11/26/app-framework-tips/" class="leancloud_visitors" data-flag-title="FrameWork 使用小技巧">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/2018/11/26/app-framework-tips/" class="leancloud_visitors" data-flag-title="FrameWork 使用小技巧">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
 
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
           
 
           
@@ -917,8 +1283,10 @@
       </header>
     
 
-
-    <div class="post-body" itemprop="articleBody">
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -930,28 +1298,32 @@
 <p>或者可以在微博上 at 我 <a href="https://weibo.com/fuckingcode" target="_blank" rel="noopener">@我的眼里只有代码</a>。</p>
 <!-- 其他社交账号也可以在我博客的资料页面里面找到（手机端浏览器可能是没有资料页面的）。 -->
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/26/app-framework-tips/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/26/app-framework-tips/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
-
     </div>
 
-    <div>
+    
+
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
+    
 
     <footer class="post-footer">
       
@@ -965,6 +1337,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -977,17 +1353,23 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/06/08/app-geemoon-releases-en/">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/06/08/app-geemoon-releases-en/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我的眼里只有代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/default_avatar.jpg">
+      <meta itemprop="name" content="我的眼里只有代码"/>
+      <meta itemprop="description" content="You are the code of my eye.<br>'Cause you are the apple of my eye."/>
+      <meta itemprop="image" content="/images/default_avatar.jpg"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Happy Hacking">
+      <meta itemprop="name" content="Happy Hacking"/>
     </span>
 
     
@@ -995,21 +1377,22 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/08/app-geemoon-releases-en/" itemprop="url">
-                  GeeMoon Releases
-                </a>
+                
+                <a href="/2018/06/08/app-geemoon-releases-en/" class="post-title-link" itemprop="url">GeeMoon Releases</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1017,18 +1400,35 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-08T13:20:29+08:00">
-                2018-06-08
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-08 13:20:29" itemprop="dateCreated datePublished" datetime="2018-06-08T13:20:29+08:00">2018-06-08</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-26 22:52:53" itemprop="dateModified" datetime="2018-11-26T22:52:53+08:00">2018-11-26</time>
+              
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -1039,11 +1439,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/个人项目/" itemprop="url" rel="index">
-                    <span itemprop="name">个人项目</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/个人项目/" itemprop="url" rel="index"><span itemprop="name">个人项目</span></a></span>
 
                 
                 
@@ -1059,7 +1455,9 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/06/08/app-geemoon-releases-en/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/06/08/app-geemoon-releases-en/" itemprop="commentCount"></span>
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/08/app-geemoon-releases-en/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1067,20 +1465,48 @@
 
           
           
-             <span id="/2018/06/08/app-geemoon-releases-en/" class="leancloud_visitors" data-flag-title="GeeMoon Releases">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/2018/06/08/app-geemoon-releases-en/" class="leancloud_visitors" data-flag-title="GeeMoon Releases">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
 
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
           
 
           
@@ -1089,8 +1515,10 @@
       </header>
     
 
-
-    <div class="post-body" itemprop="articleBody">
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -1099,28 +1527,32 @@
         
           <p>GeeMoon releases history, record the growth of GeeMoon.</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/08/app-geemoon-releases-en/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/06/08/app-geemoon-releases-en/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
-
     </div>
 
-    <div>
+    
+
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
+    
 
     <footer class="post-footer">
       
@@ -1134,6 +1566,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1146,17 +1582,23 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/06/08/app-geemoon-releases/">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/06/08/app-geemoon-releases/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我的眼里只有代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/default_avatar.jpg">
+      <meta itemprop="name" content="我的眼里只有代码"/>
+      <meta itemprop="description" content="You are the code of my eye.<br>'Cause you are the apple of my eye."/>
+      <meta itemprop="image" content="/images/default_avatar.jpg"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Happy Hacking">
+      <meta itemprop="name" content="Happy Hacking"/>
     </span>
 
     
@@ -1164,21 +1606,22 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/08/app-geemoon-releases/" itemprop="url">
-                  积木版本历史
-                </a>
+                
+                <a href="/2018/06/08/app-geemoon-releases/" class="post-title-link" itemprop="url">积木版本历史</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1186,18 +1629,35 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-08T13:20:26+08:00">
-                2018-06-08
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-08 13:20:26" itemprop="dateCreated datePublished" datetime="2018-06-08T13:20:26+08:00">2018-06-08</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-26 22:52:50" itemprop="dateModified" datetime="2018-11-26T22:52:50+08:00">2018-11-26</time>
+              
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -1208,11 +1668,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/个人项目/" itemprop="url" rel="index">
-                    <span itemprop="name">个人项目</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/个人项目/" itemprop="url" rel="index"><span itemprop="name">个人项目</span></a></span>
 
                 
                 
@@ -1228,7 +1684,9 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/06/08/app-geemoon-releases/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/06/08/app-geemoon-releases/" itemprop="commentCount"></span>
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/08/app-geemoon-releases/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1236,20 +1694,48 @@
 
           
           
-             <span id="/2018/06/08/app-geemoon-releases/" class="leancloud_visitors" data-flag-title="积木版本历史">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/2018/06/08/app-geemoon-releases/" class="leancloud_visitors" data-flag-title="积木版本历史">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
 
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
           
 
           
@@ -1258,8 +1744,10 @@
       </header>
     
 
-
-    <div class="post-body" itemprop="articleBody">
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -1268,28 +1756,32 @@
         
           <p>积木版本发布历史，记录积木的成长。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/08/app-geemoon-releases/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/06/08/app-geemoon-releases/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
-
     </div>
 
-    <div>
+    
+
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
+    
 
     <footer class="post-footer">
       
@@ -1303,6 +1795,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1315,17 +1811,23 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/06/08/app-geemoon-roadmap-en/">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/06/08/app-geemoon-roadmap-en/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我的眼里只有代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/default_avatar.jpg">
+      <meta itemprop="name" content="我的眼里只有代码"/>
+      <meta itemprop="description" content="You are the code of my eye.<br>'Cause you are the apple of my eye."/>
+      <meta itemprop="image" content="/images/default_avatar.jpg"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Happy Hacking">
+      <meta itemprop="name" content="Happy Hacking"/>
     </span>
 
     
@@ -1333,21 +1835,22 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/08/app-geemoon-roadmap-en/" itemprop="url">
-                  GeeMoon Roadmap
-                </a>
+                
+                <a href="/2018/06/08/app-geemoon-roadmap-en/" class="post-title-link" itemprop="url">GeeMoon Roadmap</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1355,18 +1858,35 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-08T11:04:10+08:00">
-                2018-06-08
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-08 11:04:10" itemprop="dateCreated datePublished" datetime="2018-06-08T11:04:10+08:00">2018-06-08</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-26 22:52:47" itemprop="dateModified" datetime="2018-11-26T22:52:47+08:00">2018-11-26</time>
+              
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -1377,11 +1897,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/个人项目/" itemprop="url" rel="index">
-                    <span itemprop="name">个人项目</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/个人项目/" itemprop="url" rel="index"><span itemprop="name">个人项目</span></a></span>
 
                 
                 
@@ -1397,7 +1913,9 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/06/08/app-geemoon-roadmap-en/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/06/08/app-geemoon-roadmap-en/" itemprop="commentCount"></span>
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/08/app-geemoon-roadmap-en/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1405,20 +1923,48 @@
 
           
           
-             <span id="/2018/06/08/app-geemoon-roadmap-en/" class="leancloud_visitors" data-flag-title="GeeMoon Roadmap">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/2018/06/08/app-geemoon-roadmap-en/" class="leancloud_visitors" data-flag-title="GeeMoon Roadmap">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
 
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
           
 
           
@@ -1427,8 +1973,10 @@
       </header>
     
 
-
-    <div class="post-body" itemprop="articleBody">
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -1437,28 +1985,32 @@
         
           <p>Features may add into GeeMoon in the future and known bugs.</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/08/app-geemoon-roadmap-en/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/06/08/app-geemoon-roadmap-en/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
-
     </div>
 
-    <div>
+    
+
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
+    
 
     <footer class="post-footer">
       
@@ -1472,6 +2024,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1484,17 +2040,23 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/06/08/app-geemoon-roadmap/">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/06/08/app-geemoon-roadmap/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我的眼里只有代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/default_avatar.jpg">
+      <meta itemprop="name" content="我的眼里只有代码"/>
+      <meta itemprop="description" content="You are the code of my eye.<br>'Cause you are the apple of my eye."/>
+      <meta itemprop="image" content="/images/default_avatar.jpg"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Happy Hacking">
+      <meta itemprop="name" content="Happy Hacking"/>
     </span>
 
     
@@ -1502,21 +2064,22 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/08/app-geemoon-roadmap/" itemprop="url">
-                  积木路线图
-                </a>
+                
+                <a href="/2018/06/08/app-geemoon-roadmap/" class="post-title-link" itemprop="url">积木路线图</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1524,18 +2087,35 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-08T11:04:06+08:00">
-                2018-06-08
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-08 11:04:06" itemprop="dateCreated datePublished" datetime="2018-06-08T11:04:06+08:00">2018-06-08</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-26 22:52:28" itemprop="dateModified" datetime="2018-11-26T22:52:28+08:00">2018-11-26</time>
+              
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -1546,11 +2126,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/个人项目/" itemprop="url" rel="index">
-                    <span itemprop="name">个人项目</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/个人项目/" itemprop="url" rel="index"><span itemprop="name">个人项目</span></a></span>
 
                 
                 
@@ -1566,7 +2142,9 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/06/08/app-geemoon-roadmap/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/06/08/app-geemoon-roadmap/" itemprop="commentCount"></span>
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/08/app-geemoon-roadmap/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1574,20 +2152,48 @@
 
           
           
-             <span id="/2018/06/08/app-geemoon-roadmap/" class="leancloud_visitors" data-flag-title="积木路线图">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/2018/06/08/app-geemoon-roadmap/" class="leancloud_visitors" data-flag-title="积木路线图">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
 
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
           
 
           
@@ -1596,8 +2202,10 @@
       </header>
     
 
-
-    <div class="post-body" itemprop="articleBody">
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -1606,28 +2214,32 @@
         
           <p>未来可能会要加入到积木中的一些功能和一些已知的 Bug。</p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/08/app-geemoon-roadmap/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/06/08/app-geemoon-roadmap/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
-
     </div>
 
-    <div>
+    
+
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
+    
 
     <footer class="post-footer">
       
@@ -1641,6 +2253,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1653,17 +2269,23 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/06/08/app-geemoon-tips-en/">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/06/08/app-geemoon-tips-en/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我的眼里只有代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/default_avatar.jpg">
+      <meta itemprop="name" content="我的眼里只有代码"/>
+      <meta itemprop="description" content="You are the code of my eye.<br>'Cause you are the apple of my eye."/>
+      <meta itemprop="image" content="/images/default_avatar.jpg"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Happy Hacking">
+      <meta itemprop="name" content="Happy Hacking"/>
     </span>
 
     
@@ -1671,21 +2293,22 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/08/app-geemoon-tips-en/" itemprop="url">
-                  GeeMoon Usage Tips
-                </a>
+                
+                <a href="/2018/06/08/app-geemoon-tips-en/" class="post-title-link" itemprop="url">GeeMoon Usage Tips</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1693,18 +2316,35 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-08T10:27:06+08:00">
-                2018-06-08
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-08 10:27:06" itemprop="dateCreated datePublished" datetime="2018-06-08T10:27:06+08:00">2018-06-08</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-26 22:52:32" itemprop="dateModified" datetime="2018-11-26T22:52:32+08:00">2018-11-26</time>
+              
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -1715,11 +2355,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/个人项目/" itemprop="url" rel="index">
-                    <span itemprop="name">个人项目</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/个人项目/" itemprop="url" rel="index"><span itemprop="name">个人项目</span></a></span>
 
                 
                 
@@ -1735,7 +2371,9 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/06/08/app-geemoon-tips-en/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/06/08/app-geemoon-tips-en/" itemprop="commentCount"></span>
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/08/app-geemoon-tips-en/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1743,20 +2381,48 @@
 
           
           
-             <span id="/2018/06/08/app-geemoon-tips-en/" class="leancloud_visitors" data-flag-title="GeeMoon Usage Tips">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/2018/06/08/app-geemoon-tips-en/" class="leancloud_visitors" data-flag-title="GeeMoon Usage Tips">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
 
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
           
 
           
@@ -1765,8 +2431,10 @@
       </header>
     
 
-
-    <div class="post-body" itemprop="articleBody">
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -1778,28 +2446,32 @@
 <p>Or you can @ me on Weibo <a href="https://weibo.com/fuckingcode" target="_blank" rel="noopener">@我的眼里只有代码</a> or Twitter <a href="https://twitter.com/meilbn" target="_blank" rel="noopener">@meilbn</a>.</p>
 <!-- Other social accont can be finf in my blog's profile page (mobile browser may not have profile page). -->
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/08/app-geemoon-tips-en/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/06/08/app-geemoon-tips-en/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
-
     </div>
 
-    <div>
+    
+
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
+    
 
     <footer class="post-footer">
       
@@ -1813,6 +2485,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1825,17 +2501,23 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/06/06/app-geemoon-tips/">
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://meilbn.com/2018/06/06/app-geemoon-tips/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="我的眼里只有代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/default_avatar.jpg">
+      <meta itemprop="name" content="我的眼里只有代码"/>
+      <meta itemprop="description" content="You are the code of my eye.<br>'Cause you are the apple of my eye."/>
+      <meta itemprop="image" content="/images/default_avatar.jpg"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Happy Hacking">
+      <meta itemprop="name" content="Happy Hacking"/>
     </span>
 
     
@@ -1843,21 +2525,22 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/06/app-geemoon-tips/" itemprop="url">
-                  积木使用小技巧
-                </a>
+                
+                <a href="/2018/06/06/app-geemoon-tips/" class="post-title-link" itemprop="url">积木使用小技巧</a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1865,18 +2548,35 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-06T11:33:48+08:00">
-                2018-06-06
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-06 11:33:48" itemprop="dateCreated datePublished" datetime="2018-06-06T11:33:48+08:00">2018-06-06</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-26 22:52:35" itemprop="dateModified" datetime="2018-11-26T22:52:35+08:00">2018-11-26</time>
+              
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -1887,11 +2587,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/个人项目/" itemprop="url" rel="index">
-                    <span itemprop="name">个人项目</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/个人项目/" itemprop="url" rel="index"><span itemprop="name">个人项目</span></a></span>
 
                 
                 
@@ -1907,7 +2603,9 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/06/06/app-geemoon-tips/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/06/06/app-geemoon-tips/" itemprop="commentCount"></span>
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/06/app-geemoon-tips/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1915,20 +2613,48 @@
 
           
           
-             <span id="/2018/06/06/app-geemoon-tips/" class="leancloud_visitors" data-flag-title="积木使用小技巧">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/2018/06/06/app-geemoon-tips/" class="leancloud_visitors" data-flag-title="积木使用小技巧">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
 
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数"></span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长"></span>
+              
+            </div>
           
 
           
@@ -1937,8 +2663,10 @@
       </header>
     
 
-
-    <div class="post-body" itemprop="articleBody">
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -1950,28 +2678,32 @@
 <p>或者可以在微博上 at 我 <a href="https://weibo.com/fuckingcode" target="_blank" rel="noopener">@我的眼里只有代码</a>。</p>
 <!-- 其他社交账号也可以在我博客的资料页面里面找到（手机端浏览器可能是没有资料页面的）。 -->
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/06/app-geemoon-tips/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/06/06/app-geemoon-tips/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
-
     </div>
 
-    <div>
+    
+
+    
+    
+    
+
+    
+
+    
       
-    </div>
+    
+    
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
+    
 
     <footer class="post-footer">
       
@@ -1985,6 +2717,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1993,15 +2729,12 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -2017,156 +2750,323 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
-               alt="我的眼里只有代码" />
-          <p class="site-author-name" itemprop="name">我的眼里只有代码</p>
-           
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/default_avatar.jpg"
+                alt="我的眼里只有代码"/>
+            
+              <p class="site-author-name" itemprop="name">我的眼里只有代码</p>
               <p class="site-description motion-element" itemprop="description">You are the code of my eye.<br>'Cause you are the apple of my eye.</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">43</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">9</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">56</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/meilbn" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/fuckingcode" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  Weibo
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/meilbn" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>
-                  
-                  Twitter
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.facebook.com/meilbn" target="_blank" title="Facebook">
-                  
-                    <i class="fa fa-fw fa-facebook-square"></i>
-                  
-                  Facebook
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://instagram.com/meilbn/" target="_blank" title="Instagram">
-                  
-                    <i class="fa fa-fw fa-instagram"></i>
-                  
-                  Instagram
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://plus.google.com/u/0/106344002269408415978/posts" target="_blank" title="GooglePlus">
-                  
-                    <i class="fa fa-fw fa-google-plus"></i>
-                  
-                  GooglePlus
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/meilbn/" target="_blank" title="ZhiHu">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  ZhiHu
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.douban.com/people/codemaker/" target="_blank" title="DouBan">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  DouBan
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-          <div class="cc-license motion-element" itemprop="license">
-            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
-            </a>
           </div>
-        
 
-        
-        
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
 
-        
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
 
-      </section>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/meilbn" title="GitHub &rarr; https://github.com/meilbn" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/fuckingcode" title="Weibo &rarr; http://weibo.com/fuckingcode" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/meilbn" title="Twitter &rarr; https://twitter.com/meilbn" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.facebook.com/meilbn" title="Facebook &rarr; https://www.facebook.com/meilbn" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Facebook</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://instagram.com/meilbn/" title="Instagram &rarr; https://instagram.com/meilbn/" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Instagram</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://plus.google.com/u/0/106344002269408415978/posts" title="GooglePlus &rarr; https://plus.google.com/u/0/106344002269408415978/posts" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GooglePlus</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://www.zhihu.com/people/meilbn/" title="ZhiHu &rarr; http://www.zhihu.com/people/meilbn/" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>ZhiHu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://www.douban.com/people/codemaker/" title="DouBan &rarr; http://www.douban.com/people/codemaker/" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>DouBan</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"/></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
 
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
@@ -2179,61 +3079,82 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<div class="copyright">
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">我的眼里只有代码</span>
+
+  
+
+  
 </div>
 
-<!-- <div class="powered-by"> -->
-<!--   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动 -->
-<!-- </div> -->
-<!--  -->
-<!-- <div class="theme-info"> -->
-<!--   主题 - -->
-<!--   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next"> -->
-<!--     NexT.Muse -->
-<!--   </a> -->
-<!-- </div> -->
-<!--  -->
-<!-- <div class="powered-by"> -->
-<!-- </div> -->
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
 
 
-<div class="theme-info">
-  <span id="busuanzi_container_site_pv">
-    本站总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span> 次，</span>
-  <span id="busuanzi_container_site_uv">
-    访客数 <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span> 人次</span>
-</div>
 
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a></div>
+
 
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
 
         
       </div>
     </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
+
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2247,78 +3168,10 @@
 
 
 
-  
 
 
 
 
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
-
-
-
-  
-
-
-
-  
-
-    <script type="text/javascript">
-      var disqus_shortname = 'ihappyhacking';
-      var disqus_identifier = 'index.html';
-
-      var disqus_title = "";
-
-
-      function run_disqus_script(disqus_script) {
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-
-      
-
-    </script>
-  
 
 
 
@@ -2333,6 +3186,47 @@
 
 
   
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+  
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+
+  
 
 
 
@@ -2341,111 +3235,30 @@
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("dFo2NvCcL1s5zeJtuvzonGrj-gzGzoHsz", "3gyJUovHABTEqJVyX08exA3z");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
+  
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+  
 
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
+  
 
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
+  
 
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
+  
 
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script>pangu.spacingPage();</script>
 
 
+  
+  <script src="/js/src/js.cookie.js?v=6.7.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=6.7.0"></script>
+
+
+  
 
   
 
