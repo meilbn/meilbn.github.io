@@ -154,7 +154,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac03b7b59d.png">
 <meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac049eb96d.png">
 <meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac057bfb91.png">
-<meta property="og:updated_time" content="2018-11-01T08:59:13.714Z">
+<meta property="og:updated_time" content="2019-01-12T09:36:27.628Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reveal 升级之后不能在手机上查看 App 的解决办法">
 <meta name="twitter:description" content="0x00 前言最近因为 Mac OS X El Capitan 的发布，Reveal 也升级到了 1.6.x，然而之前的 1.5.x，在越狱的 iPhone 上，从 Cydia 中安装了 RHRevealLoader，就能够查看手机上的第三方 App，但是 1.6.x 就不行了，会提示：The operation couldn&amp;#39;t be completed. The iOS app is">
@@ -342,7 +342,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签<span class="badge">57</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签<span class="badge">58</span></a>
 
   </li>
         
@@ -538,7 +538,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-01 16:59:13" itemprop="dateModified" datetime="2018-11-01T16:59:13+08:00">2018-11-01</time>
+                <time title="修改时间：2019-01-12 17:36:27" itemprop="dateModified" datetime="2019-01-12T17:36:27+08:00">2019-01-12</time>
               
             
           </span>
@@ -640,9 +640,11 @@
 <p>需要输入一下 root 的密码，这样就 OK 啦。</p>
 <h1 id="0x02_第二版更新_(v2)">0x02 第二版更新 (v2)</h1><p>前一段时间，Reveal 发布了第二版，不再是 <code>libReveal.dylib</code>，而是 <code>RevealServer.framework</code>，所以真机连接再一次失效，不过按照老办法，试了一下，然而并没有效果，又试了一下将 <code>RevealServer.framework</code> 中的 <code>RevealServer</code> 单独拷贝到手机，还是没有用，结果无奈去官网寻找解决办法，结果当然是找到了！办法就是把 <code>RevealServer</code> 拷贝到手机的时候，将文件名改成 <code>libReveal.dylib</code> 就行了。命令如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp /Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/RevealServer.framework/RevealServer root@your-iPhone<span class="string">'s-IP-address:/Library/RHRevealLoader/libReveal.dylib</span></span><br></pre></td></tr></table></figure>
-<p>大功告成：<br><img src="https://i.loli.net/2018/11/01/5bdac049eb96d.png" alt=""></p>
+<p>大功告成：</p>
+<p><img src="https://i.loli.net/2018/11/01/5bdac049eb96d.png" alt=""></p>
 <p>USB 连接查看也可以了，原本的局域网 WiFi 查看还在。</p>
-<p>查看第三方 App 也还是可以的：<br><img src="https://i.loli.net/2018/11/01/5bdac057bfb91.png" alt=""></p>
+<p>查看第三方 App 也还是可以的：</p>
+<p><img src="https://i.loli.net/2018/11/01/5bdac057bfb91.png" alt=""></p>
 <p>参考链接：<br><a href="http://support.revealapp.com/kb/getting-started/reveal-integration-guide" target="_blank" rel="noopener">Reveal Integration Guide</a><br><a href="http://support.revealapp.com/discussions/questions/59651-where-is-librevealdylib-in-20-version" target="_blank" rel="noopener">Where is libReveal.dylib in 2.0 version</a><br><a href="http://petersteinberger.com/blog/2013/how-to-inspect-the-view-hierarchy-of-3rd-party-apps/" target="_blank" rel="noopener">How to Inspect the View Hierarchy of Third-Party Apps</a></p>
 
       
@@ -989,7 +991,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">57</span>
+                      
+                    
+                    <span class="site-state-item-count">58</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1167,7 +1171,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">238k</span>
   
 
   

@@ -143,13 +143,13 @@
 
 
 
-  <meta name="description" content="0x00 前言Reveal 的使用 (静态库链接)。 首先，这里是讲用 Xcode 和 Reveal 来查看自己的 App 的视图，如果你是想看第三方的 App 的界面，那么就不需要看下去了。">
+  <meta name="description" content="0x00 前言Reveal 的使用（静态库链接）。 首先，这里是讲用 Xcode 和 Reveal 来查看自己的 App 的视图，如果你是想看第三方的 App 的界面，那么就不需要看下去了。">
 <meta name="keywords" content="Reveal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Integrating Reveal：Static Linking">
 <meta property="og:url" content="http://meilbn.com/2015/08/01/integrating-reveal-static-linking/index.html">
 <meta property="og:site_name" content="Happy Hacking">
-<meta property="og:description" content="0x00 前言Reveal 的使用 (静态库链接)。 首先，这里是讲用 Xcode 和 Reveal 来查看自己的 App 的视图，如果你是想看第三方的 App 的界面，那么就不需要看下去了。">
+<meta property="og:description" content="0x00 前言Reveal 的使用（静态库链接）。 首先，这里是讲用 Xcode 和 Reveal 来查看自己的 App 的视图，如果你是想看第三方的 App 的界面，那么就不需要看下去了。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2018/11/01/5bdabd4a9ae0c.png">
 <meta property="og:image" content="https://i.loli.net/2018/11/01/5bdabd584cf2d.png">
@@ -163,10 +163,10 @@
 <meta property="og:image" content="https://i.loli.net/2018/11/01/5bdabddb6f57b.png">
 <meta property="og:image" content="https://i.loli.net/2018/11/01/5bdabdeb7655e.png">
 <meta property="og:image" content="https://i.loli.net/2018/11/01/5bdabdfa84ed7.png">
-<meta property="og:updated_time" content="2018-11-01T08:49:37.033Z">
+<meta property="og:updated_time" content="2019-01-12T09:27:57.224Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Integrating Reveal：Static Linking">
-<meta name="twitter:description" content="0x00 前言Reveal 的使用 (静态库链接)。 首先，这里是讲用 Xcode 和 Reveal 来查看自己的 App 的视图，如果你是想看第三方的 App 的界面，那么就不需要看下去了。">
+<meta name="twitter:description" content="0x00 前言Reveal 的使用（静态库链接）。 首先，这里是讲用 Xcode 和 Reveal 来查看自己的 App 的视图，如果你是想看第三方的 App 的界面，那么就不需要看下去了。">
 <meta name="twitter:image" content="https://i.loli.net/2018/11/01/5bdabd4a9ae0c.png">
 
 
@@ -351,7 +351,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签<span class="badge">57</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签<span class="badge">58</span></a>
 
   </li>
         
@@ -547,7 +547,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-01 16:49:37" itemprop="dateModified" datetime="2018-11-01T16:49:37+08:00">2018-11-01</time>
+                <time title="修改时间：2019-01-12 17:27:57" itemprop="dateModified" datetime="2019-01-12T17:27:57+08:00">2019-01-12</time>
               
             
           </span>
@@ -639,10 +639,13 @@
       
 
       
-        <h1 id="0x00_前言">0x00 前言</h1><p>Reveal 的使用 (静态库链接)。</p>
+        <h1 id="0x00_前言">0x00 前言</h1><p>Reveal 的使用（静态库链接）。</p>
 <p>首先，这里是讲用 Xcode 和 Reveal 来查看自己的 App 的视图，如果你是想看第三方的 App 的界面，那么就不需要看下去了。</p>
 <a id="more"></a>
-<h1 id="0x01_Xcode_查看_App_的视图">0x01 Xcode 查看 App 的视图</h1><p>自从买了 Reveal，用着真的是非常爽呢，加上 iPhone 越狱了，那真是爽上加爽啊，高潮不断，哈哈。在日常的开发中，经常会有一些界面上的设计是平常用的 App 上看到过的，没办法，产品经理或者美工抄人家嘛，关键是抄的还不好，算了，这里不吐槽这个了。如果你有自己的想法，可以实现这个效果，那还是不错的，但是有时候，那个效果想不出来要怎么实现比较好，想看看别的 App 是怎么实现，怎么设计界面的，这个时候，Reveal 就派上了用场，不过这里先不说这个情况，先说自己开发的 App，有时候一个界面的问题总是非常难搞，特别是手写控件的时候，不用 xib 或者 storyboard，那个该死的按钮死哪去了？那个图片怎么显示起来这样子的？如果你 Reveal 的试用到期了，或者没有使用 Reveal，没关系，还可以用 Xcode 来查看视图结构，没错，Xcode 自带有这个功能，不过是暂停了 App 的运行，进入了 Debug 模式，步骤如下：</p>
+<h1 id="0x01_Xcode_查看_App_的视图">0x01 Xcode 查看 App 的视图</h1><p>自从买了 Reveal，用着真的是非常爽呢，加上 iPhone 越狱了，那真是爽上加爽啊，高潮不断，哈哈。⁄(⁄ ⁄•⁄ω⁄•⁄ ⁄)⁄</p>
+<p>咳~</p>
+<p>在日常的开发中，经常会有一些界面上的设计是平常用的 App 上看到过的，没办法，产品经理或者美工抄人家嘛，关键是抄的还不好，算了，这里不吐槽这个了。如果你有自己的想法，可以实现这个效果，那还是不错的，但是有时候，那个效果想不出来要怎么实现比较好，想看看别的 App 是怎么实现，怎么设计界面的，这个时候，Reveal 就派上了用场，</p>
+<p>不过这里先不说这个情况，先说自己开发的 App，有时候一个界面的问题总是非常难搞，特别是手写控件的时候，不用 xib 或者 storyboard，那个该死的按钮死哪去了？那个图片怎么显示起来这样子的？如果你 Reveal 的试用到期了，或者没有使用 Reveal，没关系，还可以用 Xcode 来查看视图结构，没错，Xcode 自带有这个功能，不过是暂停了 App 的运行，进入了 Debug 模式，步骤如下：</p>
 <ol>
 <li>先运行你的 App 到手机或者模拟器上</li>
 <li>然后点击 Xcode 上的 <code>Debug View Hierarchy</code> 按钮：<img src="https://i.loli.net/2018/11/01/5bdabd4a9ae0c.png" alt=""></li>
@@ -656,16 +659,21 @@
 <li>你要先安装了 Reveal</li>
 <li>打开 Reveal，点击菜单栏上的 <strong><em>Help -&gt; Show Reveal Library in Finder</em></strong> ：<img src="https://i.loli.net/2018/11/01/5bdabd86253a4.png" alt=""></li>
 <li>点击了之后，Finder 会打开一个窗口，将 <code>Reveal.framework</code> 拖入你的 Xcode 项目中，记得勾选：<img src="https://i.loli.net/2018/11/01/5bdabd99bd99c.png" alt=""></li>
-<li>然后点击上方的 <em>Project -&gt; Targets -&gt; Build Phases -&gt; Link Binary With Libraries</em> ，将 Reveal.framework 移除 (如果有的话)：<img src="https://i.loli.net/2018/11/01/5bdabda8970a5.png" alt=""></li>
+<li>然后点击上方的 <em>Project -&gt; Targets -&gt; Build Phases -&gt; Link Binary With Libraries</em> ，将 Reveal.framework 移除（如果有的话）：<img src="https://i.loli.net/2018/11/01/5bdabda8970a5.png" alt=""></li>
 <li>点击 <em>Build Settings</em> ，搜索 <code>Other Linker Flags</code>，添加下面这行代码：</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-ObjC -lz -framework Reveal</span><br></pre></td></tr></table></figure>
-<p>如图所示：<br><img src="https://i.loli.net/2018/11/01/5bdabdb93e2f0.png" alt=""></p>
-<p>如果是这样，就算是配置完成了：<br><img src="https://i.loli.net/2018/11/01/5bdabdcc4e4b2.png" alt=""></p>
-<h1 id="0x03_Reveal_查看_App_视图">0x03 Reveal 查看 App 视图</h1><p>配置完了当然就可以用 Reveal 查看自己的 App 的视图了，直接运行，然后打开 Reveal，点击左上角的 <code>No Connection</code> 来选择要查看的 App：<br><img src="https://i.loli.net/2018/11/01/5bdabddb6f57b.png" alt=""></p>
-<p>然后就可以开始玩了，比如这个 Demo 在 Reveal 中展示起来就是这样的：<br><img src="https://i.loli.net/2018/11/01/5bdabdeb7655e.png" alt=""></p>
+<p>如图所示：</p>
+<p><img src="https://i.loli.net/2018/11/01/5bdabdb93e2f0.png" alt=""></p>
+<p>如果是这样，就算是配置完成了：</p>
+<p><img src="https://i.loli.net/2018/11/01/5bdabdcc4e4b2.png" alt=""></p>
+<h1 id="0x03_Reveal_查看_App_视图">0x03 Reveal 查看 App 视图</h1><p>配置完了当然就可以用 Reveal 查看自己的 App 的视图了，直接运行，然后打开 Reveal，点击左上角的 <code>No Connection</code> 来选择要查看的 App：</p>
+<p><img src="https://i.loli.net/2018/11/01/5bdabddb6f57b.png" alt=""></p>
+<p>然后就可以开始玩了，比如这个 Demo 在 Reveal 中展示起来就是这样的：</p>
+<p><img src="https://i.loli.net/2018/11/01/5bdabdeb7655e.png" alt=""></p>
 <p>左侧是视图层次结构，右侧是各种参数信息，非常多，而且界面也是支持旋转的，2D、3D 模式。</p>
-<p>这个 Demo 非常简单，看不出来有什么很屌的样子，那我就上一张自己正在开发的一个 App 的截图：<br><img src="https://i.loli.net/2018/11/01/5bdabdfa84ed7.png" alt=""></p>
+<p>这个 Demo 非常简单，看不出来有什么很屌的样子，那我就上一张自己正在开发的一个 App 的截图：</p>
+<p><img src="https://i.loli.net/2018/11/01/5bdabdfa84ed7.png" alt=""></p>
 <p>这样足够明显了吧？知道 Reveal 的好处了吧。</p>
 <p>关键是 Reveal 不止可以查看自己的 App，还可以查看第三方的 App，这个对我的吸引才是最大的。</p>
 
@@ -1013,7 +1021,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">57</span>
+                      
+                    
+                    <span class="site-state-item-count">58</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1191,7 +1201,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">238k</span>
   
 
   

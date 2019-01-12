@@ -143,18 +143,29 @@
 
 
 
-  <meta name="description" content="0x00 前言上周接了一个外包的活，因为使用的是百度坐标，所以需要用到百度地图 SDK 里面的坐标转换功能，所以就导入了百度地图的 SDK。项目使用的是 Swift 语言开发，但是有 Objective-C 代码，所以是混编，恰好是因为混编，所以问题解决起来非常快。">
-<meta name="keywords" content="GitHub,Hexo">
+  <meta name="description" content="0x00 前言2018 年 5 月 1 日 GitHub 官网宣布了 GitHub Pages 自定义域名增加对 HTTPS 的支持，不过我那时候在做自己的个人项目，就懒得去更新了，一直拖到现在，也算是懒癌发作了。 首先说明一下，我的域名（meilbn.com）是在 Godaddy 买的，不过域名解析使用的是腾讯云的 DNSPod，如何配置什么的我就不讲了，可以在网上找到很多资料，我这里就只讲一下">
+<meta name="keywords" content="Hexo,GitHub">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo-enabled-https-on-github-pages">
+<meta property="og:title" content="为 Hosting 在 GitHub Pages 的 Hexo 博客开启 HTTPS">
 <meta property="og:url" content="http://meilbn.com/2019/01/12/hexo-enabled-https-on-github-pages/index.html">
 <meta property="og:site_name" content="Happy Hacking">
-<meta property="og:description" content="0x00 前言上周接了一个外包的活，因为使用的是百度坐标，所以需要用到百度地图 SDK 里面的坐标转换功能，所以就导入了百度地图的 SDK。项目使用的是 Swift 语言开发，但是有 Objective-C 代码，所以是混编，恰好是因为混编，所以问题解决起来非常快。">
+<meta property="og:description" content="0x00 前言2018 年 5 月 1 日 GitHub 官网宣布了 GitHub Pages 自定义域名增加对 HTTPS 的支持，不过我那时候在做自己的个人项目，就懒得去更新了，一直拖到现在，也算是懒癌发作了。 首先说明一下，我的域名（meilbn.com）是在 Godaddy 买的，不过域名解析使用的是腾讯云的 DNSPod，如何配置什么的我就不讲了，可以在网上找到很多资料，我这里就只讲一下">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-12T08:15:35.178Z">
+<meta property="og:image" content="https://i.loli.net/2019/01/12/5c39fadea6a9e.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/12/5c39faefdd98f.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/01/12/5c39fb0207b26.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/12/5c39fb0d8428c.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/12/5c39fb27c1342.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/12/5c39fb1aa1272.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/12/5c39fb31cee30.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/12/5c39fb4c5e564.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/12/5c39fb56b27c3.png">
+<meta property="og:image" content="https://i.loli.net/2019/01/12/5c39fb60e88a1.png">
+<meta property="og:updated_time" content="2019-01-12T14:42:18.108Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo-enabled-https-on-github-pages">
-<meta name="twitter:description" content="0x00 前言上周接了一个外包的活，因为使用的是百度坐标，所以需要用到百度地图 SDK 里面的坐标转换功能，所以就导入了百度地图的 SDK。项目使用的是 Swift 语言开发，但是有 Objective-C 代码，所以是混编，恰好是因为混编，所以问题解决起来非常快。">
+<meta name="twitter:title" content="为 Hosting 在 GitHub Pages 的 Hexo 博客开启 HTTPS">
+<meta name="twitter:description" content="0x00 前言2018 年 5 月 1 日 GitHub 官网宣布了 GitHub Pages 自定义域名增加对 HTTPS 的支持，不过我那时候在做自己的个人项目，就懒得去更新了，一直拖到现在，也算是懒癌发作了。 首先说明一下，我的域名（meilbn.com）是在 Godaddy 买的，不过域名解析使用的是腾讯云的 DNSPod，如何配置什么的我就不讲了，可以在网上找到很多资料，我这里就只讲一下">
+<meta name="twitter:image" content="https://i.loli.net/2019/01/12/5c39fadea6a9e.png">
 
 
 
@@ -171,7 +182,7 @@
   };
 </script>
 
-  <title>hexo-enabled-https-on-github-pages | Happy Hacking</title>
+  <title>为 Hosting 在 GitHub Pages 的 Hexo 博客开启 HTTPS | Happy Hacking</title>
   
 
 
@@ -338,7 +349,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签<span class="badge">57</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签<span class="badge">58</span></a>
 
   </li>
         
@@ -491,7 +502,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">hexo-enabled-https-on-github-pages
+          <h2 class="post-title" itemprop="name headline">为 Hosting 在 GitHub Pages 的 Hexo 博客开启 HTTPS
 
               
             
@@ -517,7 +528,7 @@
                 
               
 
-              <time title="创建时间：2019-01-12 16:14:23 / 修改时间：16:15:35" itemprop="dateCreated datePublished" datetime="2019-01-12T16:14:23+08:00">2019-01-12</time>
+              <time title="创建时间：2019-01-12 16:14:23 / 修改时间：22:42:18" itemprop="dateCreated datePublished" datetime="2019-01-12T16:14:23+08:00">2019-01-12</time>
             
 
             
@@ -565,7 +576,7 @@
 
           
           
-            <span id="/2019/01/12/hexo-enabled-https-on-github-pages/" class="leancloud_visitors" data-flag-title="hexo-enabled-https-on-github-pages">
+            <span id="/2019/01/12/hexo-enabled-https-on-github-pages/" class="leancloud_visitors" data-flag-title="为 Hosting 在 GitHub Pages 的 Hexo 博客开启 HTTPS">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -590,7 +601,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">144</span>
+                <span title="本文字数">1.1k</span>
               
 
               
@@ -614,9 +625,49 @@
       
 
       
-        <h1 id="0x00_前言">0x00 前言</h1><p>上周接了一个外包的活，因为使用的是百度坐标，所以需要用到百度地图 SDK 里面的坐标转换功能，所以就导入了百度地图的 SDK。项目使用的是 Swift 语言开发，但是有 Objective-C 代码，所以是混编，恰好是因为混编，所以问题解决起来非常快。</p>
+        <h1 id="0x00_前言">0x00 前言</h1><p>2018 年 5 月 1 日 GitHub 官网宣布了 <a href="https://blog.github.com/2018-05-01-github-pages-custom-domains-https/" target="_blank" rel="noopener">GitHub Pages 自定义域名增加对 HTTPS 的支持</a>，不过我那时候在做自己的个人项目，就懒得去更新了，一直拖到现在，也算是懒癌发作了。</p>
+<p>首先说明一下，我的域名（meilbn.com）是在 <a href="https://www.godaddy.com/" target="_blank" rel="noopener">Godaddy</a> 买的，不过域名解析使用的是腾讯云的 <a href="https://www.dnspod.cn/" target="_blank" rel="noopener">DNSPod</a>，如何配置什么的我就不讲了，可以在网上找到很多资料，我这里就只讲一下如何开启 HTTPS，非常简单，不过我也遇到了一个“坑”。</p>
 <a id="more"></a>
-<h1 id="0x01_错误信息">0x01 错误信息</h1>
+<h1 id="0x01_一步到位">0x01 一步到位</h1><p>首先，假设你设置的 DNS 解析地址是正确的，你可以直接在你的 GitHub 上的博客项目仓库的设置中直接开启 HTTPS：</p>
+<ul>
+<li>进入仓库的设置：</li>
+</ul>
+<p><img src="https://i.loli.net/2019/01/12/5c39fadea6a9e.png" alt=""></p>
+<ul>
+<li>勾选 Enforce HTTPS (可能你网页拉下来的时候并没有，需要一点时间才会显示出来)</li>
+</ul>
+<p><img src="https://i.loli.net/2019/01/12/5c39faefdd98f.jpg" alt=""></p>
+<p>如果你这里并不像截图中的这样，没有黄色的警告，并且勾选框也是可以勾选的（我这里并不能勾选），那么你就直接勾选上，然后可能需要等一会，你打开你的博客（或者刷新），那么，你的博客就已经是 HTTPS 开头的了，你也不需要继续往下看了。</p>
+<p>But,</p>
+<p>要是你这里跟我一样，那么，请继续耐心地往下看。</p>
+<h1 id="0x02_更新_DNS_记录">0x02 更新 DNS 记录</h1><p>因为以前用的是 HTTP，所以在 <a href="https://www.dnspod.cn/" target="_blank" rel="noopener">DNSPod</a> 里的 <code>A</code> 记录的地址填的是 <code>192.30.252.153</code> 或者 <code>192.30.252.154</code>，这是没有任何问题的，但是现在要换成 HTTPS，就不能继续用这个 IP 地址了（具体可以查看<a href="https://help.github.com/articles/troubleshooting-custom-domains/#dns-configuration-errors" target="_blank" rel="noopener">这里</a>的绿色 <code>Notes</code>）。</p>
+<p>接下来开始讲我遇到的这个“坑”。</p>
+<h1 id="0x03_自填自坑">0x03 自填自坑</h1><p>因为我使用的是 <a href="https://www.dnspod.cn/" target="_blank" rel="noopener">DNSPod</a>，并不能添加 <code>ALIAS</code> 或 <code>ANAME</code> 记录，只能用 <code>A</code> 记录，所以根据官网的<a href="https://help.github.com/articles/setting-up-an-apex-domain/#configuring-an-alias-or-aname-record-with-your-dns-provider" target="_blank" rel="noopener">文档</a>，添加 <code>A</code> 记录的 IP 地址，有如下 4 条：</p>
+<ul>
+<li>185.199.108.153</li>
+<li>185.199.109.153</li>
+<li>185.199.110.153</li>
+<li>185.199.111.153</li>
+</ul>
+<p>我以为是 4 条都要添加，结果 <a href="https://www.dnspod.cn/" target="_blank" rel="noopener">DNSPod</a> 里免费的账户只能添加 2 条 <code>A</code> 记录：</p>
+<p><img src="https://i.loli.net/2019/01/12/5c39fb0207b26.png" alt=""></p>
+<p>然后我看了一下升级套餐：</p>
+<p><img src="https://i.loli.net/2019/01/12/5c39fb0d8428c.png" alt=""></p>
+<p>发现好贵，遂作罢，想换其他的 DNS 解析服务商。注册了 <a href="https://www.namecheap.com/" target="_blank" rel="noopener">NameCheap</a>，发现好像不是 <a href="https://www.namecheap.com/" target="_blank" rel="noopener">NameCheap</a> 上买的域名不能使用 DNS 解析服务（或者是我没找到）。</p>
+<p>然后回过头来，重新看了下博客仓库的设置界面（刷新），发现警告没有了：</p>
+<p><img src="https://i.loli.net/2019/01/12/5c39fb27c1342.png" alt=""></p>
+<p>一看下面的勾选框也可以勾选了：</p>
+<p><img src="https://i.loli.net/2019/01/12/5c39fb1aa1272.png" alt=""></p>
+<p>原来不需要 4 条记录全部加上，我只加了两条：</p>
+<p><img src="https://i.loli.net/2019/01/12/5c39fb31cee30.png" alt=""></p>
+<p>可能一条也可以吧，不过我没去试。</p>
+<p>勾选了之后：</p>
+<p><img src="https://i.loli.net/2019/01/12/5c39fb4c5e564.png" alt=""></p>
+<p>博客原来的地址栏是 HTTP 的：</p>
+<p><img src="https://i.loli.net/2019/01/12/5c39fb56b27c3.png" alt=""></p>
+<p>现在刷新一下就是 HTTPS 的了：</p>
+<p><img src="https://i.loli.net/2019/01/12/5c39fb60e88a1.png" alt=""></p>
+
       
     </div>
 
@@ -682,7 +733,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://meilbn.com/2019/01/12/hexo-enabled-https-on-github-pages/" title="hexo-enabled-https-on-github-pages">http://meilbn.com/2019/01/12/hexo-enabled-https-on-github-pages/</a>
+    <a href="http://meilbn.com/2019/01/12/hexo-enabled-https-on-github-pages/" title="为 Hosting 在 GitHub Pages 的 Hexo 博客开启 HTTPS">http://meilbn.com/2019/01/12/hexo-enabled-https-on-github-pages/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -695,9 +746,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/GitHub/" rel="tag"># GitHub</a>
-          
             <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          
+            <a href="/tags/GitHub/" rel="tag"># GitHub</a>
           
         </div>
       
@@ -959,7 +1010,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">57</span>
+                      
+                    
+                    <span class="site-state-item-count">58</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1096,7 +1149,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_错误信息"><span class="nav-number">2.</span> <span class="nav-text">0x01 错误信息</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01_一步到位"><span class="nav-number">2.</span> <span class="nav-text">0x01 一步到位</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_更新_DNS_记录"><span class="nav-number">3.</span> <span class="nav-text">0x02 更新 DNS 记录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_自填自坑"><span class="nav-number">4.</span> <span class="nav-text">0x03 自填自坑</span></a></li></ol></div>
             
 
           </div>
@@ -1137,7 +1190,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">238k</span>
   
 
   
@@ -1303,7 +1356,7 @@
   var disqus_config = function () {
     this.page.url = "http://meilbn.com/2019/01/12/hexo-enabled-https-on-github-pages/";
     this.page.identifier = "2019/01/12/hexo-enabled-https-on-github-pages/";
-    this.page.title = 'hexo-enabled-https-on-github-pages';
+    this.page.title = '为 Hosting 在 GitHub Pages 的 Hexo 博客开启 HTTPS';
     };
   function loadComments () {
     var d = document, s = d.createElement('script');

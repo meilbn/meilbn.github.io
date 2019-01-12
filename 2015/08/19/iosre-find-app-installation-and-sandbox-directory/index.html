@@ -157,7 +157,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/11/01/5bdabfe895a6b.png">
 <meta property="og:image" content="https://i.loli.net/2018/11/01/5bdabff607548.png">
 <meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac00333078.png">
-<meta property="og:updated_time" content="2018-11-01T08:57:47.734Z">
+<meta property="og:updated_time" content="2019-01-12T09:34:13.233Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="查找目标 App 在 iPhone 里的目录">
 <meta name="twitter:description" content="0x00 前言本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 iOS应用逆向工程(第2版)，有兴趣的同学可以购买学习。">
@@ -345,7 +345,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签<span class="badge">57</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签<span class="badge">58</span></a>
 
   </li>
         
@@ -541,7 +541,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-01 16:57:47" itemprop="dateModified" datetime="2018-11-01T16:57:47+08:00">2018-11-01</time>
+                <time title="修改时间：2019-01-12 17:34:13" itemprop="dateModified" datetime="2019-01-12T17:34:13+08:00">2019-01-12</time>
               
             
           </span>
@@ -633,16 +633,21 @@
       
 
       
-        <h1 id="0x00_前言">0x00 前言</h1><p>本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 <a href="http://www.amazon.cn/iOS%E5%BA%94%E7%94%A8%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B-%E6%B2%99%E6%A2%93%E7%A4%BE/dp/B00VFDVY7E/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1439878290&amp;sr=1-1&amp;keywords=ios+%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B" target="_blank" rel="noopener">iOS应用逆向工程(第2版)</a>，有兴趣的同学可以购买学习。</p>
+        <h1 id="0x00_前言">0x00 前言</h1><p>本文记录了我在学习 iOS 逆向工程的过程中学到的相关知识中的定位目标 App 的一些目录在 iPhone 中的路径，我看的书是 <a href="https://www.amazon.cn/iOS%E5%BA%94%E7%94%A8%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B-%E6%B2%99%E6%A2%93%E7%A4%BE/dp/B00VFDVY7E/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1439878290&amp;sr=1-1&amp;keywords=ios+%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B" target="_blank" rel="noopener">iOS应用逆向工程(第2版)</a>，有兴趣的同学可以购买学习。</p>
 <a id="more"></a>
 <h1 id="0x01_准备工作">0x01 准备工作</h1><p>准备工作就不扯那么多了，要学习 iOS 逆向工程，最基本的是需要有一台已经越狱的 iPhone，而且已经安装了 OpenSSH 和 Cycript，刚越狱的 iPhone 的 SSH 密码默认是 <code>alpine.</code>（带英文标点），为了安全，最好修改成其他的，然后最好是还有一台 Mac。</p>
-<h1 id="0x02_定位目标_App_的安装目录">0x02 定位目标 App 的安装目录</h1><p>首先，我们先找到目标 App 的安装目标，AppStore 上下载的 App 一般都是安装在 <code>/var/mobile/Containers/Bundle/Application/</code> 下的，书中提到的这个小技巧，非常方便，简单粗暴，先关掉所有从 AppStore 上安装的 App，就只运行目标 App，然后用 Mac 通过 SSH 连接 iPhone，使用命令打印出所有的进程：<br><img src="https://i.loli.net/2018/11/01/5bdabf6029942.png" alt=""></p>
-<p>可以看到有非常多的进程，找起来好麻烦，这里有一个更方便查看的命令，那就是使用 <code>grep</code>，因为我们知道了 App 所在目录的路径前缀，所以直接用 <code>grep</code> 来 “筛选” 出来，命令如下：<br><img src="https://i.loli.net/2018/11/01/5bdabfb3da079.png" alt=""></p>
+<h1 id="0x02_定位目标_App_的安装目录">0x02 定位目标 App 的安装目录</h1><p>首先，我们先找到目标 App 的安装目标，AppStore 上下载的 App 一般都是安装在 <code>/var/mobile/Containers/Bundle/Application/</code> 下的，书中提到的这个小技巧，非常方便，简单粗暴，先关掉所有从 AppStore 上安装的 App，就只运行目标 App，然后用 Mac 通过 SSH 连接 iPhone，使用命令打印出所有的进程：</p>
+<p><img src="https://i.loli.net/2018/11/01/5bdabf6029942.png" alt=""></p>
+<p>可以看到有非常多的进程，找起来好麻烦，这里有一个更方便查看的命令，那就是使用 <code>grep</code>，因为我们知道了 App 所在目录的路径前缀，所以直接用 <code>grep</code> 来 “筛选” 出来，命令如下：</p>
+<p><img src="https://i.loli.net/2018/11/01/5bdabfb3da079.png" alt=""></p>
 <p>可以看到，只有一个结果，这个就是我们目标 App (这里是以 QQ 为例) 在我们的 iPhone 中所在的安装目录的绝对路径了。</p>
-<h1 id="0x03_拷贝目标_App">0x03 拷贝目标 App</h1><p>既然找到了，那我们就可以将它拷贝到我们的 Mac 上了，方法有多种，你可以选择是用类似 iFunBox 这样的工具，或者直接使用命令行 (scp) 的方式，这里以命令行的方式来进行拷贝，我在 Mac 上重新打开了一个终端，然后输入以下的命令来进行拷贝：<br><img src="https://i.loli.net/2018/11/01/5bdabfd485251.png" alt=""></p>
+<h1 id="0x03_拷贝目标_App">0x03 拷贝目标 App</h1><p>既然找到了，那我们就可以将它拷贝到我们的 Mac 上了，方法有多种，你可以选择是用类似 iFunBox 这样的工具，或者直接使用命令行 (scp) 的方式，这里以命令行的方式来进行拷贝，我在 Mac 上重新打开了一个终端，然后输入以下的命令来进行拷贝：</p>
+<p><img src="https://i.loli.net/2018/11/01/5bdabfd485251.png" alt=""></p>
 <p>Ps. 其实我这里已经完成了拷贝，只是命令被刷屏不见了，所以这里再把命令弄出来可以看到。</p>
-<p>在 Finder 中打开拷贝的目标目录，可以看到目标 App 已经被拷贝出来了：<br><img src="https://i.loli.net/2018/11/01/5bdabfe895a6b.png" alt=""></p>
-<h1 id="0x04_定位目标_App_的_Documents_目录">0x04 定位目标 App 的 Documents 目录</h1><p>我们使用 Cycript 来找到目标 App 的 Documents 目录，非常简单，三步就能找到，首先要先知道目标 App 的 CFBundleExecutable：<br><img src="https://i.loli.net/2018/11/01/5bdabff607548.png" alt=""></p>
+<p>在 Finder 中打开拷贝的目标目录，可以看到目标 App 已经被拷贝出来了：</p>
+<p><img src="https://i.loli.net/2018/11/01/5bdabfe895a6b.png" alt=""></p>
+<h1 id="0x04_定位目标_App_的_Documents_目录">0x04 定位目标 App 的 Documents 目录</h1><p>我们使用 Cycript 来找到目标 App 的 Documents 目录，非常简单，三步就能找到，首先要先知道目标 App 的 CFBundleExecutable：</p>
+<p><img src="https://i.loli.net/2018/11/01/5bdabff607548.png" alt=""></p>
 <p>可以看到 QQ 的 CFBundleExecutable 就是 “QQ”，根据我拷贝出来的几个 App，基本上可以估计，App 的 CFBundleExecutable 都是跟 <code>目标 App.app</code> 的名字一样的，不过为了确定性，使用上面的命令来确定真正的 CFBundleExecutable 也不麻烦。</p>
 <p>确定了目标 App 的 CFBundleExecutable，那么就可以开始定位 Documents 目录了，输入下面的命令：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSFileManager</span> defaultManager] URLsForDirectory:<span class="built_in">NSDocumentDirectory</span> inDomains:<span class="built_in">NSUserDomainMask</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
@@ -1006,7 +1011,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">57</span>
+                      
+                    
+                    <span class="site-state-item-count">58</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1184,7 +1191,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">238k</span>
   
 
   
