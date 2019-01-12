@@ -210,8 +210,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>Xcode</tag>
         <tag>Objective-C</tag>
+        <tag>Xcode</tag>
         <tag>xcrun</tag>
         <tag>xcodebuild</tag>
       </tags>
@@ -224,9 +224,9 @@
         <category>学习笔记</category>
       </categories>
       <tags>
+        <tag>Objective-C</tag>
         <tag>iOS</tag>
         <tag>Xcode</tag>
-        <tag>Objective-C</tag>
         <tag>Unix</tag>
         <tag>OS X</tag>
         <tag>Dictionary</tag>
@@ -380,8 +380,8 @@
         <category>iOS</category>
       </categories>
       <tags>
-        <tag>iOS</tag>
         <tag>Objective-C</tag>
+        <tag>iOS</tag>
         <tag>NSPredicate</tag>
       </tags>
   </entry>
