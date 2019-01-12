@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[hexo-enabled-https-on-github-pages]]></title>
+    <url>%2F2019%2F01%2F12%2Fhexo-enabled-https-on-github-pages%2F</url>
+    <content type="text"><![CDATA[0x00 前言上周接了一个外包的活，因为使用的是百度坐标，所以需要用到百度地图 SDK 里面的坐标转换功能，所以就导入了百度地图的 SDK。项目使用的是 Swift 语言开发，但是有 Objective-C 代码，所以是混编，恰好是因为混编，所以问题解决起来非常快。 0x01 错误信息]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>GitHub</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[FrameWork 支持的手机壳颜色]]></title>
     <url>%2F2018%2F12%2F18%2Fapp-framework-supported-device-colors%2F</url>
     <content type="text"><![CDATA[FrameWork 目前版本（v1.1.0）支持的手机壳颜色。 缺失的我会尽力去补充完整。 手机壳颜色表iPhone 5 型号 颜色 是否支持 iPhone 5 黑色 ✔️ iPhone 5 白色 ✔️ iPhone 5C 型号 颜色 是否支持 iPhone 5C 蓝色 ✔️ iPhone 5C 绿色 ✔️ iPhone 5C 红色 ✔️ iPhone 5C 银色 ✔️ iPhone 5C 黄色 ✔️ iPhone 5S 型号 颜色 是否支持 iPhone 5S 金色 ✔️ iPhone 5S 银色 ✔️ iPhone 5S 深空灰 ✔️ iPhone SE 型号 颜色 是否支持 iPhone SE 银色 ✔️ iPhone SE 金色 ✔️ iPhone SE 深空色 ✔️ iPhone SE 玫瑰金色 ✔️ iPhone 6 型号 颜色 是否支持 iPhone 6 银色 ✔️ iPhone 6 金色 ✔️ iPhone 6 深空灰色 ✔️ iPhone 6 Plus 型号 颜色 是否支持 iPhone 6 Plus 银色 ✔️ iPhone 6 Plus 金色 ✔️ iPhone 6 Plus 深空灰色 ✔️ iPhone 6S 型号 颜色 是否支持 iPhone 6S 银色 ✔️ iPhone 6S 金色 ✔️ iPhone 6S 深空灰色 ✔️ iPhone 6S 玫瑰金色 ✔️ iPhone 6S Plus 型号 颜色 是否支持 iPhone 6S Plus 银色 ✔️ iPhone 6S Plus 金色 ✔️ iPhone 6S Plus 深空灰色 ✔️ iPhone 6S Plus 玫瑰金色 ✔️ iPhone 7 型号 颜色 是否支持 iPhone 7 银色 ✔️ iPhone 7 金色 ✔️ iPhone 7 黑色 ✔️ iPhone 7 玫瑰金 ✔️ iPhone 7 亮黑色 ✔️ iPhone 7 红色特别版 ❌ iPhone 7 Plus 型号 颜色 是否支持 iPhone 7 Plus 银色 ✔️ iPhone 7 Plus 金色 ✔️ iPhone 7 Plus 黑色 ✔️ iPhone 7 Plus 玫瑰金 ✔️ iPhone 7 Plus 亮黑色 ❌ iPhone 7 Plus 红色特别版 ❌ iPhone 8 型号 颜色 是否支持 iPhone 8 银色 ✔️ iPhone 8 金色 ❌ iPhone 8 深空灰色 ✔️ iPhone 8 红色特别版 ❌ iPhone 8 Plus 型号 颜色 是否支持 iPhone 8 Plus 银色 ✔️ iPhone 8 Plus 金色 ❌ iPhone 8 Plus 深空灰色 ✔️ iPhone 8 Plus 红色特别版 ❌ iPhone X 型号 颜色 是否支持 iPhone X 银色 ✔️ iPhone X 深空灰色 ✔️ iPhone XR 型号 颜色 是否支持 iPhone XR 蓝色 ✔️ iPhone XR 白色 ✔️ iPhone XR 黑色 ✔️ iPhone XR 黄色 ✔️ iPhone XR 珊瑚色 ✔️ iPhone XR 红色特别版 ✔️ iPhone XS 型号 颜色 是否支持 iPhone XS 银色 ✔️ iPhone XS 金色 ✔️ iPhone XS 深空灰色 ✔️ iPhone XS Max 型号 颜色 是否支持 iPhone XS Max 银色 ✔️ iPhone XS Max 金色 ✔️ iPhone XS Max 深空灰色 ✔️]]></content>
@@ -198,8 +210,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>Xcode</tag>
         <tag>Objective-C</tag>
+        <tag>Xcode</tag>
         <tag>xcrun</tag>
         <tag>xcodebuild</tag>
       </tags>
@@ -212,9 +224,9 @@
         <category>学习笔记</category>
       </categories>
       <tags>
+        <tag>Objective-C</tag>
         <tag>iOS</tag>
         <tag>Xcode</tag>
-        <tag>Objective-C</tag>
         <tag>Unix</tag>
         <tag>OS X</tag>
         <tag>Dictionary</tag>
