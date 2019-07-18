@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Windows 10 专业版激活方法（Windows 10 Professional Activation）]]></title>
+    <url>%2F2019%2F07%2F18%2Fwindows-10-pro-activation%2F</url>
+    <content type="text"><![CDATA[0x00 前言初衷是因为 Mac 版的微信不能多开了，但是生活和工作是两个微信分开的，Mac 上又想两个微信都登录着，方便沟通。 尝试过登录网页版的微信，但是已经不支持了。后来是在 VMware 里面开虚拟机，顺便登录 QQ 和微信，但是吧，总感觉不太舒服。 最后是用 Parallels Desktop 来运行虚拟机，整体体验上好于 VMware，装了 Windows 10，但是要激活，试过一些密钥，激活不了，最后折腾了一下，激活成功了，遂记录一下，希望能帮到他人。 0x01 开始首先，在左下角的搜索框中输入 CMD，在出现的 Command Prompt (命令提示符) 上右键，选择 Run as administrator (以管理员身份运行)， 然后输入以下命令（如果没有使用过密钥的话，这一步可以省略）： 1slmgr.vbs /upk 回车运行之后，会弹窗显示 “已成功卸载了产品密钥”。 然后输入： 1slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX 回车运行之后，则绑定了新的密钥，会弹窗显示 “成功地安装了产品密钥…”。 接着输入： 1slmgr /skms kms.xspace.in 回车运行之后，会更改 KMS 的服务地址，弹窗显示 “密钥管理服务计算机名成功的设置为…”。 最后一步，输入： 1slmgr /ato 等待弹窗提示 “成功地激活了产品”。 注意：如果提示失败，出错，那么可以更改一下 KMS 的服务地址 1slmgr /skms zh.us.to 然后再： 1slmgr /ato 这样就可以了。 0x02 结尾密钥如果不可用，可以去网上找别的密钥，很多，这里就不 copy 了。 步骤截图： 激活后的系统信息：]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[为 Hosting 在 GitHub Pages 的 Hexo 博客开启 HTTPS]]></title>
     <url>%2F2019%2F01%2F12%2Fhexo-enabled-https-on-github-pages%2F</url>
     <content type="text"><![CDATA[0x00 前言2018 年 5 月 1 日 GitHub 官网宣布了 GitHub Pages 自定义域名增加对 HTTPS 的支持，不过我那时候在做自己的个人项目，就懒得去更新了，一直拖到现在，也算是懒癌发作了。 首先说明一下，我的域名（meilbn.com）是在 Godaddy 买的，不过域名解析使用的是腾讯云的 DNSPod，如何配置什么的我就不讲了，可以在网上找到很多资料，我这里就只讲一下如何开启 HTTPS，非常简单，不过我也遇到了一个“坑”。 0x01 一步到位首先，假设你设置的 DNS 解析地址是正确的，你可以直接在你的 GitHub 上的博客项目仓库的设置中直接开启 HTTPS： 进入仓库的设置： 勾选 Enforce HTTPS (可能你网页拉下来的时候并没有，需要一点时间才会显示出来) 如果你这里并不像截图中的这样，没有黄色的警告，并且勾选框也是可以勾选的（我这里并不能勾选），那么你就直接勾选上，然后可能需要等一会，你打开你的博客（或者刷新），那么，你的博客就已经是 HTTPS 开头的了，你也不需要继续往下看了。 But, 要是你这里跟我一样，那么，请继续耐心地往下看。 0x02 更新 DNS 记录因为以前用的是 HTTP，所以在 DNSPod 里的 A 记录的地址填的是 192.30.252.153 或者 192.30.252.154，这是没有任何问题的，但是现在要换成 HTTPS，就不能继续用这个 IP 地址了（具体可以查看这里的绿色 Notes）。 接下来开始讲我遇到的这个“坑”。 0x03 自填自坑因为我使用的是 DNSPod，并不能添加 ALIAS 或 ANAME 记录，只能用 A 记录，所以根据官网的文档，添加 A 记录的 IP 地址，有如下 4 条： 185.199.108.153 185.199.109.153 185.199.110.153 185.199.111.153 我以为是 4 条都要添加，结果 DNSPod 里免费的账户只能添加 2 条 A 记录： 然后我看了一下升级套餐： 发现好贵，遂作罢，想换其他的 DNS 解析服务商。注册了 NameCheap，发现好像不是 NameCheap 上买的域名不能使用 DNS 解析服务（或者是我没找到）。 然后回过头来，重新看了下博客仓库的设置界面（刷新），发现警告没有了： 一看下面的勾选框也可以勾选了： 原来不需要 4 条记录全部加上，我只加了两条： 可能一条也可以吧，不过我没去试。 勾选了之后： 博客原来的地址栏是 HTTP 的： 现在刷新一下就是 HTTPS 的了：]]></content>
@@ -37,9 +48,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[FrameWork Usage Tips]]></title>
-    <url>%2F2018%2F11%2F26%2Fapp-framework-tips-en%2F</url>
-    <content type="text"><![CDATA[You can find this page in “FrameWork“ -&gt; “More (three dots)” -&gt; “Tips”. If you have any questions, suggestions or bugs, you can sending email to me in “FrameWork“ -&gt; “More (three dots)” -&gt; “Contact Me”. Or sending email directly to codingallnight@gmail.com. Or you can @ me on Weibo @我的眼里只有代码 or Twitter @meilbn. 中文版 Home Bottom Toolbar Backdrop Backdrop can set with many types, Clear Color only available when screenshot save as PNG (you can change it in More). Set Backdrop with Gradient Just support three colors currently, because I think gradient will be ugly if color greater than three. Color can long press to reorder, click color to modify. Title (Subtitle) Attributes Set title’s left and right margin, slide to left will decrease (title can be long, maybe font will bigger), otherwise will increase (title will be short, maybe font will smaller). Change title’s font, click can change and preview. Change title’s font size. Change title’s text color. As the picture shows, can choose a color as title’s text color Change title’s text alignment Change title’s top offset (move up or down) Device Attributes Set device’s left and right margin, slide to left will decrease (device will bigger), otherwise will increase (device will smaller). Reset margin to default Hide device, just screenshot left. Change device’s top offset (move up or down) ps. Please use the second button on the bottom toolbar to change device’s color.]]></content>
+    <title><![CDATA[FrameWork 使用小技巧]]></title>
+    <url>%2F2018%2F11%2F26%2Fapp-framework-tips%2F</url>
+    <content type="text"><![CDATA[可以在 “FrameWork” -&gt; “底部更多（三个点）” -&gt; “小技巧” 找到这篇文章的入口。 有任何问题、建议或 Bug 都可以点击 “FrameWork” 中的 “底部更多（三个点）” -&gt; “联系我” 来给我发邮件。或者直接发送到 codingallnight@gmail.com。 或者可以在微博上 at 我 @我的眼里只有代码。 English 主界面 底部工具栏 背景 背景可以设置多种类型，透明色只在图片保存格式为 PNG 时才支持（可以在“更多”界面里面修改）。 设置背景为渐变色 目前只支持三种颜色的渐变，因为感觉颜色多了不好看，三个算是上限了。 颜色可以长按进行排序，点击修改颜色。 标题（副标题）样式 设置标题的左右边距，往左变小（标题可以更长，可能字体显示会变大），反之则变大（标题变短，可能字体显示也会变小） 更改标题的字体，点击可以更改以及预览 更改标题的字体大小 更改标题的文字颜色 如图所示，可以随意选择一个颜色作为标题的文字颜色 更改标题文字的排列方式（靠左、居中、靠右） 更改标题顶部的距离（上下移动） 手机壳样式 设置手机壳的左右边距，往左变小（手机壳变大），反之则变大（手机壳变小） 重置为默认的边距 隐藏手机壳，此时就只有用户选择的截图 更改手机壳顶部的距离（上下移动） ps. 手机壳颜色请使用底部工具栏第二个按钮来切换]]></content>
       <categories>
         <category>个人项目</category>
       </categories>
@@ -48,9 +59,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[FrameWork 使用小技巧]]></title>
-    <url>%2F2018%2F11%2F26%2Fapp-framework-tips%2F</url>
-    <content type="text"><![CDATA[可以在 “FrameWork” -&gt; “底部更多（三个点）” -&gt; “小技巧” 找到这篇文章的入口。 有任何问题、建议或 Bug 都可以点击 “FrameWork” 中的 “底部更多（三个点）” -&gt; “联系我” 来给我发邮件。或者直接发送到 codingallnight@gmail.com。 或者可以在微博上 at 我 @我的眼里只有代码。 English 主界面 底部工具栏 背景 背景可以设置多种类型，透明色只在图片保存格式为 PNG 时才支持（可以在“更多”界面里面修改）。 设置背景为渐变色 目前只支持三种颜色的渐变，因为感觉颜色多了不好看，三个算是上限了。 颜色可以长按进行排序，点击修改颜色。 标题（副标题）样式 设置标题的左右边距，往左变小（标题可以更长，可能字体显示会变大），反之则变大（标题变短，可能字体显示也会变小） 更改标题的字体，点击可以更改以及预览 更改标题的字体大小 更改标题的文字颜色 如图所示，可以随意选择一个颜色作为标题的文字颜色 更改标题文字的排列方式（靠左、居中、靠右） 更改标题顶部的距离（上下移动） 手机壳样式 设置手机壳的左右边距，往左变小（手机壳变大），反之则变大（手机壳变小） 重置为默认的边距 隐藏手机壳，此时就只有用户选择的截图 更改手机壳顶部的距离（上下移动） ps. 手机壳颜色请使用底部工具栏第二个按钮来切换]]></content>
+    <title><![CDATA[FrameWork Usage Tips]]></title>
+    <url>%2F2018%2F11%2F26%2Fapp-framework-tips-en%2F</url>
+    <content type="text"><![CDATA[You can find this page in “FrameWork“ -&gt; “More (three dots)” -&gt; “Tips”. If you have any questions, suggestions or bugs, you can sending email to me in “FrameWork“ -&gt; “More (three dots)” -&gt; “Contact Me”. Or sending email directly to codingallnight@gmail.com. Or you can @ me on Weibo @我的眼里只有代码 or Twitter @meilbn. 中文版 Home Bottom Toolbar Backdrop Backdrop can set with many types, Clear Color only available when screenshot save as PNG (you can change it in More). Set Backdrop with Gradient Just support three colors currently, because I think gradient will be ugly if color greater than three. Color can long press to reorder, click color to modify. Title (Subtitle) Attributes Set title’s left and right margin, slide to left will decrease (title can be long, maybe font will bigger), otherwise will increase (title will be short, maybe font will smaller). Change title’s font, click can change and preview. Change title’s font size. Change title’s text color. As the picture shows, can choose a color as title’s text color Change title’s text alignment Change title’s top offset (move up or down) Device Attributes Set device’s left and right margin, slide to left will decrease (device will bigger), otherwise will increase (device will smaller). Reset margin to default Hide device, just screenshot left. Change device’s top offset (move up or down) ps. Please use the second button on the bottom toolbar to change device’s color.]]></content>
       <categories>
         <category>个人项目</category>
       </categories>
@@ -85,7 +96,7 @@
   <entry>
     <title><![CDATA[GeeMoon Roadmap]]></title>
     <url>%2F2018%2F06%2F08%2Fapp-geemoon-roadmap-en%2F</url>
-    <content type="text"><![CDATA[Features may add into GeeMoon in the future and known bugs. 中文版 0x00 Features0x0000 Overview Accounts can fold or unfold. (Released in v1.0.2) All account list use card layout, in addition show account name and balance, also show this account expenses and incomes count. (Released in v1.0.6) 0x0001 Account Billing date and Payment due date reminds. (Released in v1.0.1) 0x0002 Transactions Searching Transactions. (Released in v1.0.4) Picking history locations. (Released in v1.0.3) Transactions Map, show Transactions in map which saved with location. (Released in v1.0.4) Category can set icon. When editing transfer transaction, the from account and to account can be exchanged. (Released in v1.0.2) Transaction detail adding “Add Same Transaction” and “Save As Template” features. (Released in v1.0.2) 0x0003 Others Searching currency code. (Released in v1.0.1) Security adding try times and retry time. Secutiry support TouchID. (Released in v1.0.3) When period is Quarter, user can choose first quarter start with January or March. Internationalization and localization, supporting more countries or regions language v1.0.0: Simplified Chinese, English Datas backup and restore. Today Widgets. 0x0004 Eternal Beautify the UI, Optimize performance, Bug fixes. 0x01 Bugs Calculator, precision problem (e.g. 27.3+10.96 = 38.26.000000000001), used system function to calculate. (Fixed in v1.0.6) Dosen’t request Notification permission while opening repayment reminder for editing account. (Fixed in v1.0.2) 3D Touch shortcut item (New Transaction) localization. (Fixed in v1.0.1)]]></content>
+    <content type="text"><![CDATA[DEPRECATED Features may add into GeeMoon in the future and known bugs. 中文版 0x00 Features0x0000 Overview Accounts can fold or unfold. (Released in v1.0.2) All account list use card layout, in addition show account name and balance, also show this account expenses and incomes count. (Released in v1.0.6) 0x0001 Account Billing date and Payment due date reminds. (Released in v1.0.1) 0x0002 Transactions Searching Transactions. (Released in v1.0.4) Picking history locations. (Released in v1.0.3) Transactions Map, show Transactions in map which saved with location. (Released in v1.0.4) Category can set icon. When editing transfer transaction, the from account and to account can be exchanged. (Released in v1.0.2) Transaction detail adding “Add Same Transaction” and “Save As Template” features. (Released in v1.0.2) 0x0003 Others Searching currency code. (Released in v1.0.1) Security adding try times and retry time. Secutiry support TouchID. (Released in v1.0.3) When period is Quarter, user can choose first quarter start with January or March. Internationalization and localization, supporting more countries or regions language v1.0.0: Simplified Chinese, English Datas backup and restore. Today Widgets. 0x0004 Eternal Beautify the UI, Optimize performance, Bug fixes. 0x01 Bugs Calculator, precision problem (e.g. 27.3+10.96 = 38.26.000000000001), used system function to calculate. (Fixed in v1.0.6) Dosen’t request Notification permission while opening repayment reminder for editing account. (Fixed in v1.0.2) 3D Touch shortcut item (New Transaction) localization. (Fixed in v1.0.1)]]></content>
       <categories>
         <category>个人项目</category>
       </categories>
@@ -97,7 +108,7 @@
   <entry>
     <title><![CDATA[积木路线图]]></title>
     <url>%2F2018%2F06%2F08%2Fapp-geemoon-roadmap%2F</url>
-    <content type="text"><![CDATA[未来可能会要加入到积木中的一些功能和一些已知的 Bug。 English 0x00 功能0x0000 概览界面 账户列表可收起 / 展开（v1.0.2 中已完成） 所有账户列表界面采用卡片式布局，除了展示账户名称和余额外，可以再展示此账户的收支总额（在 v1.0.6 中已完成） 0x0001 账户 账单日和还款日提醒（v1.0.1 中已完成） 0x0002 交易 交易搜索（在 v1.0.4 中已完成） 选择地点增加历史地点选择（v1.0.3 中已完成） 交易地图，在地图上显示保存过地点的交易（在 v1.0.4 中已完成） 分类可以设置图标 创建交易界面，转账的两个账户可以互相切换（v1.0.2 中已完成） 交易详情界面增加“再记一笔”和“保存为模板”功能（v1.0.2 中已完成） 0x0003 其他 货币代码列表可搜索（v1.0.1 中已完成） 密码保护增加尝试次数和重试时间 安全模式增加 TouchID（v1.0.3 中已完成） 以季度为周期时，可以让用户选择是以1月开始还是3月开始第一季度 国际化，支持更多国家或地区的语言 v1.0.0：简体中文、英语 数据可以备份及恢复 Today Widgets 0x0004 永恒不变的 美化 UI，优化性能，解决 Bug 0x01 Bugs 计算器，计算精度问题（例如计算 27.3+10.96 = 38.26.000000000001），使用的是系统方法计算（在 v1.0.6 中已修复） 账户编辑界面开启还款提醒时，没有申请通知的权限（在 v1.0.2 中已修复） 3D Touch 快捷菜单 (New Transaction) 名称本地化。（在 v1.0.1 中已修复）]]></content>
+    <content type="text"><![CDATA[DEPRECATED 未来可能会要加入到积木中的一些功能和一些已知的 Bug。 English 0x00 功能0x0000 概览界面 账户列表可收起 / 展开（v1.0.2 中已完成） 所有账户列表界面采用卡片式布局，除了展示账户名称和余额外，可以再展示此账户的收支总额（在 v1.0.6 中已完成） 0x0001 账户 账单日和还款日提醒（v1.0.1 中已完成） 0x0002 交易 交易搜索（在 v1.0.4 中已完成） 选择地点增加历史地点选择（v1.0.3 中已完成） 交易地图，在地图上显示保存过地点的交易（在 v1.0.4 中已完成） 分类可以设置图标 创建交易界面，转账的两个账户可以互相切换（v1.0.2 中已完成） 交易详情界面增加“再记一笔”和“保存为模板”功能（v1.0.2 中已完成） 0x0003 其他 货币代码列表可搜索（v1.0.1 中已完成） 密码保护增加尝试次数和重试时间 安全模式增加 TouchID（v1.0.3 中已完成） 以季度为周期时，可以让用户选择是以1月开始还是3月开始第一季度 国际化，支持更多国家或地区的语言 v1.0.0：简体中文、英语 数据可以备份及恢复 Today Widgets 0x0004 永恒不变的 美化 UI，优化性能，解决 Bug 0x01 Bugs 计算器，计算精度问题（例如计算 27.3+10.96 = 38.26.000000000001），使用的是系统方法计算（在 v1.0.6 中已修复） 账户编辑界面开启还款提醒时，没有申请通知的权限（在 v1.0.2 中已修复） 3D Touch 快捷菜单 (New Transaction) 名称本地化。（在 v1.0.1 中已修复）]]></content>
       <categories>
         <category>个人项目</category>
       </categories>
@@ -210,8 +221,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>Objective-C</tag>
         <tag>Xcode</tag>
+        <tag>Objective-C</tag>
         <tag>xcrun</tag>
         <tag>xcodebuild</tag>
       </tags>
@@ -224,9 +235,9 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>Objective-C</tag>
         <tag>iOS</tag>
         <tag>Xcode</tag>
+        <tag>Objective-C</tag>
         <tag>Unix</tag>
         <tag>OS X</tag>
         <tag>Dictionary</tag>
@@ -380,8 +391,8 @@
         <category>iOS</category>
       </categories>
       <tags>
-        <tag>Objective-C</tag>
         <tag>iOS</tag>
+        <tag>Objective-C</tag>
         <tag>NSPredicate</tag>
       </tags>
   </entry>
