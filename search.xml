@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[iOS 12.4 使用 unc0ver 越狱之后安装 Reveal2Loader]]></title>
+    <url>%2F2019%2F08%2F23%2Finstall-reveal2loader-on-jailbreak-device-ios12%2F</url>
+    <content type="text"><![CDATA[0x00 前言昨天刷微博发现 iOS 12.4 也可以越狱了（虽然是所谓的不完美越狱，也就是重启设备之后会回到未越狱状态，需要重新越狱一次，不过也没事），就拿开发备用机 iPhone 6s 去试了。 越狱教程地址：GitHub，要是过程不清楚的，可以看这个教程。 0x01 准备工作 已越狱手机（以下简称手机） Mac 电脑（已安装了 Reveal） 手机安装好 OpenSSH，就是用 unc0ver 越狱时，开启了 (Re)Install OpenSSH 选项，手机和电脑连接同一个 WiFi。 手机打开 Cydia 安装插件 Reveal2Loader，亲测支持 iOS 12.4（iOS 8 时，我的另一个越狱手机 iPhone 5s 安装的是 RevealLoader，一直没有升级系统，停留在 iOS 8）。 打开设置，找到 Reveal，进去随便打开一个 App 的开关，然后 Mac 打开 Reveal，可以看到 App 出现在界面上，点击选择，如果你 Mac 的 Reveal 版本比手机安装的插件里面的 RevealServer 的版本高，那么 Mac 上的 Reveal 会提示： The operation couldn’t be completed. The app is link against an older version of the Reveal library. You may need to update the Reveal library in your app. 不要慌，下面来讲解决办法（嫌过程太长不想看的，请直接点击这里查看最终的解决办法）。 0x02 解决过程按照以往的经验，只要更新一下 RevealServer 即可。 打开 Mac 终端（我用的 iTerm2），ssh 连接手机（ip 地址改成你自己手机的 ip）： 1ssh root@172.20.10.10 初始密码为：alpine（建议修改默认密码） 以前用的插件是 RevealLoader，现在是 Reveal2Loader，不知道 RevealServer 的地址是否一样，那么就先来看看。 进入到 /Library 文件夹，发现并没有 RHRevealLoader 文件夹，看来两个插件不太一样。 在浏览 LANRevealLoader 这个开源库时，最后的 Install 写着： 从RevealServer.framework/RevealServer获取RevealServer，并下载LANRevealLoader，解压后将LANRevealLoader.dylib、LANRevealLoader.plist、RevealServer放在已越狱iOS的/Library/MobileSubstrate/DynamicLibraries目录下。 看了下这个文件夹下面的文件，发现除了 reveal2Loader.dylib 和 reveal2Loader.plist，并没有 RevealServer： 既然如此，那么就试试看，把 Mac 上 Reveal 的 RevealServer 复制到这个文件夹下（新开一个终端窗口，不是在手机上运行这个命令）： 1scp /Users/meilbn/Library/Application\ Support/Reveal/RevealServer/iOS/RevealServer.framework/RevealServer root@172.20.10.10:/Library/MobileSubstrate/DynamicLibraries 然后重启手机（不建议，还要重新越狱）或者（respings，建议这个方式）： 1killall SpringBoard 手机会显示加载的菊花，完了之后杀掉原先打开的 App，重新打开，然后去 Mac 上的 Reveal 中查看下。 ··· 哈哈哈，还是一样，看不了。 没有关系，Google 搜索了下 Reveal2Loader，找到了 Cydia 的对应地址：http://cydia.saurik.com/package/com.zidaneno5.reveal2loader/ 打开 GitHub 地址，花了一点时间，看了下一些文件的源码，发现了目标，RevealServer.framework 是会被 copy 和 sign 到 FrameWorks 文件夹。 印象中，/Library 下面就有一个 FrameWorks 文件夹，然后就去看了下，RevealServer.framework 果然是在这个里面： 0x03 更新 RevealServer.framework 既然已经知道了 RevealServer.framework 的位置，那么就像之前那样，更新一下就好了： 1scp -r /Users/meilbn/Library/Application\ Support/Reveal/RevealServer/iOS/RevealServer.framework root@172.20.10.10:/Library/Frameworks 这样就大功告成啦！]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>Reveal</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Windows 10 专业版激活方法（Windows 10 Professional Activation）]]></title>
     <url>%2F2019%2F07%2F18%2Fwindows-10-pro-activation%2F</url>
     <content type="text"><![CDATA[0x00 前言初衷是因为 Mac 版的微信不能多开了，但是生活和工作是两个微信分开的，Mac 上又想两个微信都登录着，方便沟通。 尝试过登录网页版的微信，但是已经不支持了。后来是在 VMware 里面开虚拟机，顺便登录 QQ 和微信，但是吧，总感觉不太舒服。 最后是用 Parallels Desktop 来运行虚拟机，整体体验上好于 VMware，装了 Windows 10，但是要激活，试过一些密钥，激活不了，最后折腾了一下，激活成功了，遂记录一下，希望能帮到他人。 0x01 开始首先，在左下角的搜索框中输入 CMD，在出现的 Command Prompt (命令提示符) 上右键，选择 Run as administrator (以管理员身份运行)， 然后输入以下命令（如果没有使用过密钥的话，这一步可以省略）： 1slmgr.vbs /upk 回车运行之后，会弹窗显示 “已成功卸载了产品密钥”。 然后输入： 1slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX 回车运行之后，则绑定了新的密钥，会弹窗显示 “成功地安装了产品密钥…”。 接着输入： 1slmgr /skms kms.xspace.in 回车运行之后，会更改 KMS 的服务地址，弹窗显示 “密钥管理服务计算机名成功的设置为…”。 最后一步，输入： 1slmgr /ato 等待弹窗提示 “成功地激活了产品”。 注意：如果提示失败，出错，那么可以更改一下 KMS 的服务地址 1slmgr /skms zh.us.to 然后再： 1slmgr /ato 这样就可以了。 0x02 结尾密钥如果不可用，可以去网上找别的密钥，很多，这里就不 copy 了。 步骤截图： 激活后的系统信息：]]></content>
@@ -48,9 +59,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[FrameWork 使用小技巧]]></title>
-    <url>%2F2018%2F11%2F26%2Fapp-framework-tips%2F</url>
-    <content type="text"><![CDATA[可以在 “FrameWork” -&gt; “底部更多（三个点）” -&gt; “小技巧” 找到这篇文章的入口。 有任何问题、建议或 Bug 都可以点击 “FrameWork” 中的 “底部更多（三个点）” -&gt; “联系我” 来给我发邮件。或者直接发送到 codingallnight@gmail.com。 或者可以在微博上 at 我 @我的眼里只有代码。 English 主界面 底部工具栏 背景 背景可以设置多种类型，透明色只在图片保存格式为 PNG 时才支持（可以在“更多”界面里面修改）。 设置背景为渐变色 目前只支持三种颜色的渐变，因为感觉颜色多了不好看，三个算是上限了。 颜色可以长按进行排序，点击修改颜色。 标题（副标题）样式 设置标题的左右边距，往左变小（标题可以更长，可能字体显示会变大），反之则变大（标题变短，可能字体显示也会变小） 更改标题的字体，点击可以更改以及预览 更改标题的字体大小 更改标题的文字颜色 如图所示，可以随意选择一个颜色作为标题的文字颜色 更改标题文字的排列方式（靠左、居中、靠右） 更改标题顶部的距离（上下移动） 手机壳样式 设置手机壳的左右边距，往左变小（手机壳变大），反之则变大（手机壳变小） 重置为默认的边距 隐藏手机壳，此时就只有用户选择的截图 更改手机壳顶部的距离（上下移动） ps. 手机壳颜色请使用底部工具栏第二个按钮来切换]]></content>
+    <title><![CDATA[FrameWork Usage Tips]]></title>
+    <url>%2F2018%2F11%2F26%2Fapp-framework-tips-en%2F</url>
+    <content type="text"><![CDATA[You can find this page in “FrameWork“ -&gt; “More (three dots)” -&gt; “Tips”. If you have any questions, suggestions or bugs, you can sending email to me in “FrameWork“ -&gt; “More (three dots)” -&gt; “Contact Me”. Or sending email directly to codingallnight@gmail.com. Or you can @ me on Weibo @我的眼里只有代码 or Twitter @meilbn. 中文版 Home Bottom Toolbar Backdrop Backdrop can set with many types, Clear Color only available when screenshot save as PNG (you can change it in More). Set Backdrop with Gradient Just support three colors currently, because I think gradient will be ugly if color greater than three. Color can long press to reorder, click color to modify. Title (Subtitle) Attributes Set title’s left and right margin, slide to left will decrease (title can be long, maybe font will bigger), otherwise will increase (title will be short, maybe font will smaller). Change title’s font, click can change and preview. Change title’s font size. Change title’s text color. As the picture shows, can choose a color as title’s text color Change title’s text alignment Change title’s top offset (move up or down) Device Attributes Set device’s left and right margin, slide to left will decrease (device will bigger), otherwise will increase (device will smaller). Reset margin to default Hide device, just screenshot left. Change device’s top offset (move up or down) ps. Please use the second button on the bottom toolbar to change device’s color.]]></content>
       <categories>
         <category>个人项目</category>
       </categories>
@@ -59,9 +70,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[FrameWork Usage Tips]]></title>
-    <url>%2F2018%2F11%2F26%2Fapp-framework-tips-en%2F</url>
-    <content type="text"><![CDATA[You can find this page in “FrameWork“ -&gt; “More (three dots)” -&gt; “Tips”. If you have any questions, suggestions or bugs, you can sending email to me in “FrameWork“ -&gt; “More (three dots)” -&gt; “Contact Me”. Or sending email directly to codingallnight@gmail.com. Or you can @ me on Weibo @我的眼里只有代码 or Twitter @meilbn. 中文版 Home Bottom Toolbar Backdrop Backdrop can set with many types, Clear Color only available when screenshot save as PNG (you can change it in More). Set Backdrop with Gradient Just support three colors currently, because I think gradient will be ugly if color greater than three. Color can long press to reorder, click color to modify. Title (Subtitle) Attributes Set title’s left and right margin, slide to left will decrease (title can be long, maybe font will bigger), otherwise will increase (title will be short, maybe font will smaller). Change title’s font, click can change and preview. Change title’s font size. Change title’s text color. As the picture shows, can choose a color as title’s text color Change title’s text alignment Change title’s top offset (move up or down) Device Attributes Set device’s left and right margin, slide to left will decrease (device will bigger), otherwise will increase (device will smaller). Reset margin to default Hide device, just screenshot left. Change device’s top offset (move up or down) ps. Please use the second button on the bottom toolbar to change device’s color.]]></content>
+    <title><![CDATA[FrameWork 使用小技巧]]></title>
+    <url>%2F2018%2F11%2F26%2Fapp-framework-tips%2F</url>
+    <content type="text"><![CDATA[可以在 “FrameWork” -&gt; “底部更多（三个点）” -&gt; “小技巧” 找到这篇文章的入口。 有任何问题、建议或 Bug 都可以点击 “FrameWork” 中的 “底部更多（三个点）” -&gt; “联系我” 来给我发邮件。或者直接发送到 codingallnight@gmail.com。 或者可以在微博上 at 我 @我的眼里只有代码。 English 主界面 底部工具栏 背景 背景可以设置多种类型，透明色只在图片保存格式为 PNG 时才支持（可以在“更多”界面里面修改）。 设置背景为渐变色 目前只支持三种颜色的渐变，因为感觉颜色多了不好看，三个算是上限了。 颜色可以长按进行排序，点击修改颜色。 标题（副标题）样式 设置标题的左右边距，往左变小（标题可以更长，可能字体显示会变大），反之则变大（标题变短，可能字体显示也会变小） 更改标题的字体，点击可以更改以及预览 更改标题的字体大小 更改标题的文字颜色 如图所示，可以随意选择一个颜色作为标题的文字颜色 更改标题文字的排列方式（靠左、居中、靠右） 更改标题顶部的距离（上下移动） 手机壳样式 设置手机壳的左右边距，往左变小（手机壳变大），反之则变大（手机壳变小） 重置为默认的边距 隐藏手机壳，此时就只有用户选择的截图 更改手机壳顶部的距离（上下移动） ps. 手机壳颜色请使用底部工具栏第二个按钮来切换]]></content>
       <categories>
         <category>个人项目</category>
       </categories>
