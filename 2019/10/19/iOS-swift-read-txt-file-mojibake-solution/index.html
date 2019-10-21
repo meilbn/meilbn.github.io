@@ -153,7 +153,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/10/19/SOJrYMaUZDlTnH1.png">
 <meta property="og:image" content="https://i.loli.net/2019/10/19/Me8i1AwJ9StumZ2.png">
-<meta property="og:updated_time" content="2019-10-19T14:58:35.871Z">
+<meta property="og:updated_time" content="2019-10-21T03:07:28.075Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 读取 txt 文本文件中文乱码的解决办法">
 <meta name="twitter:description" content="0x00 前言最近在做公司的一个外包项目，是一个小说阅读 App，但是不仅是文本小说的阅读，还有有声小说，学习，ASMR 安眠等功能，这篇文章主要是说读取 txt 文本小说乱码的解决办法。">
@@ -526,12 +526,24 @@
                 
               
 
-              <time title="创建时间：2019-10-19 10:49:36 / 修改时间：22:58:35" itemprop="dateCreated datePublished" datetime="2019-10-19T10:49:36+08:00">2019-10-19</time>
+              <time title="创建时间：2019-10-19 10:49:36" itemprop="dateCreated datePublished" datetime="2019-10-19T10:49:36+08:00">2019-10-19</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-21 11:07:28" itemprop="dateModified" datetime="2019-10-21T11:07:28+08:00">2019-10-21</time>
               
             
           </span>
@@ -627,11 +639,11 @@
 <h1 id="0x00_前言">0x00 前言</h1><p>最近在做公司的一个外包项目，是一个小说阅读 App，但是不仅是文本小说的阅读，还有有声小说，学习，ASMR 安眠等功能，这篇文章主要是说读取 txt 文本小说乱码的解决办法。</p>
 <a id="more"></a>
 <p><a href="#jump">太长不看，直接看解决办法</a></p>
-<h1 id="0x01_遇到的情况">0x01 遇到的情况</h1><p>Windows 上，txt 文件的编码一般是 GBK，但是 macOS 上一般是 UTF-8 的编码，所有在 iOS 上，直接用 UTF-8 编码去获取 txt 文件内容，会读取不到想要的数据：</p>
+<h1 id="0x01_遇到的情况">0x01 遇到的情况</h1><p>Windows 上，txt 文件的编码一般是 GBK，但是 macOS 上一般是 UTF-8 的编码，所以在 iOS 上，直接用 UTF-8 编码去获取 txt 文件内容，会读取不到想要的数据：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSError</span> *error;</span><br><span class="line"><span class="built_in">NSString</span> *content = [<span class="built_in">NSString</span> stringWithContentsOfURL:url encoding:<span class="built_in">NSUTF8StringEncoding</span> error:&amp;error];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"UTF-8, error = %@"</span>, error);</span><br></pre></td></tr></table></figure>
 <p>既然 UTF-8 编码不行，那么我们就换对应的编码去读取：</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//解决中文乱码</span></span><br><span class="line"><span class="keyword">if</span> (!content) &#123;</span><br><span class="line">    error = <span class="literal">nil</span>;</span><br><span class="line">    content = [<span class="built_in">NSString</span> stringWithContentsOfURL:url encoding:<span class="number">0x80000632</span> error:&amp;error];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"GBK 632, error = %@"</span>, error);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (!content) &#123;</span><br><span class="line">    error = <span class="literal">nil</span>;</span><br><span class="line">    content = [<span class="built_in">NSString</span> stringWithContentsOfURL:url encoding:<span class="number">0x80000631</span> error:&amp;error];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"GBK 631, error = %@"</span>, error);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样的话，GBK 编码的“一般”也都能正确读取了，为什么说是一般呢？还打引号呢？因为在某些情况下，上面两种方式并不能正确读取 GBK 编码的 txt 文件，即使你在 Mac 上使用 VS Code 等类似的编辑器使用 GBK 编码能够正确显示。</p>
+<p>这样的话，GBK 编码的“一般”也都能正确读取了，为什么说是一般呢？还打引号呢？因为在某些情况下，上面两种方式并不能正确读取 GBK 编码的 txt 文件的内容，即使你在 Mac 上使用 VS Code 等类似的编辑器，使用 GBK 编码能够正确显示。</p>
 <p>读取不了的情况遇到过两种，先说第一种。</p>
 <h1 id="0x02_第一种读取失败">0x02 第一种读取失败</h1><p>先说 GBK，因为这个花了我一些时间去解决。</p>
 <p>明明 Mac 上用 GBK 编码能够正确显示 txt 文件，服务端用 GBK 编码也能正确解析 txt 小说的章节，一到 iOS 上就不行了。</p>
