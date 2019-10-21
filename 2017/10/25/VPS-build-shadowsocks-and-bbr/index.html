@@ -163,7 +163,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac2ee20c72.png">
 <meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac2f8dbf06.png">
 <meta property="og:image" content="https://i.loli.net/2018/11/01/5bdac3045b617.png">
-<meta property="og:updated_time" content="2018-11-01T09:10:36.000Z">
+<meta property="og:updated_time" content="2019-10-21T14:37:36.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="科学上网 - VPS 搭建 Shadowsocks 并开启 BBR">
 <meta name="twitter:description" content="0x00 前言本文仅供学习，请勿用于非法用途！ 首先，你要有台服务器，个人用过几个不同服务商的 VPS，有：  搬瓦工：第一次自己买 VPS 搭 SS 的服务商，价格挺便宜的，实惠一点的，100出头一点可以用一年，每月 2T 的流量，20 GB 的硬盘，忘了是不是 SSD 的了。但是速度慢，很卡，后来没到期就不用了。 阿里云：买的是香港的服务器，2016 年双 11 买的，还打折（后来证明没什么卵">
@@ -553,7 +553,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-01 17:10:36" itemprop="dateModified" datetime="2018-11-01T17:10:36+08:00">2018-11-01</time>
+                <time title="修改时间：2019-10-21 22:37:36" itemprop="dateModified" datetime="2019-10-21T22:37:36+08:00">2019-10-21</time>
               
             
           </span>
@@ -621,7 +621,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">5k</span>
+                <span title="本文字数">5.6k</span>
               
 
               
@@ -730,6 +730,16 @@
 <ul>
 <li>最后重新启动 SS 即可。</li>
 </ul>
+<h2 id="0x0103_ss_启动成功，但是并没有运行">0x0103 ss 启动成功，但是并没有运行</h2><p>在启动了 ss 之后，终端打印：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@tw:~# sudo /usr/local/bin/ssserver -c /etc/shadowsocks/config.json --user nobody -qq -d start</span><br><span class="line">INFO: loading config from /etc/shadowsocks/config.json</span><br><span class="line">started</span><br></pre></td></tr></table></figure>
+<p>但是查看当前进程，并没有 <code>ssserver</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@tw:~# ps -e | grep ss</span><br><span class="line"> 1372 ?        00:00:00 sshguard</span><br><span class="line"> 1619 ?        00:00:00 sshd</span><br><span class="line"> 2031 ?        00:00:00 sshd</span><br><span class="line"> 2105 ?        00:00:00 sshd</span><br></pre></td></tr></table></figure>
+<p>被这个问题困扰了很久，中间还放弃过一次，但是本着不放过的原则，重新开始搭建。</p>
+<p>想到既然启动成功，但是并没有运行，应该查看下 log，所以：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo less /var/log/shadowsocks.log</span><br></pre></td></tr></table></figure>
+<p>日志中出现最多，最引人注目的是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socket.error: [Errno 99] Cannot assign requested address</span><br></pre></td></tr></table></figure>
+<p>看字面意思应该是分配地址有问题，遂去 Google 搜索，找到的可用方法是，将配置文件的 Server 地址改成 <code>0.0.0.0</code>，重新启动下 ss，就可以正常启动并运行了。</p>
 <h1 id="0x02_更换系统内核并开启_TCP_BBR">0x02 更换系统内核并开启 TCP BBR</h1><p>TCP BBR 是 Google 开发的心得拥塞控制算法，据说是用在 YouTube 上，并且在去年 9 月开源并且现在已经集成到 Linux 4.9-rc8 之后版本的内核中。虽然 Linode 也更新到了 4.9 版本内核，但是并没有 TCP BBR，所以还是要自己更换一下内核。</p>
 <h2 id="0x0200_更换系统内核">0x0200 更换系统内核</h2><p>这里要注意的一点是，如果你的 VPS 使用的是 OpenVZ 的虚拟技术，你是不能使用 BBR 的。并且系统要求在 CentOS 6+，Debian 7+，Ubuntu 12+。</p>
 <p>首先确定下自己购买的 VPS 的架构吧，这里就不涉及了，自己去找吧。</p>
@@ -1315,7 +1325,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ox01_开始搭建_SS"><span class="nav-number">2.</span> <span class="nav-text">ox01 开始搭建 SS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0100_创建服务器"><span class="nav-number">2.1.</span> <span class="nav-text">0x0100 创建服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0101_搭建_SS"><span class="nav-number">2.2.</span> <span class="nav-text">0x0101 搭建 SS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0102_加密方式"><span class="nav-number">2.3.</span> <span class="nav-text">0x0102 加密方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_更换系统内核并开启_TCP_BBR"><span class="nav-number">3.</span> <span class="nav-text">0x02 更换系统内核并开启 TCP BBR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0200_更换系统内核"><span class="nav-number">3.1.</span> <span class="nav-text">0x0200 更换系统内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0201_开启_TCP_BBR"><span class="nav-number">3.2.</span> <span class="nav-text">0x0201 开启 TCP BBR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_修改_SSH_远程登录端口"><span class="nav-number">4.</span> <span class="nav-text">0x03 修改 SSH 远程登录端口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_参考链接"><span class="nav-number">5.</span> <span class="nav-text">0x04 参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00_前言"><span class="nav-number">1.</span> <span class="nav-text">0x00 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ox01_开始搭建_SS"><span class="nav-number">2.</span> <span class="nav-text">ox01 开始搭建 SS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0100_创建服务器"><span class="nav-number">2.1.</span> <span class="nav-text">0x0100 创建服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0101_搭建_SS"><span class="nav-number">2.2.</span> <span class="nav-text">0x0101 搭建 SS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0102_加密方式"><span class="nav-number">2.3.</span> <span class="nav-text">0x0102 加密方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0103_ss_启动成功，但是并没有运行"><span class="nav-number">2.4.</span> <span class="nav-text">0x0103 ss 启动成功，但是并没有运行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02_更换系统内核并开启_TCP_BBR"><span class="nav-number">3.</span> <span class="nav-text">0x02 更换系统内核并开启 TCP BBR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0200_更换系统内核"><span class="nav-number">3.1.</span> <span class="nav-text">0x0200 更换系统内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0201_开启_TCP_BBR"><span class="nav-number">3.2.</span> <span class="nav-text">0x0201 开启 TCP BBR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03_修改_SSH_远程登录端口"><span class="nav-number">4.</span> <span class="nav-text">0x03 修改 SSH 远程登录端口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04_参考链接"><span class="nav-number">5.</span> <span class="nav-text">0x04 参考链接</span></a></li></ol></div>
             
 
           </div>
